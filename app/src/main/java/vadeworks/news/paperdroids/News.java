@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
+package vadeworks.news.paperdroids;
 
 import android.util.Log;
 
@@ -7,10 +7,10 @@ import android.util.Log;
  */
 
 public class News {
-    String head;
-    String imgurl;
-    String link;
-    String content;
+    public String head;
+    public String imgurl;
+    public String link;
+    public String content;
 
     public News() {
         this.head= "";

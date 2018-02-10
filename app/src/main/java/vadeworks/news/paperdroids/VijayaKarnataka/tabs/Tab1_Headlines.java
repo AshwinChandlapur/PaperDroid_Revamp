@@ -21,6 +21,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
 
 
