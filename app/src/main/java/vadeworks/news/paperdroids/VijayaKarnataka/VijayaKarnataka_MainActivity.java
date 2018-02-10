@@ -11,11 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 
-import vadeworks.news.paperdroids.customViews.ScrimInsetsFrameLayout;
-import vadeworks.news.paperdroids.sliding.SlidingTabLayout;
+import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
+import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter;
-import vadeworks.news.paperdroids.utils.UtilsDevice;
-import vadeworks.news.paperdroids.utils.UtilsMiscellaneous;
+import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
+import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
 /**

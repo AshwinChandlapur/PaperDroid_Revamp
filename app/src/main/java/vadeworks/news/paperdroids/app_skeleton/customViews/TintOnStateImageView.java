@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.customViews;
+package vadeworks.news.paperdroids.app_skeleton.customViews;
 
 import android.content.Context;
 import android.content.res.ColorStateList;

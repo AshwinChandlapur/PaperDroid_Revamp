@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.utils;
+package vadeworks.news.paperdroids.app_skeleton.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;

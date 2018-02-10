@@ -4,6 +4,9 @@
     <color name="ColorPrimary">#00897B</color>
     <color name="ColorPrimaryDark">#00695C</color>
     <color name="tabsScrollColor">#004D40</color>
+    <color name="statusbar">#152421</color>
+    <color name="lightorange">#fdf2df</color>
+    <color name="lightorangedark">#ebd6ab</color>
 
     <!-- App Main Palette -->
     <color name="primary">@color/green_500</color>

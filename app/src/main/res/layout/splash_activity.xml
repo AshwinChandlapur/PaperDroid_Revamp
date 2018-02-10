@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity">
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:background="@null"
+        android:scaleType="fitXY"/>
+
+
+    <LinearLayout
+        android:id="@+id/l1"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        android:orientation="vertical">
+        <TextView
+            android:textColor="@color/lightorange"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Paper Droid"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="120dp"
+            android:textSize="40sp"
+            android:fontFamily="cursive"/>
+
+
+        <TextView
+            android:textColor="@color/lightorangedark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Made in Karnataka\nಪ್ರತಿದಿನದ ತಾಜಾ ಸುದ್ದಿ ೬೦ ಪದಗಳಲ್ಲಿ "
+            android:fontFamily="casual"
+            android:layout_margin="7dp"
+            android:textAlignment="center"
+            android:textSize="15sp"
+            />
+    </LinearLayout>
+
+
+
+    <Button
+        android:id="@+id/read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="30dp"
+        android:background="@drawable/buttonstyle"
+        android:text="ಓದಲು ಶುರು ಮಾಡಿ" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:scaleType="fitXY"
+        android:id="@+id/space"
+        android:src="@drawable/spaceullustration"
+        android:background="@null"
+        android:adjustViewBounds="true"
+        />
+
+
+
+
+</FrameLayout>
+

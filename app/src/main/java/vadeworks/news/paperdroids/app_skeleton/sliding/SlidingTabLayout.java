@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.sliding;
+package vadeworks.news.paperdroids.app_skeleton.sliding;
 
 import android.content.Context;
 import android.graphics.Typeface;

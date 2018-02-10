@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.customViews;
+package vadeworks.news.paperdroids.app_skeleton.customViews;
 
 /*
  * Copyright 2014 Google Inc.
