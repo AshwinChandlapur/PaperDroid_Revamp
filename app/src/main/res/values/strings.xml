@@ -5,8 +5,11 @@
     <string name="action_settings">Settings</string>
 
     <!-- Toolbar titles -->
-    <string name="toolbar_title_home">Home</string>
-    <string name="toolbar_title_explore">Explore</string>
+    <string name="toolbar_title_home_vk">ವಿಜಯ ಕರ್ನಾಟಕ</string>
+    <string name="toolbar_title_explore_vk">Explore</string>
+
+    <string name="toolbar_title_home_an">ಸುವರ್ಣ</string>
+    <string name="toolbar_title_explore_an">Explore</string>
     <string name="other_activity">Other Activity</string>
 
     <!-- Navigation Drawer -->

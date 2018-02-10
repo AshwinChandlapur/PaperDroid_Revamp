@@ -1,5 +1,6 @@
 package vadeworks.news.paperdroids.AsiaNet;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
@@ -9,8 +10,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
@@ -34,6 +37,27 @@ public class AsiaNet_MainActivity extends ActionBarActivity {
         init_slider();
 
         init_navigator();
+
+
+        FrameLayout intent_to_home = (FrameLayout)findViewById(R.id.nav_home);
+        intent_to_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaKarnataka_MainActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
+        FrameLayout intent_to_vijayakarnataka = (FrameLayout)findViewById(R.id.nav_vijayakarnataka);
+        intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaKarnataka_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
@@ -134,7 +158,7 @@ public class AsiaNet_MainActivity extends ActionBarActivity {
 
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
-        getSupportActionBar().setTitle(R.string.toolbar_title_home);
+        getSupportActionBar().setTitle(R.string.toolbar_title_home_an);
 
 
     }

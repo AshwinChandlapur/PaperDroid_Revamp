@@ -88,8 +88,8 @@ public class Tab1_Headlines_VK extends Fragment {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){
                                         view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                        TextView newss = (TextView)view.findViewById(R.id.news);
-                                        newss.setText(news.head);
+                                        TextView news_Headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        news_Headline.setText(news.head);
                                         return view;
                                     }
                                 });

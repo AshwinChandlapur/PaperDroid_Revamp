@@ -107,7 +107,7 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/nav_suvarna"
+                    android:id="@+id/nav_vijayakarnataka"
                     style="@style/NavDrawerRowLayout.Main" >
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
@@ -119,7 +119,7 @@
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_explore"
                         style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_an"
+                        android:text="@string/toolbar_title_home_vk"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>

@@ -43,10 +43,11 @@ public class News {
     }
 
     public void showNews() {
-        Log.d("news-info", this.head);
-        Log.d("news-info", this.link);
-        Log.d("news-info", this.imgurl);
-        Log.d("news-info", this.content);
+        Log.d("news-info", "Headline is    "+this.head);
+        Log.d("news-info", "Link is   "+this.link);
+        Log.d("news-info", "imageUrl is   "+this.imgurl);
+        Log.d("news-info", "Content is "+this.content);
+
     }
 
 }
