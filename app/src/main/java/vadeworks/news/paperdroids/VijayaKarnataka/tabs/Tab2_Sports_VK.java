@@ -12,11 +12,12 @@ import vadeworks.paperdroid.R;
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class Tab2 extends Fragment {
+public class Tab2_Sports_VK extends Fragment {
     
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.vijayakarnataka_tab_2,container,false);
+
         return v;
     }
 }

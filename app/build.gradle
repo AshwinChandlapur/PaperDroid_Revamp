@@ -28,4 +28,5 @@ dependencies {
     implementation 'com.mcxiaoke.volley:library:1.0.15'
     implementation 'org.jsoup:jsoup:1.11.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'
+
 }

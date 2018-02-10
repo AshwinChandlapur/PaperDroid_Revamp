@@ -7,6 +7,7 @@
     <color name="statusbar">#152421</color>
     <color name="lightorange">#fdf2df</color>
     <color name="lightorangedark">#ebd6ab</color>
+    <color name="link">#3F51B5</color>
 
     <!-- App Main Palette -->
     <color name="primary">@color/green_500</color>

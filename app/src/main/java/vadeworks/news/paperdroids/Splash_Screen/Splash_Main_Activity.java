@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.paperdroid.R;
 
@@ -56,7 +57,7 @@ public class Splash_Main_Activity extends ActionBarActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Splash_Main_Activity.this, VijayaKarnataka_MainActivity.class);
+                Intent i = new Intent(Splash_Main_Activity.this, AsiaNet_MainActivity.class);
                 startActivity(i);
             }
         });

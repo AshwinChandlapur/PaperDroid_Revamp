@@ -1,21 +1,21 @@
-package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
-
+package vadeworks.news.paperdroids.AsiaNet.tabs;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 /**
- * Created by Edwin on 15/02/2015.
+ * Created by ashwinchandlapur on 10/02/18.
  */
-public class ViewPagerAdapter extends FragmentStatePagerAdapter {
+
+public class ViewPagerAdapter_AN extends FragmentStatePagerAdapter {
 
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter_AN is created
     int NumbOfTabs; // Store the number of tabs, this will also be passed when the ViewPagerAdapter_AN is created
 
 
     // Build a Constructor and assign the passed Values to appropriate values in the class
-    public ViewPagerAdapter(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
+    public ViewPagerAdapter_AN(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
         super(fm);
 
         this.Titles = mTitles;
@@ -29,12 +29,12 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
         if(position == 0) // if the position is 0 we are returning the First tab
         {
-            Tab1_Headlines_VK tab1 = new Tab1_Headlines_VK();
+            Tab1_Headlines_AN tab1= new Tab1_Headlines_AN();
             return tab1;
         }
         else             // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
-            Tab2_Sports_VK tab2 = new Tab2_Sports_VK();
+            Tab2_Sports_AN tab2 = new Tab2_Sports_AN();
             return tab2;
         }
 

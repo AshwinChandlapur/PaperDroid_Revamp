@@ -1,7 +1,10 @@
 package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -27,20 +30,23 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Display_news;
+import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.paperdroid.R;
 
 
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class Tab1_Headlines extends Fragment {
+public class Tab1_Headlines_VK extends Fragment {
 
     ListView listView;
     Elements vijayakarnataka_headlines_elem;
     Document vijayakarnataka_doc;
     String vijayakarnataka_url;
-    String TAG;
+    ListView_Adapter listViewAdapter;
+    Context context;
 
     ArrayList<News> news = new ArrayList<News>();
 
@@ -49,7 +55,7 @@ public class Tab1_Headlines extends Fragment {
         View v = inflater.inflate(R.layout.vijayakarnataka_tab1_headlines,container,false);
         init(v);
 
-         TAG = "VK_HEADLINES";
+        context = getActivity().getApplicationContext();
 
 
         //For VijayaKarnataka Main Headlines//
@@ -63,7 +69,6 @@ public class Tab1_Headlines extends Fragment {
                     vijayakarnataka_headlines_elem = vijayakarnataka_doc.getElementsByClass("other_main_news1").select("ul").select("li").select("a");//this has the headline
                     //vijayakarnataka_headlines_elem is of type Elements
 
-
                     int i;
                     for(i=0;i<vijayakarnataka_headlines_elem.size();i++){
 
@@ -71,38 +76,40 @@ public class Tab1_Headlines extends Fragment {
                         String headline = vijayakarnataka_headlines_elem.get(i).text();
                         news.add(new News(headline,link));
                         news.get(i).showNews();
-
-
                     }
-                    news.size();
-
-                    Log.d("Run", "run: End Running");
-                    Log.d("news-info", "news-info"+ news.size());
-                    Log.d("news","news is"+news);
 
                     for(i=0;i<vijayakarnataka_headlines_elem.size();i++){
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                CustomAdapter customAdapter = new CustomAdapter();
-                                listView.setAdapter(customAdapter);
+
+                                listView.setAdapter(new ListView_Adapter<News>(context,news) {
+                                    @Override
+                                    public View getMyView(int i,View view,ViewGroup parent,News news){
+                                        view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                        TextView newss = (TextView)view.findViewById(R.id.news);
+                                        newss.setText(news.head);
+                                        return view;
+                                    }
+                                });
 
 
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        Log.d("body is", "Clicked");
-                                        News single = Parse(news.get(position));
                                         Intent i = new Intent(getActivity(), Display_news.class);
-                                        i.putExtra("head", news.get(position).head);
-                                        i.putExtra("link", news.get(position).link);
+                                        VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
+                                        News single = parser.Parse_Headlines(news.get(position));
+
                                         i.putExtra("singleHead",single.head);
                                         i.putExtra("singleLink",single.link);
                                         i.putExtra("singleContent",single.content);
                                         i.putExtra("singleimg",single.imgurl);
-                                        i.putExtra("vk_headlines",TAG);
-//                                        i.putExtra("newsObject",news);
+                                        Log.d("single",single.head);
+                                        Log.d("single",single.link);
+                                        Log.d("single",single.content);
+                                        Log.d("single",single.imgurl);
                                         startActivity(i);
 
 //                                        Intent i = new Intent(MainActivity.this, Vertical_News.class);
@@ -124,77 +131,41 @@ public class Tab1_Headlines extends Fragment {
         }).start();
 // VijayaKarnataka Main Headlines Ends Here
 
-
-
-
         return v;
     }
 
-    public News Parse(final News news){
-
-
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-
-                    Document doc = Jsoup.connect(news.link).get();
-                    Elements image_url = doc.getElementsByClass("thumbImage").select("img");
-
-                    try{
-                        news.imgurl="https://vijaykarnataka.indiatimes.com"+image_url.select("img").first().attr("src");
-                    }catch(Exception e){
-                        Log.d("error","error");
-                    }
-
-
-                    Elements body = doc.getElementsByTag("arttextxml");
-                    news.content = body.toString();
-                    news.content = Jsoup.parse(news.content).text();
-                    Log.d("body is", news.content);
-
-                } catch (IOException e) {
-
-                }
-
-
-            }
-        }).start();
 
 
 
-        return news;
-    }
-
-    class CustomAdapter extends BaseAdapter {
-
-        @Override
-        public int getCount(){
-            return vijayakarnataka_headlines_elem.size();
-        }
-
-        @Override
-        public Object getItem(int i){
-            return vijayakarnataka_headlines_elem.get(i);
-        }
-
-        @Override
-        public long getItemId(int i){
-            return 0;
-        }
-
-        @Override
-        public View getView(int i, View view, ViewGroup viewGroup){
-
-//            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-
-            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-            TextView newss = (TextView)view.findViewById(R.id.news);
-            newss.setText(news.get(i).head);
-
-            return view;
-        }
-    }
+//    class CustomAdapter extends BaseAdapter {
+//
+//        @Override
+//        public int getCount(){
+//            return vijayakarnataka_headlines_elem.size();
+//        }
+//
+//        @Override
+//        public Object getItem(int i){
+//            return vijayakarnataka_headlines_elem.get(i);
+//        }
+//
+//        @Override
+//        public long getItemId(int i){
+//            return 0;
+//        }
+//
+//        @Override
+//        public View getView(int i, View view, ViewGroup viewGroup){
+//
+////            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
+//
+//            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+//            TextView newss = (TextView)view.findViewById(R.id.news);
+//            newss.setText(news.get(i).head);
+//
+//            return view;
+//        }
+//    }
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);

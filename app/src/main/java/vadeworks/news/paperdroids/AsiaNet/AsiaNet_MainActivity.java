@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.VijayaKarnataka;
+package vadeworks.news.paperdroids.AsiaNet;
 
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -10,7 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-
+import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
@@ -18,14 +18,11 @@ import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
-
-public class VijayaKarnataka_MainActivity extends ActionBarActivity {
-
-    // Declaring Your View and Variables
+public class AsiaNet_MainActivity extends ActionBarActivity {
 
     Toolbar toolbar;
     ViewPager pager;
-    ViewPagerAdapter adapter;
+    ViewPagerAdapter_AN adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Headlines","Sports"};
     int Numboftabs =2;
@@ -33,13 +30,12 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vijayakarnataka_activity_main);
-
+        setContentView(R.layout.asianet_mainactivity);
         init_slider();
 
         init_navigator();
-    }
 
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -62,9 +58,6 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
@@ -73,7 +66,7 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter_AN(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
@@ -145,4 +138,5 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
 
 
     }
+
 }

@@ -1,0 +1,57 @@
+package vadeworks.news.paperdroids;
+
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import org.jsoup.select.Elements;
+
+import java.util.ArrayList;
+
+import vadeworks.paperdroid.R;
+
+/**
+ * Created by ashwinchandlapur on 10/02/18.
+ */
+
+public abstract class ListView_Adapter<News> extends BaseAdapter {
+
+    LayoutInflater layoutInflater;
+    Context context;
+    private ArrayList<News> news;
+
+    public ListView_Adapter(Context context, ArrayList<News> news) {
+        this.context = context;
+        this.news = news;
+        layoutInflater = LayoutInflater.from(context);
+    }
+
+
+        @Override
+        public int getCount(){
+            if(news.size()==0)
+                return 0;
+            return news.size();
+        }
+
+        @Override
+        public Object getItem(int i){
+            return news.get(i);
+        }
+
+        @Override
+        public long getItemId(int i){
+            return 0;
+        }
+
+
+        public abstract View getMyView(int i, View view, ViewGroup viewGroup,News news);
+            @Override
+            public View getView(int i, View convertView, ViewGroup parent) {
+                return getMyView(i, convertView, parent,news.get(i));
+            }
+
+    }
