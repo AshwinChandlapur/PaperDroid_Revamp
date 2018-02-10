@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator.sliding;
+package vadeworks.news.paperdroids.sliding;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -15,7 +15,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import luck.materialdesign.tabsnavigator.R;
+import vadeworks.paperdroid.R;
 
 
 public class SlidingTabLayout extends HorizontalScrollView {

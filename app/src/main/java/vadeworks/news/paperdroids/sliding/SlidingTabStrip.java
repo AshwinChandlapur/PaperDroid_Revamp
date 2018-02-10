@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator.sliding;
+package vadeworks.news.paperdroids.sliding;
 
 import android.R;
 import android.content.Context;

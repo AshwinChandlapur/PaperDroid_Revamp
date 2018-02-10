@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator;
+package vadeworks.news.paperdroids.VijayaKarnataka;
 
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -10,16 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import luck.materialdesign.tabsnavigator.customViews.ScrimInsetsFrameLayout;
-import luck.materialdesign.tabsnavigator.sliding.SlidingTabLayout;
-import luck.materialdesign.tabsnavigator.tabs.ViewPagerAdapter;
-import luck.materialdesign.tabsnavigator.utils.UtilsDevice;
-import luck.materialdesign.tabsnavigator.utils.UtilsMiscellaneous;
+
+import vadeworks.news.paperdroids.customViews.ScrimInsetsFrameLayout;
+import vadeworks.news.paperdroids.sliding.SlidingTabLayout;
+import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter;
+import vadeworks.news.paperdroids.utils.UtilsDevice;
+import vadeworks.news.paperdroids.utils.UtilsMiscellaneous;
+import vadeworks.paperdroid.R;
 
 /**
  * Created by Edwin on 15/02/2015.
  */
-public class MainActivity extends ActionBarActivity {
+public class VijayaKarnataka_MainActivity extends ActionBarActivity {
 
     // Declaring Your View and Variables
 
@@ -33,7 +35,7 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.vijayakarnataka_activity_main);
 
         init_slider();
 

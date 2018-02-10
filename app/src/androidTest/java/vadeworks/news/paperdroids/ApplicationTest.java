@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator;
+package vadeworks.news.paperdroids;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator.tabs;
+package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
 
 
 import android.support.v4.app.Fragment;

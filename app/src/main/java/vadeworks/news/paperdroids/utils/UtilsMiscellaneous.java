@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator.utils;
+package vadeworks.news.paperdroids.utils;
 
 import android.content.Context;
 import android.content.res.TypedArray;

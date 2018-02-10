@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator.customViews;
+package vadeworks.news.paperdroids.customViews;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
@@ -7,7 +7,7 @@ import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import luck.materialdesign.tabsnavigator.R;
+import vadeworks.paperdroid.R;
 
 
 /**

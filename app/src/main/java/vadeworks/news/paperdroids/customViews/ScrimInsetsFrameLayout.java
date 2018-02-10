@@ -1,4 +1,4 @@
-package luck.materialdesign.tabsnavigator.customViews;
+package vadeworks.news.paperdroids.customViews;
 
 /*
  * Copyright 2014 Google Inc.
@@ -24,7 +24,7 @@ import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 
-import luck.materialdesign.tabsnavigator.R;
+import vadeworks.paperdroid.R;
 
 
 /**

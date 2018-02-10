@@ -2,10 +2,10 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.1"
+    buildToolsVersion '26.0.2'
 
     defaultConfig {
-        applicationId "luck.materialdesign.tabsnavigator"
+        applicationId "vadeworks.news.paperdroid"
         minSdkVersion 16
         targetSdkVersion 21
         versionCode 1
