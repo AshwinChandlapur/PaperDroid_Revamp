@@ -27,8 +27,8 @@ public class AsiaNet_MainActivity extends ActionBarActivity {
     ViewPager pager;
     ViewPagerAdapter_AN adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Sports"};
-    int Numboftabs =2;
+    CharSequence Titles[]={"Headlines","Sports","Cinema","Technology","Live TV"};
+    int Numboftabs =5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

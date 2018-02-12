@@ -36,18 +36,33 @@ public class Tab2_Sports_VK extends Fragment {
             @Override
             public void run() {
 
-                try{
-                    vijayakarnataka_url="https://vijaykarnataka.indiatimes.com";
-                    vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_url).get();
-                    sports_link_taker = vijayakarnataka_doc.getElementsByClass("topnav").select("li:eq(4)").select("a");
-                    sports_url = sports_link_taker.attr("href");
 
-                    Log.d("sports-url","sports "+sports_url);
+                    vijayakarnataka_url="https://vijaykarnataka.indiatimes.com";
+                    try{
+                        vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_url).get();
+                    }catch (Exception e){
+                        Log.d("error","erroro");
+                    }
+
+                    sports_link_taker = vijayakarnataka_doc.getElementById("nav10738520").select("a");
+                    sports_url = sports_link_taker.attr("href");
+                    sports_url = vijayakarnataka_url+sports_url;
+                    Log.d("sports-url","sports-url"+sports_url);
+
+                    try{
+                        vijayakarnataka_doc = Jsoup.connect(sports_url).get();
+
+                    }catch (Exception e){
+
+                    }
+
+
+
                     //this is of type Document
 
-                }catch (Exception e){
-                    Log.d("error","error");
-                }
+
+
+
 
 
 
