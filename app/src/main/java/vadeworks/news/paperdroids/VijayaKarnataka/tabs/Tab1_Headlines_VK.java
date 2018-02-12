@@ -32,6 +32,7 @@ import java.util.ArrayList;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
+import vadeworks.news.paperdroids.VijayaKarnatakaa;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.paperdroid.R;
 
@@ -59,23 +60,10 @@ public class Tab1_Headlines_VK extends Fragment {
             public void run() {
                 Log.d("Run", "run: Start Running");
                 try {
-                    vijayakarnataka_url="https://vijaykarnataka.indiatimes.com/";//this is a string
-                    Log.d("timestamp","timestamp Headlines Start");
-                    vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_url).get();//this is of type Document
-                    Log.d("timestamp","timestamp Headlines Dome");
-                    vijayakarnataka_headlines_elem = vijayakarnataka_doc.getElementsByClass("other_main_news1").select("ul").select("li").select("a");//this has the headline
-                    //vijayakarnataka_headlines_elem is of type Elements
-
+                    VijayaKarnatakaa vk = new VijayaKarnatakaa();
+                    news = vk.parseHeadLines();
                     int i;
-                    for(i=0;i<vijayakarnataka_headlines_elem.size();i++){
-
-                        String link = vijayakarnataka_url+vijayakarnataka_headlines_elem.get(i).attr("href");
-                        String headline = vijayakarnataka_headlines_elem.get(i).text();
-                        news.add(new News(headline,link));
-                        news.get(i).showNews();
-                    }
-
-                    for(i=0;i<vijayakarnataka_headlines_elem.size();i++){
+                    for(i=0;i<news.size();i++){
 
 //                        try {
 //                            Thread.sleep(100);
@@ -128,8 +116,8 @@ public class Tab1_Headlines_VK extends Fragment {
 
                     }
 
-                } catch (IOException e) {
-
+                } catch (Exception e) {
+//                        Log.e("exception", e.toString());
                 }
             }
         }).start();

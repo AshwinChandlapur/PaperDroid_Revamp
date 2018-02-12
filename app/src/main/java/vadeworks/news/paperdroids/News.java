@@ -50,4 +50,12 @@ public class News {
 
     }
 
+    public void showNews(String tag) {
+        Log.d(tag, "Headline is    "+this.head);
+        Log.d(tag, "Link is   "+this.link);
+        Log.d(tag, "imageUrl is   "+this.imgurl);
+        Log.d(tag, "Content is "+this.content);
+
+    }
+
 }
