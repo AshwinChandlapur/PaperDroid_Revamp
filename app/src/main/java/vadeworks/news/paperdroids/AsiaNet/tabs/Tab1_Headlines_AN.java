@@ -23,6 +23,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
@@ -36,10 +37,8 @@ import vadeworks.paperdroid.R;
 public class Tab1_Headlines_AN extends Fragment {
 
     ListView listView;
-    Elements asianet_headlines_elem;
     Document asianet_doc;
     String asianet_url;
-    ListView_Adapter listViewAdapter;
     Context context;
 
     ArrayList<News> news = new ArrayList<News>();
@@ -65,7 +64,7 @@ public class Tab1_Headlines_AN extends Fragment {
             public void run() {
                 Log.d("Run", "run: Start Running");
                 try {
-                    asianet_url ="http://kannada.asianetnews.com/news";//this is a string
+                    asianet_url ="http://kannada.asianetnews.com/";//this is a string
                     asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
                     Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
 
@@ -73,6 +72,7 @@ public class Tab1_Headlines_AN extends Fragment {
                     for(i=0; i< asianet_headlines_elem.size(); i++){
 
                         String link = asianet_headlines_elem.get(i).attr("href");
+                        link = "http://kannada.asianetnews.com"+link;
                         String headline = asianet_headlines_elem.get(i).select("img:lt(1)").attr("title");
                         String img_url = asianet_headlines_elem.get(i).select("img:lt(1)").attr("data-original");
                         //lt(n) --->elements whose sibling index is less than n
@@ -94,36 +94,44 @@ public class Tab1_Headlines_AN extends Fragment {
                                         TextView news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
                                         ImageView news_image = (ImageView)view.findViewById(R.id.newsImage);
                                         news_headline.setText(news.head);
-                                        Picasso.with(context).load(news.imgurl).into(news_image);
+                                        if(!news.imgurl.isEmpty())
+                                        {
+                                            Picasso.with(context).load(news.imgurl).into(news_image);
+                                        }else{
+                                            news_image.setVisibility(View.GONE);
+                                        }
+
                                         return view;
                                     }
                                 });
 
 
-//                                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//                                    @Override
-//                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                                        Intent i = new Intent(getActivity(), Display_news.class);
-//                                        VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-//                                        News single = parser.Parse_Headlines(news.get(position));
+                                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        Intent i = new Intent(getActivity(), Display_news.class);
+//                                        i.putExtra("singleHead",news.get(position).head);
+//                                        i.putExtra("singleLink",news.get(position).link);
+//                                        i.putExtra("singleImg",news.get(position).imgurl);
+
 //
-//                                        i.putExtra("singleHead",single.head);
-//                                        i.putExtra("singleLink",single.link);
-//                                        i.putExtra("singleContent",single.content);
-//                                        i.putExtra("singleimg",single.imgurl);
-//                                        Log.d("single",single.head);
-//                                        Log.d("single",single.link);
-//                                        Log.d("single",single.content);
-//                                        Log.d("single",single.imgurl);
-//                                        startActivity(i);
 //
-////                                        Intent i = new Intent(MainActivity.this, Vertical_News.class);
-////                                        i.putExtra("all_headlines",vijayakarnataka_headlines);
-////                                        i.putExtra("url", vijayakarnataka_href.get(position));
-////                                        i.putExtra("headline",vijayakarnataka_headlines.get(position));
-////                                        startActivity(i);
-//                                    }
-//                                });
+//
+                                      AsiaNet_Parser parser = new AsiaNet_Parser();
+                                      News single = parser.Parse_For_Content(news.get(position));
+
+                                        i.putExtra("singleHead",single.head);
+                                        i.putExtra("singleLink",single.link);
+                                        i.putExtra("singleContent",single.content);
+                                        i.putExtra("singleImg",single.imgurl);
+                                        Log.d("single",single.head);
+                                        Log.d("single",single.link);
+                                        Log.d("single",single.content);
+                                        Log.d("single",single.imgurl);
+                                        startActivity(i);
+
+                                    }
+                                });
                             }
                         });
 

@@ -35,17 +35,12 @@ import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.paperdroid.R;
 
-
-/**
- * Created by Edwin on 15/02/2015.
- */
 public class Tab1_Headlines_VK extends Fragment {
 
     ListView listView;
     Elements vijayakarnataka_headlines_elem;
     Document vijayakarnataka_doc;
     String vijayakarnataka_url;
-    ListView_Adapter listViewAdapter;
     Context context;
 
     ArrayList<News> news = new ArrayList<News>();
@@ -90,6 +85,8 @@ public class Tab1_Headlines_VK extends Fragment {
                                         view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
                                         TextView news_Headline = (TextView)view.findViewById(R.id.newsHeadlines);
                                         news_Headline.setText(news.head);
+                                        ImageView news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        news_image.setVisibility(View.GONE);
                                         return view;
                                     }
                                 });
@@ -100,23 +97,17 @@ public class Tab1_Headlines_VK extends Fragment {
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent i = new Intent(getActivity(), Display_news.class);
                                         VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-                                        News single = parser.Parse_Headlines(news.get(position));
+                                        News single = parser.Parse_For_Content(news.get(position));
 
                                         i.putExtra("singleHead",single.head);
                                         i.putExtra("singleLink",single.link);
                                         i.putExtra("singleContent",single.content);
-                                        i.putExtra("singleimg",single.imgurl);
-                                        Log.d("single",single.head);
-                                        Log.d("single",single.link);
-                                        Log.d("single",single.content);
-                                        Log.d("single",single.imgurl);
+                                        i.putExtra("singleImg",single.imgurl);
+                                        Log.d("Parser single","parser"+news.get(position).head);
+                                        Log.d("Parser single","parser"+news.get(position).link);
+                                        Log.d("Parser single","parser"+single.content);
+                                        Log.d("Parser single","parser"+single.imgurl);
                                         startActivity(i);
-
-//                                        Intent i = new Intent(MainActivity.this, Vertical_News.class);
-//                                        i.putExtra("all_headlines",vijayakarnataka_headlines);
-//                                        i.putExtra("url", vijayakarnataka_href.get(position));
-//                                        i.putExtra("headline",vijayakarnataka_headlines.get(position));
-//                                        startActivity(i);
                                     }
                                 });
                             }
@@ -134,38 +125,6 @@ public class Tab1_Headlines_VK extends Fragment {
         return v;
     }
 
-
-
-
-//    class CustomAdapter extends BaseAdapter {
-//
-//        @Override
-//        public int getCount(){
-//            return vijayakarnataka_headlines_elem.size();
-//        }
-//
-//        @Override
-//        public Object getItem(int i){
-//            return vijayakarnataka_headlines_elem.get(i);
-//        }
-//
-//        @Override
-//        public long getItemId(int i){
-//            return 0;
-//        }
-//
-//        @Override
-//        public View getView(int i, View view, ViewGroup viewGroup){
-//
-////            LayoutInflater inflater = (LayoutInflater) getActivity().getSystemService( Context.LAYOUT_INFLATER_SERVICE );
-//
-//            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-//            TextView newss = (TextView)view.findViewById(R.id.news);
-//            newss.setText(news.get(i).head);
-//
-//            return view;
-//        }
-//    }
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);

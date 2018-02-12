@@ -19,7 +19,11 @@ import vadeworks.news.paperdroids.News;
 
 public class VijayaKarnataka_Parser {
 
-    public News Parse_Headlines(final News news) {
+
+
+
+
+    public News Parse_For_Content(final News news) {
 
         new Thread(new Runnable() {
             @Override
@@ -39,10 +43,10 @@ public class VijayaKarnataka_Parser {
                     Elements body = doc.getElementsByTag("arttextxml");
                     news.content = body.toString();
                     news.content = Jsoup.parse(news.content).text();
-                    Log.d("parser",news.head);
-                    Log.d("parser",news.link);
-                    Log.d("parser", news.content);
-                    Log.d("parser",news.imgurl);
+                    Log.d("parser","parser"+news.head);
+                    Log.d("parser","parser"+news.link);
+                    Log.d("parser","parser"+ news.content);
+                    Log.d("parser","parser"+news.imgurl);
 
 
                 } catch (IOException e) {
