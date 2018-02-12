@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.AsiaNet;
+package vadeworks.news.paperdroids.UdayaVaani;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
@@ -12,40 +12,52 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
-import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
+import vadeworks.news.paperdroids.UdayaVaani.tabs.ViewPagerAdapter_UV;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
+import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
-public class AsiaNet_MainActivity extends ActionBarActivity {
+public class UdayaVaani_MainActivity extends ActionBarActivity {
+
 
     Toolbar toolbar;
     ViewPager pager;
-    ViewPagerAdapter_AN adapter;
+    ViewPagerAdapter_UV adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Sports","Cinema","Technology","Live TV"};
-    int Numboftabs =5;
+    CharSequence Titles[]={"Headlines","Cinema"};
+    int Numboftabs =2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.asianet_mainactivity);
+        setContentView(R.layout.udayavaani_mainactivity);
+
         init_slider();
 
         init_navigator();
-
 
         FrameLayout intent_to_home = (FrameLayout)findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaKarnataka_MainActivity.class);
+                Intent intent = new Intent(UdayaVaani_MainActivity.this, Splash_Main_Activity.class);
                 startActivity(intent);
 
+            }
+        });
+
+        FrameLayout intent_to_suvarna = (FrameLayout)findViewById(R.id.nav_suvarna);
+        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UdayaVaani_MainActivity.this, AsiaNet_MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -54,22 +66,16 @@ public class AsiaNet_MainActivity extends ActionBarActivity {
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaKarnataka_MainActivity.class);
+                Intent intent = new Intent(UdayaVaani_MainActivity.this, VijayaKarnataka_MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        FrameLayout intent_to_udayavaani = (FrameLayout)findViewById(R.id.nav_udayavaani);
-        intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AsiaNet_MainActivity.this, UdayaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -92,6 +98,9 @@ public class AsiaNet_MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
@@ -100,7 +109,7 @@ public class AsiaNet_MainActivity extends ActionBarActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter_AN(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter_UV(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
@@ -168,7 +177,7 @@ public class AsiaNet_MainActivity extends ActionBarActivity {
 
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
-        getSupportActionBar().setTitle(R.string.toolbar_title_home_an);
+        getSupportActionBar().setTitle(R.string.toolbar_title_home_uv);
 
 
     }

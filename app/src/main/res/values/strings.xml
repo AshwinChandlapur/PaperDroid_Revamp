@@ -10,6 +10,10 @@
 
     <string name="toolbar_title_home_an">ಸುವರ್ಣ</string>
     <string name="toolbar_title_explore_an">Explore</string>
+
+    <string name="toolbar_title_home_uv">ಉದಯವಾಣಿ</string>
+    <string name="toolbar_title_explore_uv">Explore</string>
+
     <string name="other_activity">Other Activity</string>
 
     <!-- Navigation Drawer -->

@@ -14,7 +14,8 @@ import android.widget.FrameLayout;
 
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter;
+import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
+import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
@@ -28,7 +29,7 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
 
     Toolbar toolbar;
     ViewPager pager;
-    ViewPagerAdapter adapter;
+    ViewPagerAdapter_VK adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Headlines","Sports","Cinema","Lifestyle","Technology"};
     int Numboftabs =5;
@@ -57,6 +58,16 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, AsiaNet_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        FrameLayout intent_to_udayavaani = (FrameLayout)findViewById(R.id.nav_udayavaani);
+        intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, UdayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -96,7 +107,7 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter_VK(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);

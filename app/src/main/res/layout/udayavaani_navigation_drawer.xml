@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity_navigation_drawer_rootLayout"
     style="@style/ScrimInsetsLayout"
-    tools:context="vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity">
+    tools:context="vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -126,19 +126,17 @@
 
 
                 <FrameLayout
-                    android:id="@+id/nav_udayavaani"
+                    android:id="@+id/nav_suvarna"
                     style="@style/NavDrawerRowLayout.Main" >
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
-
                         style="@style/NavDrawerRowItemIcon"
                         android:src="@drawable/ic_explore_white_24dp"
                         tools:ignore="ContentDescription" />
 
                     <TextView
-
                         style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_uv"
+                        android:text="@string/toolbar_title_home_an"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>
