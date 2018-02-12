@@ -16,7 +16,7 @@
             android:layout_gravity="center"
             android:background="@null"
             android:fitsSystemWindows="true"
-            android:scaleType="center"/>
+            android:scaleType="fitCenter"/>
 
 
     <TextView
