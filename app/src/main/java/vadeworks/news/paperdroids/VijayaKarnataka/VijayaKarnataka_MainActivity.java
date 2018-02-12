@@ -30,8 +30,8 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
     ViewPager pager;
     ViewPagerAdapter adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Sports"};
-    int Numboftabs =2;
+    CharSequence Titles[]={"Headlines","Sports","Cinema","Lifestyle","Technology"};
+    int Numboftabs =5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

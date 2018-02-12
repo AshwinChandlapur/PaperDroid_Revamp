@@ -75,6 +75,17 @@ public class Tab1_Headlines_VK extends Fragment {
 
                     for(i=0;i<vijayakarnataka_headlines_elem.size();i++){
 
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException e) {
+                            Toast.makeText(getActivity().getApplicationContext(), "Default Signature                         Fail", Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+
+                        // here you check the value of getActivity() and break up if needed
+                        if(getActivity() == null)
+                            return;
+
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

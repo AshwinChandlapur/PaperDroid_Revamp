@@ -79,11 +79,18 @@ public class Display_news extends ActionBarActivity {
 
         headlines_textview.setText(head);
         content_textview.setText(content);
-        Picasso.with(getApplicationContext())
-                .load(imgurl)
-                .placeholder(R.drawable.spaceullustration)
-                .error(R.drawable.spaceullustration)
-                .into(imageView);
+        if(!imgurl.isEmpty())
+        {
+            Picasso.with(getApplicationContext())
+                    .load(imgurl)
+                    .placeholder(R.drawable.spaceullustration)
+                    .error(R.drawable.spaceullustration)
+                    .into(imageView);
+        }else{
+            Toast.makeText(getApplicationContext(),"Image Not Loading",Toast.LENGTH_LONG).show();
+        }
+
+
         link_textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

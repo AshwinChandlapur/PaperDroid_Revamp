@@ -35,7 +35,7 @@ public class VijayaKarnataka_Parser {
                     Elements image_url = doc.getElementsByClass("thumbImage").select("img");
 
                     try {
-                        news.imgurl = "https://vijaykarnataka.indiatimes.com" + image_url.select("img").first().attr("src");
+                        news.imgurl = "https://vijaykarnataka.indiatimes.com" + image_url.first().attr("src");
                     } catch (Exception e) {
                         Log.d("error", "error");
                     }
