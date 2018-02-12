@@ -62,7 +62,11 @@ public class Tab2_Sports_AN extends Fragment {
                 Log.d("Run", "run: Start Running");
                 try {
                     asianet_url ="http://kannada.asianetnews.com/sports";//this is a string
+                    Log.d("timestamp","timestamp Yes Sports");
                     asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
+                    Log.d("timestamp","Document before removal  "+asianet_doc);
+                    Log.d("timestamp","Document after removal "+asianet_doc.removeAttr("script"));
+                    Log.d("timestamp","timestamp Done Sports");
                     Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
 
                     int i;

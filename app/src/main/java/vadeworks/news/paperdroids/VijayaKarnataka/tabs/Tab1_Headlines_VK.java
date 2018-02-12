@@ -60,7 +60,9 @@ public class Tab1_Headlines_VK extends Fragment {
                 Log.d("Run", "run: Start Running");
                 try {
                     vijayakarnataka_url="https://vijaykarnataka.indiatimes.com/";//this is a string
+                    Log.d("timestamp","timestamp Headlines Start");
                     vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_url).get();//this is of type Document
+                    Log.d("timestamp","timestamp Headlines Dome");
                     vijayakarnataka_headlines_elem = vijayakarnataka_doc.getElementsByClass("other_main_news1").select("ul").select("li").select("a");//this has the headline
                     //vijayakarnataka_headlines_elem is of type Elements
 
@@ -75,12 +77,12 @@ public class Tab1_Headlines_VK extends Fragment {
 
                     for(i=0;i<vijayakarnataka_headlines_elem.size();i++){
 
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            Toast.makeText(getActivity().getApplicationContext(), "Default Signature                         Fail", Toast.LENGTH_LONG).show();
-                            e.printStackTrace();
-                        }
+//                        try {
+//                            Thread.sleep(100);
+//                        } catch (InterruptedException e) {
+//                            Toast.makeText(getActivity().getApplicationContext(), "Default Signature                         Fail", Toast.LENGTH_LONG).show();
+//                            e.printStackTrace();
+//                        }
 
                         // here you check the value of getActivity() and break up if needed
                         if(getActivity() == null)
@@ -107,18 +109,18 @@ public class Tab1_Headlines_VK extends Fragment {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent i = new Intent(getActivity(), Display_news.class);
-                                        VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-                                        News single = parser.Parse_For_Content(news.get(position));
-
-                                        i.putExtra("singleHead",single.head);
-                                        i.putExtra("singleLink",single.link);
-                                        i.putExtra("singleContent",single.content);
-                                        i.putExtra("singleImg",single.imgurl);
+//                                        VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
+//                                        News single = parser.Parse_For_Content(news.get(position));
+                                        i.putExtra("singleHead",news.get(position).head);
+                                        i.putExtra("singleLink",news.get(position).link);
+//                                        i.putExtra("singleContent",single.content);
+//                                        i.putExtra("singleImg",single.imgurl);
                                         Log.d("Parser single","parser"+news.get(position).head);
                                         Log.d("Parser single","parser"+news.get(position).link);
-                                        Log.d("Parser single","parser"+single.content);
-                                        Log.d("Parser single","parser"+single.imgurl);
+//                                        Log.d("Parser single","parser"+single.content);
+//                                        Log.d("Parser single","parser"+single.imgurl);
                                         startActivity(i);
+                                        Log.d("timestamp","timestamp of StartActivity");
                                     }
                                 });
                             }

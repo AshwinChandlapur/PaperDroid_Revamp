@@ -55,6 +55,7 @@ public class VijayaKarnataka_Parser {
             }
         }).start();
 
+        Log.d("timestamp","timestamp of Method");
         return news;
     }
 

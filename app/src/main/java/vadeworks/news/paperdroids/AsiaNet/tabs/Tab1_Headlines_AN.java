@@ -65,7 +65,9 @@ public class Tab1_Headlines_AN extends Fragment {
                 Log.d("Run", "run: Start Running");
                 try {
                     asianet_url ="http://kannada.asianetnews.com/";//this is a string
+                    Log.d("timestamp","timestamp Yes Main");
                     asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
+                    Log.d("timestamp","timestamp Done Main");
                     Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
 
                     int i;

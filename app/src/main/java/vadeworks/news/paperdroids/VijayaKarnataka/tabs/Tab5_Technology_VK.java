@@ -65,7 +65,9 @@ public class Tab5_Technology_VK extends Fragment {
 
                 vijayakarnataka_url="https://vijaykarnataka.indiatimes.com";
                 try{
+                    Log.d("timestamp","timestamp Tech Start");
                     vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_url).get();
+                    Log.d("timestamp","timestamp Tech Done");
                 }catch (Exception e){
                     Log.d("error","error");
                 }
@@ -107,12 +109,7 @@ public class Tab5_Technology_VK extends Fragment {
                 for(i=0;i<sports_link_taker.size();i++){
 
 
-                    try {
-                        Thread.sleep(100);
-                    } catch (InterruptedException e) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Default Signature                         Fail", Toast.LENGTH_LONG).show();
-                        e.printStackTrace();
-                    }
+
 
                     // here you check the value of getActivity() and break up if needed
                     if(getActivity() == null)
