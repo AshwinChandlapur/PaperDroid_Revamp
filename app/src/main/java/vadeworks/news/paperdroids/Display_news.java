@@ -29,6 +29,7 @@ public class Display_news extends AppCompatActivity {
 
     String head,link,content,imgurl;
     String tag;
+    String asianet = "asianet";
 
     News fullnews;
 
@@ -48,8 +49,9 @@ public class Display_news extends AppCompatActivity {
 
 
 
+
         switch (tag){
-            case "asianet_headlines":
+            case "asianet":
                 Log.d("Inside Asianet Swtich","inside");
 
                 head= getIntent().getStringExtra("singleHead");

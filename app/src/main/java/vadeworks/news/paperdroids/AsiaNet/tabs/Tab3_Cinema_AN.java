@@ -35,12 +35,13 @@ import vadeworks.paperdroid.R;
  */
 public class Tab3_Cinema_AN extends Fragment {
 
-
+    View view;
     Context context;
     ListView listView;
     Document asianet_doc;
     String asianet_url;
     ArrayList<News> news = new ArrayList<News>();
+    String tag = "asianet_cinema";
 
 
     public Tab3_Cinema_AN() {
@@ -52,10 +53,7 @@ public class Tab3_Cinema_AN extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.asianet_tab3_cinema, container, false);
-        context = getActivity().getApplicationContext();
-
-
+        view =  inflater.inflate(R.layout.asianet_tab3_cinema, container, false);
         init(view);
 
 
@@ -63,29 +61,12 @@ public class Tab3_Cinema_AN extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("Run", "run: Start Running");
-                try {
-                    asianet_url ="http://kannada.asianetnews.com/entertainment";//this is a string
-                    Log.d("timestamp","timestamp Cinema start");
-                    asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
-                    Log.d("timestamp","timestamp Cinema Done");
-                    Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
 
-                    int i;
-                    for(i=0; i< asianet_headlines_elem.size(); i++){
+                AsiaNet_Parser parser = new AsiaNet_Parser();
+                news = parser.parseCategory(tag);
+                int i;
 
-                        String link = asianet_headlines_elem.get(i).attr("href");
-                        link = "http://kannada.asianetnews.com"+link;
-                        String headline = asianet_headlines_elem.get(i).select("img:lt(1)").attr("title");
-                        String img_url = asianet_headlines_elem.get(i).select("img:lt(1)").attr("data-original");
-                        //lt(n) --->elements whose sibling index is less than n
-
-                        news.add(new News(headline,link,img_url));
-                        news.get(i).showNews();
-                    } Log.d("news-info","size is"+news.size());
-
-                    for(i=0; i< asianet_headlines_elem.size(); i++){
-
+                    for(i=0; i< news.size(); i++){
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -113,24 +94,10 @@ public class Tab3_Cinema_AN extends Fragment {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent i = new Intent(getActivity(), Display_news.class);
-//                                        i.putExtra("singleHead",news.get(position).head);
-//                                        i.putExtra("singleLink",news.get(position).link);
-//                                        i.putExtra("singleImg",news.get(position).imgurl);
-
-//
-//
-//
-                                        AsiaNet_Parser parser = new AsiaNet_Parser();
-                                        News single = parser.parseNewsPost(news.get(position));
-
-                                        i.putExtra("singleHead",single.head);
-                                        i.putExtra("singleLink",single.link);
-                                        i.putExtra("singleContent",single.content);
-                                        i.putExtra("singleImg",single.imgurl);
-                                        Log.d("single",single.head);
-                                        Log.d("single",single.link);
-                                        Log.d("single",single.content);
-                                        Log.d("single",single.imgurl);
+                                        i.putExtra("singleHead",news.get(position).head);
+                                        i.putExtra("singleLink",news.get(position).link);
+                                        i.putExtra("singleImg",news.get(position).imgurl);
+                                        i.putExtra("tag","asianet");
                                         startActivity(i);
 
                                     }
@@ -140,9 +107,6 @@ public class Tab3_Cinema_AN extends Fragment {
 
                     }
 
-                } catch (IOException e) {
-
-                }
             }
         }).start();
 
@@ -154,6 +118,7 @@ public class Tab3_Cinema_AN extends Fragment {
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.an_news);
+        context = getActivity().getApplicationContext();
     }
 
 }

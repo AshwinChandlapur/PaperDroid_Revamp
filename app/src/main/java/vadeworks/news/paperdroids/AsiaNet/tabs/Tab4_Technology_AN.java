@@ -40,6 +40,7 @@ public class Tab4_Technology_AN extends Fragment {
     Document asianet_doc;
     String asianet_url;
     ArrayList<News> news = new ArrayList<News>();
+    String tag = "asianet_technology";
 
 
     public Tab4_Technology_AN() {
@@ -52,48 +53,18 @@ public class Tab4_Technology_AN extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.asianet_tab4_technology, container, false);
-
-        context = getActivity().getApplicationContext();
         init(view);
-
 
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("Run", "run: Start Running");
-                try {
-                    asianet_url ="http://kannada.asianetnews.com/technology";//this is a string
-                    Log.d("timestamp","timestamp Technology start");
-                    asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
-                    Log.d("timestamp","timestamp Technlogy Done");
-                    Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
-                    Elements asianet_headlines_elem_two = asianet_doc.getElementsByClass("col-sm-6 col-xs-6 cl-text-bg").select("a");
-                    int i;
-                    for(i=0; i< asianet_headlines_elem.size(); i++){
-
-                        String link = asianet_headlines_elem.get(i).attr("href");
-                        link = "http://kannada.asianetnews.com"+link;
-                        String headline = asianet_headlines_elem.get(i).select("img:lt(1)").attr("title");
-                        String img_url = asianet_headlines_elem.get(i).select("img:lt(1)").attr("data-original");
-                        //lt(n) --->elements whose sibling index is less than n
-
-
-                        String link_two = asianet_headlines_elem_two.get(i).attr("href");
-                        link_two= "http://kannada.asianetnews.com"+link_two;
-                        String headline_two = asianet_headlines_elem_two.get(i).select("img:lt(1)").attr("title");
-                        String img_url_two = asianet_headlines_elem_two.get(i).select("img:lt(1)").attr("data-original");
-
-                        news.add(new News(headline,link,img_url));
-                        news.add(new News(headline_two,link_two,img_url_two));
-                        news.get(i).showNews();
-                    } Log.d("news-info","size is"+news.size());
-
-                    for(i=0; i< asianet_headlines_elem.size(); i++){
-
+                AsiaNet_Parser parser = new AsiaNet_Parser();
+                news = parser.parseCategory(tag);
+                int i;
+                    for(i=0; i< news.size(); i++){
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                 listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){
@@ -112,29 +83,14 @@ public class Tab4_Technology_AN extends Fragment {
                                     }
                                 });
 
-
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent i = new Intent(getActivity(), Display_news.class);
-//                                        i.putExtra("singleHead",news.get(position).head);
-//                                        i.putExtra("singleLink",news.get(position).link);
-//                                        i.putExtra("singleImg",news.get(position).imgurl);
-
-//
-//
-//
-                                        AsiaNet_Parser parser = new AsiaNet_Parser();
-                                        News single = parser.parseNewsPost(news.get(position));
-
-                                        i.putExtra("singleHead",single.head);
-                                        i.putExtra("singleLink",single.link);
-                                        i.putExtra("singleContent",single.content);
-                                        i.putExtra("singleImg",single.imgurl);
-                                        Log.d("single",single.head);
-                                        Log.d("single",single.link);
-                                        Log.d("single",single.content);
-                                        Log.d("single",single.imgurl);
+                                        i.putExtra("singleHead",news.get(position).head);
+                                        i.putExtra("singleLink",news.get(position).link);
+                                        i.putExtra("singleImg",news.get(position).imgurl);
+                                        i.putExtra("tag","asianet");
                                         startActivity(i);
 
                                     }
@@ -144,9 +100,6 @@ public class Tab4_Technology_AN extends Fragment {
 
                     }
 
-                } catch (IOException e) {
-
-                }
             }
         }).start();
 
@@ -157,6 +110,7 @@ public class Tab4_Technology_AN extends Fragment {
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.an_news);
+        context = getActivity().getApplicationContext();
     }
 
 }
