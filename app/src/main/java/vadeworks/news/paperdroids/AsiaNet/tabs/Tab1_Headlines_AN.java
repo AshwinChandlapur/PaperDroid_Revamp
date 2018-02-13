@@ -37,12 +37,10 @@ import vadeworks.paperdroid.R;
 public class Tab1_Headlines_AN extends Fragment {
 
     ListView listView;
-    Document asianet_doc;
-    String asianet_url;
     Context context;
-    News singlePost;
+    TextView news_headline;
+    ImageView news_image;
     String tag = "asianet_headlines";
-
     ArrayList<News> news = new ArrayList<News>();
 
 
@@ -57,38 +55,18 @@ public class Tab1_Headlines_AN extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.asianet_tab1_headlines, container, false);
-        context = getActivity().getApplicationContext();
         init(view);
 
-        //For VijayaKarnataka Main Headlines//
+
         new Thread(new Runnable() {
             @Override
             public void run() {
 
                 AsiaNet_Parser parser = new AsiaNet_Parser();
                 news = parser.parseHeadLines();
+                int i;
 
-                try {
-                    asianet_url ="http://kannada.asianetnews.com/";//this is a string
-                    Log.d("timestamp","timestamp Headlines Start");
-                    asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
-                    Log.d("timestamp","timestamp Headlines Done");
-                    Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
-
-                    int i;
-                    for(i=0; i< asianet_headlines_elem.size(); i++){
-
-                        String link = asianet_headlines_elem.get(i).attr("href");
-                        link = "http://kannada.asianetnews.com"+link;
-                        String headline = asianet_headlines_elem.get(i).select("img:lt(1)").attr("title");
-                        String img_url = asianet_headlines_elem.get(i).select("img:lt(1)").attr("data-original");
-                        //lt(n) --->elements whose sibling index is less than n
-
-                        news.add(new News(headline,link,img_url));
-                        news.get(i).showNews();
-                    } Log.d("news-info","size is"+news.size());
-
-                    for(i=0; i< asianet_headlines_elem.size(); i++){
+                    for(i=0; i< news.size(); i++){
 
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
@@ -97,21 +75,22 @@ public class Tab1_Headlines_AN extends Fragment {
                                 listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){
+
                                         view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                        TextView news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                        ImageView news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        news_image = (ImageView)view.findViewById(R.id.newsImage);
+
+
+
                                         news_headline.setText(news.head);
-                                        if(!news.imgurl.isEmpty())
-                                        {
+                                        if(!news.imgurl.isEmpty()) {
                                             Picasso.with(context).load(news.imgurl).into(news_image);
                                         }else{
-                                            news_image.setVisibility(View.GONE);
-                                        }
+                                            news_image.setVisibility(View.GONE);}
 
                                         return view;
                                     }
                                 });
-
 
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
@@ -121,10 +100,6 @@ public class Tab1_Headlines_AN extends Fragment {
                                         i.putExtra("singleLink",news.get(position).link);
                                         i.putExtra("singleImg",news.get(position).imgurl);
                                         i.putExtra("tag",tag);
-                                        Log.d("single","asianet "+news.get(position).head);
-                                        Log.d("single","asianet "+news.get(position).link);
-                                        Log.d("single","asianet "+news.get(position).imgurl);
-                                        Log.d("single","asianet "+singlePost.imgurl);
                                         startActivity(i);
 
                                     }
@@ -134,26 +109,18 @@ public class Tab1_Headlines_AN extends Fragment {
 
                     }
 
-                } catch (IOException e) {
-
                 }
-            }
+
         }).start();
-
-
-
-
-
-
-
-
-
         return view;
     }
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.an_news);
+        context = getActivity().getApplicationContext();
     }
+
+
 
 
 
