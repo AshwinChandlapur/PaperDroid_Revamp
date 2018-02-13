@@ -53,17 +53,14 @@ public class AsiaNet_Parser implements Paper {
     @Override
     public News parseNewsPost(News news) {
 
-
         try {
-
-            Document doc = Jsoup.connect(news.link).get();
-            Elements article = doc.getElementsByClass("article-wrap new-article-desc").select("p");
-            news.content = article.toString();
-            news.content = Jsoup.parse(news.content).text();
-
+            asianet_doc = Jsoup.connect(news.link).get();
         } catch (IOException e) {
 
         }
+        Elements article = asianet_doc.getElementsByClass("article-wrap new-article-desc").select("p");
+        news.content = article.toString();
+        news.content = Jsoup.parse(news.content).text();
 
         return news;
     }

@@ -99,7 +99,7 @@ public class Tab1_Headlines_AN extends Fragment {
                                         i.putExtra("singleHead",news.get(position).head);
                                         i.putExtra("singleLink",news.get(position).link);
                                         i.putExtra("singleImg",news.get(position).imgurl);
-                                        i.putExtra("tag",tag);
+                                        i.putExtra("tag","asianet");
                                         startActivity(i);
 
                                     }
