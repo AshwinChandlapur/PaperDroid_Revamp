@@ -11,6 +11,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -27,8 +29,16 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_AN adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Sports","Cinema","Technology","Live TV"};
-    int Numboftabs =5;
+    CharSequence Titles[]={"Headlines","Sports","Cinema","Technology"};
+    int Numboftabs =4;
+
+    ViewHolder viewHolder;
+
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

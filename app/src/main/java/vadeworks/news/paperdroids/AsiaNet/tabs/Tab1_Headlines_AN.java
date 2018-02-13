@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +24,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.ListView_Adapter;
@@ -38,15 +40,22 @@ public class Tab1_Headlines_AN extends Fragment {
 
     ListView listView;
     Context context;
-    TextView news_headline;
-    ImageView news_image;
     String tag = "asianet_headlines";
     ArrayList<News> news = new ArrayList<News>();
+
+    ViewHolder viewHolder;
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
+    }
 
 
     public Tab1_Headlines_AN() {
         // Required empty public constructor
     }
+
+
 
 
     @Override
@@ -68,6 +77,11 @@ public class Tab1_Headlines_AN extends Fragment {
 
                     for(i=0; i< news.size(); i++){
 
+                        if(getActivity()==null){
+                            return;
+                            //do stuff
+                        }
+
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -76,17 +90,22 @@ public class Tab1_Headlines_AN extends Fragment {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){
 
-                                        view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                        news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                        news_image = (ImageView)view.findViewById(R.id.newsImage);
-
-
-
-                                        news_headline.setText(news.head);
-                                        if(!news.imgurl.isEmpty()) {
-                                            Picasso.with(context).load(news.imgurl).into(news_image);
+                                        if((view == null)|| (view.getTag() == null))
+                                        {
+                                            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                            viewHolder = new ViewHolder();
                                         }else{
-                                            news_image.setVisibility(View.GONE);}
+                                            viewHolder = (ViewHolder)view.getTag();
+                                        }
+
+                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        viewHolder.news_headline.setText(news.head);
+                                        view.setTag(viewHolder);
+                                        if(!news.imgurl.isEmpty()) {
+                                            Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
+                                        }else{
+                                            viewHolder.news_image.setVisibility(View.GONE);}
 
                                         return view;
                                     }
@@ -117,6 +136,7 @@ public class Tab1_Headlines_AN extends Fragment {
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.an_news);
+        listView.setSmoothScrollbarEnabled(true);
         context = getActivity().getApplicationContext();
     }
 

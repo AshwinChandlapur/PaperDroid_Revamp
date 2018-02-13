@@ -37,10 +37,15 @@ public class Tab4_Technology_AN extends Fragment {
 
     Context context;
     ListView listView;
-    Document asianet_doc;
-    String asianet_url;
     ArrayList<News> news = new ArrayList<News>();
     String tag = "asianet_technology";
+
+    ViewHolder viewHolder;
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
+    }
 
 
     public Tab4_Technology_AN() {
@@ -62,21 +67,34 @@ public class Tab4_Technology_AN extends Fragment {
                 news = parser.parseCategory(tag);
                 int i;
                     for(i=0; i< news.size(); i++){
+
+                        if(getActivity()==null){
+                            return;
+                        }
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){
-                                        view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                        TextView news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                        ImageView news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                        news_headline.setText(news.head);
+
+
+                                        if((view == null) || (view.getTag() == null)){
+                                            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                            viewHolder = new ViewHolder();
+                                        }else{
+                                            viewHolder = (ViewHolder) view.getTag();
+                                        }
+
+                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        viewHolder.news_headline.setText(news.head);
+                                        view.setTag(viewHolder);
                                         if(!news.imgurl.isEmpty())
                                         {
-                                            Picasso.with(context).load(news.imgurl).into(news_image);
+                                            Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
                                         }else{
-                                            news_image.setVisibility(View.GONE);
+                                            viewHolder.news_image.setVisibility(View.GONE);
                                         }
 
                                         return view;

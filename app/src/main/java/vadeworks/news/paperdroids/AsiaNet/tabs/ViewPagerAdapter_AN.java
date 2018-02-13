@@ -42,15 +42,12 @@ public class ViewPagerAdapter_AN extends FragmentStatePagerAdapter {
             Tab3_Cinema_AN tab3 = new Tab3_Cinema_AN();
             return tab3;
         }
-        else  if(position == 3)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        else              // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             Tab4_Technology_AN tab4 = new Tab4_Technology_AN();
             return tab4;
         }
-        else{
-            Tab4_Technology_AN tab4 = new Tab4_Technology_AN();
-            return tab4;
-        }
+
 
 
     }
