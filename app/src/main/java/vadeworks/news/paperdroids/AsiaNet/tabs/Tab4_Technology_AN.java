@@ -63,7 +63,9 @@ public class Tab4_Technology_AN extends Fragment {
                 Log.d("Run", "run: Start Running");
                 try {
                     asianet_url ="http://kannada.asianetnews.com/technology";//this is a string
+                    Log.d("timestamp","timestamp Technology start");
                     asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
+                    Log.d("timestamp","timestamp Technlogy Done");
                     Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
                     Elements asianet_headlines_elem_two = asianet_doc.getElementsByClass("col-sm-6 col-xs-6 cl-text-bg").select("a");
                     int i;
@@ -123,7 +125,7 @@ public class Tab4_Technology_AN extends Fragment {
 //
 //
                                         AsiaNet_Parser parser = new AsiaNet_Parser();
-                                        News single = parser.Parse_For_Content(news.get(position));
+                                        News single = parser.parseNewsPost(news.get(position));
 
                                         i.putExtra("singleHead",single.head);
                                         i.putExtra("singleLink",single.link);

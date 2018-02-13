@@ -13,6 +13,7 @@ public class News {
     public String imgurl;
     public String link;
     public String content;
+    public  String tag;
 
     public News() {
         this.head= "";

@@ -3,9 +3,9 @@ package vadeworks.news.paperdroids.VijayaKarnataka;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +23,7 @@ import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
 
-public class VijayaKarnataka_MainActivity extends ActionBarActivity {
+public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
     // Declaring Your View and Variables
 
@@ -111,7 +111,7 @@ public class VijayaKarnataka_MainActivity extends ActionBarActivity {
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(4);//TODO : Based on Network (2G,3G,4G) set the no of screens to load.
+        pager.setOffscreenPageLimit(1);//TODO : Based on Network (2G,3G,4G) set the no of screens to load.
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View

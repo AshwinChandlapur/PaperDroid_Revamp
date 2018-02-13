@@ -3,8 +3,8 @@ package vadeworks.news.paperdroids.Splash_Screen;
 import android.content.Intent;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,10 +14,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.paperdroid.R;
 
-public class Splash_Main_Activity extends ActionBarActivity {
+public class Splash_Main_Activity extends AppCompatActivity {
 
 
     LinearLayout l1;
@@ -57,7 +58,7 @@ public class Splash_Main_Activity extends ActionBarActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Splash_Main_Activity.this, VijayaKarnataka_MainActivity.class);
+                Intent i = new Intent(Splash_Main_Activity.this, AsiaNet_MainActivity.class);
                 startActivity(i);
             }
         });

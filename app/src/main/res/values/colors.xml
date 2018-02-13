@@ -9,6 +9,12 @@
     <color name="lightorangedark">#ebd6ab</color>
     <color name="link">#3F51B5</color>
 
+
+
+    <color name="main_screen1">#FFC107</color>
+    <color name="main_screen2">#FFA00D</color>
+    <color name="main_screen3">#FF4081</color>
+
     <!-- App Main Palette -->
     <color name="primary">@color/green_500</color>
     <color name="primaryDark">@color/green_700</color>

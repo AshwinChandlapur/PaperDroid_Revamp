@@ -40,6 +40,8 @@ public class Tab1_Headlines_AN extends Fragment {
     Document asianet_doc;
     String asianet_url;
     Context context;
+    News singlePost;
+    String tag = "asianet_headlines";
 
     ArrayList<News> news = new ArrayList<News>();
 
@@ -62,12 +64,15 @@ public class Tab1_Headlines_AN extends Fragment {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                Log.d("Run", "run: Start Running");
+
+                AsiaNet_Parser parser = new AsiaNet_Parser();
+                news = parser.parseHeadLines();
+
                 try {
                     asianet_url ="http://kannada.asianetnews.com/";//this is a string
-                    Log.d("timestamp","timestamp Yes Main");
+                    Log.d("timestamp","timestamp Headlines Start");
                     asianet_doc = Jsoup.connect(asianet_url).get();//this is of type Document
-                    Log.d("timestamp","timestamp Done Main");
+                    Log.d("timestamp","timestamp Headlines Done");
                     Elements asianet_headlines_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
 
                     int i;
@@ -112,24 +117,14 @@ public class Tab1_Headlines_AN extends Fragment {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                         Intent i = new Intent(getActivity(), Display_news.class);
-//                                        i.putExtra("singleHead",news.get(position).head);
-//                                        i.putExtra("singleLink",news.get(position).link);
-//                                        i.putExtra("singleImg",news.get(position).imgurl);
-
-//
-//
-//
-                                      AsiaNet_Parser parser = new AsiaNet_Parser();
-                                      News single = parser.Parse_For_Content(news.get(position));
-
-                                        i.putExtra("singleHead",single.head);
-                                        i.putExtra("singleLink",single.link);
-                                        i.putExtra("singleContent",single.content);
-                                        i.putExtra("singleImg",single.imgurl);
-                                        Log.d("single",single.head);
-                                        Log.d("single",single.link);
-                                        Log.d("single",single.content);
-                                        Log.d("single",single.imgurl);
+                                        i.putExtra("singleHead",news.get(position).head);
+                                        i.putExtra("singleLink",news.get(position).link);
+                                        i.putExtra("singleImg",news.get(position).imgurl);
+                                        i.putExtra("tag",tag);
+                                        Log.d("single","asianet "+news.get(position).head);
+                                        Log.d("single","asianet "+news.get(position).link);
+                                        Log.d("single","asianet "+news.get(position).imgurl);
+                                        Log.d("single","asianet "+singlePost.imgurl);
                                         startActivity(i);
 
                                     }

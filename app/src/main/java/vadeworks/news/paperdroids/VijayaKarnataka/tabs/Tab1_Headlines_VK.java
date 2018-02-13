@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.nfc.Tag;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -42,6 +43,7 @@ public class Tab1_Headlines_VK extends Fragment {
     Document vijayakarnataka_doc;
     String vijayakarnataka_url;
     Context context;
+    String tag = "vk_headlines";
 
     ArrayList<News> news = new ArrayList<News>();
 
@@ -49,6 +51,7 @@ public class Tab1_Headlines_VK extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.vijayakarnataka_tab1_headlines,container,false);
         init(v);
+
 
         context = getActivity().getApplicationContext();
 

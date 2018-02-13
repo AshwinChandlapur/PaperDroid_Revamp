@@ -2,8 +2,8 @@ package vadeworks.news.paperdroids;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -17,20 +17,20 @@ import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.paperdroid.R;
 
-public class Display_news extends ActionBarActivity {
-
-
+public class Display_news extends AppCompatActivity {
 
     TextView headlines_textview,content_textview,link_textview;
     ImageView imageView;
 
     String head,link,content,imgurl;
+    String tag;
 
-
-    News single;
+    News fullnews;
 
 
 
@@ -44,89 +44,40 @@ public class Display_news extends ActionBarActivity {
 //        android.support.v7.app.ActionBar AB = getSupportActionBar();
 //        AB.hide();
 
+        tag = getIntent().getStringExtra("tag");
 
 
-        head = getIntent().getStringExtra("singleHead");
-        link = getIntent().getStringExtra("singleLink");
-        single = new News(head, link);
 
+        switch (tag){
+            case "asianet_headlines":
+                Log.d("Inside Asianet Swtich","inside");
 
-        Log.d("timestamp","timestamp News star");
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                single=parse_content(single);
-                Log.d("timestamp","timestamp News Ret");
-                imgurl = single.imgurl;
-                content = single.content;
+                head= getIntent().getStringExtra("singleHead");
+                link = getIntent().getStringExtra("singleLink");
+                imgurl= getIntent().getStringExtra("singleImg");
+                fullnews = new News(head,link,imgurl);
 
-                runOnUiThread(new Runnable() {
+                new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        headlines_textview.setText(head);
-                        content_textview.setText(content);
-                        if(!imgurl.isEmpty())
-                        {
-                            Picasso.with(getApplicationContext())
-                                    .load(imgurl)
-                                    .placeholder(R.drawable.spaceullustration)
-                                    .error(R.drawable.spaceullustration)
-                                    .into(imageView);
-                        }else{
-                            Toast.makeText(getApplicationContext(),"Image Not Loading",Toast.LENGTH_LONG).show();
-                        }
+                        AsiaNet_Parser parser = new AsiaNet_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
 
-
-                        link_textview.setOnClickListener(new View.OnClickListener() {
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void onClick(View v) {
-                                Intent i = new Intent(Intent.ACTION_VIEW);
-                                i.setData(Uri.parse(link));
-                                startActivity(i);
+                            public void run() {
+                                display_news(fullnews);
                             }
                         });
-                        Log.d("timestamp","timestamp Done");
                     }
-                });
+                }).start();
+
+                break;
 
 
-            }
-        }).start();
-        Log.d("timestamp","timestamp Done and Dusted");
+            case "vijayakarnataka_headlines":
 
-
-
-
-
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//
-//                try {
-//
-//                    Document doc = Jsoup.connect(link).get();
-//                    Elements article = doc.getElementsByClass("article-wrap new-article-desc").select("p");
-//                    content = article.toString();
-//                    content = Jsoup.parse(content).text();
-//
-//                    Log.d("parser","parser"+head);
-//                    Log.d("parser","parser"+link);
-//                    Log.d("parser","parser"+imgurl);
-//                    Log.d("parser","parser"+ content);
-//
-//
-//
-//                } catch (IOException e) {
-//
-//                }
-//            }
-//        }).start();
-
-
-
-
-
+        }
 
     }
 
@@ -136,6 +87,32 @@ public class Display_news extends ActionBarActivity {
         content_textview = (TextView)findViewById(R.id.content);
         link_textview = (TextView)findViewById(R.id.link);
         imageView = (ImageView)findViewById(R.id.imageView);
+    }
+
+    public void display_news(final News fullnews){
+        headlines_textview.setText(fullnews.head);
+        content_textview.setText(fullnews.content);
+        if(!imgurl.isEmpty())
+        {
+            Picasso.with(getApplicationContext())
+                    .load(fullnews.imgurl)
+                    .placeholder(R.drawable.spaceullustration)
+                    .error(R.drawable.spaceullustration)
+                    .into(imageView);
+        }else{
+            Toast.makeText(getApplicationContext(),"Image Not Loading",Toast.LENGTH_LONG).show();
+        }
+
+
+        link_textview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(fullnews.link));
+                startActivity(i);
+            }
+        });
+
     }
 
     public News parse_content(News news){
@@ -158,13 +135,6 @@ public class Display_news extends ActionBarActivity {
             Log.d("parser","parser"+news.link);
             Log.d("parser","parser"+ news.content);
             Log.d("parser","parser"+news.imgurl);
-
-
-//        } catch (IOException e) {
-//
-//        }
-
-
 
         return news;
     }
