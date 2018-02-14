@@ -3,6 +3,7 @@ package vadeworks.news.paperdroids.AsiaNet.tabs;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.bluehomestudio.progresswindow.ProgressWindow;
+import com.bluehomestudio.progresswindow.ProgressWindowConfiguration;
 import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
@@ -39,9 +42,9 @@ public class Tab2_Sports_AN extends Fragment {
     ListView listView;
     ArrayList<News> news = new ArrayList<News>();
     String tag = "asianet_sports";
-
-
     ViewHolder viewHolder;
+
+
 
     static class ViewHolder {
         static TextView news_headline;
@@ -63,7 +66,6 @@ public class Tab2_Sports_AN extends Fragment {
         init(view);
 
 
-
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -73,9 +75,7 @@ public class Tab2_Sports_AN extends Fragment {
 
                 if(getActivity()==null){
                     return;
-                    //do stuff
                 }
-
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -88,9 +88,7 @@ public class Tab2_Sports_AN extends Fragment {
                                     {view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
                                         viewHolder = new ViewHolder();}
                                     else{
-                                        viewHolder = (ViewHolder) view.getTag();
-//
-                                    }
+                                        viewHolder = (ViewHolder) view.getTag();}
 
                                     viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
                                     viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
@@ -101,30 +99,27 @@ public class Tab2_Sports_AN extends Fragment {
                                     }else{
                                         viewHolder.news_image.setVisibility(View.GONE);
                                     }
-
                                     return view;
                                 }
                             });
-
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent i = new Intent(getActivity(), Display_news.class);
-                                    i.putExtra("singleHead",news.get(position).head);
-                                    i.putExtra("singleLink",news.get(position).link);
-                                    i.putExtra("singleImg",news.get(position).imgurl);
-                                    i.putExtra("tag","asianet");
-                                    startActivity(i);
-                                }
-                            });
-
                         }
+
+
+                        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                Intent i = new Intent(getActivity(), Display_news.class);
+                                i.putExtra("singleHead",news.get(position).head);
+                                i.putExtra("singleLink",news.get(position).link);
+                                i.putExtra("singleImg",news.get(position).imgurl);
+                                i.putExtra("tag","asianet");
+                                startActivity(i);
+                            }
+                        });
                     }
                 });
             }
         }).start();
-
-
 
 
         return view;
@@ -134,5 +129,10 @@ public class Tab2_Sports_AN extends Fragment {
         listView = (ListView) v.findViewById(R.id.an_news);
         context = getActivity().getApplicationContext();
     }
+
+
+
+
+
 
 }

@@ -135,5 +135,6 @@
     <orderEntry type="library" name="com.android.support:support-core-ui-26.1.0" level="project" />
     <orderEntry type="library" name="com.android.support:cardview-v7-26.1.0" level="project" />
     <orderEntry type="library" name="org.jsoup:jsoup:1.11.2@jar" level="project" />
+    <orderEntry type="library" name="com.github.mmoamenn:ProgressWindow_Android-0.0.2" level="project" />
   </component>
 </module>

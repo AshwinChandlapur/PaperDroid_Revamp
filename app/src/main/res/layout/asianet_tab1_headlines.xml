@@ -8,6 +8,8 @@
     tools:context="vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity"
     >
 
+
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="120dp">
@@ -25,6 +27,10 @@
             android:layout_height="170dp"
             android:background="@drawable/gradient" />
     </FrameLayout>
+
+
+
+
 
     <ListView
         android:layout_width="match_parent"

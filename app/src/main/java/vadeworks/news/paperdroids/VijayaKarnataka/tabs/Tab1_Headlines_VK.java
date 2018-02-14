@@ -3,6 +3,7 @@ package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.AsyncTask;
@@ -21,6 +22,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bluehomestudio.progresswindow.ProgressWindow;
+import com.bluehomestudio.progresswindow.ProgressWindowConfiguration;
 import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
@@ -44,7 +47,7 @@ public class Tab1_Headlines_VK extends Fragment {
     String tag = "vk_headlines";
 
     ViewHolder viewHolder;
-
+    private ProgressWindow progressWindow;
 
     static class ViewHolder {
         static TextView news_headline;
@@ -58,10 +61,8 @@ public class Tab1_Headlines_VK extends Fragment {
         View v = inflater.inflate(R.layout.vijayakarnataka_tab1_headlines,container,false);
         init(v);
 
-
-
-
-
+        progressConfigurations();
+        showProgress();
         //For VijayaKarnataka Main Headlines//
         new Thread(new Runnable() {
             @Override
@@ -69,39 +70,32 @@ public class Tab1_Headlines_VK extends Fragment {
 
                 VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
                 news = parser.parseHeadLines();
-
-                int i;
-
-                    for(i=0;i<news.size();i++){
-
-                        // here you check the value of getActivity() and break up if needed
                         if(getActivity() == null)
                             return;
-
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
+                                int i;
+                                for(i=0;i<news.size();i++){
+                                    listView.setAdapter(new ListView_Adapter<News>(context,news) {
+                                        @Override
+                                        public View getMyView(int i,View view,ViewGroup parent,News news){
+                                            if((view == null)|| (view.getTag() == null))
+                                            {
+                                                view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                                viewHolder = new ViewHolder();
+                                                viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                                viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                            }else{
+                                                viewHolder = (ViewHolder) view.getTag();
+                                            }
 
-                                listView.setAdapter(new ListView_Adapter<News>(context,news) {
-                                    @Override
-                                    public View getMyView(int i,View view,ViewGroup parent,News news){
-                                        if((view == null)|| (view.getTag() == null))
-                                        {
-                                            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                            viewHolder = new ViewHolder();
-                                            viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                            viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                        }else{
-                                            viewHolder = (ViewHolder) view.getTag();
+                                            viewHolder.news_headline.setText(news.head);
+                                            viewHolder.news_image.setVisibility(View.GONE);
+                                            return view;
                                         }
-
-                                        viewHolder.news_headline.setText(news.head);
-                                        viewHolder.news_image.setVisibility(View.GONE);
-                                        return view;
-                                    }
-                                });
-
-
+                                    });
+                                }
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
                                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -113,11 +107,11 @@ public class Tab1_Headlines_VK extends Fragment {
                                         Log.d("timestamp","timestamp of StartActivity");
                                     }
                                 });
+
+                                hideProgress();
+
                             }
                         });
-
-                    }
-
             }
         }).start();
 // VijayaKarnataka Main Headlines Ends Here
@@ -129,5 +123,23 @@ public class Tab1_Headlines_VK extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
         context = getActivity().getApplicationContext();
+    }
+
+
+    private void progressConfigurations(){
+        progressWindow = ProgressWindow.getInstance(context);
+        ProgressWindowConfiguration progressWindowConfiguration = new ProgressWindowConfiguration();
+        progressWindowConfiguration.backgroundColor = Color.parseColor("#32000000") ;
+        progressWindowConfiguration.progressColor = Color.WHITE ;
+        progressWindow.setConfiguration(progressWindowConfiguration);
+    }
+
+    public void showProgress(){
+        progressWindow.showProgress();
+    }
+
+
+    public void hideProgress(){
+        progressWindow.hideProgress();
     }
 }
