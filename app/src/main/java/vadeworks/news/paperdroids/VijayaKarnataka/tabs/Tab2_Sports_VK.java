@@ -32,9 +32,12 @@ public class Tab2_Sports_VK extends Fragment {
 
     ListView listView;
     Context context;
-    String vijayakarnataka_url,sports_url;
-    org.jsoup.nodes.Document vijayakarnataka_doc ;
-    Elements sports_link_taker,sports_link_takers,mains;
+    ViewHolder viewHolder;
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
+    }
 
     ArrayList<News> news = new ArrayList<News>();
     
@@ -42,7 +45,7 @@ public class Tab2_Sports_VK extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.vijayakarnataka_tab2_sports,container,false);
         init(v);
-        context = getActivity().getApplicationContext();
+
 
         new Thread(new Runnable() {
             @Override
@@ -65,15 +68,22 @@ public class Tab2_Sports_VK extends Fragment {
                             listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                 @Override
                                 public View getMyView(int i,View view,ViewGroup parent,News news){
-                                    view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                    TextView news_Headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                    news_Headline.setText(news.head);
-                                    ImageView news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                    if((view == null)|| (view.getTag() == null))
+                                    {
+                                        view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                        viewHolder = new ViewHolder();
+                                    }else{
+                                        viewHolder = (ViewHolder) view.getTag();
+                                    }
+
+                                    viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                    viewHolder.news_headline.setText(news.head);
+                                    viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
                                     if(!news.imgurl.isEmpty())
                                     {
-                                        Picasso.with(context).load(news.imgurl).into(news_image);
+                                        Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
                                     }else{
-                                        news_image.setVisibility(View.GONE);
+                                        viewHolder.news_image.setVisibility(View.GONE);
                                     }
 
                                     return view;
@@ -108,5 +118,6 @@ public class Tab2_Sports_VK extends Fragment {
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
+        context = getActivity().getApplicationContext();
     }
 }

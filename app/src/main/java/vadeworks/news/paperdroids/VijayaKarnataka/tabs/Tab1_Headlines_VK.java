@@ -30,6 +30,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.AsiaNet.tabs.Tab1_Headlines_AN;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
@@ -39,11 +40,16 @@ import vadeworks.paperdroid.R;
 public class Tab1_Headlines_VK extends Fragment {
 
     ListView listView;
-    Elements vijayakarnataka_headlines_elem;
-    Document vijayakarnataka_doc;
-    String vijayakarnataka_url;
     Context context;
     String tag = "vk_headlines";
+
+    ViewHolder viewHolder;
+
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
+    }
 
     ArrayList<News> news = new ArrayList<News>();
 
@@ -53,7 +59,7 @@ public class Tab1_Headlines_VK extends Fragment {
         init(v);
 
 
-        context = getActivity().getApplicationContext();
+
 
 
         //For VijayaKarnataka Main Headlines//
@@ -79,11 +85,19 @@ public class Tab1_Headlines_VK extends Fragment {
                                 listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){
-                                        view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                        TextView news_Headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                        news_Headline.setText(news.head);
-                                        ImageView news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                        news_image.setVisibility(View.GONE);
+                                        if((view == null)|| (view.getTag() == null))
+                                        {
+                                            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                            viewHolder = new ViewHolder();
+                                        }else{
+                                            viewHolder = (ViewHolder) view.getTag();
+                                        }
+
+
+                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        viewHolder.news_headline.setText(news.head);
+                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        viewHolder.news_image.setVisibility(View.GONE);
                                         return view;
                                     }
                                 });
@@ -115,5 +129,6 @@ public class Tab1_Headlines_VK extends Fragment {
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
+        context = getActivity().getApplicationContext();
     }
 }

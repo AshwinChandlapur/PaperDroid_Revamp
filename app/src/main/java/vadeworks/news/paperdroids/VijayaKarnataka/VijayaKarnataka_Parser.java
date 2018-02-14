@@ -120,6 +120,7 @@ public class VijayaKarnataka_Parser implements Paper {
         int i;
         for(i=0;i<vijayakarnataka_elem.size();i++){
             String link =vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a").get(i).attr("href");
+            //for a weird Reason  vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a") cannot be substituted by vijayakarnataka_elem
             link = vijayakarnataka_base_url+link;
             Log.d("sports-url","sports-link "+link);
 
@@ -135,18 +136,6 @@ public class VijayaKarnataka_Parser implements Paper {
 
             news.add(new News(headline,link,imgurl));
         }
-
-
-
-
-
-
-
-
-
-
-
-
         return news;
     }
 
