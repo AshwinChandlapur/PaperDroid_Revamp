@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -200,6 +201,14 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         // Set the first item as selected for the first time
         getSupportActionBar().setTitle(R.string.toolbar_title_home_vk);
 
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(VijayaKarnataka_MainActivity.this, Splash_Main_Activity.class);
+            startActivity(intent);
+        }
+        return true;
     }
 }

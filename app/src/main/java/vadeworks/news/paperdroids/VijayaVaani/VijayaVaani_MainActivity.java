@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -197,6 +198,15 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.toolbar_title_home_vv);
 
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            Intent intent = new Intent(VijayaVaani_MainActivity.this, Splash_Main_Activity.class);
+            startActivity(intent);
+        }
+        return true;
     }
 
 
