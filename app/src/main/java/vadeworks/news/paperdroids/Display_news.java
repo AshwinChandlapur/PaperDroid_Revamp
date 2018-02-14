@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.paperdroid.R;
 
 public class Display_news extends AppCompatActivity {
@@ -53,7 +54,6 @@ public class Display_news extends AppCompatActivity {
         switch (tag){
             case "asianet":
                 Log.d("Inside Asianet Swtich","inside");
-
                 head= getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
                 imgurl= getIntent().getStringExtra("singleImg");
@@ -64,7 +64,6 @@ public class Display_news extends AppCompatActivity {
                     public void run() {
                         AsiaNet_Parser parser = new AsiaNet_Parser();
                         fullnews = parser.parseNewsPost(fullnews);
-
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -76,8 +75,25 @@ public class Display_news extends AppCompatActivity {
 
                 break;
 
+            case "vijayakarnataka":
+                Log.d("Inside Vijaya Swtich","inside");
+                head= getIntent().getStringExtra("singleHead");
+                link = getIntent().getStringExtra("singleLink");
+                fullnews = new News(head,link);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews);
+                            }
+                        });
+                    }
+                }).start();
 
-            case "vijayakarnataka_headlines":
 
         }
 
@@ -94,7 +110,7 @@ public class Display_news extends AppCompatActivity {
     public void display_news(final News fullnews){
         headlines_textview.setText(fullnews.head);
         content_textview.setText(fullnews.content);
-        if(!imgurl.isEmpty())
+        if(!fullnews.imgurl.isEmpty())
         {
             Picasso.with(getApplicationContext())
                     .load(fullnews.imgurl)

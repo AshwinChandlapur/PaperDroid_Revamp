@@ -140,17 +140,9 @@ public class Tab3_Cinema_VK extends Fragment {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent i = new Intent(getActivity(), Display_news.class);
-                                    VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-                                    News single = parser.Parse_For_Content(news.get(position));
-
-                                    i.putExtra("singleHead",single.head);
-                                    i.putExtra("singleLink",single.link);
-                                    i.putExtra("singleContent",single.content);
-                                    i.putExtra("singleImg",single.imgurl);
-                                    Log.d("Parser single","parser"+news.get(position).head);
-                                    Log.d("Parser single","parser"+news.get(position).link);
-                                    Log.d("Parser single","parser"+single.content);
-                                    Log.d("Parser single","parser"+single.imgurl);
+                                    i.putExtra("singleHead",news.get(position).head);
+                                    i.putExtra("singleLink",news.get(position).link);
+                                    i.putExtra("tag","vijayakarnataka");
                                     startActivity(i);
                                 }
                             });
