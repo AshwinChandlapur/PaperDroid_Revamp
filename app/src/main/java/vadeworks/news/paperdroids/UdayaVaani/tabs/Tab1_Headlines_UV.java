@@ -39,13 +39,8 @@ import vadeworks.paperdroid.R;
 public class Tab1_Headlines_UV extends Fragment {
 
     ListView listView;
-    Elements vijayakarnataka_headlines_elem;
-    Document vijayakarnataka_doc;
-    String vijayakarnataka_url;
     Context context;
-
     ArrayList<News> news = new ArrayList<News>();
-
     ViewHolder viewHolder;
 
     static class ViewHolder {
@@ -119,9 +114,6 @@ public class Tab1_Headlines_UV extends Fragment {
                                 }
                             });
 
-
-
-
                         }
                     });
 
@@ -136,7 +128,7 @@ public class Tab1_Headlines_UV extends Fragment {
     }
 
     public void init(View v){
-        listView = (ListView) v.findViewById(R.id.vk_news);
+        listView = (ListView) v.findViewById(R.id.uv_news);
         context = getActivity().getApplicationContext();
     }
 

@@ -26,7 +26,10 @@ public class Udayavaani_Parser implements Paper {
     Elements udayavaani_elem;
     ArrayList<News> news = new ArrayList<News>();
     String content = "";
-    String imgurl;
+    String sports = "https://www.udayavani.com/kannada/category/sports-news";
+    String cinema = "https://www.udayavani.com/kannada/category/bollywood-news";
+    String link,head,imgurl;
+
 
     @Override
     public ArrayList<News> parseHeadLines() {
@@ -54,14 +57,12 @@ public class Udayavaani_Parser implements Paper {
     public News parseNewsPost(News news) {
 
         try {
-            Log.d("linker","linker "+news.link);
             udayavaani_doc = Jsoup.connect(news.link).get();
             udayavaani_elem = udayavaani_doc.getElementsByClass("field-item even").select("p");
             for (Element ele: udayavaani_elem) {
                 if (!ele.text().isEmpty())
                         content = content + ele.text() + "\n\n";
             }
-            Log.d("content","content"+content);
             news.content = content;
 
             udayavaani_elem = udayavaani_doc.getElementsByClass("field-item even").select("img");
@@ -75,6 +76,33 @@ public class Udayavaani_Parser implements Paper {
 
     @Override
     public ArrayList<News> parseCategory(String category) {
-        return null;
+
+        switch (category){
+            case "sports" :
+                category_url = sports;
+                break;
+            case "cinema":
+                category_url = cinema;
+                break;
+        }
+        try{
+            udayavaani_doc = Jsoup.connect(category_url).get();
+            udayavaani_elem = udayavaani_doc.select("div.view-taxonomy-term").get(1).select("div.view-content").first().children();
+            for (Element ele : udayavaani_elem) {
+                imgurl= ele.select("div.field-content").select("img").attr("data-src");
+                link = "https://www.udayavani.com/" + ele.select("div.field-content").select("a").attr("href");
+                head = ele.select("span.field-content").select("a").text();
+                Log.d("log","logoi"+head);
+                Log.d("log","logoi"+link);
+                Log.d("log","logoi"+imgurl);
+                news.add(new News(head, link, imgurl));
+            }
+
+
+        }catch (Exception e){
+
+        }
+
+        return news;
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity"
+    tools:context="vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity"
     >
 
     <FrameLayout
@@ -15,8 +15,8 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:src="@drawable/vk"
-            android:scaleType="center"
+            android:src="@drawable/uv"
+            android:scaleType="fitCenter"
             android:background="#ffffff"
             />
 
@@ -29,7 +29,7 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/vk_news"></ListView>
+        android:id="@+id/uv_news"></ListView>
 
 
 </LinearLayout>

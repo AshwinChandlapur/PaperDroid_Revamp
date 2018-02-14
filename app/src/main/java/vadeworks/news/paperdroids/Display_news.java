@@ -94,7 +94,6 @@ public class Display_news extends AppCompatActivity {
                         });
                     }
                 }).start();
-
                 break;
 
             case "udayavaani":

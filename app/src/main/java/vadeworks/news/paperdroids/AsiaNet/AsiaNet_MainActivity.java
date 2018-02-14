@@ -114,7 +114,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(1);
+        pager.setOffscreenPageLimit(2);
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
