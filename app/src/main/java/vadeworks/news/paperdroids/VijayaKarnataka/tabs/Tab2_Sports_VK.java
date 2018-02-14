@@ -72,13 +72,15 @@ public class Tab2_Sports_VK extends Fragment {
                                     {
                                         view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
                                         viewHolder = new ViewHolder();
+                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
                                     }else{
                                         viewHolder = (ViewHolder) view.getTag();
                                     }
 
-                                    viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+
                                     viewHolder.news_headline.setText(news.head);
-                                    viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+
                                     if(!news.imgurl.isEmpty())
                                     {
                                         Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);

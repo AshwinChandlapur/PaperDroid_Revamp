@@ -72,11 +72,6 @@ public class Tab3_Cinema_AN extends Fragment {
                 int i;
 
                     for(i=0; i< news.size(); i++){
-
-                        if(getActivity()==null){
-                            return;
-                            //do stuff
-                        }
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
@@ -91,6 +86,7 @@ public class Tab3_Cinema_AN extends Fragment {
                                         }else{
                                             viewHolder = (ViewHolder)view.getTag();
                                         }
+
 
                                         viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
                                         viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);

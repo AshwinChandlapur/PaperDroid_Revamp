@@ -111,7 +111,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(1);//TODO : Based on Network (2G,3G,4G) set the no of screens to load.
+        pager.setOffscreenPageLimit(3);//TODO : Based on Network (2G,3G,4G) set the no of screens to load.
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View

@@ -32,23 +32,20 @@ public class AsiaNet_Parser implements Paper {
             asianet_doc = Jsoup.connect(asianet_base_url).get();//this is of type Document
             Log.d("timestamp","timestamp Headlines Done");
             asianet_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
+            int i;
+            for(i=0; i< asianet_elem.size(); i++){
+
+                String link = asianet_elem.get(i).attr("href");
+                link = "http://kannada.asianetnews.com"+link;
+                String headline = asianet_elem.get(i).select("img:lt(1)").attr("title");
+                String img_url = asianet_elem.get(i).select("img:lt(1)").attr("data-original");
+                //lt(n) --->elements whose sibling index is less than n
+
+                news.add(new News(headline,link,img_url));
+                news.get(i).showNews();
+            }
 
         }catch (Exception e){}
-
-
-        int i;
-        for(i=0; i< asianet_elem.size(); i++){
-
-            String link = asianet_elem.get(i).attr("href");
-            link = "http://kannada.asianetnews.com"+link;
-            String headline = asianet_elem.get(i).select("img:lt(1)").attr("title");
-            String img_url = asianet_elem.get(i).select("img:lt(1)").attr("data-original");
-            //lt(n) --->elements whose sibling index is less than n
-
-            news.add(new News(headline,link,img_url));
-            news.get(i).showNews();
-        }
-
         return news;
     }
 
@@ -57,14 +54,12 @@ public class AsiaNet_Parser implements Paper {
 
         try {
             asianet_doc = Jsoup.connect(news.link).get();
+            asianet_elem = asianet_doc.getElementsByClass("article-wrap new-article-desc").select("p");
+            news.content = asianet_elem.toString();
+            news.content = Jsoup.parse(news.content).text();
         } catch (IOException e) {
 
         }
-
-        asianet_elem = asianet_doc.getElementsByClass("article-wrap new-article-desc").select("p");
-        news.content = asianet_elem.toString();
-        news.content = Jsoup.parse(news.content).text();
-
         return news;
     }
 
@@ -85,25 +80,25 @@ public class AsiaNet_Parser implements Paper {
 
 
         try{
+            Exception e= new Exception();
             asianet_doc = Jsoup.connect(category_url).get();//this is of type Document
-        }catch (Exception e){}
+            asianet_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
+            int i;
+            for(i=0; i< asianet_elem.size(); i++){
 
-        Log.d("timestamp","timestamp Headlines Done");
-        asianet_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
+                String link = asianet_elem.get(i).attr("href");
+                link = "http://kannada.asianetnews.com"+link;
+                String headline = asianet_elem.get(i).select("img:lt(1)").attr("title");
+                String img_url = asianet_elem.get(i).select("img:lt(1)").attr("data-original");
+                //lt(n) --->elements whose sibling index is less than n
 
-        int i;
-        for(i=0; i< asianet_elem.size(); i++){
+                news.add(new News(headline,link,img_url));
+                news.get(i).showNews();
+            }
 
-            String link = asianet_elem.get(i).attr("href");
-            link = "http://kannada.asianetnews.com"+link;
-            String headline = asianet_elem.get(i).select("img:lt(1)").attr("title");
-            String img_url = asianet_elem.get(i).select("img:lt(1)").attr("data-original");
-            //lt(n) --->elements whose sibling index is less than n
 
-            news.add(new News(headline,link,img_url));
-            news.get(i).showNews();
+        }catch (Exception e){
         }
-
 
         return news;
     }

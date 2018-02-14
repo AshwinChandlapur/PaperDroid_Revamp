@@ -89,6 +89,7 @@ public class Tab2_Sports_AN extends Fragment {
                                         viewHolder = new ViewHolder();}
                                     else{
                                         viewHolder = (ViewHolder) view.getTag();
+//
                                     }
 
                                     viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);

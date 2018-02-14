@@ -93,6 +93,7 @@ public class Tab1_Headlines_AN extends Fragment {
                                         {
                                             view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
                                             viewHolder = new ViewHolder();
+
                                         }else{
                                             viewHolder = (ViewHolder)view.getTag();
                                         }
