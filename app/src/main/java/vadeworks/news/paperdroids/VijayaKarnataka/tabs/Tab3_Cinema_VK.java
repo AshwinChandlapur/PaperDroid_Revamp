@@ -103,31 +103,30 @@ public class Tab3_Cinema_VK extends Fragment {
                                         return view;
                                     }
                                 });
-
-
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent i = new Intent(getActivity(), Display_news.class);
-                                    i.putExtra("singleHead",news.get(position).head);
-                                    i.putExtra("singleLink",news.get(position).link);
-                                    i.putExtra("tag","vijayakarnataka");
-                                    startActivity(i);
-                                }
-                            });
                         }
                     });
             }
         }).start();
-
-
-
-
+        listviewOnClick();
         return v;
     }
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
+    }
+
+    public void listviewOnClick(){
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getActivity(), Display_news.class);
+                i.putExtra("singleHead",news.get(position).head);
+                i.putExtra("singleLink",news.get(position).link);
+                i.putExtra("tag","vijayakarnataka");
+                startActivity(i);
+            }
+        });
     }
 
 }

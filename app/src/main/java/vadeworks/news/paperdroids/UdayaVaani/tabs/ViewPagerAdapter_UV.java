@@ -8,12 +8,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.Tab1_Headlines_VK;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.Tab2_Sports_VK;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.Tab3_Cinema_VK;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.Tab4_Lifestyle_VK;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.Tab5_Technology_VK;
-
 public class ViewPagerAdapter_UV extends FragmentStatePagerAdapter {
 
     CharSequence Titles[]; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter_AN is created
@@ -38,9 +32,13 @@ public class ViewPagerAdapter_UV extends FragmentStatePagerAdapter {
             Tab1_Headlines_UV tab1 = new Tab1_Headlines_UV();
             return tab1;
         }
-        else {
+        else if(position == 1) {
             Tab2_Cinema_UV tab2 = new Tab2_Cinema_UV();
             return tab2;
+        }
+        else{
+            Tab3_Sports_UV tab3 = new Tab3_Sports_UV();
+            return tab3;
         }
 
     }

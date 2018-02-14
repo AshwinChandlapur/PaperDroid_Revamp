@@ -33,8 +33,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_UV adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Cinema"};
-    int Numboftabs =2;
+    CharSequence Titles[]={"Headlines","Cinema","Sports"};
+    int Numboftabs =3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

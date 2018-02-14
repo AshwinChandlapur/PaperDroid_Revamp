@@ -111,27 +111,14 @@ public class Tab1_Headlines_AN extends Fragment {
                                             return view;
                                         }
                                     });
-
+                                hideProgress();
                             }
                         });
-
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent i = new Intent(getActivity(), Display_news.class);
-                        i.putExtra("singleHead", news.get(position).head);
-                        i.putExtra("singleLink", news.get(position).link);
-                        i.putExtra("singleImg", news.get(position).imgurl);
-                        i.putExtra("tag", "asianet");
-                        startActivity(i);
-
-                    }
-                });
-                hideProgress();
                 }
 
         }).start();
 
+        listviewOnclick();
 
         return view;
     }
@@ -140,6 +127,21 @@ public class Tab1_Headlines_AN extends Fragment {
         listView = (ListView) v.findViewById(R.id.an_news);
         listView.setSmoothScrollbarEnabled(true);
         context = getActivity().getApplicationContext();
+    }
+
+    public void listviewOnclick(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getActivity(), Display_news.class);
+                i.putExtra("singleHead", news.get(position).head);
+                i.putExtra("singleLink", news.get(position).link);
+                i.putExtra("singleImg", news.get(position).imgurl);
+                i.putExtra("tag", "asianet");
+                startActivity(i);
+            }
+        });
+
     }
 
     private void progressConfigurations(){

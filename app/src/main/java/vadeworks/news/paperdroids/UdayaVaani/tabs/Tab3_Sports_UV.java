@@ -27,7 +27,7 @@ import vadeworks.paperdroid.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Tab2_Cinema_UV extends Fragment {
+public class Tab3_Sports_UV extends Fragment {
 
     ListView listView;
     Context context;
@@ -39,7 +39,7 @@ public class Tab2_Cinema_UV extends Fragment {
     }
 
 
-    public Tab2_Cinema_UV() {
+    public Tab3_Sports_UV() {
         // Required empty public constructor
     }
 
@@ -48,57 +48,53 @@ public class Tab2_Cinema_UV extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.udayavaani_tab2_cinema, container, false);
+        View v= inflater.inflate(R.layout.udayavaani_tab3_sports, container, false);
         init(v);
-
         new Thread(new Runnable() {
             @Override
             public void run() {
                 Udayavaani_Parser parser = new Udayavaani_Parser();
-                news = parser.parseCategory("cinema");
-                    if(getActivity()==null)
-                        return;
-                    getActivity().runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                news = parser.parseCategory("sports");
+                if(getActivity()==null)
+                    return;
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        listView.setAdapter(new ListView_Adapter<News>(context,news) {
+                            @Override
+                            public View getMyView(int i,View view,ViewGroup parent,News news){
 
-                                listView.setAdapter(new ListView_Adapter<News>(context,news) {
-                                    @Override
-                                    public View getMyView(int i,View view,ViewGroup parent,News news){
+                                if((view == null)|| (view.getTag() == null))
+                                {
+                                    view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                    viewHolder = new ViewHolder();
+                                }else{
+                                    viewHolder = (ViewHolder)view.getTag();
+                                }
+                                viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                viewHolder.news_headline.setText(news.head);
+                                view.setTag(viewHolder);
+                                if(!news.imgurl.isEmpty()) {
+                                    Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
+                                }else{
+                                    viewHolder.news_image.setVisibility(View.GONE);}
 
-                                        if((view == null)|| (view.getTag() == null))
-                                        {
-                                            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                            viewHolder = new ViewHolder();
-                                        }else{
-                                            viewHolder = (ViewHolder)view.getTag();
-                                        }
-                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                        viewHolder.news_headline.setText(news.head);
-                                        view.setTag(viewHolder);
-                                        if(!news.imgurl.isEmpty()) {
-                                            Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
-                                        }else{
-                                            viewHolder.news_image.setVisibility(View.GONE);}
-
-                                        return view;
-                                    }
-                                });
-                        }
-                    });
+                                return view;
+                            }
+                        });
+                    }
+                });
             }
         }).start();
-
         listviewOnClick();
-        return  v;
+        return v;
     }
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.uv_news);
         context = getActivity().getApplicationContext();
     }
-
     public void listviewOnClick(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -60,7 +60,8 @@ public class Tab2_Sports_VK extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
+                            int i;
+                            for(i=0;i<news.size();i++){
                                 listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){
@@ -84,34 +85,32 @@ public class Tab2_Sports_VK extends Fragment {
                                         return view;
                                     }
                                 });
+                            }
 
-                            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                @Override
-                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                    Intent i = new Intent(getActivity(), Display_news.class);
-                                    i.putExtra("singleHead",news.get(position).head);
-                                    i.putExtra("singleLink",news.get(position).link);
-                                    i.putExtra("tag","vijayakarnataka");
-                                    Log.d("link on Click","link on Click  "+news.get(position).link );
-                                    startActivity(i);
-                                }
-                            });
                         }
                     });
-
-
-
             }
         }).start();
-
-
-
-
+        listviewOnClick();
         return v;
     }
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
         context = getActivity().getApplicationContext();
+    }
+
+    public void listviewOnClick(){
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent i = new Intent(getActivity(), Display_news.class);
+                i.putExtra("singleHead",news.get(position).head);
+                i.putExtra("singleLink",news.get(position).link);
+                i.putExtra("tag","vijayakarnataka");
+                Log.d("link on Click","link on Click  "+news.get(position).link );
+                startActivity(i);
+            }
+        });
     }
 }
