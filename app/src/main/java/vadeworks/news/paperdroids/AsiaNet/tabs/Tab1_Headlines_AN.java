@@ -127,14 +127,7 @@ public class Tab1_Headlines_AN extends Fragment {
 
                     }
                 });
-
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        hideProgress();
-                    }
-                });
-
+                hideProgress();
                 }
 
         }).start();

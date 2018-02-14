@@ -71,7 +71,6 @@ public class Tab4_Technology_AN extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
                                     listView.setAdapter(new ListView_Adapter<News>(context, news) {
                                         @Override
                                         public View getMyView(int i, View view, ViewGroup parent, News news) {
@@ -81,7 +80,6 @@ public class Tab4_Technology_AN extends Fragment {
                                             } else {
                                                 viewHolder = (ViewHolder) view.getTag();
                                             }
-
                                             viewHolder.news_headline = (TextView) view.findViewById(R.id.newsHeadlines);
                                             viewHolder.news_image = (ImageView) view.findViewById(R.id.newsImage);
                                             viewHolder.news_headline.setText(news.head);
@@ -91,11 +89,9 @@ public class Tab4_Technology_AN extends Fragment {
                                             } else {
                                                 viewHolder.news_image.setVisibility(View.GONE);
                                             }
-
                                             return view;
                                         }
                                     });
-
 
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                     @Override
@@ -106,16 +102,12 @@ public class Tab4_Technology_AN extends Fragment {
                                         i.putExtra("singleImg", news.get(position).imgurl);
                                         i.putExtra("tag", "asianet");
                                         startActivity(i);
-
                                     }
                                 });
                             }
                         });
             }
         }).start();
-
-
-
         return view;
     }
 

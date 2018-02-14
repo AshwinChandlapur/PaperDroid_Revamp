@@ -69,8 +69,6 @@ public class Tab3_Cinema_AN extends Fragment {
 
                 AsiaNet_Parser parser = new AsiaNet_Parser();
                 news = parser.parseCategory(tag);
-
-
                         if(getActivity()==null)
                             return;
                         getActivity().runOnUiThread(new Runnable() {
