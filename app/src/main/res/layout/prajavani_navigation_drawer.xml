@@ -158,6 +158,21 @@
 
                 </FrameLayout>
 
+                <FrameLayout
+                    android:id="@+id/nav_vijayavani"
+                    style="@style/NavDrawerRowLayout.Main" >
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/ic_explore_white_24dp"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_vv"
+                        tools:fontFamily="sans-serif-medium"/>
+
+                </FrameLayout>
 
                 <include
                     layout="@layout/navigation_drawer_divider"/>

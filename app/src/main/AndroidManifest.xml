@@ -25,7 +25,8 @@
         <activity android:name="vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity" />
         <activity android:name="vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity" />
         <activity android:name="vadeworks.news.paperdroids.MainScreen.MainScreen_Activity" />
-        <activity android:name="vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity"></activity>
+        <activity android:name="vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity" />
+        <activity android:name="vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity"></activity>
     </application>
 
 </manifest>

@@ -15,8 +15,10 @@ import android.widget.FrameLayout;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
+import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
+import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
@@ -48,7 +50,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, AsiaNet_MainActivity.class);
+                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, Splash_Main_Activity.class);
                 startActivity(intent);
 
             }
@@ -79,6 +81,15 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, PrajaVaani_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        FrameLayout intent_to_vijayavani = (FrameLayout)findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });

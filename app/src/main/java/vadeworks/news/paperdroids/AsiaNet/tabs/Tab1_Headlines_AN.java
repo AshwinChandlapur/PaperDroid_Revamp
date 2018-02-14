@@ -84,7 +84,8 @@ public class Tab1_Headlines_AN extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
+                                if(getActivity()==null)
+                                    return;
                                 listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                     @Override
                                     public View getMyView(int i,View view,ViewGroup parent,News news){

@@ -72,6 +72,8 @@ public class Tab3_Cinema_AN extends Fragment {
                 int i;
 
                     for(i=0; i< news.size(); i++){
+                        if(getActivity()==null)
+                            return;
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

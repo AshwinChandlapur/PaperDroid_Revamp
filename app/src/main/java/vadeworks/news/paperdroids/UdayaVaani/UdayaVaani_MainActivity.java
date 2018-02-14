@@ -18,6 +18,7 @@ import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.tabs.ViewPagerAdapter_UV;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
+import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
@@ -77,6 +78,16 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, PrajaVaani_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        FrameLayout intent_to_vijayavani = (FrameLayout)findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(UdayaVaani_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
