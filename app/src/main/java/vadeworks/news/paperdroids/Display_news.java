@@ -95,6 +95,8 @@ public class Display_news extends AppCompatActivity {
                     }
                 }).start();
 
+                break;
+
             case "udayavaani":
                 Log.d("Inside Udaya Swtich","inside");
                 head= getIntent().getStringExtra("singleHead");
@@ -113,6 +115,7 @@ public class Display_news extends AppCompatActivity {
                         });
                     }
                 }).start();
+                break;
 
 
 
