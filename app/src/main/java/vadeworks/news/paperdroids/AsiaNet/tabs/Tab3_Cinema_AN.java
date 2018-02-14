@@ -76,10 +76,6 @@ public class Tab3_Cinema_AN extends Fragment {
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                int i;
-                                for (i = 0; i < news.size(); i++) {
-
-
                                     listView.setAdapter(new ListView_Adapter<News>(context, news) {
                                         @Override
                                         public View getMyView(int i, View view, ViewGroup parent, News news) {
@@ -105,7 +101,7 @@ public class Tab3_Cinema_AN extends Fragment {
                                             return view;
                                         }
                                     });
-                                }
+
 
 
                                 listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

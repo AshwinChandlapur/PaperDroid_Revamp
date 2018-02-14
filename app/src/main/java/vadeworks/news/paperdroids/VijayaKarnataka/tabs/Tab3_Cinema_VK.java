@@ -70,11 +70,6 @@ public class Tab3_Cinema_VK extends Fragment {
 
                 VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
                 news = parser.parseCategory("cinema");
-                int i;
-
-                for(i=0;i<news.size();i++){
-
-
                     // here you check the value of getActivity() and break up if needed
                     if(getActivity() == null)
                         return;
@@ -83,31 +78,31 @@ public class Tab3_Cinema_VK extends Fragment {
                         @Override
                         public void run() {
 
-                            listView.setAdapter(new ListView_Adapter<News>(context,news) {
-                                @Override
-                                public View getMyView(int i,View view,ViewGroup parent,News news){
-                                    if((view == null)|| (view.getTag() == null))
-                                    {
-                                        view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                        viewHolder = new ViewHolder();
-                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                    }else{
-                                        viewHolder = (ViewHolder) view.getTag();
+                                listView.setAdapter(new ListView_Adapter<News>(context,news) {
+                                    @Override
+                                    public View getMyView(int i,View view,ViewGroup parent,News news){
+                                        if((view == null)|| (view.getTag() == null))
+                                        {
+                                            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                            viewHolder = new ViewHolder();
+                                            viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                            viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        }else{
+                                            viewHolder = (ViewHolder) view.getTag();
+                                        }
+
+                                        viewHolder.news_headline.setText(news.head);
+
+                                        if(!news.imgurl.isEmpty())
+                                        {
+                                            Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
+                                        }else{
+                                            viewHolder.news_image.setVisibility(View.GONE);
+                                        }
+
+                                        return view;
                                     }
-
-                                    viewHolder.news_headline.setText(news.head);
-
-                                    if(!news.imgurl.isEmpty())
-                                    {
-                                        Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
-                                    }else{
-                                        viewHolder.news_image.setVisibility(View.GONE);
-                                    }
-
-                                    return view;
-                                }
-                            });
+                                });
 
 
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -122,13 +117,6 @@ public class Tab3_Cinema_VK extends Fragment {
                             });
                         }
                     });
-
-                }
-
-
-
-
-
             }
         }).start();
 

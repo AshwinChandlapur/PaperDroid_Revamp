@@ -73,9 +73,6 @@ public class Tab1_Headlines_UV extends Fragment {
 
                 Udayavaani_Parser parser = new Udayavaani_Parser();
                 news = parser.parseHeadLines();
-                int i;
-                for(i=0; i< news.size(); i++){
-
                     if(getActivity()==null){
                         return;
                     }
@@ -83,30 +80,31 @@ public class Tab1_Headlines_UV extends Fragment {
                         @Override
                         public void run() {
 
-                            listView.setAdapter(new ListView_Adapter<News>(context,news) {
-                                @Override
-                                public View getMyView(int i,View view,ViewGroup parent,News news){
+                                listView.setAdapter(new ListView_Adapter<News>(context,news) {
+                                    @Override
+                                    public View getMyView(int i,View view,ViewGroup parent,News news){
 
-                                    if((view == null)|| (view.getTag() == null))
-                                    {
-                                        view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                        viewHolder = new ViewHolder();
-                                    }else{
-                                        viewHolder = (ViewHolder)view.getTag();
+                                        if((view == null)|| (view.getTag() == null))
+                                        {
+                                            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+                                            viewHolder = new ViewHolder();
+                                        }else{
+                                            viewHolder = (ViewHolder)view.getTag();
+                                        }
+
+                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        viewHolder.news_headline.setText(news.head);
+                                        view.setTag(viewHolder);
+                                        if(!news.imgurl.isEmpty()) {
+                                            Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
+                                        }else{
+                                            viewHolder.news_image.setVisibility(View.GONE);}
+
+                                        return view;
                                     }
+                                });
 
-                                    viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                    viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                    viewHolder.news_headline.setText(news.head);
-                                    view.setTag(viewHolder);
-                                    if(!news.imgurl.isEmpty()) {
-                                        Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
-                                    }else{
-                                        viewHolder.news_image.setVisibility(View.GONE);}
-
-                                    return view;
-                                }
-                            });
 
                             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                                 @Override
@@ -120,17 +118,14 @@ public class Tab1_Headlines_UV extends Fragment {
                                 }
                             });
 
+                            hideProgress();
+
                         }
                     });
 
-                }
 
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        hideProgress();
-                    }
-                });
+
+
 
             }
         }).start();
