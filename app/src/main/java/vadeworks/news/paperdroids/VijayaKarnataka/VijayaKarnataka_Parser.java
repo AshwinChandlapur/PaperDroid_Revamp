@@ -21,7 +21,7 @@ import vadeworks.news.paperdroids.Paper;
 
 public class VijayaKarnataka_Parser implements Paper {
 
-    String vijayakarnataka_base_url = "http://kannada.asianetnews.com/";
+    String vijayakarnataka_base_url = "https://vijaykarnataka.indiatimes.com/";
     String category_url;
     Document vijayakarnataka_doc;
     Elements vijayakarnataka_elem;
@@ -30,7 +30,25 @@ public class VijayaKarnataka_Parser implements Paper {
 
     @Override
     public ArrayList<News> parseHeadLines() {
-        return null;
+
+
+        try {
+            vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_base_url).get();}catch (Exception e){
+        }
+            vijayakarnataka_elem = vijayakarnataka_doc.getElementsByClass("other_main_news1").select("ul").select("li").select("a");//this has the headline
+            //vijayakarnataka_headlines_elem is of type Elements
+
+            int i;
+            for(i=0;i<vijayakarnataka_elem.size();i++){
+
+                String link = vijayakarnataka_base_url+vijayakarnataka_elem.get(i).attr("href");
+                String headline = vijayakarnataka_elem.get(i).text();
+                news.add(new News(headline,link));
+                news.get(i).showNews();
+            }
+
+
+        return news;
     }
 
     @Override
