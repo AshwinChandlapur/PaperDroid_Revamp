@@ -75,8 +75,8 @@ public class Tab2_Cinema_UV extends Fragment {
                                         }
                                         viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
                                         viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                        viewHolder.news_headline.setText(news.head);
                                         view.setTag(viewHolder);
+                                        viewHolder.news_headline.setText(news.head);
                                         if(!news.imgurl.isEmpty()) {
                                             Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
                                         }else{

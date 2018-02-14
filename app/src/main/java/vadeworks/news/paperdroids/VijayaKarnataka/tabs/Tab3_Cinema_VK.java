@@ -60,8 +60,6 @@ public class Tab3_Cinema_VK extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.vijayakarnataka_tab3_cinema, container, false);
         init(v);
-        context = getActivity().getApplicationContext();
-
 
         new Thread(new Runnable() {
             @Override
@@ -85,12 +83,12 @@ public class Tab3_Cinema_VK extends Fragment {
                                         {
                                             view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
                                             viewHolder = new ViewHolder();
-                                            viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                            viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
                                         }else{
                                             viewHolder = (ViewHolder) view.getTag();
                                         }
-
+                                        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+                                        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+                                        view.setTag(viewHolder);
                                         viewHolder.news_headline.setText(news.head);
 
                                         if(!news.imgurl.isEmpty())
@@ -113,6 +111,7 @@ public class Tab3_Cinema_VK extends Fragment {
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
+        context = getActivity().getApplicationContext();
     }
 
     public void listviewOnClick(){
