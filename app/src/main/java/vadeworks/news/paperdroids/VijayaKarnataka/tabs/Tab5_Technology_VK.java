@@ -63,50 +63,12 @@ public class Tab5_Technology_VK extends Fragment {
             public void run() {
 
 
-                vijayakarnataka_url="https://vijaykarnataka.indiatimes.com";
-                try{
-                    Log.d("timestamp","timestamp Tech Start");
-                    vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_url).get();
-                    Log.d("timestamp","timestamp Tech Done");
-                }catch (Exception e){
-                    Log.d("error","error");
-                }
-
-                sports_link_taker = vijayakarnataka_doc.getElementById("nav60023487").select("a"); // Nav id of Technology
-                sports_url = sports_link_taker.attr("href");
-                sports_url = vijayakarnataka_url+sports_url;
-//                    Log.d("sports-url","sports-url"+sports_url);
-
-                try{
-                    vijayakarnataka_doc = Jsoup.connect(sports_url).get();
-                }catch (Exception e){
-                    Log.d("error","error");
-                }
-
-                sports_link_taker = vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a");
-                Log.d("sports-url","sports-size"+sports_link_taker.size());
+                VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
+                news = parser.parseCategory("technology");
                 int i;
-                for(i=0;i<sports_link_taker.size();i++){
-                    String link =sports_link_taker.get(i).attr("href");
-                    link = vijayakarnataka_url+link;
-                    Log.d("sports-url","sports-link "+link);
 
 
-                    sports_link_takers = vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a").select("img");
-                    String imgurl = sports_link_takers.get(i).attr("src");
-                    imgurl = vijayakarnataka_url+imgurl;
-                    Log.d("sports-url","sports-image "+imgurl);
-
-
-                    String headline = sports_link_takers.get(i).attr("title");
-                    Log.d("sports-url","sports-headline "+headline);
-
-                    news.add(new News(headline,link,imgurl));
-
-                }
-
-
-                for(i=0;i<sports_link_taker.size();i++){
+                for(i=0;i<news.size();i++){
 
                     // here you check the value of getActivity() and break up if needed
                     if(getActivity() == null)

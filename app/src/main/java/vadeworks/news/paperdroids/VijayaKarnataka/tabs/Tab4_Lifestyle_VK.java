@@ -63,50 +63,11 @@ public class Tab4_Lifestyle_VK extends Fragment {
             public void run() {
 
 
-                vijayakarnataka_url="https://vijaykarnataka.indiatimes.com";
-                try{
-                    Log.d("timestamp","timestamp Lifestyle Start");
-                    vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_url).get();
-                    Log.d("timestamp","timestamp Lifestyle Done");
-                }catch (Exception e){
-                    Log.d("error","error");
-                }
-
-                sports_link_taker = vijayakarnataka_doc.getElementById("nav57869229").select("a"); // Nav id of Lifestyle
-                sports_url = sports_link_taker.attr("href");
-                sports_url = vijayakarnataka_url+sports_url;
-//                    Log.d("sports-url","sports-url"+sports_url);
-
-                try{
-                    vijayakarnataka_doc = Jsoup.connect(sports_url).get();
-                }catch (Exception e){
-                    Log.d("error","error");
-                }
-
-                sports_link_taker = vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a");
-                Log.d("sports-url","sports-size"+sports_link_taker.size());
+                VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
+                news = parser.parseCategory("lifestyle");
                 int i;
-                for(i=0;i<sports_link_taker.size();i++){
-                    String link =sports_link_taker.get(i).attr("href");
-                    link = vijayakarnataka_url+link;
-                    Log.d("sports-url","sports-link "+link);
 
-
-                    sports_link_takers = vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a").select("img");
-                    String imgurl = sports_link_takers.get(i).attr("src");
-                    imgurl = vijayakarnataka_url+imgurl;
-                    Log.d("sports-url","sports-image "+imgurl);
-
-
-                    String headline = sports_link_takers.get(i).attr("title");
-                    Log.d("sports-url","sports-headline "+headline);
-
-                    news.add(new News(headline,link,imgurl));
-
-                }
-
-
-                for(i=0;i<sports_link_taker.size();i++){
+                for(i=0;i<news.size();i++){
 
 
 

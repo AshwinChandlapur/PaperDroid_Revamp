@@ -23,14 +23,15 @@ public class VijayaKarnataka_Parser implements Paper {
 
     String vijayakarnataka_base_url = "https://vijaykarnataka.indiatimes.com/";
     String category_url;
+    String link_picker;
     Document vijayakarnataka_doc;
     Elements vijayakarnataka_elem;
     ArrayList<News> news = new ArrayList<News>();
+    String sports="nav10738520",cinema="nav10738512",lifestyle="nav57869229",technology="nav60023487";
 
 
     @Override
     public ArrayList<News> parseHeadLines() {
-
 
         try {
             vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_base_url).get();}catch (Exception e){
@@ -47,7 +48,6 @@ public class VijayaKarnataka_Parser implements Paper {
                 news.get(i).showNews();
             }
 
-
         return news;
     }
 
@@ -56,11 +56,11 @@ public class VijayaKarnataka_Parser implements Paper {
 
         try {
             vijayakarnataka_doc = Jsoup.connect(news.link).get();
+            Log.d("parser","parserl"+news.link);
         }catch (Exception e){
 
         }
             vijayakarnataka_elem = vijayakarnataka_doc.getElementsByClass("thumbImage").select("img");
-
             try {
                 news.imgurl = "https://vijaykarnataka.indiatimes.com" + vijayakarnataka_elem.first().attr("src");
             } catch (Exception e) {
@@ -80,43 +80,76 @@ public class VijayaKarnataka_Parser implements Paper {
 
     @Override
     public ArrayList<News> parseCategory(String category) {
-        return null;
-    }
 
-    public News Parse_For_Content(final News news) {
+        switch (category){
+            case "sports" :
+                    category_url = sports;
+                break;
+            case "cinema":
+                    category_url = cinema;
+                break;
+            case "lifestyle":
+                    category_url = lifestyle;
+                break;
+            case "technology":
+                    category_url = technology;
+                break;
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                try {
-
-                    Document doc = Jsoup.connect(news.link).get();
-                    Elements image_url = doc.getElementsByClass("thumbImage").select("img");
-
-                    try {
-                        news.imgurl = "https://vijaykarnataka.indiatimes.com" + image_url.first().attr("src");
-                    } catch (Exception e) {
-                        Log.d("error", "error");
-                    }
-
-                    Elements body = doc.getElementsByTag("arttextxml");
-                    news.content = body.toString();
-                    news.content = Jsoup.parse(news.content).text();
-                    Log.d("parser","parser"+news.head);
-                    Log.d("parser","parser"+news.link);
-                    Log.d("parser","parser"+ news.content);
-                    Log.d("parser","parser"+news.imgurl);
+        }
 
 
-                } catch (IOException e) {
+        try{
+            vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_base_url).get();
+            Log.d("timestamp","timestamp sports Done");
+        }catch (Exception e){
+            Log.d("error","error");
+        }
 
-                }
-            }
-        }).start();
+        vijayakarnataka_elem = vijayakarnataka_doc.getElementById(category_url).select("a");
+        link_picker = vijayakarnataka_elem.attr("href");
+        link_picker = vijayakarnataka_base_url+link_picker;
 
-        Log.d("timestamp","timestamp of Method");
+
+        try{
+            vijayakarnataka_doc = Jsoup.connect(link_picker).get();
+        }catch (Exception e){
+        }
+
+        vijayakarnataka_elem = vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a");
+        Log.d("Elem elem","elem elem"+vijayakarnataka_elem);
+        int i;
+        for(i=0;i<vijayakarnataka_elem.size();i++){
+            String link =vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a").get(i).attr("href");
+            link = vijayakarnataka_base_url+link;
+            Log.d("sports-url","sports-link "+link);
+
+
+            vijayakarnataka_elem = vijayakarnataka_elem.select("img");
+            String imgurl = vijayakarnataka_elem.get(i).attr("src");
+            imgurl = vijayakarnataka_base_url+imgurl;
+            Log.d("sports-url","sports-image "+imgurl);
+
+
+            String headline = vijayakarnataka_elem.get(i).attr("title");
+            Log.d("sports-url","sports-headline "+headline);
+
+            news.add(new News(headline,link,imgurl));
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         return news;
     }
+
+
 
 }

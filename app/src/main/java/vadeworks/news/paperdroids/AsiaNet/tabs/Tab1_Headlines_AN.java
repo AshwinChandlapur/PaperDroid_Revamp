@@ -79,7 +79,6 @@ public class Tab1_Headlines_AN extends Fragment {
 
                         if(getActivity()==null){
                             return;
-                            //do stuff
                         }
 
                         getActivity().runOnUiThread(new Runnable() {
