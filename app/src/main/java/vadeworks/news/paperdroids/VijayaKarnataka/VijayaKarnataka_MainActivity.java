@@ -14,6 +14,7 @@ import android.widget.FrameLayout;
 
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
@@ -68,6 +69,16 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, UdayaVaani_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
+        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });

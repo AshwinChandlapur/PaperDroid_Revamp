@@ -14,6 +14,10 @@
     <string name="toolbar_title_home_uv">ಉದಯವಾಣಿ</string>
     <string name="toolbar_title_explore_uv">Explore</string>
 
+    <string name="toolbar_title_home_pj">ಪ್ರಜಾವಾಣಿ</string>
+    <string name="toolbar_title_explore_pj">Explore</string>
+
+
     <string name="other_activity">Other Activity</string>
 
     <!-- Navigation Drawer -->

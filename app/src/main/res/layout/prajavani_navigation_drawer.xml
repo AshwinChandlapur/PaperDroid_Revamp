@@ -141,8 +141,9 @@
 
                 </FrameLayout>
 
+
                 <FrameLayout
-                    android:id="@+id/nav_prajavani"
+                    android:id="@+id/nav_udayavaani"
                     style="@style/NavDrawerRowLayout.Main" >
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
@@ -152,13 +153,10 @@
 
                     <TextView
                         style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_pj"
+                        android:text="@string/toolbar_title_home_uv"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>
-
-
-
 
 
                 <include

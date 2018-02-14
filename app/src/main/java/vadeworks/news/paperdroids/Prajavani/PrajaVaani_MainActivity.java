@@ -1,11 +1,11 @@
-package vadeworks.news.paperdroids.UdayaVaani;
+package vadeworks.news.paperdroids.Prajavani;
 
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,41 +13,40 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
+import vadeworks.news.paperdroids.Prajavani.tabs.ViewPagerAdapter_PJ;
 import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
-import vadeworks.news.paperdroids.UdayaVaani.tabs.ViewPagerAdapter_UV;
+import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
-public class UdayaVaani_MainActivity extends AppCompatActivity {
-
+public class PrajaVaani_MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     ViewPager pager;
-    ViewPagerAdapter_UV adapter;
+    ViewPagerAdapter_PJ adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Cinema"};
-    int Numboftabs =2;
+    CharSequence Titles[]={"Headlines","Blah1","Blah2","Blah3"};
+    int Numboftabs =4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.udayavaani_mainactivity);
+        setContentView(R.layout.prajavani_mainactivity);
 
         init_slider();
 
         init_navigator();
 
+
         FrameLayout intent_to_home = (FrameLayout)findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UdayaVaani_MainActivity.this, Splash_Main_Activity.class);
+                Intent intent = new Intent(PrajaVaani_MainActivity.this, Splash_Main_Activity.class);
                 startActivity(intent);
 
             }
@@ -57,7 +56,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UdayaVaani_MainActivity.this, AsiaNet_MainActivity.class);
+                Intent intent = new Intent(PrajaVaani_MainActivity.this, AsiaNet_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -67,16 +66,16 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UdayaVaani_MainActivity.this, VijayaKarnataka_MainActivity.class);
+                Intent intent = new Intent(PrajaVaani_MainActivity.this, VijayaKarnataka_MainActivity.class);
                 startActivity(intent);
             }
         });
 
-        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
-        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
+        FrameLayout intent_to_udayavani = (FrameLayout)findViewById(R.id.nav_udayavaani);
+        intent_to_udayavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UdayaVaani_MainActivity.this, PrajaVaani_MainActivity.class);
+                Intent intent = new Intent(PrajaVaani_MainActivity.this, UdayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -84,7 +83,6 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
 
 
     }
-
 
 
     @Override
@@ -119,7 +117,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter_UV(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter_PJ(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
@@ -188,9 +186,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
 
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
-        getSupportActionBar().setTitle(R.string.toolbar_title_home_uv);
+        getSupportActionBar().setTitle(R.string.toolbar_title_home_pj);
 
 
     }
-
 }
