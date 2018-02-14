@@ -4,6 +4,7 @@ import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
@@ -30,7 +31,6 @@ public class AsiaNet_Parser implements Paper {
 
         try{
             asianet_doc = Jsoup.connect(asianet_base_url).get();//this is of type Document
-            Log.d("timestamp","timestamp Headlines Done");
             asianet_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
             int i;
             for(i=0; i< asianet_elem.size(); i++){
@@ -55,8 +55,14 @@ public class AsiaNet_Parser implements Paper {
         try {
             asianet_doc = Jsoup.connect(news.link).get();
             asianet_elem = asianet_doc.getElementsByClass("article-wrap new-article-desc").select("p");
-            news.content = asianet_elem.toString();
-            news.content = Jsoup.parse(news.content).text();
+
+            for (Element ele: asianet_elem) {
+                if (!ele.text().isEmpty())
+                    news.content = news.content + ele.text() + "\n\n";
+            }
+            Log.d("content","content"+news.content);
+
+
         } catch (IOException e) {
 
         }

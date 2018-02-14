@@ -25,6 +25,17 @@
             android:layout_width="match_parent"
             android:layout_height="180dp"
             android:background="@drawable/gradient" />
+
+
+        <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="ಭದ್ರಾವತಿ ತಾಲೂಕು ಮೈದೊಳಲಿನಲ್ಲಿ ಕಲುಷಿತ ನೀರು ಸೇವಿಸಿ"-->
+            <!--android:lineSpacingExtra="15dp"-->
+            <!--android:textSize="20sp"-->
+            <!--android:layout_margin="15dp"-->
+            <!--android:textColor="#ffffff"-->
+            <!--android:layout_gravity="bottom"/>-->
     </FrameLayout>
 
     <TextView
@@ -54,7 +65,7 @@
                 android:textSize="15sp"
                 android:layout_margin="20dp"
                 android:gravity="start"
-                android:fontFamily="casual"
+                android:lineSpacingExtra="7dp"
                 android:id="@+id/content"
                 android:layout_gravity="center"/>
 

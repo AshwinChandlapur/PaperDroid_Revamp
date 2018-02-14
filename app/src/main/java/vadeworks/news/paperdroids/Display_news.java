@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
+import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.paperdroid.R;
 
@@ -30,7 +31,7 @@ public class Display_news extends AppCompatActivity {
 
     String head,link,content,imgurl;
     String tag;
-    String asianet = "asianet";
+
 
     News fullnews;
 
@@ -93,6 +94,26 @@ public class Display_news extends AppCompatActivity {
                         });
                     }
                 }).start();
+
+            case "udayavaani":
+                Log.d("Inside Udaya Swtich","inside");
+                head= getIntent().getStringExtra("singleHead");
+                link = getIntent().getStringExtra("singleLink");
+                fullnews = new News(head,link);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Udayavaani_Parser parser = new Udayavaani_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews);
+                            }
+                        });
+                    }
+                }).start();
+
 
 
         }

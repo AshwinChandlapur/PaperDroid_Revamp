@@ -28,6 +28,7 @@ public class VijayaKarnataka_Parser implements Paper {
     Elements vijayakarnataka_elem;
     ArrayList<News> news = new ArrayList<News>();
     String sports="nav10738520",cinema="nav10738512",lifestyle="nav57869229",technology="nav60023487";
+    String link,imgurl,headline;
 
 
     @Override
@@ -118,19 +119,19 @@ public class VijayaKarnataka_Parser implements Paper {
             Log.d("Elem elem","elem elem"+vijayakarnataka_elem);
             int i;
             for(i=0;i<vijayakarnataka_elem.size();i++){
-                String link =vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a").get(i).attr("href");
+                link =vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a").get(i).attr("href");
                 //for a weird Reason  vijayakarnataka_doc.getElementsByClass("dvlstimgs").select("a") cannot be substituted by vijayakarnataka_elem
                 link = vijayakarnataka_base_url+link;
                 Log.d("sports-url","sports-link "+link);
 
 
                 vijayakarnataka_elem = vijayakarnataka_elem.select("img");
-                String imgurl = vijayakarnataka_elem.get(i).attr("src");
+                imgurl = vijayakarnataka_elem.get(i).attr("src");
                 imgurl = vijayakarnataka_base_url+imgurl;
                 Log.d("sports-url","sports-image "+imgurl);
 
 
-                String headline = vijayakarnataka_elem.get(i).attr("title");
+                headline = vijayakarnataka_elem.get(i).attr("title");
                 Log.d("sports-url","sports-headline "+headline);
 
                 news.add(new News(headline,link,imgurl));
