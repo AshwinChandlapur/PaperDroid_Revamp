@@ -20,6 +20,16 @@
     <string name="toolbar_title_home_vv">ವಿಜಯವಾಣಿ</string>
     <string name="toolbar_title_home_es">ಈ ಸಂಜೆ</string>
 
+    <string name="headlines_kn">ಮುಖ್ಯಾಂಶಗಳು</string>
+    <string name="state_kn">ರಾಜ್ಯ</string>
+    <string name="sports_kn">ಕ್ರೀಡೆ</string>
+    <string name="national_kn">ದೇಶ</string>
+    <string name="cinema_kn">ಸಿನಿಮಾ</string>
+    <string name="business_kn">ವಾಣಿಜ್ಯ</string>
+    <string name="technology_kn">ತಂತ್ರಜ್ಞಾನ</string>
+    <string name="world_kn">ಜಗತ್ತು</string>
+    <string name="lifestyle_kn">ಲೈಫ್‌ಸ್ಟೈಲ್</string>
+
 
 
 
