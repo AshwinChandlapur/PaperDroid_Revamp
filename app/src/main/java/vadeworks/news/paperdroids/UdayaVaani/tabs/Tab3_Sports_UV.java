@@ -63,23 +63,7 @@ public class Tab3_Sports_UV extends Fragment {
                         listView.setAdapter(new ListView_Adapter<News>(context,news) {
                             @Override
                             public View getMyView(int i,View view,ViewGroup parent,News news){
-
-                                if((view == null)|| (view.getTag() == null))
-                                {
-                                    view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                    viewHolder = new ViewHolder();
-                                }else{
-                                    viewHolder = (ViewHolder)view.getTag();
-                                }
-                                viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                view.setTag(viewHolder);
-                                viewHolder.news_headline.setText(news.head);
-                                if(!news.imgurl.isEmpty()) {
-                                    Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
-                                }else{
-                                    viewHolder.news_image.setVisibility(View.GONE);}
-
+                                view = layoutinflator(view,news);
                                 return view;
                             }
                         });
@@ -107,6 +91,26 @@ public class Tab3_Sports_UV extends Fragment {
 
             }
         });
+    }
+
+    public View layoutinflator(View view,News news){
+        if((view == null)|| (view.getTag() == null))
+        {
+            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+            viewHolder = new ViewHolder();
+        }else{
+            viewHolder = (ViewHolder)view.getTag();
+        }
+        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+        view.setTag(viewHolder);
+        viewHolder.news_headline.setText(news.head);
+        if(!news.imgurl.isEmpty()) {
+            Picasso.with(context).load(news.imgurl).into(viewHolder.news_image);
+        }else{
+            viewHolder.news_image.setVisibility(View.GONE);}
+
+        return view;
     }
 
 }
