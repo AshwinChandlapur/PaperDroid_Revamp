@@ -1,14 +1,19 @@
 package vadeworks.news.paperdroids;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
 
@@ -211,36 +216,22 @@ public class Display_news extends AppCompatActivity {
         link_textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(fullnews.link));
-                startActivity(i);
+                headlines_textview.setVisibility(View.GONE);
+                android.support.v7.widget.Toolbar toola = (android.support.v7.widget.Toolbar) findViewById(R.id.toola);
+//                toola.setTitleTextColor(getApplicationContext().getResources().getColor(R.color.white));
+                toola.setTitle(getApplicationContext().getResources().getString(R.string.app_name));
+
+                LinearLayout linearLayout = findViewById(R.id.forAds);
+                linearLayout.setVisibility(View.VISIBLE);
+                WebView webView = (WebView)findViewById(R.id.webView);
+//                webView.setVisibility(View.VISIBLE);
+                webView.getSettings().setJavaScriptEnabled(true);
+                webView.loadUrl(fullnews.link);
+
             }
         });
 
     }
 
-    public News parse_content(News news){
-        Document doc = new Document("");
-        try {
-             doc = Jsoup.connect(news.link).get();}catch (Exception e){}
-
-            Elements image_url = doc.getElementsByClass("thumbImage").select("img");
-
-            try {
-                news.imgurl = "https://vijaykarnataka.indiatimes.com" + image_url.first().attr("src");
-            } catch (Exception e) {
-                Log.d("error", "error");
-            }
-
-            Elements body = doc.getElementsByTag("arttextxml");
-            news.content = body.toString();
-            news.content = Jsoup.parse(news.content).text();
-            Log.d("parser","parser"+news.head);
-            Log.d("parser","parser"+news.link);
-            Log.d("parser","parser"+ news.content);
-            Log.d("parser","parser"+news.imgurl);
-
-        return news;
-    }
 
 }
