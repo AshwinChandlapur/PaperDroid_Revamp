@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import vadeworks.news.paperdroids.Esanje.tabs.ViewPagerAdapter_ES;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -31,7 +33,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     ViewPager pager;
-    ViewPagerAdapter_VV adapter;
+    ViewPagerAdapter_ES adapter;
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Headlines","Blah1","Blah2","Blah3"};
     int Numboftabs =4;
@@ -107,7 +109,8 @@ public class Esanje_MainActivity extends AppCompatActivity {
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+                Log.d("Clicked","Cliked");
             }
         });
 
@@ -148,7 +151,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter_VV(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter_ES(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);

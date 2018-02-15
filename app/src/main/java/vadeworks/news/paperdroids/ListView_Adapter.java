@@ -29,7 +29,6 @@ public abstract class ListView_Adapter<News> extends BaseAdapter {
         layoutInflater = LayoutInflater.from(context);
     }
 
-
         @Override
         public int getCount(){
             if(news.size()==0)

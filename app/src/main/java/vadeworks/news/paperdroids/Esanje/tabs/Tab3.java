@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.AsiaNet.tabs;
+package vadeworks.news.paperdroids.Esanje.tabs;
 
 
 import android.content.Context;
@@ -16,18 +16,15 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.Display_news;
-import vadeworks.news.paperdroids.ListView_Adapter;
+import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Tab2_Sports_AN extends Fragment {
+public class Tab3 extends Fragment {
 
     Context context;
     ListView listView;
@@ -39,7 +36,7 @@ public class Tab2_Sports_AN extends Fragment {
     ViewHolder viewHolder;
 
 
-    public Tab2_Sports_AN() {
+    public Tab3() {
         // Required empty public constructor
     }
 
@@ -47,17 +44,15 @@ public class Tab2_Sports_AN extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.asianet_common_tab, container, false);
-        init(view);
-
+        View v = inflater.inflate(R.layout.esanje_common_tab, container, false);
+        init(v);
 
         new Thread(new Runnable() {
             @Override
             public void run() {
 
-                AsiaNet_Parser parser = new AsiaNet_Parser();
-                news = parser.parseCategory(parser.sports);
+                Esanje_Parser parser = new Esanje_Parser();
+                news = parser.parseCategory("Pass a String here");
 
                 if(getActivity()==null){
                     return;
@@ -65,27 +60,26 @@ public class Tab2_Sports_AN extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                            listView.setAdapter(new ListView_Adapter<News>(context,news) {
-                                @Override
-                                public View getMyView(int i,View view,ViewGroup parent,News news){
-                                    view = layoutinflater(view,news);
-                                    return view;
-                                }
-                            });
+//                        listView.setAdapter(new ListView_Adapter<News>(context,news) {
+//                            @Override
+//                            public View getMyView(int i,View view,ViewGroup parent,News news){
+//                                view = layoutinflater(view,news);
+//                                return view;
+//                            }
+//                        });
                     }
                 });
             }
         }).start();
 
-
         listviewOnClick();
 
-
-        return view;
+        return v;
     }
 
+
     public void init(View v){
-        listView = (ListView) v.findViewById(R.id.an_news);
+        listView = (ListView) v.findViewById(R.id.es_news);
         context = getActivity().getApplicationContext();
     }
 
@@ -120,7 +114,5 @@ public class Tab2_Sports_AN extends Fragment {
         }
         return view;
     }
-
-
 
 }

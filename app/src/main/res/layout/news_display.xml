@@ -7,7 +7,6 @@
     android:layout_width="match_parent"
     android:clickable="true"
     android:background="#eeeeee"
-    android:id="@+id/activity_recipe_display"
     tools:context="vadeworks.news.paperdroids.Display_news">
 
     <android.support.design.widget.AppBarLayout
