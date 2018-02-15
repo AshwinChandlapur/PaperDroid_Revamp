@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
+import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
 import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
@@ -127,6 +128,27 @@ public class Display_news extends AppCompatActivity {
                     @Override
                     public void run() {
                         Vijayavaani_Parser parser = new Vijayavaani_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews);
+                            }
+                        });
+                    }
+                }).start();
+                break;
+
+            case "prajavani":
+                Log.d("Inside pv Swtich","inside");
+                head= getIntent().getStringExtra("singleHead");
+                link = getIntent().getStringExtra("singleLink");
+                imgurl= getIntent().getStringExtra("singleImg");
+                fullnews = new News(head,link, imgurl);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Prajavaani_Parser parser = new Prajavaani_Parser();
                         fullnews = parser.parseNewsPost(fullnews);
                         runOnUiThread(new Runnable() {
                             @Override
