@@ -20,11 +20,11 @@ public class Vijayavaani_Parser implements Paper {
 
     String vijayavani_base_url = "http://vijayavani.net/";
     String category_url= "";
-    String politics= "http://vijayavani.net/category/politics/";
-    String state = "http://vijayavani.net/category/state/";
-    String country = "http://vijayavani.net/category/national/";
-    String sports = "http://vijayavani.net/category/sports/";
-    String international = "http://vijayavani.net/category/international/";
+    public String politics= "http://vijayavani.net/category/politics/";
+    public String state = "http://vijayavani.net/category/state/";
+    public String national = "http://vijayavani.net/category/national/";
+    public String sports = "http://vijayavani.net/category/sports/";
+    public String international = "http://vijayavani.net/category/international/";
 
     @Override
     public ArrayList<News> parseHeadLines() {
@@ -98,9 +98,8 @@ public class Vijayavaani_Parser implements Paper {
         ArrayList<News> headlinesList = new ArrayList<News>();
 
         try{
-            String inspecturl= getCategory_url(category);
 
-            Document d=Jsoup.connect(inspecturl).timeout(6000).get();
+            Document d=Jsoup.connect(category).timeout(6000).get();
 
             d.select("div.full.inpage_cotent").first().select("header.page-header").first().remove();
             d.select("div.full.inpage_cotent").first().select("div.full.archnav").first().remove();
@@ -136,27 +135,6 @@ public class Vijayavaani_Parser implements Paper {
         return headlinesList;
     }
 
-    public String getCategory_url (String tag){
-        switch (tag){
-            case "sports" :
-                category_url= sports;
-                break;
-            case "state":
-                category_url= state;
-                break;
-            case "country":
-                category_url= country;
-                break;
-            case "international":
-                category_url =international;
-                break;
-            case "politics":
-                category_url =politics;
-                break;
-
-        }
-        return category_url;
-    }
 }
 
 

@@ -34,8 +34,8 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_VV adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Blah1","Blah2","Blah3"};
-    int Numboftabs =4;
+    CharSequence Titles[]={"Headlines","State","National","Sports","International","Politics"};
+    int Numboftabs =6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

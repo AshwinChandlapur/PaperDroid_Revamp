@@ -36,14 +36,21 @@ public class ViewPagerAdapter_VV extends FragmentStatePagerAdapter {
             Tab1_Headlines_VV tab1 = new Tab1_Headlines_VV();
             return tab1;
         } else if (position == 1) {
-            vadeworks.news.paperdroids.VijayaVaani.tabs.Tab2 tab2 = new vadeworks.news.paperdroids.VijayaVaani.tabs.Tab2();
+            Tab2_state_VV tab2 = new Tab2_state_VV();
             return tab2;
         } else if (position == 2) {
-            vadeworks.news.paperdroids.VijayaVaani.tabs.Tab3 tab3 = new vadeworks.news.paperdroids.VijayaVaani.tabs.Tab3();
+            Tab3_National_VV tab3 = new Tab3_National_VV();
             return tab3;
-        } else {
-            vadeworks.news.paperdroids.VijayaVaani.tabs.Tab4 tab4 = new vadeworks.news.paperdroids.VijayaVaani.tabs.Tab4();
+        } else if(position == 3){
+            Tab4_Sports_VV tab4 = new Tab4_Sports_VV();
             return tab4;
+        } else if(position ==4)
+        {
+            Tab5_International_VV tab5 = new Tab5_International_VV();
+            return tab5;
+        }else{
+            Tab6_Politics_VV tab6 = new Tab6_Politics_VV();
+            return tab6;
         }
 
     }

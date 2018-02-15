@@ -118,6 +118,4 @@ public class Tab2 extends Fragment {
         return view;
     }
 
-
-
 }

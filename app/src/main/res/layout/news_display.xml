@@ -48,6 +48,8 @@
             android:textSize="18sp"
             android:id="@+id/headline"
             android:textColor="#ffffff"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:paddingTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
