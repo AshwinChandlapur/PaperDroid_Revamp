@@ -4,11 +4,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab1_Headlines_AN;
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab2_Sports_AN;
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab3_Cinema_AN;
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab4_Technology_AN;
-
 /**
  * Created by ashwinchandlapur on 15/02/18.
  */
@@ -40,19 +35,28 @@ public class ViewPagerAdapter_ES extends FragmentStatePagerAdapter {
         }
         else  if(position == 1)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
-            Tab2 tab2= new Tab2();
+            Tab2_State_ES tab2= new Tab2_State_ES();
             return tab2;
         }
         else  if(position == 2)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
-            Tab3 tab3= new Tab3();
+            Tab3_National_ES tab3= new Tab3_National_ES();
             return tab3;
         }
-        else              // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        else  if(position==3)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
-            Tab1_Headlines_ES tab1= new Tab1_Headlines_ES();
-            return tab1;
+            Tab4_Cinema_ES tab4= new Tab4_Cinema_ES();
+            return tab4;
         }
+        else  if(position==4)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        {
+            Tab5_Sports_ES tab5= new Tab5_Sports_ES();
+            return tab5;
+        }else{
+            Tab6_Business_ES tab6 = new Tab6_Business_ES();
+            return tab6;
+        }
+
 
 
 

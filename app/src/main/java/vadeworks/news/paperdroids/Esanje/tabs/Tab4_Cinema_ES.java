@@ -16,15 +16,17 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
 
+
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Tab3 extends Fragment {
+public class Tab4_Cinema_ES extends Fragment {
 
     Context context;
     ListView listView;
@@ -36,7 +38,7 @@ public class Tab3 extends Fragment {
     ViewHolder viewHolder;
 
 
-    public Tab3() {
+    public Tab4_Cinema_ES() {
         // Required empty public constructor
     }
 

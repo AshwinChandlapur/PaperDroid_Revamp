@@ -35,8 +35,8 @@ public class Esanje_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_ES adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Blah1","Blah2","Blah3"};
-    int Numboftabs =4;
+    CharSequence Titles[]={"Headlines","State","National","Cinema","Sports","Business"};
+    int Numboftabs =6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
