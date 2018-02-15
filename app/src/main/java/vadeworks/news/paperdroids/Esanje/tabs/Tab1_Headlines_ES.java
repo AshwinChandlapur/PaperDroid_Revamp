@@ -73,13 +73,13 @@ public class Tab1_Headlines_ES extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        listView.setAdapter(new ListView_Adapter<News>(context,news) {
-//                            @Override
-//                            public View getMyView(int i,View view,ViewGroup parent,News news){
-//                                view = layoutinflater(view,news);
-//                                return view;
-//                            }
-//                        });
+                        listView.setAdapter(new ListView_Adapter<News>(context,news) {
+                            @Override
+                            public View getMyView(int i,View view,ViewGroup parent,News news){
+                                view = layoutinflater(view,news);
+                                return view;
+                            }
+                        });
                         hideProgress();
                     }
                 });
@@ -106,7 +106,7 @@ public class Tab1_Headlines_ES extends Fragment {
                 i.putExtra("singleHead",news.get(position).head);
                 i.putExtra("singleLink",news.get(position).link);
                 i.putExtra("singleImg",news.get(position).imgurl);
-                i.putExtra("tag","asianet");
+                i.putExtra("tag","esanje");
                 startActivity(i);
             }
         });

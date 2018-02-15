@@ -19,6 +19,7 @@ import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
+import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
 
@@ -55,7 +56,7 @@ public class Tab6_Business_ES extends Fragment {
             public void run() {
 
                 Esanje_Parser parser = new Esanje_Parser();
-                news = parser.parseCategory("Pass a String here");
+                news = parser.parseCategory(parser.business);
 
                 if(getActivity()==null){
                     return;
@@ -63,13 +64,13 @@ public class Tab6_Business_ES extends Fragment {
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-//                        listView.setAdapter(new ListView_Adapter<News>(context,news) {
-//                            @Override
-//                            public View getMyView(int i,View view,ViewGroup parent,News news){
-//                                view = layoutinflater(view,news);
-//                                return view;
-//                            }
-//                        });
+                        listView.setAdapter(new ListView_Adapter<News>(context,news) {
+                            @Override
+                            public View getMyView(int i,View view,ViewGroup parent,News news){
+                                view = layoutinflater(view,news);
+                                return view;
+                            }
+                        });
                     }
                 });
             }
@@ -94,7 +95,7 @@ public class Tab6_Business_ES extends Fragment {
                 i.putExtra("singleHead",news.get(position).head);
                 i.putExtra("singleLink",news.get(position).link);
                 i.putExtra("singleImg",news.get(position).imgurl);
-                i.putExtra("tag","asianet");
+                i.putExtra("tag","esanje");
                 startActivity(i);
             }
         });

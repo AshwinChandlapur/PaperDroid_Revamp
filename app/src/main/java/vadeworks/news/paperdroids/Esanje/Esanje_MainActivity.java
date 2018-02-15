@@ -35,7 +35,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_ES adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","State","National","Cinema","Sports","Business"};
+    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಸಿನಿಮಾ","ಕ್ರೀಡೆ","ವಾಣಿಜ್ಯ"};
     int Numboftabs =6;
 
     @Override
@@ -110,7 +110,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
-                Log.d("Clicked","Cliked");
+                Log.d("Clicked","Cliked in same category");
             }
         });
 

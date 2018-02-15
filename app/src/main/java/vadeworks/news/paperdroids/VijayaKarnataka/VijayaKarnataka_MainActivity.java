@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,7 +38,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_VK adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Sports","Cinema","Lifestyle","Technology"};
+    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ಲೈಫ್\u200Cಸ್ಟೈಲ್","ತಂತ್ರಜ್ಞಾನ"};
     int Numboftabs =5;
 
     @Override
@@ -82,7 +83,8 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+                Log.d("Clicked","Cliked in same category");
             }
         });
 

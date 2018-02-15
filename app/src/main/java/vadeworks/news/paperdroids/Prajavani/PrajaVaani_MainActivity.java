@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,7 +34,7 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_PJ adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","State","Country","Sports","Cinema","Business"};
+    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ವಾಣಿಜ್ಯ"};
     int Numboftabs =6;
 
     @Override
@@ -60,7 +61,8 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+                Log.d("Clicked","Cliked in same category");
             }
         });
 

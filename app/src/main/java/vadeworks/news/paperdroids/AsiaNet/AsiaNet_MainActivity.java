@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -35,7 +36,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_AN adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"Headlines","Sports","Cinema","Technology"};
+    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ತಂತ್ರಜ್ಞಾನ"};
     int Numboftabs =4;
 
     ViewHolder viewHolder;
@@ -107,6 +108,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+                Log.d("Clicked","Cliked in same category");
             }
         });
 

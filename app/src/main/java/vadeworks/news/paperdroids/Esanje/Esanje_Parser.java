@@ -24,7 +24,7 @@ public class Esanje_Parser implements Paper {
     String category_url = "";
     public String headlines_link = "http://www.eesanje.com/category/latest-news/";
     public String state = "http://www.eesanje.com/category/state-news/";
-    public String country = "http://www.eesanje.com/category/national-news/";
+    public String national = "http://www.eesanje.com/category/national-news/";
     public String sports = "http://www.eesanje.com/category/sports/";
     public String cinema = "http://www.eesanje.com/category/cinema-news/";
     public String business = "http://www.eesanje.com/category/business/";
@@ -72,6 +72,8 @@ public class Esanje_Parser implements Paper {
             }
             news.imgurl= d.select("div.article-content.clearfix").first().select("div.entry-content").first().select("img").attr("src");
             news.content=content;
+
+            Log.d("esanje content", content);
 
         }catch (Exception e){
             Log.e("exception in es parse", e.toString());
