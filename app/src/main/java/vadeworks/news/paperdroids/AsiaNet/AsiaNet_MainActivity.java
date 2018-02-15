@@ -36,16 +36,10 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_AN adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ತಂತ್ರಜ್ಞಾನ"};
-    int Numboftabs =4;
-
-    ViewHolder viewHolder;
+    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ತಂತ್ರಜ್ಞಾನ","ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
+    int Numboftabs =5;
 
 
-    static class ViewHolder {
-        static TextView news_headline;
-        static ImageView news_image;
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

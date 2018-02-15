@@ -22,6 +22,7 @@ public class News {
         this.content="";
     }
 
+
     public News(String head, String link) {
         this.head= head;
         this.link= link;

@@ -26,7 +26,8 @@ public class AsiaNet_Parser implements Paper {
     Elements asianet_elem;
     public String sports="http://kannada.asianetnews.com/sports",
             cinema = "http://kannada.asianetnews.com/entertainment",
-            technology="http://kannada.asianetnews.com/technology";
+            technology="http://kannada.asianetnews.com/technology",
+            lifestyle = "http://kannada.asianetnews.com/life";
     ArrayList<News> news = new ArrayList<News>();
 
     @Override
@@ -58,11 +59,12 @@ public class AsiaNet_Parser implements Paper {
         try {
             asianet_doc = Jsoup.connect(news.link).get();
             asianet_elem = asianet_doc.getElementsByClass("article-wrap new-article-desc").select("p");
-
             for (Element ele: asianet_elem) {
                 if (!ele.text().isEmpty())
                     news.content = news.content + ele.text() + "\n\n";
             }
+            asianet_elem = asianet_doc.getElementsByClass("col-md-12 new-article-header").select("div").select("img");
+            news.imgurl = asianet_elem.attr("src");
             Log.d("content","content"+news.content);
 
 

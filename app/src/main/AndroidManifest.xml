@@ -6,11 +6,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name="vadeworks.news.paperdroids.MainApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
+        <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT" android:value="DISABLE" />
         <activity
             android:name="vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity"
             android:label="@string/app_name" />

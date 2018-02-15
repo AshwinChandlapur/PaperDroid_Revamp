@@ -56,16 +56,14 @@ public class Display_news extends AppCompatActivity {
         tag = getIntent().getStringExtra("tag");
 
 
-
-
         switch (tag){
             case "asianet":
                 Log.d("Inside Asianet Swtich","inside");
                 head= getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
                 imgurl= getIntent().getStringExtra("singleImg");
-                fullnews = new News(head,link,imgurl);
 
+                fullnews = new News(head,link,imgurl);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
