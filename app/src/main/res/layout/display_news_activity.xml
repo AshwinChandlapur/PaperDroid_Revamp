@@ -8,23 +8,43 @@
     android:background="#ffffff"
     tools:context="vadeworks.news.paperdroids.Display_news">
 
-    <FrameLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-        <ImageView
+        <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:id="@+id/imageView"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            />
+            android:layout_height="wrap_content">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="@drawable/gradient" />
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:id="@+id/imageView"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitXY"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:background="@drawable/gradient" />
+            </FrameLayout>
+        </android.support.design.widget.CollapsingToolbarLayout>
+
+
+
+    </android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
 
 
         <!--<TextView-->
@@ -36,7 +56,7 @@
             <!--android:layout_margin="15dp"-->
             <!--android:textColor="#ffffff"-->
             <!--android:layout_gravity="bottom"/>-->
-    </FrameLayout>
+
 
     <TextView
         android:layout_width="wrap_content"
