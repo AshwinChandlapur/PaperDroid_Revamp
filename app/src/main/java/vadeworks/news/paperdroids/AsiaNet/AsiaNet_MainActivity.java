@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
@@ -64,6 +65,24 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
+        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
+        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AsiaNet_MainActivity.this, PrajaVaani_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        FrameLayout intent_to_vijayavaani = (FrameLayout)findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaVaani_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         FrameLayout intent_to_vijayakarnataka = (FrameLayout)findViewById(R.id.nav_vijayakarnataka);
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
@@ -83,24 +102,14 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-
-        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
-        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
+        FrameLayout intent_to_suvarna = (FrameLayout)findViewById(R.id.nav_suvarna);
+        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(AsiaNet_MainActivity.this, PrajaVaani_MainActivity.class);
-                startActivity(intent);
+                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
             }
         });
 
-        FrameLayout intent_to_vijayavaani = (FrameLayout)findViewById(R.id.nav_vijayavani);
-        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         FrameLayout intent_to_esanje = (FrameLayout)findViewById(R.id.nav_esanje);
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {

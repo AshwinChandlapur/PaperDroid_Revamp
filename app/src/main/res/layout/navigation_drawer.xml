@@ -3,8 +3,7 @@
 <vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_activity_navigation_drawer_rootLayout"
-    style="@style/ScrimInsetsLayout"
-    tools:context="vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity">
+    style="@style/ScrimInsetsLayout">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -106,8 +105,9 @@
 
                 </FrameLayout>
 
+
                 <FrameLayout
-                    android:id="@+id/nav_vijayakarnataka"
+                    android:id="@+id/nav_prajavani"
                     style="@style/NavDrawerRowLayout.Main" >
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
@@ -119,14 +119,32 @@
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_explore"
                         style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_vk"
+                        android:text="@string/toolbar_title_home_pj"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>
 
 
                 <FrameLayout
-                    android:id="@+id/nav_suvarna"
+                    android:id="@+id/nav_vijayavani"
+                    style="@style/NavDrawerRowLayout.Main" >
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/ic_explore_white_24dp"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_vv"
+                        tools:fontFamily="sans-serif-medium"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/nav_vijayakarnataka"
                     style="@style/NavDrawerRowLayout.Main" >
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
@@ -136,7 +154,7 @@
 
                     <TextView
                         style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_an"
+                        android:text="@string/toolbar_title_home_vk"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>
@@ -159,7 +177,7 @@
                 </FrameLayout>
 
                 <FrameLayout
-                    android:id="@+id/nav_vijayavani"
+                    android:id="@+id/nav_suvarna"
                     style="@style/NavDrawerRowLayout.Main" >
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
@@ -169,10 +187,11 @@
 
                     <TextView
                         style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_vv"
+                        android:text="@string/toolbar_title_home_an"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>
+
 
                 <FrameLayout
                     android:id="@+id/nav_esanje"
@@ -189,6 +208,8 @@
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>
+
+
 
                 <include
                     layout="@layout/navigation_drawer_divider"/>

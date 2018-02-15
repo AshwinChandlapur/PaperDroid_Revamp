@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
@@ -58,15 +59,32 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_suvarna = (FrameLayout)findViewById(R.id.nav_suvarna);
-        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
+        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
+        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, AsiaNet_MainActivity.class);
+                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
 
+        FrameLayout intent_to_vijayavaani = (FrameLayout)findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, VijayaVaani_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        FrameLayout intent_to_vijayakarnataka = (FrameLayout)findViewById(R.id.nav_vijayakarnataka);
+        intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+            }
+        });
 
         FrameLayout intent_to_udayavaani = (FrameLayout)findViewById(R.id.nav_udayavaani);
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
@@ -77,21 +95,11 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             }
         });
 
-
-        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
-        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
+        FrameLayout intent_to_suvarna = (FrameLayout)findViewById(R.id.nav_suvarna);
+        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, PrajaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        FrameLayout intent_to_vijayavani = (FrameLayout)findViewById(R.id.nav_vijayavani);
-        intent_to_vijayavani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, VijayaVaani_MainActivity.class);
+                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, AsiaNet_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -105,7 +113,6 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
     }
 
 

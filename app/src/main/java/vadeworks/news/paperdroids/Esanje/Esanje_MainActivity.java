@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
@@ -55,11 +56,20 @@ public class Esanje_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_suvarna = (FrameLayout)findViewById(R.id.nav_suvarna);
-        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
+        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
+        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Esanje_MainActivity.this, AsiaNet_MainActivity.class);
+                Intent intent = new Intent(Esanje_MainActivity.this, PrajaVaani_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        FrameLayout intent_to_vijayavaani = (FrameLayout)findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Esanje_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -74,17 +84,8 @@ public class Esanje_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
-        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Esanje_MainActivity.this, PrajaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        FrameLayout intent_to_udayavani = (FrameLayout)findViewById(R.id.nav_udayavaani);
-        intent_to_udayavani.setOnClickListener(new View.OnClickListener() {
+        FrameLayout intent_to_udayavaani = (FrameLayout)findViewById(R.id.nav_udayavaani);
+        intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Esanje_MainActivity.this, UdayaVaani_MainActivity.class);
@@ -92,14 +93,24 @@ public class Esanje_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_vijayavaani = (FrameLayout)findViewById(R.id.nav_udayavaani);
-        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
+        FrameLayout intent_to_suvarna = (FrameLayout)findViewById(R.id.nav_suvarna);
+        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Esanje_MainActivity.this, VijayaVaani_MainActivity.class);
+                Intent intent = new Intent(Esanje_MainActivity.this, AsiaNet_MainActivity.class);
                 startActivity(intent);
             }
         });
+
+
+        FrameLayout intent_to_esanje = (FrameLayout)findViewById(R.id.nav_esanje);
+        intent_to_esanje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+            }
+        });
+
 
 
 
