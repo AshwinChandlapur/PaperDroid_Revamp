@@ -78,18 +78,7 @@ public class Tab1_Headlines_VK extends Fragment {
                                     listView.setAdapter(new ListView_Adapter<News>(context,news) {
                                         @Override
                                         public View getMyView(int i,View view,ViewGroup parent,News news){
-                                            if((view == null)|| (view.getTag() == null))
-                                            {
-                                                view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
-                                                viewHolder = new ViewHolder();
-                                            }else{
-                                                viewHolder = (ViewHolder) view.getTag();
-                                            }
-                                            viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
-                                            viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
-                                            view.setTag(viewHolder);
-                                            viewHolder.news_headline.setText(news.head);
-                                            viewHolder.news_image.setVisibility(View.GONE);
+                                            view = layoutinflater(view,news);
                                             return view;
                                         }
                                     });
@@ -121,6 +110,22 @@ public class Tab1_Headlines_VK extends Fragment {
         });
     }
 
+    public View layoutinflater(View view,News news){
+        if((view == null)|| (view.getTag() == null))
+        {
+            view = getActivity().getLayoutInflater().inflate(R.layout.listview_custom_layout,null);
+            viewHolder = new ViewHolder();
+        }else{
+            viewHolder = (ViewHolder) view.getTag();
+        }
+        viewHolder.news_headline = (TextView)view.findViewById(R.id.newsHeadlines);
+        viewHolder.news_image = (ImageView)view.findViewById(R.id.newsImage);
+        view.setTag(viewHolder);
+        viewHolder.news_headline.setText(news.head);
+        viewHolder.news_image.setVisibility(View.GONE);
+
+        return view;
+    }
 
     private void progressConfigurations(){
         progressWindow = ProgressWindow.getInstance(context);
