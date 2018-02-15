@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
+import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
 import vadeworks.paperdroid.R;
 
 public class Display_news extends AppCompatActivity {
@@ -116,6 +117,26 @@ public class Display_news extends AppCompatActivity {
                 }).start();
                 break;
 
+            case "vijayavani":
+                Log.d("Inside vv Swtich","inside");
+                head= getIntent().getStringExtra("singleHead");
+                link = getIntent().getStringExtra("singleLink");
+                imgurl= getIntent().getStringExtra("singleImg");
+                fullnews = new News(head,link, imgurl);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Vijayavaani_Parser parser = new Vijayavaani_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews);
+                            }
+                        });
+                    }
+                }).start();
+                break;
 
 
         }
