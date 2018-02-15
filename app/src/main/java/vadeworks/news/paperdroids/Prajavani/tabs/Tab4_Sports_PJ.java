@@ -57,7 +57,7 @@ public class Tab4_Sports_PJ extends Fragment {
             public void run() {
 
                 Prajavaani_Parser parser = new Prajavaani_Parser();
-                news = parser.parseCategory("sports");
+                news = parser.parseCategory(parser.sports);
 
                 if(getActivity()==null){
                     return;

@@ -66,7 +66,7 @@ public class Tab5_Technology_VK extends Fragment {
 
 
                 VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-                news = parser.parseCategory("technology");
+                news = parser.parseCategory(parser.technology);
 
                     // here you check the value of getActivity() and break up if needed
                     if(getActivity() == null)

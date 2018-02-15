@@ -71,7 +71,7 @@ public class Tab2_Sports_AN extends Fragment {
             public void run() {
 
                 AsiaNet_Parser parser = new AsiaNet_Parser();
-                news = parser.parseCategory(tag);
+                news = parser.parseCategory(parser.sports);
 
                 if(getActivity()==null){
                     return;

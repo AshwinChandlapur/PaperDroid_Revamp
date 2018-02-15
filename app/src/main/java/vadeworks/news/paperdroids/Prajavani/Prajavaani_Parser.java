@@ -21,11 +21,11 @@ public class Prajavaani_Parser implements Paper {
 
     String baseurl = "http://www.prajavani.net";
     String category_url = "";
-    String state = "http://www.prajavani.net/news/category/30.html";
-    String country = "http://www.prajavani.net/news/category/31.html";
-    String sports = "http://www.prajavani.net/news/category/64.html";
-    String cinema = "http://www.prajavani.net/news/category/138.html";
-    String business = "http://www.prajavani.net/news/category/136.html";
+    public String state = "http://www.prajavani.net/news/category/30.html";
+    public String country = "http://www.prajavani.net/news/category/31.html";
+    public String sports = "http://www.prajavani.net/news/category/64.html";
+    public String cinema = "http://www.prajavani.net/news/category/138.html";
+    public String business = "http://www.prajavani.net/news/category/136.html";
     String head, link, imgurl;
 
     @Override
@@ -87,9 +87,8 @@ public class Prajavaani_Parser implements Paper {
     @Override
     public ArrayList<News> parseCategory(String category) {
         try{
-            String inspecturl= getCategory_url(category);
 
-            Document d=Jsoup.connect(inspecturl).get();
+            Document d=Jsoup.connect(category).get();
             Elements topstories = d.select("div.main_block.col-lg-8.story_block").first().select("div.story_block").select("div.story_block");
 
 //            System.out.println(topstories.size());
@@ -114,25 +113,5 @@ public class Prajavaani_Parser implements Paper {
         return headlinesList;
     }
 
-    public String getCategory_url (String tag){
-        switch (tag){
-            case "sports" :
-                category_url= sports;
-                break;
-            case "state":
-                category_url= state;
-                break;
-            case "country":
-                category_url= country;
-                break;
-            case "cinema":
-                category_url =cinema;
-                break;
-            case "business":
-                category_url =business;
-                break;
 
-        }
-        return category_url;
-    }
 }

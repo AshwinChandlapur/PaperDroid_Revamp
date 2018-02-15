@@ -54,7 +54,7 @@ public class Tab3_Sports_UV extends Fragment {
             @Override
             public void run() {
                 Udayavaani_Parser parser = new Udayavaani_Parser();
-                news = parser.parseCategory("sports");
+                news = parser.parseCategory(parser.sports);
                 if(getActivity()==null)
                     return;
                 getActivity().runOnUiThread(new Runnable() {

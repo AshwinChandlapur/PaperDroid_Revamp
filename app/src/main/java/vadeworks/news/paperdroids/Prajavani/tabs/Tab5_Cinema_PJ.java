@@ -62,7 +62,7 @@ public class Tab5_Cinema_PJ extends Fragment {
             public void run() {
 
                 Prajavaani_Parser parser = new Prajavaani_Parser();
-                news = parser.parseCategory("cinema");
+                news = parser.parseCategory(parser.cinema);
 
                 if(getActivity()==null){
                     return;

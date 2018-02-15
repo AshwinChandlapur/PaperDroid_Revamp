@@ -27,7 +27,7 @@ public class VijayaKarnataka_Parser implements Paper {
     Document vijayakarnataka_doc;
     Elements vijayakarnataka_elem;
     ArrayList<News> news = new ArrayList<News>();
-    String sports="nav10738520",cinema="nav10738512",lifestyle="nav57869229",technology="nav60023487";
+    public String sports="nav10738520",cinema="nav10738512",lifestyle="nav57869229",technology="nav60023487";
     String link,imgurl,headline;
 
 
@@ -84,26 +84,26 @@ public class VijayaKarnataka_Parser implements Paper {
     @Override
     public ArrayList<News> parseCategory(String category) {
 
-        switch (category){
-            case "sports" :
-                    category_url = sports;
-                break;
-            case "cinema":
-                    category_url = cinema;
-                break;
-            case "lifestyle":
-                    category_url = lifestyle;
-                break;
-            case "technology":
-                    category_url = technology;
-                break;
-
-        }
+//        switch (category){
+//            case "sports" :
+//                    category_url = sports;
+//                break;
+//            case "cinema":
+//                    category_url = cinema;
+//                break;
+//            case "lifestyle":
+//                    category_url = lifestyle;
+//                break;
+//            case "technology":
+//                    category_url = technology;
+//                break;
+//
+//        }
 
 
         try{
             vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_base_url).get();
-            vijayakarnataka_elem = vijayakarnataka_doc.getElementById(category_url).select("a");
+            vijayakarnataka_elem = vijayakarnataka_doc.getElementById(category).select("a");
             link_picker = vijayakarnataka_elem.attr("href");
             link_picker = vijayakarnataka_base_url+link_picker;
         }catch (Exception e){

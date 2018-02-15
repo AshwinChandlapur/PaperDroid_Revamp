@@ -55,7 +55,7 @@ public class Tab2_Cinema_UV extends Fragment {
             @Override
             public void run() {
                 Udayavaani_Parser parser = new Udayavaani_Parser();
-                news = parser.parseCategory("cinema");
+                news = parser.parseCategory(parser.cinema);
                     if(getActivity()==null)
                         return;
                     getActivity().runOnUiThread(new Runnable() {

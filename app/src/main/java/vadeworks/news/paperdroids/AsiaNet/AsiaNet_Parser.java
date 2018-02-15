@@ -24,6 +24,9 @@ public class AsiaNet_Parser implements Paper {
     String category_url;
     Document asianet_doc;
     Elements asianet_elem;
+    public String sports="http://kannada.asianetnews.com/sports",
+            cinema = "http://kannada.asianetnews.com/entertainment",
+            technology="http://kannada.asianetnews.com/technology";
     ArrayList<News> news = new ArrayList<News>();
 
     @Override
@@ -72,22 +75,11 @@ public class AsiaNet_Parser implements Paper {
     @Override
     public ArrayList<News> parseCategory(String category) {
 
-        switch (category){
-            case "asianet_sports":
-                category_url ="http://kannada.asianetnews.com/sports";
-                break;
-            case "asianet_cinema":
-                category_url ="http://kannada.asianetnews.com/entertainment";
-                break;
-            case "asianet_technology":
-                category_url = "http://kannada.asianetnews.com/technology";
-                break;
-        }
 
 
         try{
             Exception e= new Exception();
-            asianet_doc = Jsoup.connect(category_url).get();//this is of type Document
+            asianet_doc = Jsoup.connect(category).get();//this is of type Document
             asianet_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
             int i;
             for(i=0; i< asianet_elem.size(); i++){

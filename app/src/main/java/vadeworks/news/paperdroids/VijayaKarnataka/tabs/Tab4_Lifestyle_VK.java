@@ -67,7 +67,7 @@ public class Tab4_Lifestyle_VK extends Fragment {
 
 
                 VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-                news = parser.parseCategory("lifestyle");
+                news = parser.parseCategory(parser.lifestyle);
                     // here you check the value of getActivity() and break up if needed
                     if(getActivity() == null)
                         return;

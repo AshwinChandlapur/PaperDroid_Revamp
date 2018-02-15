@@ -36,9 +36,16 @@ public class ViewPagerAdapter_UV extends FragmentStatePagerAdapter {
             Tab2_Cinema_UV tab2 = new Tab2_Cinema_UV();
             return tab2;
         }
-        else{
+        else if (position ==2){
             Tab3_Sports_UV tab3 = new Tab3_Sports_UV();
             return tab3;
+        }
+        else if(position ==4){
+            Tab4_World_UV tab4 = new Tab4_World_UV();
+            return tab4;
+        }else{
+            Tab5_Business_UV tab5 =new Tab5_Business_UV();
+            return tab5;
         }
 
     }

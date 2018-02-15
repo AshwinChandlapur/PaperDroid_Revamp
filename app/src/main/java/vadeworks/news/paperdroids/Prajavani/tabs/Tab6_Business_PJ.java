@@ -59,7 +59,7 @@ public class Tab6_Business_PJ extends Fragment {
             public void run() {
 
                 Prajavaani_Parser parser = new Prajavaani_Parser();
-                news = parser.parseCategory("business");
+                news = parser.parseCategory(parser.business);
 
                 if(getActivity()==null){
                     return;

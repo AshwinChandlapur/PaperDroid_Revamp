@@ -58,7 +58,7 @@ public class Tab2_State_PJ extends Fragment {
             public void run() {
 
                 Prajavaani_Parser parser = new Prajavaani_Parser();
-                news = parser.parseCategory("state");
+                news = parser.parseCategory(parser.state);
 
                 if(getActivity()==null){
                     return;

@@ -56,7 +56,7 @@ public class Tab3_Country_PJ extends Fragment {
             public void run() {
 
                 Prajavaani_Parser parser = new Prajavaani_Parser();
-                news = parser.parseCategory("country");
+                news = parser.parseCategory(parser.country);
 
                 if(getActivity()==null){
                     return;

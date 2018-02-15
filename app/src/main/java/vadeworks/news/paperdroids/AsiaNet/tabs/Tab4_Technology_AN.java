@@ -64,7 +64,7 @@ public class Tab4_Technology_AN extends Fragment {
             @Override
             public void run() {
                 AsiaNet_Parser parser = new AsiaNet_Parser();
-                news = parser.parseCategory(tag);
+                news = parser.parseCategory(parser.technology);
                         if(getActivity()==null){
                             return;
                         }

@@ -67,7 +67,7 @@ public class Tab3_Cinema_VK extends Fragment {
 
 
                 VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-                news = parser.parseCategory("cinema");
+                news = parser.parseCategory(parser.cinema);
                     // here you check the value of getActivity() and break up if needed
                     if(getActivity() == null)
                         return;
