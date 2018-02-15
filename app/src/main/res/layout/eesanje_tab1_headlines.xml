@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="120dp"
-            android:src="@drawable/an"
+            android:src="@drawable/es"
             android:scaleType="center"
             android:background="#ffffff"
             />
