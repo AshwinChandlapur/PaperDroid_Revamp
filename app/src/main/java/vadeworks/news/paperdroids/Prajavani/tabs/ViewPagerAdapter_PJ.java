@@ -35,17 +35,24 @@ public class ViewPagerAdapter_PJ extends FragmentStatePagerAdapter {
             return tab1;
         }
         else if (position == 1){
-            Tab2 tab2 = new Tab2();
+            Tab2_State_PJ tab2 = new Tab2_State_PJ();
             return tab2;
         }
         else if(position ==2){
-            Tab3 tab3 = new Tab3();
+            Tab3_Country_PJ tab3 = new Tab3_Country_PJ();
             return tab3;
         }
-        else {
-            Tab4 tab4 = new Tab4();
+        else if(position == 3) {
+            Tab4_Sports_PJ tab4 = new Tab4_Sports_PJ();
             return tab4;
+        }else if(position ==4){
+            Tab5_Cinema_PJ tab5 = new Tab5_Cinema_PJ();
+            return  tab5;
+        }else{
+            Tab6_Business_PJ tab6 = new Tab6_Business_PJ();
+            return tab6;
         }
+
 
     }
 

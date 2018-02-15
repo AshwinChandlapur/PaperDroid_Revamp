@@ -30,7 +30,7 @@ import vadeworks.paperdroid.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Tab1_Headlines_PJ extends Fragment {
+public class Tab5_Cinema_PJ extends Fragment {
 
     ListView listView;
     Context context;
@@ -44,8 +44,7 @@ public class Tab1_Headlines_PJ extends Fragment {
     }
 
 
-
-    public Tab1_Headlines_PJ() {
+    public Tab5_Cinema_PJ() {
         // Required empty public constructor
     }
 
@@ -54,7 +53,7 @@ public class Tab1_Headlines_PJ extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.prajavaani_tab1_headlines, container, false);
+        View v= inflater.inflate(R.layout.prajavaani_tab5_sports, container, false);
         init(v);
         progressConfigurations();
         showProgress();
@@ -63,7 +62,7 @@ public class Tab1_Headlines_PJ extends Fragment {
             public void run() {
 
                 Prajavaani_Parser parser = new Prajavaani_Parser();
-                news = parser.parseHeadLines();
+                news = parser.parseCategory("cinema");
 
                 if(getActivity()==null){
                     return;
@@ -86,8 +85,11 @@ public class Tab1_Headlines_PJ extends Fragment {
 
         listviewOnClick();
 
+
+
         return v;
     }
+
 
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.pj_news);
@@ -144,5 +146,6 @@ public class Tab1_Headlines_PJ extends Fragment {
     public void hideProgress(){
         progressWindow.hideProgress();
     }
+
 
 }

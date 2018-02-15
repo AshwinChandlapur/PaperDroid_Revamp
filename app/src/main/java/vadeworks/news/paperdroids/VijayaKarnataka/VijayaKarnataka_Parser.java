@@ -134,6 +134,7 @@ public class VijayaKarnataka_Parser implements Paper {
                 headline = vijayakarnataka_elem.get(i).attr("title");
                 Log.d("sports-url","sports-headline "+headline);
 
+                if(!(headline.isEmpty()) && !(imgurl.isEmpty()))
                 news.add(new News(headline,link,imgurl));
             }
         }catch (Exception e){
