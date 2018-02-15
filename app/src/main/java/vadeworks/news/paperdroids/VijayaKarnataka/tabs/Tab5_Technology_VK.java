@@ -57,7 +57,7 @@ public class Tab5_Technology_VK extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v =  inflater.inflate(R.layout.vijayakarnataka_tab5_technology, container, false);
+        View v =  inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
 
         init(v);
         new Thread(new Runnable() {

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +15,6 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
@@ -58,7 +52,7 @@ public class Tab3_Cinema_AN extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =  inflater.inflate(R.layout.asianet_tab3_cinema, container, false);
+        view =  inflater.inflate(R.layout.asianet_common_tab, container, false);
         init(view);
 
 

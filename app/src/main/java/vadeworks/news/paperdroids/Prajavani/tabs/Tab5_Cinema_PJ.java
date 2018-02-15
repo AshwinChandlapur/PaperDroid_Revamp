@@ -53,7 +53,7 @@ public class Tab5_Cinema_PJ extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.prajavaani_tab5_sports, container, false);
+        View v= inflater.inflate(R.layout.prajavaani_common_tab, container, false);
         init(v);
         progressConfigurations();
         showProgress();

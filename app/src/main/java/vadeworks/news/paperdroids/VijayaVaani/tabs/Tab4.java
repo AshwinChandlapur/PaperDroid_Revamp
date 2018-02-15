@@ -14,7 +14,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.News;
-import vadeworks.news.paperdroids.Prajavani.tabs.Tab1_Headlines_PJ;
 import vadeworks.paperdroid.R;
 
 
@@ -44,7 +43,7 @@ public class Tab4 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.vijayavaani_tab4, container, false);
+        View v= inflater.inflate(R.layout.vijayavaani_common_tab, container, false);
         init(v);
 
         return v;

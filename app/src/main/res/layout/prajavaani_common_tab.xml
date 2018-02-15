@@ -8,23 +8,6 @@
     tools:context="vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity"
     >
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:src="@drawable/pj"
-            android:scaleType="fitCenter"
-            android:background="#ffffff"
-            />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="170dp"
-            android:background="@drawable/gradient" />
-    </FrameLayout>
 
     <ListView
         android:layout_width="match_parent"

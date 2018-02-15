@@ -51,7 +51,7 @@ public class Tab2_State_PJ extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.prajavaani_tab2_state, container, false);
+        View v= inflater.inflate(R.layout.prajavaani_common_tab, container, false);
         init(v);
         new Thread(new Runnable() {
             @Override

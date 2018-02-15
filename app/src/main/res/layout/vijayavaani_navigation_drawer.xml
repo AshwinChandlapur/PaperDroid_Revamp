@@ -157,6 +157,8 @@
 
                 </FrameLayout>
 
+
+
                 <FrameLayout
                     android:id="@+id/nav_udayavaani"
                     style="@style/NavDrawerRowLayout.Main" >
@@ -169,6 +171,22 @@
                     <TextView
                         style="@style/NavDrawerRowItemText"
                         android:text="@string/toolbar_title_home_uv"
+                        tools:fontFamily="sans-serif-medium"/>
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/nav_esanje"
+                    style="@style/NavDrawerRowLayout.Main" >
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/ic_explore_white_24dp"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_es"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </FrameLayout>

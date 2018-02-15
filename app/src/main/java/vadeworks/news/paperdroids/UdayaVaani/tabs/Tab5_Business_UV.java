@@ -49,7 +49,7 @@ public class Tab5_Business_UV extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.udayavaani_tab5_business, container, false);
+        View v= inflater.inflate(R.layout.udayavaani_common_tab, container, false);
         init(v);
         new Thread(new Runnable() {
             @Override

@@ -48,7 +48,7 @@ public class Tab2_Cinema_UV extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View v= inflater.inflate(R.layout.udayavaani_tab2_cinema, container, false);
+        View v= inflater.inflate(R.layout.udayavaani_common_tab, container, false);
         init(v);
 
         new Thread(new Runnable() {

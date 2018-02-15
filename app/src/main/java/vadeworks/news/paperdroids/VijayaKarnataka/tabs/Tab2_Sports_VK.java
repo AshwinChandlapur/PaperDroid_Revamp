@@ -43,7 +43,7 @@ public class Tab2_Sports_VK extends Fragment {
     
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.vijayakarnataka_tab2_sports,container,false);
+        View v = inflater.inflate(R.layout.vijayakarnataka_common_tab,container,false);
         init(v);
 
 
