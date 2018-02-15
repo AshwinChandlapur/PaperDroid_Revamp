@@ -27,7 +27,7 @@
                     android:id="@+id/navigation_drawer_user_account_picture_cover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/image_nav_drawer_account_background"
+                    android:background="@drawable/image_nav_drawer_account_backgrounds"
                     android:scaleType="centerCrop"
                     tools:ignore="ContentDescription" />
 

@@ -42,12 +42,10 @@ public class Display_news extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.display_news_activity);
+        setContentView(R.layout.news_display);
         views_init();
 
 
-//        android.support.v7.app.ActionBar AB = getSupportActionBar();
-//        AB.hide();
 
         tag = getIntent().getStringExtra("tag");
 
