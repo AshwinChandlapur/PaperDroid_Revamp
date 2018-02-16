@@ -15,7 +15,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
-import am.appwise.components.ni.NoInternetDialog;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.tabs.ViewPagerAdapter_PJ;
@@ -37,19 +36,13 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ವಾಣಿಜ್ಯ"};
     int Numboftabs =6;
-    NoInternetDialog noInternetDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prajavani_mainactivity);
-        new NoInternetDialog.Builder(this)
-                .setBgGradientCenter(getResources().getColor(R.color.loaderbg))
-                .setBgGradientStart(getResources().getColor(R.color.loaderbg))
-                .setBgGradientEnd(getResources().getColor(R.color.loaderbg))
-                .setButtonColor(getResources().getColor(R.color.loaderbg))
-                .setCancelable(true)
-                .build();
+
 
         init_slider();
 
@@ -241,11 +234,6 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
-    }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        noInternetDialog.onDestroy();
     }
 
 

@@ -20,7 +20,7 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
-import am.appwise.components.ni.NoInternetDialog;
+
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
