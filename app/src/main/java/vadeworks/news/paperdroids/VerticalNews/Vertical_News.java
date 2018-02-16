@@ -52,10 +52,6 @@ public class Vertical_News extends AppCompatActivity {
                     }
                 });
                 //hideProgress();
-
-
-
-
             }
         }).start();
 

@@ -20,6 +20,7 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
+import am.appwise.components.ni.NoInternetDialog;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
@@ -55,11 +56,8 @@ public class Tab1_Headlines_PJ extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.prajavaani_tab1_headlines, container, false);
-         typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
-
         init(v);
-//        progressConfigurations();
-//        showProgress();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -95,6 +93,7 @@ public class Tab1_Headlines_PJ extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.pj_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
     public View layoutinflater(View view,News news){
@@ -129,7 +128,6 @@ public class Tab1_Headlines_PJ extends Fragment {
             }
         });
     }
-
 
 
 }

@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -46,6 +47,7 @@ public class Tab1_Headlines_VK extends Fragment {
     String tag = "vk_headlines";
 
     ViewHolder viewHolder;
+    TypingIndicatorView typingView;
 
     static class ViewHolder {
         static TextView news_headline;
@@ -78,6 +80,7 @@ public class Tab1_Headlines_VK extends Fragment {
                                             return view;
                                         }
                                     });
+                                    typingView.setVisibility(View.GONE);
                             }
                         });
             }
@@ -91,6 +94,7 @@ public class Tab1_Headlines_VK extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
     public void listviewOnClick(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

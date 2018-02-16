@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,10 +9,30 @@
     >
 
 
+    <com.udevel.widgetlab.TypingIndicatorView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="4dp"
+        android:id="@+id/loader"
+        app:animateFrequency="300"
+        app:animationOrder="lastOneFirst"
+        app:backgroundColor="#eaeaea"
+        app:backgroundType="rounded"
+        app:dotAnimationDuration="600"
+        app:dotAnimationType="Sliding"
+        app:dotColor="@color/loaderColor"
+        app:dotCount="7"
+        app:dotHorizontalSpacing="4dp"
+        app:dotMaxCompressRatio="70%"
+        app:dotSecondColor="#6ba4a4a4"
+        app:dotSize="8dp"
+        app:showBackground="true"/>
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/an_news"></ListView>
 
 
-</LinearLayout>
+</FrameLayout>

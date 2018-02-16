@@ -40,7 +40,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         Bundle bundle = new Bundle();
-        bundle.putInt("SplashActivity-Read-Button",R.id.read);
+        bundle.putInt("SplashActivity_Read_Button",R.id.read);
         mFirebaseAnalytics.logEvent("App_Open", bundle);
 
 
@@ -70,7 +70,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Splash_Main_Activity.this, Vertical_News.class);
+                Intent i = new Intent(Splash_Main_Activity.this, PrajaVaani_MainActivity.class);
                 startActivity(i);
             }
         });

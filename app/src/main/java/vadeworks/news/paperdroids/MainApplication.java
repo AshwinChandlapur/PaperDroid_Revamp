@@ -11,7 +11,9 @@ import com.onesignal.OneSignal;
 
 import org.json.JSONObject;
 
+import am.appwise.components.ni.NoInternetDialog;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
+import vadeworks.paperdroid.R;
 
 /**
  * Created by ashwinchandlapur on 15/02/18.
@@ -29,6 +31,8 @@ public class MainApplication extends Application {
         // Call syncHashedEmail anywhere in your app if you have the user's email.
         // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
         // OneSignal.syncHashedEmail(userEmail);
+
+
     }
 
 
@@ -68,8 +72,6 @@ public class MainApplication extends Application {
 
         }
     }
-
-
 
 
 }

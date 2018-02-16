@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -44,7 +45,7 @@ public class Tab1_Headlines_AN extends Fragment {
     Context context;
     String tag = "asianet_headlines";
     ArrayList<News> news = new ArrayList<News>();
-
+    TypingIndicatorView typingView;
     ViewHolder viewHolder;
 
 
@@ -90,6 +91,7 @@ public class Tab1_Headlines_AN extends Fragment {
                                             return view;
                                         }
                                     });
+                                    typingView.setVisibility(View.GONE);
                             }
                         });
                 }
@@ -105,6 +107,7 @@ public class Tab1_Headlines_AN extends Fragment {
         listView = (ListView) v.findViewById(R.id.an_news);
         listView.setSmoothScrollbarEnabled(true);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
     public void listviewOnclick(){
@@ -140,9 +143,6 @@ public class Tab1_Headlines_AN extends Fragment {
         }
         return view;
     }
-
-
-
 
 
 }

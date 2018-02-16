@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -37,7 +38,7 @@ public class Tab1_Headlines_VV extends Fragment {
     Context context;
     ArrayList<News> news = new ArrayList<News>();
     Tab1_Headlines_VV.ViewHolder viewHolder;
-
+    TypingIndicatorView typingView;
 
 
     static class ViewHolder {
@@ -80,7 +81,7 @@ public class Tab1_Headlines_VV extends Fragment {
                                 return view;
                             }
                         });
-
+                    typingView.setVisibility(View.GONE);
                     }
                 });
 
@@ -133,6 +134,7 @@ public class Tab1_Headlines_VV extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vv_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
 }
