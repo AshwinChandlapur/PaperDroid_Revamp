@@ -11,6 +11,8 @@ import com.onesignal.OneSignal;
 
 import org.json.JSONObject;
 
+import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
+
 /**
  * Created by ashwinchandlapur on 15/02/18.
  */
@@ -56,7 +58,12 @@ public class MainApplication extends Application {
                     intent.putExtra("tag",tag);
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
-                }
+                    }
+
+                }else{
+                Log.d("Inside Else","inside Else");
+                Intent intent = new Intent(getApplicationContext(), Vertical_News.class);
+                startActivity(intent);
             }
 
         }

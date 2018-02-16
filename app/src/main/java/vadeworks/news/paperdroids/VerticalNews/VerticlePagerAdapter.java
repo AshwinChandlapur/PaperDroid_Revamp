@@ -127,7 +127,6 @@ public class VerticlePagerAdapter extends PagerAdapter {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mnews.get(position).link));
                 mContext.startActivity(browserIntent);
 

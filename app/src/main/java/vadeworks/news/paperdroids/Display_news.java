@@ -47,6 +47,7 @@ public class Display_news extends AppCompatActivity {
     String head,link,content,imgurl;
     String tag;
     News fullnews;
+    String notif= "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -234,42 +235,45 @@ public class Display_news extends AppCompatActivity {
 
         if(keyCode == KeyEvent.KEYCODE_BACK){
             Intent intent;
-            switch (tag){
-                case "prajavani":
-                     intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
-                    startActivity(intent);
-                    break;
-                case "vijayavani":
-                     intent = new Intent(Display_news.this, VijayaVaani_MainActivity.class);
-                    startActivity(intent);
-                    break;
-                case "vijayakarnataka":
-                    intent = new Intent(Display_news.this, VijayaKarnataka_MainActivity.class);
-                    startActivity(intent);
-                    break;
-                case "udayavaani":
-                    intent = new Intent(Display_news.this, UdayaVaani_MainActivity.class);
-                    startActivity(intent);
-                    break;
-                case "asianet":
-                    intent = new Intent(Display_news.this, AsiaNet_MainActivity.class);
-                    startActivity(intent);
-                    break;
-                case "esanje":
-                    intent = new Intent(Display_news.this, Esanje_MainActivity.class);
-                    startActivity(intent);
-                    break;
-                default:
-                    intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
-                    startActivity(intent);
-            }
+            if (notif.equals("notif")){
+                switch (tag){
+                    case "prajavani":
+                        intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "vijayavani":
+                        intent = new Intent(Display_news.this, VijayaVaani_MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "vijayakarnataka":
+                        intent = new Intent(Display_news.this, VijayaKarnataka_MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "udayavaani":
+                        intent = new Intent(Display_news.this, UdayaVaani_MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "asianet":
+                        intent = new Intent(Display_news.this, AsiaNet_MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    case "esanje":
+                        intent = new Intent(Display_news.this, Esanje_MainActivity.class);
+                        startActivity(intent);
+                        break;
+                    default:
+                        intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
+                        startActivity(intent);
+                }
 
+            }
+            else {
+                super.onBackPressed();
+            }
 
         }
 
-
         return true;
     }
-
 
 }

@@ -110,6 +110,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+                mDrawerLayout.closeDrawers();
                 Log.d("Clicked","Cliked in same category");
             }
         });

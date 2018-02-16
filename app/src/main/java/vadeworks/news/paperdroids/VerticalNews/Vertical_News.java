@@ -1,23 +1,38 @@
 package vadeworks.news.paperdroids.VerticalNews;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
+
+import com.bluehomestudio.progresswindow.ProgressWindow;
+import com.bluehomestudio.progresswindow.ProgressWindowConfiguration;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import vadeworks.news.paperdroids.Display_news;
+import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.News;
+import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
+import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
+import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.R;
 
 public class Vertical_News extends AppCompatActivity {
 
     ArrayList<News> news = new ArrayList<News>();
+    private ProgressWindow progressWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vertical_news_activity);
-
+        progressConfigurations();
+        showProgress();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -28,6 +43,7 @@ public class Vertical_News extends AppCompatActivity {
                     @Override
                     public void run() {
                         initSwipePager();
+                        hideProgress();
                     }
                 });
 
@@ -40,4 +56,34 @@ public class Vertical_News extends AppCompatActivity {
         VerticalViewPager verticalViewPager = (VerticalViewPager) findViewById(R.id.vPager);
         verticalViewPager.setAdapter(new VerticlePagerAdapter(this,news));
     }
+
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            Intent intent = new Intent(Vertical_News.this, PrajaVaani_MainActivity.class);
+            startActivity(intent);
+
+        }
+        return true;
+    }
+
+
+    private void progressConfigurations(){
+        progressWindow = ProgressWindow.getInstance(getApplicationContext());
+        ProgressWindowConfiguration progressWindowConfiguration = new ProgressWindowConfiguration();
+        progressWindowConfiguration.backgroundColor = Color.parseColor("#32000000") ;
+        progressWindowConfiguration.progressColor = Color.WHITE ;
+        progressWindow.setConfiguration(progressWindowConfiguration);
+    }
+
+    public void showProgress(){
+        progressWindow.showProgress();
+    }
+
+
+    public void hideProgress(){
+        progressWindow.hideProgress();
+    }
+
+
 }

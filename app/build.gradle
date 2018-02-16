@@ -17,7 +17,7 @@ android {
 
 
     defaultConfig {
-        applicationId "vadeworks.news.paperdroid"
+        applicationId "vadeworks.news.guru"
         minSdkVersion 21
         targetSdkVersion 23
         versionCode 1
