@@ -21,14 +21,13 @@ public class AsiaNet_Parser implements Paper {
 
 
     String asianet_base_url = "http://kannada.asianetnews.com/";
-    String category_url;
     Document asianet_doc;
     Elements asianet_elem;
     public String sports="http://kannada.asianetnews.com/sports",
             cinema = "http://kannada.asianetnews.com/entertainment",
             technology="http://kannada.asianetnews.com/technology",
             lifestyle = "http://kannada.asianetnews.com/life";
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<News> news = new ArrayList<>();
 
     @Override
     public ArrayList<News> parseHeadLines() {
@@ -49,7 +48,9 @@ public class AsiaNet_Parser implements Paper {
                 news.get(i).showNews();
             }
 
-        }catch (Exception e){}
+        }catch (Exception e){
+                Log.d("Exceptions",e.toString());
+        }
         return news;
     }
 
@@ -69,7 +70,7 @@ public class AsiaNet_Parser implements Paper {
 
 
         } catch (IOException e) {
-
+            Log.d("Exceptions",e.toString());
         }
         return news;
     }
@@ -80,7 +81,6 @@ public class AsiaNet_Parser implements Paper {
 
 
         try{
-            Exception e= new Exception();
             asianet_doc = Jsoup.connect(category).get();//this is of type Document
             asianet_elem = asianet_doc.getElementsByClass("col-sm-4 col-xs-6 cl-text-bg").select("a");
             int i;
@@ -98,6 +98,7 @@ public class AsiaNet_Parser implements Paper {
 
 
         }catch (Exception e){
+            Log.d("Exceptions",e.toString());
         }
 
         return news;

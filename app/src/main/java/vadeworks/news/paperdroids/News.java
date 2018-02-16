@@ -37,6 +37,7 @@ public class News {
         this.content="";
     }
 
+
     public News(String head, String link, String imgurl, String content) {
         this.head= head;
         this.link= link;

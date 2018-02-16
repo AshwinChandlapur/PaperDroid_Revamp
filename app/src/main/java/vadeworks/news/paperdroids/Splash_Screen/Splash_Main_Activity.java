@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
+import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.paperdroid.R;
 
@@ -58,7 +59,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Splash_Main_Activity.this, AsiaNet_MainActivity.class);
+                Intent i = new Intent(Splash_Main_Activity.this, Vertical_News.class);
                 startActivity(i);
             }
         });

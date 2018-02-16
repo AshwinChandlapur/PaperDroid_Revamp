@@ -4,15 +4,19 @@
     package="vadeworks.paperdroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:name="vadeworks.news.paperdroids.MainApplication"
-        android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
-        <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT" android:value="DISABLE" />
+        android:theme="@style/AppTheme"
+        tools:replace="android:theme">
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
+
         <activity
             android:name="vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity"
             android:label="@string/app_name" />
@@ -29,7 +33,8 @@
         <activity android:name="vadeworks.news.paperdroids.MainScreen.MainScreen_Activity" />
         <activity android:name="vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity" />
         <activity android:name="vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity" />
-        <activity android:name="vadeworks.news.paperdroids.Esanje.Esanje_MainActivity"></activity>
+        <activity android:name="vadeworks.news.paperdroids.Esanje.Esanje_MainActivity" />
+        <activity android:name="vadeworks.news.paperdroids.VerticalNews.Vertical_News"></activity>
     </application>
 
 </manifest>

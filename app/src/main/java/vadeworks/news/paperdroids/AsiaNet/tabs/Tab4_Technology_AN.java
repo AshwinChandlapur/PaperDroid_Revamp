@@ -34,7 +34,7 @@ public class Tab4_Technology_AN extends Fragment {
 
     Context context;
     ListView listView;
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<News> news = new ArrayList<>();
     String tag = "asianet_technology";
 
 
@@ -87,7 +87,7 @@ public class Tab4_Technology_AN extends Fragment {
     }
 
     public void init(View v){
-        listView = (ListView) v.findViewById(R.id.an_news);
+        listView =  v.findViewById(R.id.an_news);
         context = getActivity().getApplicationContext();
     }
 
@@ -112,8 +112,8 @@ public class Tab4_Technology_AN extends Fragment {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        viewHolder.news_headline = (TextView) view.findViewById(R.id.newsHeadlines);
-        viewHolder.news_image = (ImageView) view.findViewById(R.id.newsImage);
+        viewHolder.news_headline =  view.findViewById(R.id.newsHeadlines);
+        viewHolder.news_image =  view.findViewById(R.id.newsImage);
         view.setTag(viewHolder);
         viewHolder.news_headline.setText(news.head);
         if (!news.imgurl.isEmpty()) {

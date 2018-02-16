@@ -36,15 +36,9 @@ public class Display_news extends AppCompatActivity {
 
     TextView headlines_textview,content_textview,link_textview;
     ImageView imageView;
-
     String head,link,content,imgurl;
     String tag;
-
-
     News fullnews;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -190,10 +184,10 @@ public class Display_news extends AppCompatActivity {
 
     public void views_init(){
 
-        headlines_textview = (TextView)findViewById(R.id.headline);
-        content_textview = (TextView)findViewById(R.id.content);
-        link_textview = (TextView)findViewById(R.id.link);
-        imageView = (ImageView)findViewById(R.id.imageView);
+        headlines_textview = findViewById(R.id.headline);
+        content_textview = findViewById(R.id.content);
+        link_textview = findViewById(R.id.link);
+        imageView = findViewById(R.id.imageView);
     }
 
     public void display_news(final News fullnews){
