@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "87009749424",
+    "firebase_url": "https://newsguru15022018.firebaseio.com",
+    "project_id": "newsguru15022018",
+    "storage_bucket": "newsguru15022018.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:87009749424:android:990016058923dbf2",
+        "android_client_info": {
+          "package_name": "vadeworks.news.guru"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "87009749424-ikj7troris8gbsi68ttefcaqj2hl09o1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIJkqJ0qvg3QK64q0aMGeGJSxGU1J15fM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

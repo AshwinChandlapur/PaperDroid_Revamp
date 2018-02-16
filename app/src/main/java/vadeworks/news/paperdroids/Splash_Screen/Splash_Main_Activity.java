@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
@@ -27,11 +29,17 @@ public class Splash_Main_Activity extends AppCompatActivity {
     Button read;
     ImageView space;
     Animation uptodown,downtoup;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("SplashActivity-Read-Button",R.id.read);
+        mFirebaseAnalytics.logEvent("App_Open", bundle);
 
 
         if (Build.VERSION.SDK_INT >= 21) {
