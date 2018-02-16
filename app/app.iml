@@ -140,6 +140,7 @@
     <orderEntry type="library" name="com.android.support.constraint:constraint-layout-1.0.2" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-11.8.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-core-ui-26.1.0" level="project" />
+    <orderEntry type="library" name="com.github.uDevel:widgetlab-0.9.7" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-iid-license-11.8.0" level="project" />
     <orderEntry type="library" name="com.android.support:support-compat-26.1.0" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-basement-11.8.0" level="project" />
@@ -164,7 +165,6 @@
     <orderEntry type="library" name="org.jsoup:jsoup:1.11.2@jar" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-impl-11.8.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-impl-license-11.8.0" level="project" />
-    <orderEntry type="library" name="com.github.mmoamenn:ProgressWindow_Android-0.0.2" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-license-11.8.0" level="project" />
   </component>
 </module>

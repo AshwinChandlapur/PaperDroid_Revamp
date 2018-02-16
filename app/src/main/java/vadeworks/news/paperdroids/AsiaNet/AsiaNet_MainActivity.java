@@ -17,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
@@ -38,7 +40,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ತಂತ್ರಜ್ಞಾನ","ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
     int Numboftabs =5;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
+    Bundle bundle;
 
 
     @Override
@@ -48,6 +51,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         init_slider();
 
         init_navigator();
+         bundle = new Bundle();
+        mFirebaseAnalytics.logEvent("Asianet_Activity", bundle);
 
 
         FrameLayout intent_to_home = (FrameLayout)findViewById(R.id.nav_home);
@@ -55,6 +60,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AsiaNet_MainActivity.this, Splash_Main_Activity.class);
+                bundle.putString("Go_to_Home", "Go_to_Home");
                 startActivity(intent);
 
             }
@@ -65,6 +71,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AsiaNet_MainActivity.this, PrajaVaani_MainActivity.class);
+                bundle.putString("Go_to_Prajavani", "Go_to_Home");
                 startActivity(intent);
             }
         });

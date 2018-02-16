@@ -14,8 +14,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bluehomestudio.progresswindow.ProgressWindow;
-import com.bluehomestudio.progresswindow.ProgressWindowConfiguration;
+
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

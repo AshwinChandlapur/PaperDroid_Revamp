@@ -13,7 +13,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bluehomestudio.progresswindow.ProgressWindow;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -34,7 +33,7 @@ public class Tab6_Business_PJ extends Fragment {
     Context context;
     ArrayList<News> news = new ArrayList<News>();
     ViewHolder viewHolder;
-    private ProgressWindow progressWindow;
+
 
     static class ViewHolder {
         static TextView news_headline;

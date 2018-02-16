@@ -22,8 +22,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bluehomestudio.progresswindow.ProgressWindow;
-import com.bluehomestudio.progresswindow.ProgressWindowConfiguration;
+
 import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
@@ -47,7 +46,6 @@ public class Tab1_Headlines_VK extends Fragment {
     String tag = "vk_headlines";
 
     ViewHolder viewHolder;
-    private ProgressWindow progressWindow;
 
     static class ViewHolder {
         static TextView news_headline;
@@ -61,8 +59,6 @@ public class Tab1_Headlines_VK extends Fragment {
         View v = inflater.inflate(R.layout.vijayakarnataka_tab1_headlines,container,false);
         init(v);
 
-        progressConfigurations();
-        showProgress();
         //For VijayaKarnataka Main Headlines//
         new Thread(new Runnable() {
             @Override
@@ -82,7 +78,6 @@ public class Tab1_Headlines_VK extends Fragment {
                                             return view;
                                         }
                                     });
-                                hideProgress();
                             }
                         });
             }
@@ -127,20 +122,4 @@ public class Tab1_Headlines_VK extends Fragment {
         return view;
     }
 
-    private void progressConfigurations(){
-        progressWindow = ProgressWindow.getInstance(context);
-        ProgressWindowConfiguration progressWindowConfiguration = new ProgressWindowConfiguration();
-        progressWindowConfiguration.backgroundColor = Color.parseColor("#32000000") ;
-        progressWindowConfiguration.progressColor = Color.WHITE ;
-        progressWindow.setConfiguration(progressWindowConfiguration);
-    }
-
-    public void showProgress(){
-        progressWindow.showProgress();
-    }
-
-
-    public void hideProgress(){
-        progressWindow.hideProgress();
-    }
 }

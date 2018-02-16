@@ -44,7 +44,6 @@ public class Splash_Main_Activity extends AppCompatActivity {
         mFirebaseAnalytics.logEvent("App_Open", bundle);
 
 
-
         if (Build.VERSION.SDK_INT >= 21) {
             // Call some material design APIs here
             getWindow().setNavigationBarColor(getResources().getColor(R.color.statusbar)); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
@@ -71,7 +70,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Splash_Main_Activity.this, PrajaVaani_MainActivity.class);
+                Intent i = new Intent(Splash_Main_Activity.this, Vertical_News.class);
                 startActivity(i);
             }
         });

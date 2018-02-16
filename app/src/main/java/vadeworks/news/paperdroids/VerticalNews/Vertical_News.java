@@ -6,9 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.View;
 
-import com.bluehomestudio.progresswindow.ProgressWindow;
-import com.bluehomestudio.progresswindow.ProgressWindowConfiguration;
+
+
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -25,14 +27,17 @@ import vadeworks.paperdroid.R;
 public class Vertical_News extends AppCompatActivity {
 
     ArrayList<News> news = new ArrayList<News>();
-    private ProgressWindow progressWindow;
+    private TypingIndicatorView typingView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vertical_news_activity);
-        progressConfigurations();
-        showProgress();
+        typingView = findViewById(R.id.loadera);
+
+        //showProgress();
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -43,9 +48,13 @@ public class Vertical_News extends AppCompatActivity {
                     @Override
                     public void run() {
                         initSwipePager();
-                        hideProgress();
+                        typingView.setVisibility(View.GONE);
                     }
                 });
+                //hideProgress();
+
+
+
 
             }
         }).start();
@@ -62,28 +71,12 @@ public class Vertical_News extends AppCompatActivity {
         if(keyCode == KeyEvent.KEYCODE_BACK){
             Intent intent = new Intent(Vertical_News.this, PrajaVaani_MainActivity.class);
             startActivity(intent);
-
         }
         return true;
     }
 
 
-    private void progressConfigurations(){
-        progressWindow = ProgressWindow.getInstance(getApplicationContext());
-        ProgressWindowConfiguration progressWindowConfiguration = new ProgressWindowConfiguration();
-        progressWindowConfiguration.backgroundColor = Color.parseColor("#32000000") ;
-        progressWindowConfiguration.progressColor = Color.WHITE ;
-        progressWindow.setConfiguration(progressWindowConfiguration);
-    }
 
-    public void showProgress(){
-        progressWindow.showProgress();
-    }
-
-
-    public void hideProgress(){
-        progressWindow.hideProgress();
-    }
 
 
 }

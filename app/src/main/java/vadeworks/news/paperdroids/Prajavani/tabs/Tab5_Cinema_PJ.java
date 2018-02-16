@@ -14,8 +14,6 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.bluehomestudio.progresswindow.ProgressWindow;
-import com.bluehomestudio.progresswindow.ProgressWindowConfiguration;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -36,7 +34,7 @@ public class Tab5_Cinema_PJ extends Fragment {
     Context context;
     ArrayList<News> news = new ArrayList<News>();
     ViewHolder viewHolder;
-    private ProgressWindow progressWindow;
+
 
     static class ViewHolder {
         static TextView news_headline;
@@ -55,8 +53,7 @@ public class Tab5_Cinema_PJ extends Fragment {
         // Inflate the layout for this fragment
         View v= inflater.inflate(R.layout.prajavaani_common_tab, container, false);
         init(v);
-        progressConfigurations();
-        showProgress();
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -77,7 +74,7 @@ public class Tab5_Cinema_PJ extends Fragment {
                                 return view;
                             }
                         });
-                        hideProgress();
+
                     }
                 });
             }
@@ -130,22 +127,6 @@ public class Tab5_Cinema_PJ extends Fragment {
     }
 
 
-    private void progressConfigurations(){
-        progressWindow = ProgressWindow.getInstance(context);
-        ProgressWindowConfiguration progressWindowConfiguration = new ProgressWindowConfiguration();
-        progressWindowConfiguration.backgroundColor = Color.parseColor("#32000000") ;
-        progressWindowConfiguration.progressColor = Color.WHITE ;
-        progressWindow.setConfiguration(progressWindowConfiguration);
-    }
-
-    public void showProgress(){
-        progressWindow.showProgress();
-    }
-
-
-    public void hideProgress(){
-        progressWindow.hideProgress();
-    }
 
 
 }
