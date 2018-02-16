@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -20,6 +21,7 @@ import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
+import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.R;
 
 public class Splash_Main_Activity extends AppCompatActivity {
@@ -40,6 +42,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
         Bundle bundle = new Bundle();
         bundle.putInt("SplashActivity-Read-Button",R.id.read);
         mFirebaseAnalytics.logEvent("App_Open", bundle);
+
 
 
         if (Build.VERSION.SDK_INT >= 21) {
@@ -72,7 +75,14 @@ public class Splash_Main_Activity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
 
+    public void onBackPressed() {
+        Intent startMain = new Intent(Intent.ACTION_MAIN);
+        startMain.addCategory(Intent.CATEGORY_HOME);
+        startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(startMain);
 
     }
+
 }
