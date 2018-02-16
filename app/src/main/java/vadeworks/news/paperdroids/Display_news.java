@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
@@ -24,11 +25,18 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
+import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
+import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
+import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
+import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
+import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
 import vadeworks.paperdroid.R;
 
@@ -44,8 +52,6 @@ public class Display_news extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_display);
         views_init();
-
-
 
         tag = getIntent().getStringExtra("tag");
 
@@ -223,6 +229,46 @@ public class Display_news extends AppCompatActivity {
             }
         });
 
+    }
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            Intent intent;
+            switch (tag){
+                case "prajavani":
+                     intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
+                    startActivity(intent);
+                    break;
+                case "vijayavani":
+                     intent = new Intent(Display_news.this, VijayaVaani_MainActivity.class);
+                    startActivity(intent);
+                    break;
+                case "vijayakarnataka":
+                    intent = new Intent(Display_news.this, VijayaKarnataka_MainActivity.class);
+                    startActivity(intent);
+                    break;
+                case "udayavaani":
+                    intent = new Intent(Display_news.this, UdayaVaani_MainActivity.class);
+                    startActivity(intent);
+                    break;
+                case "asianet":
+                    intent = new Intent(Display_news.this, AsiaNet_MainActivity.class);
+                    startActivity(intent);
+                    break;
+                case "esanje":
+                    intent = new Intent(Display_news.this, Esanje_MainActivity.class);
+                    startActivity(intent);
+                    break;
+                default:
+                    intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
+                    startActivity(intent);
+            }
+
+
+        }
+
+
+        return true;
     }
 
 

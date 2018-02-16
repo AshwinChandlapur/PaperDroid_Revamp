@@ -1,11 +1,14 @@
 package vadeworks.news.paperdroids.VerticalNews;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -15,7 +18,9 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.News;
+import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
 import vadeworks.paperdroid.R;
 
@@ -32,9 +37,9 @@ public class VerticlePagerAdapter extends PagerAdapter {
 
 
 
-    TextView headline;
+    TextView headline,newsno;
     ImageView imageView;
-    TextView content;
+    TextView content,link;
 
 
     String mResources[] = {"Spider-Man is a fictional superhero appearing in American comic books published by Marvel Comics. The character was created by writer-editor Stan Lee and writer-artist Steve Ditko, and first appeared in the anthology comic book Amazing Fantasy #15 (Aug. 1962) in the Silver Age of Comic Books. Lee and Ditko conceived the character as an orphan being raised by his Aunt May and Uncle Ben, and as a teenager, having to deal with the normal struggles of adolescence in addition to those of a costumed crime-fighter. Spider-Man's creators gave him super strength and agility, the ability to cling to most surfaces, shoot spider-webs using wrist-mounted devices of his own invention, which he calls \"web-shooters\", and react to danger quickly with his \"spider-sense\", enabling him to combat his foes.",
@@ -65,9 +70,10 @@ public class VerticlePagerAdapter extends PagerAdapter {
     }
 
 
+
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
-        View itemView = mLayoutInflater.inflate(R.layout.vertical_news_display, container, false);
+    public Object instantiateItem(ViewGroup container, final int position) {
+        final View itemView = mLayoutInflater.inflate(R.layout.vertical_news_display, container, false);
 
         if(position == 0){
             verticalNewsDisplay(position,itemView);
@@ -108,14 +114,26 @@ public class VerticlePagerAdapter extends PagerAdapter {
         return itemView;
     }
 
-    public void verticalNewsDisplay(int position,View itemView){
-        headline = (TextView)itemView.findViewById(R.id.headline);
-        imageView=(ImageView)itemView.findViewById(R.id.imageView);
+    public void verticalNewsDisplay(final int position, final View itemView){
+
+        headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
+        link = itemView.findViewById(R.id.link);
+        newsno = itemView.findViewById(R.id.newsNo);
+
+        newsno.setText(String.valueOf(position+1));
         headline.setText(mnews.get(position).head);
         content.setText(mnews.get(position).content);
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-//        Picasso.with(mContext).load(imgNews.imgurl).into(imageView);
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mnews.get(position).link));
+                mContext.startActivity(browserIntent);
+
+            }
+        });
+
 
     }
 

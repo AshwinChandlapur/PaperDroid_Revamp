@@ -20,18 +20,19 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="match_parent"
-                android:background="@drawable/spaceullustration"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:scaleType="centerCrop"/>
+                android:text="@string/app_name"
+                android:id="@+id/newsNo"
+                android:textSize="70dp"
+                android:gravity="center"/>
 
             <TextView
                 android:id="@+id/headline"
                 android:layout_width="wrap_content"
                 android:padding="2dp"
-                android:text="Hello"
+                android:text="Headline"
                 android:textStyle="bold"
                 android:textSize="16sp"
                 android:fontFamily="casual"
@@ -45,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:padding="2dp"
                 android:fontFamily="casual"
-                android:text="Hello"
+                android:text="Content"
                 android:textSize="14sp"
                 android:textColor="@android:color/black"
                 android:layout_height="wrap_content"
@@ -55,7 +56,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Read More"
+                android:id="@+id/link"
+                android:text="ವಿವರವಾಗಿ ಓದಿ"
                 android:layout_gravity="center"/>
 
 
