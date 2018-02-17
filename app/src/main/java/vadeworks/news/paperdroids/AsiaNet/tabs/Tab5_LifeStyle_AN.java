@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,7 @@ public class Tab5_LifeStyle_AN extends Fragment {
     ListView listView;
     ArrayList<News> news = new ArrayList<News>();
 
-
+    TypingIndicatorView typingView;
     ViewHolder viewHolder;
 
     static class ViewHolder {
@@ -72,7 +73,7 @@ public class Tab5_LifeStyle_AN extends Fragment {
                                 return view;
                             }
                         });
-
+                    typingView.setVisibility(View.GONE);
                     }
                 });
             }
@@ -85,6 +86,7 @@ public class Tab5_LifeStyle_AN extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.an_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
     public void listviewOnClick(){

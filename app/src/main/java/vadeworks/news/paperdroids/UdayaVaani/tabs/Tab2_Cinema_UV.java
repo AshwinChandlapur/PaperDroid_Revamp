@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class Tab2_Cinema_UV extends Fragment {
         static ImageView news_image;
     }
 
-
+    TypingIndicatorView typingView;
     public Tab2_Cinema_UV() {
         // Required empty public constructor
     }
@@ -69,6 +70,7 @@ public class Tab2_Cinema_UV extends Fragment {
                                         return view;
                                     }
                                 });
+                                typingView.setVisibility(View.GONE);
                         }
                     });
             }
@@ -81,6 +83,7 @@ public class Tab2_Cinema_UV extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.uv_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
     public void listviewOnClick(){

@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public class Tab4_Technology_AN extends Fragment {
     ListView listView;
     ArrayList<News> news = new ArrayList<>();
     String tag = "asianet_technology";
+    TypingIndicatorView typingView;
 
 
     ViewHolder viewHolder;
@@ -75,7 +77,7 @@ public class Tab4_Technology_AN extends Fragment {
                                             return view;
                                         }
                                     });
-
+                            typingView.setVisibility(View.GONE);
                             }
                         });
             }
@@ -88,6 +90,7 @@ public class Tab4_Technology_AN extends Fragment {
     public void init(View v){
         listView =  v.findViewById(R.id.an_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
     public void listviewOnClick(){

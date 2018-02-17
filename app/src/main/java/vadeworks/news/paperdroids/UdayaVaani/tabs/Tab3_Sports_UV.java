@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class Tab3_Sports_UV extends Fragment {
         static TextView news_headline;
         static ImageView news_image;
     }
+    TypingIndicatorView typingView;
 
 
     public Tab3_Sports_UV() {
@@ -67,6 +69,7 @@ public class Tab3_Sports_UV extends Fragment {
                                 return view;
                             }
                         });
+                        typingView.setVisibility(View.GONE);
                     }
                 });
             }
@@ -78,6 +81,7 @@ public class Tab3_Sports_UV extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.uv_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
     public void listviewOnClick(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

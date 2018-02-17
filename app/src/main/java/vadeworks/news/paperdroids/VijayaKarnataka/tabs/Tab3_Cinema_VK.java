@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
@@ -42,7 +43,7 @@ public class Tab3_Cinema_VK extends Fragment {
     ArrayList<News> news = new ArrayList<News>();
 
     ViewHolder viewHolder;
-
+    TypingIndicatorView typingView;
 
     static class ViewHolder {
         static TextView news_headline;
@@ -84,6 +85,7 @@ public class Tab3_Cinema_VK extends Fragment {
                                         return view;
                                     }
                                 });
+                                typingView.setVisibility(View.GONE);
                         }
                     });
             }
@@ -95,6 +97,7 @@ public class Tab3_Cinema_VK extends Fragment {
     public void init(View v){
         listView = (ListView) v.findViewById(R.id.vk_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
     public void listviewOnClick(){

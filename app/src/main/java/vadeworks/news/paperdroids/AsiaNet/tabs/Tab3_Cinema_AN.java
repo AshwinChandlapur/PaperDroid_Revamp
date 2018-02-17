@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -37,6 +38,7 @@ public class Tab3_Cinema_AN extends Fragment {
     String tag = "asianet_cinema";
 
     ViewHolder viewHolder;
+    TypingIndicatorView typingView;
 
     static class ViewHolder {
         static TextView news_headline;
@@ -75,6 +77,7 @@ public class Tab3_Cinema_AN extends Fragment {
                                             return view;
                                         }
                                     });
+                                    typingView.setVisibility(View.GONE);
                             }
                         });
             }
@@ -87,6 +90,8 @@ public class Tab3_Cinema_AN extends Fragment {
     public void init(View v){
         listView =  v.findViewById(R.id.an_news);
         context = getActivity().getApplicationContext();
+        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
+
     }
 
 
