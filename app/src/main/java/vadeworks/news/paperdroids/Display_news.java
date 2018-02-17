@@ -204,8 +204,8 @@ public class Display_news extends AppCompatActivity {
         {
             Picasso.with(getApplicationContext())
                     .load(fullnews.imgurl)
-                    .placeholder(R.drawable.spaceullustration)
-                    .error(R.drawable.spaceullustration)
+                    .placeholder(R.drawable.image3)
+                    .error(R.drawable.image3)
                     .into(imageView);
         }else{
             Toast.makeText(getApplicationContext(),"Image Not Loading",Toast.LENGTH_LONG).show();

@@ -58,10 +58,14 @@
                 app:dotSize="8dp"
                 app:showBackground="true"/>
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/vk_news"></ListView>
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/vk_news"></ListView>
+
+
+
         </FrameLayout>
     </LinearLayout>
 

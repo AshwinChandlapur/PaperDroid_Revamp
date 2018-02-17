@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -48,6 +49,7 @@ public class Tab1_Headlines_VK extends Fragment {
 
     ViewHolder viewHolder;
     TypingIndicatorView typingView;
+    SwipeRefreshLayout mySwipreRefreshLayout;
 
     static class ViewHolder {
         static TextView news_headline;
@@ -87,6 +89,9 @@ public class Tab1_Headlines_VK extends Fragment {
         }).start();
 
         listviewOnClick();
+
+
+
         return v;
     }
 
@@ -95,6 +100,8 @@ public class Tab1_Headlines_VK extends Fragment {
         listView = (ListView) v.findViewById(R.id.vk_news);
         context = getActivity().getApplicationContext();
         typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
+
+
     }
     public void listviewOnClick(){
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -107,6 +114,12 @@ public class Tab1_Headlines_VK extends Fragment {
                 startActivity(i);
             }
         });
+    }
+
+
+    public void threadStarter(){
+
+
     }
 
     public View layoutinflater(View view,News news){

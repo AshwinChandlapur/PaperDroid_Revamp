@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -19,15 +20,12 @@ public class MainScreen_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen_activity);
-//
-//        Cursor c = getApplication().getContentResolver().query(ContactsContract.Profile.CONTENT_URI, null, null, null, null);
-//        c.moveToFirst();
-////        textView.setText(c.getString(c.getColumnIndex("display_name")));
-//        c.close();
-//
-//
-////        String username = getUsername();
-//        Log.d("Username is","Username is"+c.getColumnIndex("display_name"));
+        String username = getUsername();
+
+        TextView username_tv = findViewById(R.id.username);
+        username_tv.setText(username);
+
+        Log.d("usernames are","username"+username);
 
     }
 
@@ -39,16 +37,19 @@ public class MainScreen_Activity extends AppCompatActivity {
 
         for (Account account : accounts) {
             // TODO: Check possibleEmail against an email regex or treat
-            // account.name as an email address only for certain account.type values.
+            // account.name as an email address only for certain account.type
+            // values.
             possibleEmails.add(account.name);
         }
 
         if (!possibleEmails.isEmpty() && possibleEmails.get(0) != null) {
             String email = possibleEmails.get(0);
             String[] parts = email.split("@");
-            if (parts.length > 1)
+            if (parts.length > 0 && parts[0] != null)
                 return parts[0];
-        }
-        return null;
+            else
+                return null;
+        } else
+            return null;
     }
 }
