@@ -73,7 +73,7 @@ public class Vijayavaani_Parser implements Paper {
         try {
             Document d=Jsoup.connect(news.link).timeout(6000).get();
 
-//            String imgurl = d.select("div.full.post-01-img").first().select("img").attr("src");
+            String imgurl = d.select("div.full.post-01-img").first().select("img").attr("src");
             Elements childs = d.select("div.full.post-01-content").first().select("p");
             String body= "";
 
@@ -82,7 +82,7 @@ public class Vijayavaani_Parser implements Paper {
                     body= body + element.text() + "\n\n";
             }
 
-//            news.imgurl=imgurl;
+            news.imgurl=imgurl;
             news.content=body;
 //            System.out.println(body);
 
