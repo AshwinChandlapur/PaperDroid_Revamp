@@ -62,7 +62,7 @@ public class Prajavaani_Parser implements Paper {
 
             Document d=Jsoup.connect(inspecturl).get();
             Elements body = d.select("div.body");
-
+            news.imgurl= d.select("div.article_image").select("img").attr("src");
 //            System.out.println(body.first().children().select("blockquote"));
             if (!body.select("blockquote").isEmpty())
             {
