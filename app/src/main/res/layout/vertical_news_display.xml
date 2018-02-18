@@ -16,9 +16,10 @@
         android:layout_gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        card_view:cardCornerRadius="2dp"
-        card_view:contentPadding="10dp">
+        android:layout_margin="7dp"
+        card_view:cardElevation="8dp"
+        card_view:cardCornerRadius="7dp"
+        card_view:contentPadding="15dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,6 +64,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/link"
                 android:layout_margin="30dp"
+                android:textColor="@color/link"
                 android:text="ವಿವರವಾಗಿ ಓದಿ"
                 android:layout_gravity="center"/>
 
