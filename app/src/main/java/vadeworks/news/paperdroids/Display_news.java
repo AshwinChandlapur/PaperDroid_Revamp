@@ -48,11 +48,16 @@ public class Display_news extends AppCompatActivity {
     String tag;
     News fullnews;
     String notif= "";
+    android.support.v7.widget.Toolbar toola;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_display);
         views_init();
+
+
+
+
 
         tag = getIntent().getStringExtra("tag");
 
@@ -195,6 +200,15 @@ public class Display_news extends AppCompatActivity {
         content_textview = findViewById(R.id.content);
         link_textview = findViewById(R.id.link);
         imageView = findViewById(R.id.imageView);
+        toola = (android.support.v7.widget.Toolbar) findViewById(R.id.toola);
+
+        toola.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
+        toola.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void display_news(final News fullnews){
@@ -216,8 +230,6 @@ public class Display_news extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 headlines_textview.setVisibility(View.GONE);
-                android.support.v7.widget.Toolbar toola = (android.support.v7.widget.Toolbar) findViewById(R.id.toola);
-//                toola.setTitleTextColor(getApplicationContext().getResources().getColor(R.color.white));
                 toola.setTitle(getApplicationContext().getResources().getString(R.string.app_name));
 
                 LinearLayout linearLayout = findViewById(R.id.forAds);
@@ -230,6 +242,12 @@ public class Display_news extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
