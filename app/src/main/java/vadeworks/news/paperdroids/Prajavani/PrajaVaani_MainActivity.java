@@ -1,10 +1,11 @@
 package vadeworks.news.paperdroids.Prajavani;
 
+import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -43,6 +44,7 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ವಾಣಿಜ್ಯ"};
     int Numboftabs =6;
+    AlertDialog.Builder builder;
 
 
     @Override
@@ -50,7 +52,10 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prajavani_mainactivity);
 
-        if(!isConnected(PrajaVaani_MainActivity.this)) buildDialog(PrajaVaani_MainActivity.this).show();
+        if(!isConnected(PrajaVaani_MainActivity.this)) {
+            buildDialog(PrajaVaani_MainActivity.this).show();
+
+        }
         else {
             Toast.makeText(PrajaVaani_MainActivity.this,"Welcome", Toast.LENGTH_SHORT).show();
         }
@@ -273,9 +278,22 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         wifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Intent to Wifi Switch",Toast.LENGTH_LONG).show();
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
             }
         });
+
+
+        Button data = view.findViewById(R.id.switchData);
+        data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
+                startActivity(intent);
+            }
+        });
+
+
         builder.setView(view);
 //        builder.setTitle("Oops :( \n No Internet Connection");
 //        builder.setMessage("Turn on your Mobile Data or Wifi To get the latest news updates.");

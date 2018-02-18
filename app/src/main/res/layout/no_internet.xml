@@ -5,6 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_gravity="center"
     android:gravity="center"
+    app:cardBackgroundColor="#F7F7F7"
     android:layout_margin="10dp"
     app:cardElevation="8dp"
     app:cardCornerRadius="10dp"
@@ -20,17 +21,41 @@
 
     <ImageView
         android:id="@+id/dialog_imageview"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:scaleType="centerCrop"
+        android:scaleType="centerInside"
         android:layout_gravity="center"
-        android:src="@drawable/no_internet" />
+        android:src="@drawable/no_internet_connection" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/switchWifi"
-        android:text="WIFI"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#F7F7F7"
+            android:layout_margin="10sp">
+
+        <Button
+            android:id="@+id/switchWifi"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:background="@drawable/buttonstyle"
+            android:text="Wi-Fi" />
+
+
+            <Button
+                android:id="@+id/switchData"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:background="@drawable/buttonstyle"
+                android:text="Mobile Data" />
+        </LinearLayout>
+
 
     </LinearLayout>
 
