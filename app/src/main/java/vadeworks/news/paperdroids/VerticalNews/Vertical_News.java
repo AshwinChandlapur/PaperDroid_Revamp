@@ -2,6 +2,7 @@ package vadeworks.news.paperdroids.VerticalNews;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class Vertical_News extends AppCompatActivity {
 
     ArrayList<News> news = new ArrayList<News>();
     private TypingIndicatorView typingView;
+    View parentLayout;
 
 
 
@@ -35,6 +37,7 @@ public class Vertical_News extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vertical_news_activity);
+        parentLayout = findViewById(android.R.id.content);
         typingView = findViewById(R.id.loadera);
 
         //showProgress();
@@ -48,12 +51,14 @@ public class Vertical_News extends AppCompatActivity {
                     @Override
                     public void run() {
                         initSwipePager();
+                        Snackbar.make(parentLayout,"Swipe up for Top 10",Snackbar.LENGTH_LONG).show();
                         typingView.setVisibility(View.GONE);
                     }
                 });
                 //hideProgress();
             }
         }).start();
+
 
     }
 

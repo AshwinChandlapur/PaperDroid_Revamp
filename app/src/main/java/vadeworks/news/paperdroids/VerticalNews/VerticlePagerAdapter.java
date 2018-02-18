@@ -3,6 +3,7 @@ package vadeworks.news.paperdroids.VerticalNews;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -133,6 +134,8 @@ public class VerticlePagerAdapter extends PagerAdapter {
 
             }
         });
+
+
 
 
     }
