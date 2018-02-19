@@ -38,9 +38,7 @@ public class Tab2_Sports_AN extends Fragment {
     }
 
     public void init(View v){
-//        listView =  v.findViewById(R.id.an_news);
         context = getActivity().getApplicationContext();
-//        typingView = (TypingIndicatorView)v.findViewById(R.id.loader);
     }
 
 

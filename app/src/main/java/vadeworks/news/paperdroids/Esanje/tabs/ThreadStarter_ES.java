@@ -1,9 +1,8 @@
-package vadeworks.news.paperdroids.AsiaNet.tabs;
+package vadeworks.news.paperdroids.Esanje.tabs;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,8 +15,9 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
+import vadeworks.news.paperdroids.AsiaNet.tabs.ThreadStarter_AN;
 import vadeworks.news.paperdroids.Display_news;
+import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
@@ -26,7 +26,7 @@ import vadeworks.paperdroid.R;
  * Created by ashwinchandlapur on 19/02/18.
  */
 
-public class ThreadStarter_AN {
+public class ThreadStarter_ES {
 
     ArrayList<News> news = new ArrayList<News>();
     ListView listView;
@@ -34,19 +34,20 @@ public class ThreadStarter_AN {
     ViewHolder viewHolder;
     TypingIndicatorView typingView;
     String mCategory;
-    AsiaNet_Parser parser = new AsiaNet_Parser();
     static class ViewHolder {
         static TextView news_headline;
         static ImageView news_image;
     }
-
+    Esanje_Parser parser = new Esanje_Parser();
 
     public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category ){
 
-        listView = view.findViewById(R.id.an_news);
+        listView = view.findViewById(R.id.es_news);
         typingView = view.findViewById(R.id.loader);
         mContext = context;
         mCategory = category;
+
+
 
 
         new Thread(new Runnable() {
@@ -58,22 +59,25 @@ public class ThreadStarter_AN {
                         news = parser.parseHeadLines();
                         break;
 
-                    case "sports":
-                        news = parser.parseCategory(parser.sports);
+                    case "state":
+                        news = parser.parseCategory(parser.state);
+                        break;
+
+                    case "national":
+                        news = parser.parseCategory(parser.national);
                         break;
 
                     case "cinema":
                         news = parser.parseCategory(parser.cinema);
                         break;
 
-                    case "technology":
-                        news = parser.parseCategory(parser.technology);
+                    case "sports":
+                        news = parser.parseCategory(parser.sports);
                         break;
 
-                    case "lifestyle":
-                        news = parser.parseCategory(parser.lifestyle);
+                    case "business":
+                        news = parser.parseCategory(parser.business);
                         break;
-
                 }
 
 
@@ -120,11 +124,16 @@ public class ThreadStarter_AN {
                 i.putExtra("singleHead", news.get(position).head);
                 i.putExtra("singleLink", news.get(position).link);
                 i.putExtra("singleImg", news.get(position).imgurl);
-                i.putExtra("tag", "asianet");
+                i.putExtra("tag", "esanje");
                 fragmentActivity.startActivity(i);
             }
         });
 
     }
+
+
+
+
+
 
 }
