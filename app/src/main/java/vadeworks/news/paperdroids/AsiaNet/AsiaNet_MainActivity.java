@@ -62,12 +62,10 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
 
         if(!isConnected(this)) {
-            buildDialog(this).show();
-
-        }
+            buildDialog(this).show();}
         else {
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
-        }
+         }
 
 
 
@@ -244,6 +242,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
         getSupportActionBar().setTitle(R.string.toolbar_title_home_an);
+//        getSupportActionBar().setIcon(getApplicationContext().getResources().getDrawable(R.drawable.an));
     }
 
     @Override
