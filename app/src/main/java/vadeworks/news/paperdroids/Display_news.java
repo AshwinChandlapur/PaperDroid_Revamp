@@ -57,6 +57,7 @@ public class Display_news extends AppCompatActivity {
     News fullnews;
     String notif= "";
     android.support.v7.widget.Toolbar toola;
+    Boolean no_Internet = false, fail_News =false;
 
 
     @Override
@@ -65,7 +66,9 @@ public class Display_news extends AppCompatActivity {
         setContentView(R.layout.news_display);
         views_init();
         if(!isConnected(this)) {
-            buildDialog(this).show();}
+            buildDialog_noInternet(this).show();
+            no_Internet =true;
+        }
         else {
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
@@ -221,12 +224,16 @@ public class Display_news extends AppCompatActivity {
     }
 
     public void display_news(final News fullnews){
+
+
         headlines_textview.setText(fullnews.head);
-
-
         if(!fullnews.content.isEmpty()){
             content_textview.setText(fullnews.content);
         }else{
+            if((fail_News == false) && (no_Internet == false)){
+                buildDialog_failNews(getApplicationContext()).show();
+                fail_News = true;
+            }
             Toast.makeText(getApplicationContext(),"Could'nt Fetch the Content.",Toast.LENGTH_LONG).show();
         }
 
@@ -238,7 +245,10 @@ public class Display_news extends AppCompatActivity {
                     .error(R.drawable.image3)
                     .into(imageView);
         }else{
-            Toast.makeText(getApplicationContext(),"Could'nt Fetch the Image.",Toast.LENGTH_LONG).show();
+            if(fail_News == false){
+//                buildDialog_failNews(getApplicationContext()).show();
+                Toast.makeText(getApplicationContext(),"Could'nt Fetch the Image.",Toast.LENGTH_LONG).show();
+            }
         }
 
 
@@ -325,7 +335,7 @@ public class Display_news extends AppCompatActivity {
     }
 
 
-    public AlertDialog.Builder buildDialog(Context c) {
+    public AlertDialog.Builder buildDialog_noInternet(Context c) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         LayoutInflater factory = LayoutInflater.from(c);
@@ -352,6 +362,26 @@ public class Display_news extends AppCompatActivity {
 
         builder.setView(view);
         return builder;
+    }
+
+
+    public AlertDialog.Builder buildDialog_failNews(Context c)
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        LayoutInflater factory = LayoutInflater.from(c);
+        final View view = factory.inflate(R.layout.news_fail, null);
+        Button returnBack = view.findViewById(R.id.returnBack);
+        returnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        builder.setView(view);
+        return builder;
+
+
     }
 
 }
