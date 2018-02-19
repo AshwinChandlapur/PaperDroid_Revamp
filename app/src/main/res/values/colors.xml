@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="ColorPrimary">#00897B</color>
-    <color name="ColorPrimaryDark">#00695C</color>
-    <color name="tabsScrollColor">#004D40</color>
+    <color name="ColorPrimary">#F44336</color>
+    <color name="ColorPrimaryDark">#D32F2F</color>
+    <color name="tabsScrollColor">#C62828</color>
     <color name="statusbar">#152421</color>
+
+
     <color name="lightorange">#fdf2df</color>
     <color name="lightorangedark">#ebd6ab</color>
     <color name="link">#3F51B5</color>
-    <color name="loaderColor">#00897B</color>
+    <color name="loaderColor">#F44336</color>
     <color name="loaderbg">#6ba4a4a4</color>
 
 

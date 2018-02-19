@@ -75,7 +75,6 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AsiaNet_MainActivity.this, Splash_Main_Activity.class);
-                bundle.putString("Go_to_Home", "Go_to_Home");
                 startActivity(intent);
 
             }
@@ -86,7 +85,6 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(AsiaNet_MainActivity.this, PrajaVaani_MainActivity.class);
-                bundle.putString("Go_to_Prajavani", "Go_to_Home");
                 startActivity(intent);
             }
         });
