@@ -52,7 +52,6 @@ public class MainApplication extends Application {
 
 
 
-
     private class onNotificationOpened implements OneSignal.NotificationOpenedHandler {
         // This fires when a notification is opened by tapping on it.
         @Override
@@ -60,13 +59,15 @@ public class MainApplication extends Application {
             OSNotificationAction.ActionType actionType = result.action.type;
             JSONObject data = result.notification.payload.additionalData;
             Log.d("Incoming_Data","Json Object Data"+data);
-            String tag,singleLink,singleHead,singleImg;
+            String tag,singleLink,singleHead,singleImg,promotionLink;
 
             if (data != null) {
                 tag = data.optString("tag", null);
                 singleHead = data.optString("singleHead","No Headline");
                 singleLink = data.optString("singleLink",null);
                 singleImg = data.optString("singleImg","No ImgUrl");
+
+                promotionLink = data.optString("promotionLink",null);
                 Log.d("Incoming_Data","All Values"+tag+singleHead+singleLink+singleImg);
 
 
@@ -80,6 +81,12 @@ public class MainApplication extends Application {
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     }
+                else if(!(promotionLink.isEmpty())){
+                    Intent i = new Intent(android.content.Intent.ACTION_VIEW,Uri.parse(promotionLink));
+                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
+
 
                 }else{
                 Log.d("Inside Else","inside Else");

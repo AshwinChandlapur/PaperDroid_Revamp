@@ -55,7 +55,7 @@ public class Vertical_News extends AppCompatActivity {
 
         }
         else {
-            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 
         //showProgress();
