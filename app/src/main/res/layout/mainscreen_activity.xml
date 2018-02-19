@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:clickable="true"
+    android:background="@color/background_white"
     tools:context="vadeworks.news.paperdroids.MainScreen.MainScreen_Activity">
 
     <android.support.design.widget.AppBarLayout
@@ -85,104 +86,213 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:id="@+id/scrollView"
-        android:background="#F6F6F6"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        >
+        android:layout_margin="10dp"
+        android:background="@color/background_white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="10sp">
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/background_white"
+            android:orientation="horizontal"
+            android:gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/prajavani"
+                android:layout_margin="40dp"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/newspapers"
+                    android:background="@null"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_black_100"
+                    android:text="@string/toolbar_title_home_pj"/>
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_margin="40dp"
+                android:orientation="vertical">
+
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/newspapers"
+                    android:background="@null"
+                    android:layout_margin="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/text_black_100"
+                    android:text="@string/toolbar_title_home_vv"/>
+            </LinearLayout>
+        </LinearLayout>
 
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/background_white"
                 android:orientation="horizontal"
-                android:layout_gravity="center"
                 android:gravity="center">
-                <android.support.v7.widget.CardView
-                    android:layout_width="140sp"
-                    android:layout_height="180sp"
-                    android:layout_margin="30sp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="40dp"
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="bottom">
 
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="3dp"
-                        android:background="@color/loaderColor"
-                        android:foreground="@color/loaderColor"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        />
-
-                    <Button
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="bottom"
-                        android:background="@color/white"
-                        android:text="@string/toolbar_title_home_an"
-                        android:gravity="center"
-                        android:textColor="@color/text_black_100"/>
-                    </LinearLayout>
+                        android:src="@drawable/newspapers"
+                        android:background="@null"
+                        android:layout_margin="10dp"/>
 
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:layout_width="140sp"
-                    android:layout_height="180sp"
-                    android:layout_margin="30sp"
-                    app:cardCornerRadius="8dp"
-                    app:cardElevation="8dp">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_gravity="bottom">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="3dp"
-                            android:background="@color/loaderColor"
-                            android:foreground="@color/loaderColor"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginRight="10dp"
-                            />
-
-                        <Button
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:background="@color/white"
-                            android:text="@string/toolbar_title_home_an"
-                            android:gravity="center"
-                            android:textColor="@color/text_black_100"/>
-                    </LinearLayout>
-
-                </android.support.v7.widget.CardView>
+                        android:textColor="@color/text_black_100"
+                        android:text="@string/toolbar_title_home_vk"/>
+                </LinearLayout>
 
 
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="40dp"
+                    android:orientation="vertical">
 
 
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/newspapers"
+                        android:background="@null"
+                        android:layout_margin="10dp"/>
 
-
-
-
-
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black_100"
+                        android:text="@string/toolbar_title_home_uv"/>
+                </LinearLayout>
             </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_white"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="40dp"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/newspapers"
+                        android:background="@null"
+                        android:layout_margin="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black_100"
+                        android:text="@string/toolbar_title_home_an"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_margin="40dp"
+                    android:orientation="vertical">
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/newspapers"
+                        android:background="@null"
+                        android:layout_margin="10dp"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/text_black_100"
+                        android:text="@string/toolbar_title_home_es"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

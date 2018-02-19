@@ -105,7 +105,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
         read.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Splash_Main_Activity.this, PrajaVaani_MainActivity.class);
+                Intent i = new Intent(Splash_Main_Activity.this, MainScreen_Activity.class);
                 startActivity(i);
             }
         });
