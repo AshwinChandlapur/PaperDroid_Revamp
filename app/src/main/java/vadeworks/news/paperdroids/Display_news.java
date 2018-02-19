@@ -1,14 +1,22 @@
 package vadeworks.news.paperdroids;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -54,7 +62,13 @@ public class Display_news extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_display);
         views_init();
+        if(!isConnected(this)) {
+            buildDialog(this).show();
 
+        }
+        else {
+            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
+        }
 
 
 
@@ -292,6 +306,51 @@ public class Display_news extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    public boolean isConnected(Context context) {
+
+        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netinfo = cm.getActiveNetworkInfo();
+
+        if (netinfo != null &&  netinfo.isConnectedOrConnecting()) {
+            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
+            else return false;
+        } else
+            return false;
+    }
+
+
+    public AlertDialog.Builder buildDialog(Context c) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(c);
+        LayoutInflater factory = LayoutInflater.from(c);
+        final View view = factory.inflate(R.layout.no_internet, null);
+        Button wifi = view.findViewById(R.id.switchWifi);
+        wifi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+            }
+        });
+
+
+        Button data = view.findViewById(R.id.switchData);
+        data.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent();
+                intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
+                startActivity(intent);
+            }
+        });
+
+
+        builder.setView(view);
+        return builder;
     }
 
 }

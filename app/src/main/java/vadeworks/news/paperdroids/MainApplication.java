@@ -1,9 +1,19 @@
 package vadeworks.news.paperdroids;
 
 import android.app.Application;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
+import android.provider.Settings;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
@@ -12,6 +22,7 @@ import com.onesignal.OneSignal;
 import org.json.JSONObject;
 
 
+import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.paperdroid.R;
 
@@ -38,6 +49,8 @@ public class MainApplication extends Application {
         // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
         // OneSignal.syncHashedEmail(userEmail);
     }
+
+
 
 
     private class onNotificationOpened implements OneSignal.NotificationOpenedHandler {

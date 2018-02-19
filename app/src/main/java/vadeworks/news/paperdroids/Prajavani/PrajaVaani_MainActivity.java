@@ -44,7 +44,6 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ವಾಣಿಜ್ಯ"};
     int Numboftabs =6;
-    AlertDialog.Builder builder;
 
 
     @Override
@@ -52,12 +51,14 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.prajavani_mainactivity);
 
-        if(!isConnected(PrajaVaani_MainActivity.this)) {
-            buildDialog(PrajaVaani_MainActivity.this).show();
+
+
+        if(!isConnected(this)) {
+            buildDialog(this).show();
 
         }
         else {
-            Toast.makeText(PrajaVaani_MainActivity.this,"Welcome", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 
 
@@ -254,6 +255,8 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
     }
 
 
+
+
     public boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -278,6 +281,7 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         wifi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                finish();//Goes back to activity that was in stack.
                 startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
             }
         });
@@ -287,6 +291,7 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         data.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                finish();
                 Intent intent = new Intent();
                 intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
                 startActivity(intent);
@@ -295,20 +300,6 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
 
 
         builder.setView(view);
-//        builder.setTitle("Oops :( \n No Internet Connection");
-//        builder.setMessage("Turn on your Mobile Data or Wifi To get the latest news updates.");
-//        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//
-//                finish();
-//            }
-//        });
-
-
-
-
         return builder;
     }
 
