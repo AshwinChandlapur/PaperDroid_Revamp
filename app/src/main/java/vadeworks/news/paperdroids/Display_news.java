@@ -57,20 +57,18 @@ public class Display_news extends AppCompatActivity {
     News fullnews;
     String notif= "";
     android.support.v7.widget.Toolbar toola;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_display);
         views_init();
         if(!isConnected(this)) {
-            buildDialog(this).show();
-
-        }
+            buildDialog(this).show();}
         else {
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
-
-
 
 
         tag = getIntent().getStringExtra("tag");
@@ -82,7 +80,6 @@ public class Display_news extends AppCompatActivity {
                 head= getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
                 imgurl= getIntent().getStringExtra("singleImg");
-
                 fullnews = new News(head,link,imgurl);
                 new Thread(new Runnable() {
                     @Override
@@ -202,8 +199,6 @@ public class Display_news extends AppCompatActivity {
                     }
                 }).start();
                 break;
-
-
         }
 
     }
@@ -227,7 +222,14 @@ public class Display_news extends AppCompatActivity {
 
     public void display_news(final News fullnews){
         headlines_textview.setText(fullnews.head);
-        content_textview.setText(fullnews.content);
+
+
+        if(!fullnews.content.isEmpty()){
+            content_textview.setText(fullnews.content);
+        }else{
+            Toast.makeText(getApplicationContext(),"Could'nt Fetch the Content.",Toast.LENGTH_LONG).show();
+        }
+
         if(!fullnews.imgurl.isEmpty())
         {
             Picasso.with(getApplicationContext())
@@ -236,7 +238,7 @@ public class Display_news extends AppCompatActivity {
                     .error(R.drawable.image3)
                     .into(imageView);
         }else{
-            Toast.makeText(getApplicationContext(),"Image Not Loading",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Could'nt Fetch the Image.",Toast.LENGTH_LONG).show();
         }
 
 
@@ -249,7 +251,6 @@ public class Display_news extends AppCompatActivity {
                 LinearLayout linearLayout = findViewById(R.id.forAds);
                 linearLayout.setVisibility(View.VISIBLE);
                 WebView webView = (WebView)findViewById(R.id.webView);
-//                webView.setVisibility(View.VISIBLE);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.loadUrl(fullnews.link);
 

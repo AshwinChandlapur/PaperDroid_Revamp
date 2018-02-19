@@ -104,11 +104,12 @@
             android:gravity="center">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:id="@+id/prajavani"
+                android:layout_weight="1"
                 android:layout_margin="40dp"
                 android:orientation="vertical">
 
@@ -124,15 +125,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_black_100"
+                    android:gravity="center"
                     android:text="@string/toolbar_title_home_pj"/>
             </LinearLayout>
 
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_weight="1"
                 android:layout_margin="40dp"
                 android:orientation="vertical">
 
@@ -148,6 +151,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/text_black_100"
+                    android:gravity="center"
                     android:text="@string/toolbar_title_home_vv"/>
             </LinearLayout>
         </LinearLayout>
@@ -161,10 +165,11 @@
                 android:gravity="center">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:layout_margin="40dp"
                     android:orientation="vertical">
 
@@ -180,16 +185,18 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_black_100"
+                        android:gravity="center"
                         android:text="@string/toolbar_title_home_vk"/>
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_margin="40dp"
+                    android:layout_weight="1"
                     android:orientation="vertical">
 
 
@@ -204,6 +211,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_black_100"
+                        android:gravity="center"
                         android:text="@string/toolbar_title_home_uv"/>
                 </LinearLayout>
             </LinearLayout>
@@ -217,10 +225,11 @@
                 android:gravity="center">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:layout_margin="40dp"
                     android:orientation="vertical">
 
@@ -236,15 +245,17 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_black_100"
+                        android:gravity="center"
                         android:text="@string/toolbar_title_home_an"/>
                 </LinearLayout>
 
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
+                    android:layout_weight="1"
                     android:layout_margin="40dp"
                     android:orientation="vertical">
 
@@ -260,6 +271,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/text_black_100"
+                        android:gravity="center"
                         android:text="@string/toolbar_title_home_es"/>
                 </LinearLayout>
             </LinearLayout>

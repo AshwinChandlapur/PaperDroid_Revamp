@@ -65,6 +65,7 @@
                 android:id="@+id/link"
                 android:layout_margin="30dp"
                 android:textColor="@color/link"
+                android:textStyle="bold"
                 android:text="ವಿವರವಾಗಿ ಓದಿ"
                 android:layout_gravity="center"/>
 
