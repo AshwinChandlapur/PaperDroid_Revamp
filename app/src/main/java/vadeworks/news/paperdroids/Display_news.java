@@ -245,10 +245,7 @@ public class Display_news extends AppCompatActivity {
                     .error(R.drawable.image3)
                     .into(imageView);
         }else{
-            if(fail_News == false){
-//                buildDialog_failNews(getApplicationContext()).show();
-                Toast.makeText(getApplicationContext(),"Could'nt Fetch the Image.",Toast.LENGTH_LONG).show();
-            }
+            Toast.makeText(getApplicationContext(),"Could'nt Fetch the Image.",Toast.LENGTH_LONG).show();
         }
 
 

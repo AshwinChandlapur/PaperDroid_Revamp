@@ -27,7 +27,7 @@
                     android:id="@+id/navigation_drawer_user_account_picture_cover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/image_nav_drawer_account_backgrounds"
+                    android:background="@drawable/nav_image"
                     android:scaleType="centerCrop"
                     tools:ignore="ContentDescription" />
 
@@ -38,15 +38,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:paddingBottom="@dimen/nav_drawer_vertical_spacing_listing"
-                android:paddingEnd="@dimen/nav_drawer_vertical_keyline_right"
-                android:paddingLeft="@dimen/nav_drawer_vertical_keyline_icon_left"
-                android:paddingRight="@dimen/nav_drawer_vertical_keyline_right"
-                android:paddingStart="@dimen/nav_drawer_vertical_keyline_icon_left">
+                android:layout_gravity="center">
 
                 <LinearLayout
                     android:id="@+id/navigation_drawer_account_information"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/navigation_drawer_account_information_height"
+                    android:layout_centerHorizontal="true"
                     android:layout_alignParentBottom="true"
                     android:gravity="center_vertical"
                     android:orientation="vertical">
@@ -54,7 +52,10 @@
                     <TextView
                         android:id="@+id/navigation_drawer_account_information_display_name"
                         style="@style/NavDrawerAccountInfoText"
-                        android:text="@string/tools_text_account_information_username"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:text="@string/app_name"
                         tools:fontFamily="sans-serif-medium"/>
 
                 </LinearLayout>
@@ -63,8 +64,10 @@
                     android:id="@+id/navigation_drawer_user_account_picture_profile"
                     android:layout_width="@dimen/navigation_drawer_profile_image_size"
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
                     android:layout_above="@id/navigation_drawer_account_information"
-                    android:src="@drawable/ic_account_circle_white_64dp" />
+                    android:src="@drawable/logo" />
 
             </RelativeLayout>
 
