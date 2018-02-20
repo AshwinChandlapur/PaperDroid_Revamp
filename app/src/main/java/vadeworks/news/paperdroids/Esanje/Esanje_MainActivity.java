@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Esanje.tabs.ViewPagerAdapter_ES;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -161,6 +162,8 @@ public class Esanje_MainActivity extends AppCompatActivity {
 
 
 
+
+
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
@@ -246,7 +249,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(Esanje_MainActivity.this, Splash_Main_Activity.class);
+            Intent intent = new Intent(Esanje_MainActivity.this, MainScreen_Activity.class);
             startActivity(intent);
         }
         return true;

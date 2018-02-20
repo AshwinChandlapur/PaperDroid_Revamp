@@ -84,7 +84,7 @@ public class Esanje_Parser implements Paper {
     @Override
     public ArrayList<News> parseCategory(String category) {
         try {
-            Document d= Jsoup.connect(category).timeout(6000).get();
+            Document d= Jsoup.connect(category).get();
 
             String imgurl, head, link;
 

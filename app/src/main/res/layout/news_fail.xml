@@ -19,9 +19,6 @@
         android:background="#A1A1A1"
         android:gravity="center">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
 
 
         <ImageView
@@ -30,7 +27,19 @@
             android:layout_height="250dp"
             android:scaleType="fitXY"
             android:layout_gravity="center"
-            android:src="@drawable/news_fail" />
+            android:src="@drawable/news_fail"
+            android:background="@null"/>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="#A1A1A1"
+            android:layout_margin="10sp">
 
             <TextView
                 android:layout_width="match_parent"
@@ -39,19 +48,9 @@
                 android:gravity="center"
                 android:fontFamily="serif-monospace"
                 android:textColor="@color/white"
+                android:layout_margin="10dp"
                 android:textSize="20sp"
                 android:layout_gravity="bottom"/>
-
-        </FrameLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:background="#A1A1A1"
-            android:layout_margin="10sp">
 
             <Button
                 android:id="@+id/returnBack"
@@ -59,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:gravity="center|bottom"
                 android:background="@drawable/buttonstyle"
                 android:text="Return" />
 

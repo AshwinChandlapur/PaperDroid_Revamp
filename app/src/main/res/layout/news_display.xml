@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:clickable="true"
+    android:id="@+id/newsDisplay"
     android:background="#eeeeee"
     tools:context="vadeworks.news.paperdroids.Display_news">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="250dp"
+        app:layout_behavior="vadeworks.news.paperdroids.FixAppBarLayoutBehavior"
         android:fitsSystemWindows="true">
 
     <android.support.design.widget.CollapsingToolbarLayout

@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -230,10 +231,15 @@ public class Display_news extends AppCompatActivity {
         if(!fullnews.content.isEmpty()){
             content_textview.setText(fullnews.content);
         }else{
-            if((fail_News == false) && (no_Internet == false)){
-                buildDialog_failNews(getApplicationContext()).show();
-                fail_News = true;
-            }
+
+            LayoutInflater inflater = getLayoutInflater();
+            View view = inflater.inflate(R.layout.news_fail,
+                    (ViewGroup) findViewById(R.id.newsDisplay));
+
+//            Toast toast = new Toast(getBaseContext());
+//            toast.setView(view);
+//            toast.setDuration(Toast.LENGTH_LONG);
+//            toast.show();
             Toast.makeText(getApplicationContext(),"Could'nt Fetch the Content.",Toast.LENGTH_LONG).show();
         }
 

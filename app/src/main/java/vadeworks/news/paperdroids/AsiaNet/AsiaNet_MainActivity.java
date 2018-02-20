@@ -29,6 +29,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -246,7 +247,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(AsiaNet_MainActivity.this, Splash_Main_Activity.class);
+            Intent intent = new Intent(AsiaNet_MainActivity.this, MainScreen_Activity.class);
             startActivity(intent);
         }
         return true;
