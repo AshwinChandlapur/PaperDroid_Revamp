@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
@@ -71,7 +72,7 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaVaani_MainActivity.this, Splash_Main_Activity.class);
+                Intent intent = new Intent(VijayaVaani_MainActivity.this, MainScreen_Activity.class);
                 startActivity(intent);
 
             }
@@ -130,6 +131,16 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(VijayaVaani_MainActivity.this, Esanje_MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+        FrameLayout intent_to_allTerms = (FrameLayout)findViewById(R.id.nav_about);
+        intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(VijayaVaani_MainActivity.this, All_Terms_MainActivity.class);
                 startActivity(intent);
             }
         });

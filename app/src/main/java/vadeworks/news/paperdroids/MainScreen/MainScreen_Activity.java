@@ -107,8 +107,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     }
 
-
-
+    
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Intent startMain = new Intent(Intent.ACTION_MAIN);

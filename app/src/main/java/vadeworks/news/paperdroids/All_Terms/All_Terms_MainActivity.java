@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.VijayaKarnataka;
+package vadeworks.news.paperdroids.All_Terms;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -8,30 +8,29 @@ import android.net.NetworkInfo;
 import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 
-import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
+import vadeworks.news.paperdroids.All_Terms.tabs.ViewPagerAdapter_AT;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
@@ -39,41 +38,31 @@ import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
-
-public class VijayaKarnataka_MainActivity extends AppCompatActivity {
-
-    // Declaring Your View and Variables
+public class All_Terms_MainActivity extends AppCompatActivity {
 
     Toolbar toolbar;
     ViewPager pager;
-    ViewPagerAdapter_VK adapter;
+    ViewPagerAdapter_AT adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ಲೈಫ್\u200Cಸ್ಟೈಲ್","ತಂತ್ರಜ್ಞಾನ"};
+    CharSequence Titles[]={"About Us","Privacy Policy","Disclaimer","FAQ","Feedback"};
     int Numboftabs =5;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vijayakarnataka_activity_main);
-
+        setContentView(R.layout.all_terms_mainactivity);
         init_slider();
 
         init_navigator();
 
 
-        if(!isConnected(this)) {
-            buildDialog(this).show();
-
-        }
-        else {
-//            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
-        }
 
         FrameLayout intent_to_home = (FrameLayout)findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, MainScreen_Activity.class);
+                Intent intent = new Intent(All_Terms_MainActivity.this, MainScreen_Activity.class);
                 startActivity(intent);
 
             }
@@ -83,7 +72,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, PrajaVaani_MainActivity.class);
+                Intent intent = new Intent(All_Terms_MainActivity.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -92,7 +81,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, VijayaVaani_MainActivity.class);
+                Intent intent = new Intent(All_Terms_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -102,9 +91,8 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
-                mDrawerLayout.closeDrawers();
-                Log.d("Clicked","Cliked in same category");
+                Intent intent = new Intent(All_Terms_MainActivity.this, VijayaKarnataka_MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -112,7 +100,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, UdayaVaani_MainActivity.class);
+                Intent intent = new Intent(All_Terms_MainActivity.this, UdayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -121,8 +109,12 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, AsiaNet_MainActivity.class);
+
+                Intent intent = new Intent(All_Terms_MainActivity.this, AsiaNet_MainActivity.class);
                 startActivity(intent);
+//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+//                mDrawerLayout.closeDrawers();
+//                Log.d("Clicked","Cliked in same category");
             }
         });
 
@@ -131,7 +123,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, Esanje_MainActivity.class);
+                Intent intent = new Intent(All_Terms_MainActivity.this, Esanje_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -141,35 +133,14 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, All_Terms_MainActivity.class);
-                startActivity(intent);
+                mDrawerLayout.closeDrawers();
             }
         });
+
+
+
+
     }
-
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
 
 
     private void init_slider() {
@@ -180,11 +151,11 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter_VK(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter =  new ViewPagerAdapter_AT(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = (ViewPager) findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(2);//TODO : Based on Network (2G,3G,4G) set the no of screens to load.
+        pager.setOffscreenPageLimit(2);
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
@@ -249,14 +220,14 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
-        getSupportActionBar().setTitle(R.string.toolbar_title_home_vk);
-
+        getSupportActionBar().setTitle("About");
+//        getSupportActionBar().setIcon(getApplicationContext().getResources().getDrawable(R.drawable.an));
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(VijayaKarnataka_MainActivity.this, MainScreen_Activity.class);
+            Intent intent = new Intent(All_Terms_MainActivity.this, MainScreen_Activity.class);
             startActivity(intent);
         }
         return true;
@@ -265,48 +236,5 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
 
 
-    public boolean isConnected(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
-
-        if (netinfo != null &&  netinfo.isConnectedOrConnecting()) {
-            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
-            else return false;
-        } else
-            return false;
-    }
-
-    public AlertDialog.Builder buildDialog(Context c) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        LayoutInflater factory = LayoutInflater.from(c);
-        final View view = factory.inflate(R.layout.no_internet, null);
-        Button wifi = view.findViewById(R.id.switchWifi);
-        wifi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-            }
-        });
-
-
-        Button data = view.findViewById(R.id.switchData);
-        data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
-                startActivity(intent);
-            }
-        });
-
-
-        builder.setView(view);
-        return builder;
-    }
 
 }

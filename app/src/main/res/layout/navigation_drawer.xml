@@ -218,7 +218,7 @@
                     layout="@layout/navigation_drawer_divider"/>
 
                 <FrameLayout
-                    android:id="@+id/navigation_drawer_items_list_linearLayout_help_and_feedback"
+                    android:id="@+id/nav_about"
                     style="@style/NavDrawerRowLayout.Secondary">
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
@@ -230,28 +230,11 @@
                     <TextView
                         android:id="@+id/navigation_drawer_items_textView_help_and_feedback"
                         style="@style/NavDrawerRowItemText"
-                        android:text="Help"
+                        android:text="About"
                         tools:fontFamily="sans-serif-medium" />
 
                 </FrameLayout>
 
-                <FrameLayout
-                    android:id="@+id/navigation_drawer_items_list_linearLayout_about"
-                    style="@style/NavDrawerRowLayout.Secondary">
-
-                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
-                        android:id="@+id/navigation_drawer_items_list_icon_about"
-                        style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_info_white_24dp"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/navigation_drawer_items_textView_about"
-                        style="@style/NavDrawerRowItemText"
-                        android:text="Abouts"
-                        tools:fontFamily="sans-serif-medium" />
-
-                </FrameLayout>
 
             </LinearLayout>
 

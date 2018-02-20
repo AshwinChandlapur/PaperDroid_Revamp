@@ -23,6 +23,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Esanje.tabs.ViewPagerAdapter_ES;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
@@ -70,7 +71,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Esanje_MainActivity.this, Splash_Main_Activity.class);
+                Intent intent = new Intent(Esanje_MainActivity.this, MainScreen_Activity.class);
                 startActivity(intent);
 
             }
@@ -130,6 +131,15 @@ public class Esanje_MainActivity extends AppCompatActivity {
 //                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
                 mDrawerLayout.closeDrawers();
                 Log.d("Clicked","Cliked in same category");
+            }
+        });
+
+        FrameLayout intent_to_allTerms = (FrameLayout)findViewById(R.id.nav_about);
+        intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Esanje_MainActivity.this, All_Terms_MainActivity.class);
+                startActivity(intent);
             }
         });
 
