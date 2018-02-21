@@ -72,7 +72,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
                 startActivity(intent);
                 Splash_Main_Activity.this.finish();
             }
-        }, 3000);
+        }, 2000);
 
 
     }
