@@ -44,8 +44,8 @@ public class All_Terms_MainActivity extends AppCompatActivity {
     ViewPager pager;
     ViewPagerAdapter_AT adapter;
     SlidingTabLayout tabs;
-    CharSequence Titles[]={"About Us","Privacy Policy","Disclaimer","FAQ","Feedback"};
-    int Numboftabs =5;
+    CharSequence Titles[]={"Feedback","Privacy Policy","Terms","Disclaimer"};
+    int Numboftabs =4;
 
 
     @Override
