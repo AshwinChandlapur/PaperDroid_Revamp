@@ -116,7 +116,7 @@
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         android:id="@+id/navigation_drawer_items_list_icon_explore"
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_explore_white_24dp"
+                        android:src="@drawable/pj_small"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -135,7 +135,7 @@
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
 
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_explore_white_24dp"
+                        android:src="@drawable/vv_small"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -152,7 +152,7 @@
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_explore_white_24dp"
+                        android:src="@drawable/vk_small"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -169,7 +169,7 @@
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_explore_white_24dp"
+                        android:src="@drawable/uv_small"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -185,7 +185,7 @@
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_explore_white_24dp"
+                        android:src="@drawable/an_small"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -202,7 +202,7 @@
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/ic_explore_white_24dp"
+                        android:src="@drawable/es_small"
                         tools:ignore="ContentDescription" />
 
                     <TextView
