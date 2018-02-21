@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context="vadeworks.news.paperdroids.Esanje.Esanje_MainActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="120dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:src="@drawable/vv"
+                android:scaleType="center"
+                android:background="#ffffff"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:background="@drawable/gradient" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center"
+            >
+
+            <com.udevel.widgetlab.TypingIndicatorView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:id="@+id/loader"
+                app:animateFrequency="300"
+                app:animationOrder="lastOneFirst"
+                app:backgroundColor="#eaeaea"
+                app:backgroundType="rounded"
+                app:dotAnimationDuration="600"
+                app:dotAnimationType="Sliding"
+                app:dotColor="@color/loaderColor"
+                app:dotCount="7"
+                app:dotHorizontalSpacing="4dp"
+                app:dotMaxCompressRatio="70%"
+                app:dotSecondColor="#6ba4a4a4"
+                app:dotSize="8dp"
+                app:showBackground="true"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/vv_news"></ListView>
+        </FrameLayout>
+    </LinearLayout>
+
+
+</FrameLayout>

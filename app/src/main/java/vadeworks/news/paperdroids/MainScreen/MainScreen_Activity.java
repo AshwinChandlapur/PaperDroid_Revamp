@@ -34,7 +34,7 @@ import vadeworks.paperdroid.R;
 public class MainScreen_Activity extends AppCompatActivity {
 
 
-    CardView prajavani, vijayavani, vijayakarnataka, udayavani, suvarna, esanje;
+    LinearLayout prajavani, vijayavani, vijayakarnataka, udayavani, suvarna, esanje;
     View parentLayout;
     ImageView bottomImage;
     int click=0;

@@ -1,0 +1,4 @@
+#Thu Feb 22 01:32:20 IST 2018
+base.0=/Users/nikhil/wspace/PaperDroid_Revampash/app/build/intermediates/transforms/dexMerger/debug/23
+path.0=classes.dex
+renamed.0=classes.dex

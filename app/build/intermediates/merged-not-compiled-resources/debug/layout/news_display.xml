@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:clickable="true"
+    android:id="@+id/newsDisplay"
+    android:background="#eeeeee"
+    tools:context="vadeworks.news.paperdroids.Display_news">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_behavior="vadeworks.news.paperdroids.FixAppBarLayoutBehavior"
+        android:fitsSystemWindows="true">
+
+    <android.support.design.widget.CollapsingToolbarLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_scrollFlags="scroll|exitUntilCollapsed"
+        app:contentScrim="?attr/colorPrimary"
+        app:expandedTitleTextAppearance="@null"
+        android:fitsSystemWindows="true">
+
+        <ImageView
+            app:layout_collapseMode="parallax"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/image3"
+            android:id="@+id/imageView"
+            android:maxHeight="250dp"
+            android:layout_gravity="center"/>-
+
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/toola"
+            app:layout_collapseMode="pin">
+        </android.support.v7.widget.Toolbar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:id="@+id/headline"
+            android:textColor="#ffffff"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:paddingTop="20dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="bottom" />
+
+    </android.support.design.widget.CollapsingToolbarLayout>
+    </android.support.design.widget.AppBarLayout>
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:id="@+id/scrollView"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="15sp"
+                android:layout_margin="20dp"
+                android:gravity="start"
+                android:lineSpacingExtra="7dp"
+                android:id="@+id/content"
+                android:layout_gravity="center"/>
+
+            <com.udevel.widgetlab.TypingIndicatorView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:id="@+id/loader"
+                app:animateFrequency="300"
+                app:animationOrder="lastOneFirst"
+                app:backgroundColor="#eaeaea"
+                app:backgroundType="rounded"
+                app:dotAnimationDuration="600"
+                app:dotAnimationType="Sliding"
+                app:dotColor="@color/loaderColor"
+                app:dotCount="7"
+                app:dotHorizontalSpacing="4dp"
+                app:dotMaxCompressRatio="70%"
+                app:dotSecondColor="#6ba4a4a4"
+                app:dotSize="8dp"
+                app:showBackground="true"/>
+
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="18sp"
+                android:layout_margin="20dp"
+                android:gravity="start"
+                android:text="ವಿವರವಾಗಿ ಓದಿ"
+                android:textStyle="bold"
+                android:fontFamily="casual"
+                android:textColor="@color/link"
+                android:id="@+id/link"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:id="@+id/forAds"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <WebView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.7"
+            android:id="@+id/webView"
+            >
+        </WebView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:textSize="40dp"
+            android:visibility="gone"
+            android:layout_weight="0.3"
+            android:text="@string/app_name"
+            android:layout_gravity="bottom|center"
+            android:gravity="center"
+            />
+
+
+    </LinearLayout>
+
+</android.support.design.widget.CoordinatorLayout>
