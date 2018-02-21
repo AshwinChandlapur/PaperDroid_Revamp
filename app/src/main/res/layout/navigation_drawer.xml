@@ -76,23 +76,22 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/background_white"
-                        android:textSize="24sp"
+                        android:textSize="16sp"
                         android:layout_margin="3dp"
                         android:gravity="center"
                         android:layout_gravity="center"
                         android:text="ನ್ಯೂಸ್ ಗುರು"/>
 
 
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/background_white"
-                            android:textSize="16sp"
+                            android:textSize="12sp"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:layout_margin="3dp"
-                            android:text="ನಮ್ಮ ನಾಡು ನಮ್ಮ ಧ್ವನಿ"/>
+                            android:text="ನಮ್ಮ ನಾಡು, ನಮ್ಮ ಧ್ವನಿ"/>
                     </LinearLayout>
 
 
