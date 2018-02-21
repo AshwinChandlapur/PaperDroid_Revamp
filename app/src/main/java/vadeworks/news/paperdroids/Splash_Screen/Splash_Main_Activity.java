@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
@@ -44,17 +45,11 @@ public class Splash_Main_Activity extends AppCompatActivity {
 
 
 
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        Bundle bundle = new Bundle();
-        bundle.putInt("SplashActivity_Read_Button",R.id.read);
-        mFirebaseAnalytics.logEvent("App_Open", bundle);
-
 
         if (Build.VERSION.SDK_INT >= 21) {
             // Call some material design APIs here
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.statusbar)); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
-            getWindow().setStatusBarColor(getResources().getColor(R.color.statusbar)); //status bar or the time bar at the top
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.background_white)); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
+            getWindow().setStatusBarColor(getResources().getColor(R.color.background_white)); //status bar or the time bar at the top
 
         } else {
             Log.d("Lesser than 21 SDK","Lesser than 21 SDK");
@@ -62,25 +57,24 @@ public class Splash_Main_Activity extends AppCompatActivity {
             // Implement this feature without material design
         }
 
-
-
-        read = (Button) findViewById(R.id.read);
         l1 =  (LinearLayout) findViewById(R.id.l1);
-        space = (ImageView) findViewById(R.id.space);
-
         uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
         downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
         l1.setAnimation(uptodown);
-        read.setAnimation(downtoup);
-        space.setAnimation(downtoup);
 
-        read.setOnClickListener(new View.OnClickListener() {
+
+
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Splash_Main_Activity.this, MainScreen_Activity.class);
-                startActivity(i);
+            public void run() {
+                Intent intent = new Intent(Splash_Main_Activity.this, MainScreen_Activity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                Splash_Main_Activity.this.finish();
             }
-        });
+        }, 3000);
+
+
     }
 
     public void onBackPressed() {

@@ -52,7 +52,7 @@
                     android:id="@+id/navigation_drawer_user_account_picture_profile"
                     android:layout_width="@dimen/navigation_drawer_profile_image_size"
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
-                    android:src="@drawable/logo"
+                    android:src="@drawable/logo_big"
                     android:layout_gravity="left|center_vertical"/>
 
 
@@ -77,8 +77,10 @@
                         android:layout_height="wrap_content"
                         android:textColor="@color/background_white"
                         android:textSize="24sp"
+                        android:layout_margin="3dp"
+                        android:gravity="center"
                         android:layout_gravity="center"
-                        android:text="News Guru"/>
+                        android:text="ನ್ಯೂಸ್ ಗುರು"/>
 
 
 
@@ -88,7 +90,9 @@
                             android:textColor="@color/background_white"
                             android:textSize="16sp"
                             android:layout_gravity="center"
-                            android:text="Your Region.Your Paper"/>
+                            android:gravity="center"
+                            android:layout_margin="3dp"
+                            android:text="ನಮ್ಮ ನಾಡು ನಮ್ಮ ಧ್ವನಿ"/>
                     </LinearLayout>
 
 

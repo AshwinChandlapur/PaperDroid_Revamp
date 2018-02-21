@@ -4,42 +4,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_white"
     tools:context="vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity">
-
-
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/background"
-        android:background="@null"
-        android:scaleType="fitXY"/>
 
 
     <LinearLayout
         android:id="@+id/l1"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="match_parent"
+        android:background="@color/background_white"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
         android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:src="@drawable/logo_with_background"
+            android:layout_gravity="center"/>
+
         <TextView
-            android:textColor="@color/lightorange"
+            android:textColor="@color/loaderColor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginTop="120dp"
             android:textSize="40sp"
             android:fontFamily="cursive"/>
 
-
         <TextView
-            android:textColor="@color/lightorangedark"
+            android:textColor="@color/loaderColor"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:text="Made in Karnataka\nಪ್ರತಿದಿನದ ತಾಜಾ ಸುದ್ದಿ ೬೦ ಪದಗಳಲ್ಲಿ "
+            android:text="@string/tagline"
             android:fontFamily="casual"
             android:layout_margin="7dp"
             android:textAlignment="center"
@@ -47,28 +48,6 @@
             />
     </LinearLayout>
 
-
-
-    <Button
-        android:id="@+id/read"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="30dp"
-        android:background="@drawable/buttonstyle"
-        android:text="ಓದಲು ಶುರು ಮಾಡಿ" />
-
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:scaleType="fitXY"
-        android:id="@+id/space"
-        android:src="@drawable/spaceullustration"
-        android:background="@null"
-        android:adjustViewBounds="true"
-        />
 
 
 
