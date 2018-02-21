@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -13,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +36,8 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     CardView prajavani, vijayavani, vijayakarnataka, udayavani, suvarna, esanje;
     View parentLayout;
+    ImageView bottomImage;
+    int click=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         udayavani = findViewById(R.id.udayavani);
         suvarna = findViewById(R.id.suvarna);
         esanje =findViewById(R.id.esanje);
+        bottomImage = findViewById(R.id.bottomimage);
 
 
 
@@ -104,6 +109,20 @@ public class MainScreen_Activity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
+        bottomImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                click =click+1;
+
+                if(click==7){
+
+                    Snackbar.make(parentLayout,"Sherlock's Guess: You must be a Developer :D",Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+
 
     }
 

@@ -26,6 +26,7 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.squareup.picasso.Picasso;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -58,7 +59,7 @@ public class Display_news extends AppCompatActivity {
     News fullnews;
     String notif= "";
     android.support.v7.widget.Toolbar toola;
-    Boolean no_Internet = false, fail_News =false;
+    TypingIndicatorView typingView;
 
 
     @Override
@@ -68,10 +69,8 @@ public class Display_news extends AppCompatActivity {
         views_init();
         if(!isConnected(this)) {
             buildDialog_noInternet(this).show();
-            no_Internet =true;
-        }
-        else {
-//            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
+
+        } else {
         }
 
 
@@ -213,8 +212,8 @@ public class Display_news extends AppCompatActivity {
         content_textview = findViewById(R.id.content);
         link_textview = findViewById(R.id.link);
         imageView = findViewById(R.id.imageView);
+        typingView = findViewById(R.id.loader);
         toola = (android.support.v7.widget.Toolbar) findViewById(R.id.toola);
-
         toola.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toola.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -232,14 +231,6 @@ public class Display_news extends AppCompatActivity {
             content_textview.setText(fullnews.content);
         }else{
 
-            LayoutInflater inflater = getLayoutInflater();
-            View view = inflater.inflate(R.layout.news_fail,
-                    (ViewGroup) findViewById(R.id.newsDisplay));
-
-//            Toast toast = new Toast(getBaseContext());
-//            toast.setView(view);
-//            toast.setDuration(Toast.LENGTH_LONG);
-//            toast.show();
             Toast.makeText(getApplicationContext(),"Could'nt Fetch the Content.",Toast.LENGTH_LONG).show();
         }
 
@@ -269,6 +260,7 @@ public class Display_news extends AppCompatActivity {
 
             }
         });
+        typingView.setVisibility(View.GONE);
 
     }
 

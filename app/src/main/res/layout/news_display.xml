@@ -73,6 +73,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,6 +84,28 @@
                 android:lineSpacingExtra="7dp"
                 android:id="@+id/content"
                 android:layout_gravity="center"/>
+
+            <com.udevel.widgetlab.TypingIndicatorView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:id="@+id/loader"
+                app:animateFrequency="300"
+                app:animationOrder="lastOneFirst"
+                app:backgroundColor="#eaeaea"
+                app:backgroundType="rounded"
+                app:dotAnimationDuration="600"
+                app:dotAnimationType="Sliding"
+                app:dotColor="@color/loaderColor"
+                app:dotCount="7"
+                app:dotHorizontalSpacing="4dp"
+                app:dotMaxCompressRatio="70%"
+                app:dotSecondColor="#6ba4a4a4"
+                app:dotSize="8dp"
+                app:showBackground="true"/>
+
+
 
             <TextView
                 android:layout_width="wrap_content"

@@ -1,11 +1,14 @@
 package vadeworks.news.paperdroids.All_Terms.tabs;
 
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import vadeworks.paperdroid.R;
@@ -32,11 +35,35 @@ public class Tab1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.all_terms, container, false);
+        view= inflater.inflate(R.layout.feedback, container, false);
 
-        TextView terms = view.findViewById(R.id.allterms);
-        terms.setText(feedback);
-        terms.setGravity(View.TEXT_ALIGNMENT_CENTER);
+
+        Button suggestions = view.findViewById(R.id.suggestions);
+        Button giveusa5 = view.findViewById(R.id.rateus);
+
+        suggestions.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + "vadeworks@gmail.com"));
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Suggestions to improve "+ getString(R.string.app_name));
+                startActivity(intent);
+            }
+        });
+
+
+        giveusa5.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String appPackageName = getActivity().getPackageName();
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                } catch (android.content.ActivityNotFoundException anfe) {
+                    startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                }
+            }
+        });
+
+
 
         return view;
     }
