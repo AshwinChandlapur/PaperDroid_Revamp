@@ -191,13 +191,19 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         tabs = (SlidingTabLayout) findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
+
+
+
         // Setting Custom Color for the Scroll bar indicator of the Tab View
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
             public int getIndicatorColor(int position) {
                 return getResources().getColor(R.color.tabsScrollColor);
             }
+
         });
+
+
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);

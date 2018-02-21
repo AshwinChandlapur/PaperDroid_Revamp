@@ -259,6 +259,8 @@ public class SlidingTabLayout extends HorizontalScrollView {
 
             if (mViewPagerPageChangeListener != null) {
                 mViewPagerPageChangeListener.onPageScrollStateChanged(state);
+
+
             }
         }
 

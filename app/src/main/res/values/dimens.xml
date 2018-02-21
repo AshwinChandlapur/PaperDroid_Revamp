@@ -5,7 +5,7 @@
 
     <dimen name="navigation_drawer_max_width">320dp</dimen>
 
-    <dimen name="navigation_drawer_profile_image_size">64dp</dimen>
+    <dimen name="navigation_drawer_profile_image_size">96dp</dimen>
     <dimen name="navigation_drawer_item_height">48dp</dimen>
     <dimen name="navigation_drawer_account_section_default_height">164dp</dimen>
     <dimen name="navigation_drawer_account_information_height">56dp</dimen>

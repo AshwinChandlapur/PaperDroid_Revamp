@@ -7,6 +7,8 @@
     <color name="statusbar">#152421</color>
     <color name="background_white">#F6F6F6</color>
 
+    <color name="inactive_tab">#FF8A80</color>
+
 
     <color name="lightorange">#fdf2df</color>
     <color name="lightorangedark">#ebd6ab</color>
