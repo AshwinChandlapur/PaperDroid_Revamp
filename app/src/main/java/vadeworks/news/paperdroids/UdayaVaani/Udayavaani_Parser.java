@@ -50,7 +50,7 @@ public class Udayavaani_Parser implements Paper {
                 news.get(i).showNews();
             }
         }catch (Exception e){
-
+            Log.d("Exception",e.toString());
         }
         return news;
     }
@@ -71,7 +71,7 @@ public class Udayavaani_Parser implements Paper {
             news.imgurl = udayavaani_elem.get(1).attr("src");
 
         } catch (IOException e) {
-
+            Log.d("Exception",e.toString());
         }
         return news;
     }
@@ -95,7 +95,7 @@ public class Udayavaani_Parser implements Paper {
 
 
         }catch (Exception e){
-
+            Log.d("Exception",e.toString());
         }
 
         return news;

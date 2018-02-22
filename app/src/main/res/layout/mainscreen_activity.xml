@@ -31,7 +31,8 @@
                 android:scaleType="fitXY"
                 android:id="@+id/imageView"
                 android:src="@drawable/main_screen_image"
-                android:layout_gravity="center"/>-
+                android:layout_gravity="center"
+                tools:ignore="ContentDescription" />-
 
 
             <LinearLayout
@@ -45,7 +46,8 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/logo_big"
-                    android:layout_gravity="center|top" />
+                    android:layout_gravity="center|top"
+                    tools:ignore="ContentDescription" />
 
 
             <TextView
@@ -124,7 +126,7 @@
                             android:src="@drawable/pj_small"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -166,7 +168,7 @@
                             android:src="@drawable/vv_small"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -226,7 +228,7 @@
                             android:src="@drawable/vk_small"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -268,7 +270,7 @@
                             android:src="@drawable/uv_small"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -330,7 +332,7 @@
                             android:src="@drawable/an_small"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -372,7 +374,7 @@
                             android:src="@drawable/es_small"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            />
+                            tools:ignore="ContentDescription" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -401,7 +403,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/bottomimage"
                 android:src="@drawable/bottomimg"
-                android:adjustViewBounds="true" />
+                android:adjustViewBounds="true"
+                tools:ignore="ContentDescription" />
             
         </LinearLayout>
 

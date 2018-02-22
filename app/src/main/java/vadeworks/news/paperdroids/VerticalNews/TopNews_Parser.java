@@ -56,7 +56,7 @@ public class TopNews_Parser implements Paper {
 
 
         }catch (Exception e){
-
+            Log.d("Exception",e.toString());
         }
 
         return news;
@@ -78,7 +78,7 @@ public class TopNews_Parser implements Paper {
             news.imgurl = udayavaani_elem.get(1).attr("src");
 
         } catch (IOException e) {
-
+            Log.d("Exception",e.toString());
         }
         return news;
 

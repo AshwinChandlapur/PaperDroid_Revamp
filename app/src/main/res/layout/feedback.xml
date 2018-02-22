@@ -49,7 +49,9 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/buttonstyle"
-            android:text="Suggestions" />
+            android:text="Suggestions"
+            style="?android:attr/buttonBarButtonStyle"
+            android:textColor="@color/text_black_100"/>
 
 
         <Button
@@ -58,7 +60,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
+            android:textColor="@color/text_black_100"
             android:background="@drawable/buttonstyle"
+            style="?android:attr/buttonBarButtonStyle"
             android:text="Give us a 5" />
 
 

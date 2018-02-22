@@ -5,7 +5,7 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
-import android.widget.ImageView;
+
 
 import vadeworks.paperdroid.R;
 

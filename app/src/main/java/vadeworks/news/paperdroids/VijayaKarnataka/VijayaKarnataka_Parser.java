@@ -44,7 +44,7 @@ public class VijayaKarnataka_Parser implements Paper {
                 news.get(i).showNews();
             }
 
-        }catch (Exception e){
+        }catch (Exception e){Log.d("Exception",e.toString());
         }
 
         return news;
@@ -70,7 +70,7 @@ public class VijayaKarnataka_Parser implements Paper {
             Log.d("parser","parser"+ news.content);
             Log.d("parser","parser"+news.imgurl);
         }catch (Exception e){
-
+            Log.d("Exception",e.toString());
         }
 
 
@@ -134,6 +134,7 @@ public class VijayaKarnataka_Parser implements Paper {
                 news.add(new News(headline,link,imgurl));
             }
         }catch (Exception e){
+            Log.d("Exception",e.toString());
         }
 
 
