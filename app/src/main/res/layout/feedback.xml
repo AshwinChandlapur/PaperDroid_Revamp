@@ -31,7 +31,7 @@
         android:layout_below="@+id/tagline"
         android:id="@+id/content"
         android:layout_margin="20dp"
-        android:text="Thank You for choosing News Guru. Hope you are enjoying the redefined way of news reading. We are constantly trying to improve the content and quality of the app. We would love to hear your suggestions and work on implementing them. Also, show us support by rating us on Playstore. It helps us reach out to more audience."
+        android:text="Thank You for choosing News Duniya. Hope you are enjoying the redefined way of news reading. We are constantly trying to improve the content and quality of the app. We would love to hear your suggestions and work on implementing them. Also, show us support by rating us on Playstore. It helps us reach out to more audience."
         android:gravity="center"/>
 
 

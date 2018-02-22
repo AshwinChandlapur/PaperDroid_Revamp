@@ -76,19 +76,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/background_white"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         android:layout_margin="3dp"
                         android:gravity="center"
                         android:textStyle="bold"
                         android:layout_gravity="center"
-                        android:text="ನ್ಯೂಸ್ ಗುರು"/>
+                        android:text="ನ್ಯೂಸ್  ದುನಿಯಾ"/>
 
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textColor="@color/background_white"
-                            android:textSize="12sp"
+                            android:textSize="10sp"
                             android:layout_gravity="center"
                             android:gravity="center"
                             android:layout_margin="3dp"

@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:87009749424:android:990016058923dbf2",
+        "mobilesdk_app_id": "1:87009749424:android:66fcdcad73d3edae",
         "android_client_info": {
-          "package_name": "vadeworks.news.guru"
+          "package_name": "vadeworks.news.duniya"
         }
       },
       "oauth_client": [
