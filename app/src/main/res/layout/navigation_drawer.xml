@@ -60,7 +60,7 @@
                         android:layout_height="100dp"
                         android:layout_marginStart="7dp"
                         android:background="@color/background_white"
-                        android:layout_gravity="left|center_vertical"
+                        android:layout_gravity="start|center_vertical"
                         tools:ignore="ContentDescription" />
 
 
