@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -38,13 +40,14 @@ public class Vertical_News extends AppCompatActivity {
     ArrayList<News> news = new ArrayList<News>();
     private TypingIndicatorView typingView;
     View parentLayout;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.vertical_news_activity);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         parentLayout = findViewById(android.R.id.content);
         typingView = findViewById(R.id.loadera);
 
@@ -73,7 +76,6 @@ public class Vertical_News extends AppCompatActivity {
                         typingView.setVisibility(View.GONE);
                     }
                 });
-                //hideProgress();
             }
         }).start();
 
@@ -88,7 +90,7 @@ public class Vertical_News extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if(keyCode == KeyEvent.KEYCODE_BACK){
-            Intent intent = new Intent(Vertical_News.this, PrajaVaani_MainActivity.class);
+            Intent intent = new Intent(Vertical_News.this, MainScreen_Activity.class);
             startActivity(intent);
         }
         return true;

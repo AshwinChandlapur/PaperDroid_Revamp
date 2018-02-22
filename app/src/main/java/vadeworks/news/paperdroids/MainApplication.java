@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
@@ -31,16 +34,20 @@ import vadeworks.paperdroid.R;
  */
 
 public class MainApplication extends Application {
+    private FirebaseAnalytics mFirebaseAnalytics;
+    Bundle params = new Bundle();
+
     @Override
     public void onCreate() {
         super.onCreate();
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
+                .setNotificationReceivedHandler(new onNotificationReceived())
                 .setNotificationOpenedHandler(new onNotificationOpened())
                 .init();
 
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
 
 
 
@@ -48,6 +55,15 @@ public class MainApplication extends Application {
         // Call syncHashedEmail anywhere in your app if you have the user's email.
         // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
         // OneSignal.syncHashedEmail(userEmail);
+    }
+
+    private  class onNotificationReceived implements OneSignal.NotificationReceivedHandler{
+
+        @Override
+        public void notificationReceived(OSNotification notification) {
+            //Will be used to log No of Notifications Received.
+            //Automatically done by OneSignal.
+        }
     }
 
 

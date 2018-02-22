@@ -23,6 +23,8 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
@@ -48,11 +50,18 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಸಿನಿಮಾ","ಕ್ರೀಡೆ","ವಾಣಿಜ್ಯ","ಜಗತ್ತು"};
     int Numboftabs =5;
+    private FirebaseAnalytics mFirebaseAnalytics;
+
+    Bundle params = new Bundle();
+    String card_clicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.udayavaani_mainactivity);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
 
         init_slider();
 
@@ -71,6 +80,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, MainScreen_Activity.class);
                 startActivity(intent);
 
@@ -81,6 +92,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -90,6 +103,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -100,6 +115,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, VijayaKarnataka_MainActivity.class);
                 startActivity(intent);
             }
@@ -119,6 +136,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_an_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, AsiaNet_MainActivity.class);
                 startActivity(intent);
             }
@@ -129,6 +148,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, Esanje_MainActivity.class);
                 startActivity(intent);
             }
@@ -138,6 +159,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_ab_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(UdayaVaani_MainActivity.this, All_Terms_MainActivity.class);
                 startActivity(intent);
             }

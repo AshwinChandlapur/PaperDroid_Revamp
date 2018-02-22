@@ -25,6 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
 
@@ -60,6 +61,9 @@ public class Display_news extends AppCompatActivity {
     String notif= "";
     android.support.v7.widget.Toolbar toola;
     TypingIndicatorView typingView;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    String news_display_previous_activity;
+    Bundle params = new Bundle();
 
 
     @Override
@@ -67,6 +71,8 @@ public class Display_news extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.news_display);
         views_init();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         if(!isConnected(this)) {
             buildDialog_noInternet(this).show();
 
@@ -75,6 +81,8 @@ public class Display_news extends AppCompatActivity {
 
 
         tag = getIntent().getStringExtra("tag");
+        news_display_previous_activity = "DisplayNews_Previous_Is_"+tag;
+        mFirebaseAnalytics.logEvent(news_display_previous_activity,params);
 
 
         switch (tag){

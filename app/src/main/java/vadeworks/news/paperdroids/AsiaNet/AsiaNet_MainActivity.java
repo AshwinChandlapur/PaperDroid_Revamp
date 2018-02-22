@@ -51,13 +51,17 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ತಂತ್ರಜ್ಞಾನ","ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
     int Numboftabs =5;
     private FirebaseAnalytics mFirebaseAnalytics;
-    Bundle bundle;
+    Bundle params = new Bundle();
+    String card_clicked;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.asianet_mainactivity);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
         init_slider();
 
         init_navigator();
@@ -76,6 +80,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, MainScreen_Activity.class);
                 startActivity(intent);
 
@@ -86,6 +92,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -95,6 +103,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -105,6 +115,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaKarnataka_MainActivity.class);
                 startActivity(intent);
             }
@@ -114,6 +126,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, UdayaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -134,6 +148,8 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, Esanje_MainActivity.class);
                 startActivity(intent);
             }
@@ -143,11 +159,12 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_ab_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, All_Terms_MainActivity.class);
                 startActivity(intent);
             }
         });
-
 
 
     }

@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -38,13 +40,15 @@ public class MainScreen_Activity extends AppCompatActivity {
     View parentLayout;
     ImageView bottomImage;
     int click=0;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
+    Bundle params = new Bundle();
+    String card_clicked;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen_activity);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         parentLayout = findViewById(android.R.id.content);
-
         parentLayout.setFocusableInTouchMode(true);
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
@@ -60,9 +64,13 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
 
+
+
         prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent i = new Intent(MainScreen_Activity.this, PrajaVaani_MainActivity.class);
                 startActivity(i);
             }
@@ -71,6 +79,8 @@ public class MainScreen_Activity extends AppCompatActivity {
         vijayavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent i = new Intent(MainScreen_Activity.this, VijayaVaani_MainActivity.class);
                 startActivity(i);
             }
@@ -79,6 +89,8 @@ public class MainScreen_Activity extends AppCompatActivity {
         vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent i = new Intent(MainScreen_Activity.this, VijayaKarnataka_MainActivity.class);
                 startActivity(i);
             }
@@ -87,6 +99,8 @@ public class MainScreen_Activity extends AppCompatActivity {
         udayavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent i = new Intent(MainScreen_Activity.this, UdayaVaani_MainActivity.class);
                 startActivity(i);
             }
@@ -96,6 +110,8 @@ public class MainScreen_Activity extends AppCompatActivity {
         suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_an_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent i = new Intent(MainScreen_Activity.this, AsiaNet_MainActivity.class);
                 startActivity(i);
             }
@@ -105,6 +121,8 @@ public class MainScreen_Activity extends AppCompatActivity {
         esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
+                mFirebaseAnalytics.logEvent(card_clicked,params);
                 Intent i = new Intent(MainScreen_Activity.this, Esanje_MainActivity.class);
                 startActivity(i);
             }
@@ -124,6 +142,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         });
 
 
+
     }
 
     
@@ -135,5 +154,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         startActivity(startMain);
         return true;
     }
+
 
 }

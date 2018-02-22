@@ -1,5 +1,7 @@
 package vadeworks.news.paperdroids.Esanje;
 
+import android.content.Context;
+import android.support.design.widget.Snackbar;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
@@ -29,10 +31,12 @@ public class Esanje_Parser implements Paper {
     public String cinema = "http://www.eesanje.com/category/cinema-news/";
     public String business = "http://www.eesanje.com/category/business/";
 
+
     @Override
     public ArrayList<News> parseHeadLines() {
         String inspecturl= "http://www.eesanje.com/category/latest-news/";
         try {
+
             Document d= Jsoup.connect(inspecturl).timeout(6000).get();
 
             String imgurl, head, link;
@@ -48,6 +52,7 @@ public class Esanje_Parser implements Paper {
             }
         }catch (Exception e){
             Log.e("exception in es parse", e.toString());
+
         }
         return headlinesList;
     }

@@ -1,9 +1,14 @@
 package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
 
 
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.google.firebase.analytics.FirebaseAnalytics;
+
+import vadeworks.paperdroid.R;
 
 public class ViewPagerAdapter_VK extends FragmentStatePagerAdapter {
 
@@ -14,7 +19,6 @@ public class ViewPagerAdapter_VK extends FragmentStatePagerAdapter {
     // Build a Constructor and assign the passed Values to appropriate values in the class
     public ViewPagerAdapter_VK(FragmentManager fm, CharSequence mTitles[], int mNumbOfTabsumb) {
         super(fm);
-
         this.Titles = mTitles;
         this.NumbOfTabs = mNumbOfTabsumb;
 
@@ -27,7 +31,11 @@ public class ViewPagerAdapter_VK extends FragmentStatePagerAdapter {
         if(position == 0) // if the position is 0 we are returning the First tab
         {
             Tab1_Headlines_VK tab1 = new Tab1_Headlines_VK();
+
+
+
             return tab1;
+
         }
         else if(position ==1)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {

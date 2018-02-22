@@ -1,24 +1,33 @@
 <resources>
     <string name="app_name">News Guru</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="toolbar_title_home">!</string>
     <string name="action_settings">Settings</string>
+    <string name="toolbar_title_home_ab_en">About</string>
 
     <!-- Toolbar titles -->
     <string name="toolbar_title_home_vk">ವಿಜಯ ಕರ್ನಾಟಕ</string>
-    <string name="toolbar_title_explore_vk">Explore</string>
-
     <string name="toolbar_title_home_an">ಸುವರ್ಣ</string>
-    <string name="toolbar_title_explore_an">Explore</string>
-
     <string name="toolbar_title_home_uv">ಉದಯವಾಣಿ</string>
-    <string name="toolbar_title_explore_uv">Explore</string>
-
     <string name="toolbar_title_home_pj">ಪ್ರಜಾವಾಣಿ</string>
-    <string name="toolbar_title_explore_pj">Explore</string>
-
     <string name="toolbar_title_home_vv">ವಿಜಯವಾಣಿ</string>
     <string name="toolbar_title_home_es">ಈ ಸಂಜೆ</string>
+
+    <string name="toolbar_title_home_vk_en">VijayaKarnataka</string>
+    <string name="toolbar_title_home_an_en">Suvarna</string>
+    <string name="toolbar_title_home_uv_en">Udayavani</string>
+    <string name="toolbar_title_home_pj_en">Prajavani</string>
+    <string name="toolbar_title_home_vv_en">Vijayavani</string>
+    <string name="toolbar_title_home_es_en">EeSanje</string>
+
+
+    <string name="headlines_vk_en">Headlines_VK</string>
+    <string name="sports_vk_en">Sports_VK</string>
+    <string name="cinema_vk_en">Cinema_VK</string>
+    <string name="technology_vk_en">Technology_VK</string>
+    <string name="lifestyle_vk_en">Lifestyle_VK</string>
+
+
 
     <string name="headlines_kn">ಮುಖ್ಯಾಂಶಗಳು</string>
     <string name="state_kn">ರಾಜ್ಯ</string>

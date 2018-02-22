@@ -46,12 +46,14 @@ public class All_Terms_MainActivity extends AppCompatActivity {
     SlidingTabLayout tabs;
     CharSequence Titles[]={"Feedback","Privacy Policy","Terms","Disclaimer"};
     int Numboftabs =4;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_terms_mainactivity);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         init_slider();
 
         init_navigator();

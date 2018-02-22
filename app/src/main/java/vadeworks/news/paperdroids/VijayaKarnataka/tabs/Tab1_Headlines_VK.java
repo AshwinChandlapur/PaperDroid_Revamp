@@ -16,6 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
@@ -32,11 +33,19 @@ public class Tab1_Headlines_VK extends Fragment {
     Context context;
     View view;
     String tag = "headlines";
+    private FirebaseAnalytics mFirebaseAnalytics;
+    Bundle params = new Bundle();
+    String category_clicked;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.vijayakarnataka_tab1_headlines,container,false);
         init(view);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(context);
+
+        category_clicked = getResources().getString(R.string.headlines_vk_en);
+        mFirebaseAnalytics.logEvent(category_clicked,params);
 
         ThreadStarter_VK threadStarter = new ThreadStarter_VK();
         threadStarter.threadShuruKaro(getActivity(),context,view,tag);

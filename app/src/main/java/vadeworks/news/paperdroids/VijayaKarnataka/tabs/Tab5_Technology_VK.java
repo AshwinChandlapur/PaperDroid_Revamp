@@ -15,6 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
 
@@ -39,6 +40,9 @@ public class Tab5_Technology_VK extends Fragment {
     View view;
     String tag = "technology";
 
+    private FirebaseAnalytics mFirebaseAnalytics;
+    Bundle params = new Bundle();
+    String category_clicked;
     public Tab5_Technology_VK() {
         // Required empty public constructor
     }
@@ -50,6 +54,10 @@ public class Tab5_Technology_VK extends Fragment {
         // Inflate the layout for this fragment
         view =  inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
         init(view);
+        mFirebaseAnalytics  =FirebaseAnalytics.getInstance(context);
+//        category_clicked = getResources().getString(R.string.toolbar_title_home_vk_en+R.string.technology_kn_en);
+//        mFirebaseAnalytics.logEvent(category_clicked,params);
+
         ThreadStarter_VK threadStarter = new ThreadStarter_VK();
         threadStarter.threadShuruKaro(getActivity(),context,view,tag);
         return view;
