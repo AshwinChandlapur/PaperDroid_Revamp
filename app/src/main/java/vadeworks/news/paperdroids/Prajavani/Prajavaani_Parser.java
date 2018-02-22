@@ -17,7 +17,7 @@ import vadeworks.news.paperdroids.Paper;
  */
 
 public class Prajavaani_Parser implements Paper {
-    ArrayList<News> headlinesList = new ArrayList<News>();
+    ArrayList<News> headlinesList = new ArrayList<>();
 
     String baseurl = "http://www.prajavani.net";
     String category_url = "";
@@ -69,15 +69,15 @@ public class Prajavaani_Parser implements Paper {
                 body.select("blockquote").remove();
                 body.select("script").remove();
             }
-            String content = "";
+            StringBuilder content = new StringBuilder();
             String tmp = "";
 
             for (Element ele : body.first().children()) {
                 tmp= ele.select("p").text();
                 if (!tmp.isEmpty())
-                    content = content + tmp + "\n\n";
+                    content.append(tmp).append("\n\n");
             }
-            news.content=content;
+            news.content= content.toString();
         }catch (Exception e){
             Log.e("Exception in vv post", e.toString());
         }

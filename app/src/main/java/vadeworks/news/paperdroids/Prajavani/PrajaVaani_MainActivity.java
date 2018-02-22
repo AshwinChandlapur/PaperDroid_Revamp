@@ -60,6 +60,7 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
 
         }
         else {
+            Log.d("Internet Working","Internet Working");
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 

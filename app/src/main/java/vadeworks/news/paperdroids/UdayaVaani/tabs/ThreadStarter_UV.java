@@ -27,7 +27,7 @@ import vadeworks.paperdroid.R;
 
 public class ThreadStarter_UV {
 
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<News> news = new ArrayList<>();
     ListView listView;
     Context mContext;
     ViewHolder viewHolder;
@@ -120,7 +120,7 @@ public class ThreadStarter_UV {
                 i.putExtra("singleHead", news.get(position).head);
                 i.putExtra("singleLink", news.get(position).link);
                 i.putExtra("singleImg", news.get(position).imgurl);
-                i.putExtra("tag", "udayavani");
+                i.putExtra("tag", "udayavaani");
                 fragmentActivity.startActivity(i);
             }
         });

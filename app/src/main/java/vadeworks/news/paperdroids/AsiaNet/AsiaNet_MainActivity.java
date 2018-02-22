@@ -64,6 +64,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         if(!isConnected(this)) {
             buildDialog(this).show();}
         else {
+            Log.d("Internet Working","Internet Working");
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
          }
 

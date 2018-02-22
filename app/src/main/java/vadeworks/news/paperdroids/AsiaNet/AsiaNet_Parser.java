@@ -56,14 +56,15 @@ public class AsiaNet_Parser implements Paper {
 
     @Override
     public News parseNewsPost(News news) {
-
+        StringBuilder content= new StringBuilder();
         try {
             asianet_doc = Jsoup.connect(news.link).get();
             asianet_elem = asianet_doc.getElementsByClass("article-wrap new-article-desc").select("p");
             for (Element ele: asianet_elem) {
                 if (!ele.text().isEmpty())
-                    news.content = news.content + ele.text() + "\n\n";
+                    content.append(ele.text()).append("\n\n");
             }
+            news.content = content.toString();
             asianet_elem = asianet_doc.getElementsByClass("col-md-12 new-article-header").select("div").select("img");
             news.imgurl = asianet_elem.attr("src");
             Log.d("content","content"+news.content);

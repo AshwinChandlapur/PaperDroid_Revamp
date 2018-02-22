@@ -27,7 +27,7 @@ import vadeworks.paperdroid.R;
 
 public class ThreadStarter_ES {
 
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<News> news = new ArrayList<>();
     ListView listView;
     Context mContext;
     ViewHolder viewHolder;

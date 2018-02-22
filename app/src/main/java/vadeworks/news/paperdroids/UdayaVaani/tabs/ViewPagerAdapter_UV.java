@@ -1,7 +1,7 @@
 package vadeworks.news.paperdroids.UdayaVaani.tabs;
 
-/**
- * Created by ashwinchandlapur on 12/02/18.
+/*
+  Created by ashwinchandlapur on 12/02/18.
  */
 
 import android.support.v4.app.Fragment;

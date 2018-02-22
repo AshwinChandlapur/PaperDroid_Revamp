@@ -64,6 +64,7 @@ public class Display_news extends AppCompatActivity {
             buildDialog_noInternet(this).show();
 
         } else {
+            Log.d("Internet Working","Internet Working");
         }
 
 

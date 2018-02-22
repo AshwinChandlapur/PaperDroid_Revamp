@@ -22,7 +22,7 @@ public class VijayaKarnataka_Parser implements Paper {
     String link_picker;
     Document vijayakarnataka_doc;
     Elements vijayakarnataka_elem;
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<News> news = new ArrayList<>();
     public String sports="nav10738520",cinema="nav10738512",lifestyle="nav57869229",technology="nav60023487";
     String link,imgurl,headline;
 

@@ -1,7 +1,7 @@
 package vadeworks.news.paperdroids.VijayaVaani.tabs;
 
-/**
- * Created by ashwinchandlapur on 14/02/18.
+/*
+  Created by ashwinchandlapur on 14/02/18.
  */
 
 

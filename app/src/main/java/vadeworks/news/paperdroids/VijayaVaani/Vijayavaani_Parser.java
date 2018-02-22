@@ -29,7 +29,7 @@ public class Vijayavaani_Parser implements Paper {
     @Override
     public ArrayList<News> parseHeadLines() {
 
-        ArrayList<News> headlinesList = new ArrayList<News>();
+        ArrayList<News> headlinesList = new ArrayList<>();
         try {
 
             Document d = Jsoup.connect(vijayavani_base_url).timeout(6000).get();
@@ -75,15 +75,15 @@ public class Vijayavaani_Parser implements Paper {
 
             String imgurl = d.select("div.full.post-01-img").first().select("img").attr("src");
             Elements childs = d.select("div.full.post-01-content").first().select("p");
-            String body= "";
+            StringBuilder body= new StringBuilder();
 
             for (Element element : childs) {
                 if (!element.text().isEmpty())
-                    body= body + element.text() + "\n\n";
+                    body.append(element.text()).append("\n\n");
             }
 
             news.imgurl=imgurl;
-            news.content=body;
+            news.content= body.toString();
 //            System.out.println(body);
 
         }catch (Exception e){
@@ -95,7 +95,7 @@ public class Vijayavaani_Parser implements Paper {
 
     @Override
     public ArrayList<News> parseCategory(String category) {
-        ArrayList<News> headlinesList = new ArrayList<News>();
+        ArrayList<News> headlinesList = new ArrayList<>();
 
         try{
 

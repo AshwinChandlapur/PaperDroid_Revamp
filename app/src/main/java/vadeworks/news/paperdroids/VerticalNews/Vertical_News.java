@@ -28,7 +28,7 @@ import vadeworks.paperdroid.R;
 
 public class Vertical_News extends AppCompatActivity {
 
-    ArrayList<News> news = new ArrayList<News>();
+    ArrayList<News> news = new ArrayList<>();
     private TypingIndicatorView typingView;
     View parentLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -49,6 +49,7 @@ public class Vertical_News extends AppCompatActivity {
 
         }
         else {
+            Log.d("Internet Working","Internet Working");
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 

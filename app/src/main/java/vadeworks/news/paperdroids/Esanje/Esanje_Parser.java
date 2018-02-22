@@ -18,7 +18,7 @@ import vadeworks.news.paperdroids.Paper;
 
 public class Esanje_Parser implements Paper {
 
-    ArrayList<News> headlinesList = new ArrayList<News>();
+    ArrayList<News> headlinesList = new ArrayList<>();
 
     String baseurl = "http://www.eesanje.com/";
     String category_url = "";
@@ -66,17 +66,17 @@ public class Esanje_Parser implements Paper {
             Elements articles = d.select("div.article-content.clearfix").first().select("div.entry-content").first().select("p");
 
 //            System.out.println(articles.size());
-            String content ="";
+            StringBuilder content = new StringBuilder();
 
             for (Element ele : articles) {
                 if (!ele.text().isEmpty())
-                    content = content + ele.text() + "\n\n";
+                    content.append(ele.text()).append("\n\n");
 //				System.out.println(ele.text());
             }
             news.imgurl= d.select("div.article-content.clearfix").first().select("div.entry-content").first().select("img").attr("src");
-            news.content=content;
+            news.content= content.toString();
 
-            Log.d("esanje content", content);
+            Log.d("esanje content", content.toString());
 
         }catch (Exception e){
             Log.e("exception in es parse", e.toString());

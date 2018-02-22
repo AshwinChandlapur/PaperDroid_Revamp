@@ -21,11 +21,9 @@ public class Udayavaani_Parser implements Paper {
 
 
     String udayavaani_base_url = "https://www.udayavani.com/";
-    String category_url;
     Document udayavaani_doc;
-    Elements udayavaani_elem,udayavaani_elem1;
-    ArrayList<News> news = new ArrayList<News>();
-    String content = "";
+    Elements udayavaani_elem;
+    ArrayList<News> news = new ArrayList<>();
     public String sports = "https://www.udayavani.com/kannada/category/sports-news";
     public String cinema = "https://www.udayavani.com/kannada/category/bollywood-news";
     public String world ="https://www.udayavani.com/kannada/category/world-news";
@@ -57,15 +55,16 @@ public class Udayavaani_Parser implements Paper {
 
     @Override
     public News parseNewsPost(News news) {
-
+        StringBuilder content = new StringBuilder();
         try {
             udayavaani_doc = Jsoup.connect(news.link).get();
             udayavaani_elem = udayavaani_doc.getElementsByClass("field-item even").select("p");
             for (Element ele: udayavaani_elem) {
-                if (!ele.text().isEmpty())
-                        content = content + ele.text() + "\n\n";
+                if (!ele.text().isEmpty()){
+                    content.append(ele.text()).append("\n\n");
+                }
             }
-            news.content = content;
+            news.content = content.toString();
 
             udayavaani_elem = udayavaani_doc.getElementsByClass("field-item even").select("img");
             news.imgurl = udayavaani_elem.get(1).attr("src");
