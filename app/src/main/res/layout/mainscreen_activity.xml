@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:clickable="true"
-    android:background="@color/background_white"
     tools:context="vadeworks.news.paperdroids.MainScreen.MainScreen_Activity">
 
     <android.support.design.widget.AppBarLayout
@@ -107,7 +106,7 @@
                     android:layout_height="140dp"
                     app:cardBackgroundColor="@color/background_white"
                     android:layout_margin="16dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="2dp"
                     android:id="@+id/prajavani"
                     app:cardCornerRadius="7dp">
 
@@ -149,7 +148,7 @@
                     android:layout_height="140dp"
                     app:cardBackgroundColor="@color/background_white"
                     android:layout_margin="16dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="2dp"
                     android:id="@+id/vijayavani"
                     app:cardCornerRadius="7dp">
 
@@ -210,7 +209,7 @@
                     app:cardBackgroundColor="@color/background_white"
                     android:layout_margin="16dp"
                     android:id="@+id/vijayakarnataka"
-                    app:cardElevation="7dp"
+                    app:cardElevation="2dp"
                     app:cardCornerRadius="7dp">
 
                     <LinearLayout
@@ -251,7 +250,7 @@
                     android:layout_height="140dp"
                     app:cardBackgroundColor="@color/background_white"
                     android:layout_margin="16dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="2dp"
                     android:id="@+id/udayavani"
                     app:cardCornerRadius="7dp">
 
@@ -311,7 +310,7 @@
                     android:layout_height="140dp"
                     app:cardBackgroundColor="@color/background_white"
                     android:layout_margin="16dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="2dp"
                     android:clickable="true"
                     android:focusable="false"
                     android:id="@+id/suvarna"
@@ -355,7 +354,7 @@
                     android:layout_height="140dp"
                     app:cardBackgroundColor="@color/background_white"
                     android:layout_margin="16dp"
-                    app:cardElevation="7dp"
+                    app:cardElevation="2dp"
                     android:id="@+id/esanje"
                     app:cardCornerRadius="7dp">
 

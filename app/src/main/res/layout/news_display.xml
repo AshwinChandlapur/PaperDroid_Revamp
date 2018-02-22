@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:id="@+id/newsDisplay"
-    android:background="#eeeeee"
+    android:background="@color/background_white"
     tools:context="vadeworks.news.paperdroids.Display_news">
 
     <android.support.design.widget.AppBarLayout

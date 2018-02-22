@@ -11,10 +11,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -64,7 +66,15 @@ public class Vertical_News extends AppCompatActivity {
                     @Override
                     public void run() {
                         initSwipePager();
-                        Snackbar.make(parentLayout,"Swipe up for Top 10",Snackbar.LENGTH_LONG).show();
+
+                        Snackbar snack = Snackbar.make(parentLayout, "Swipe up for Top 10", Snackbar.LENGTH_LONG);
+                        View view = snack.getView();
+                        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)view.getLayoutParams();
+                        params.gravity = Gravity.TOP;
+                        view.setLayoutParams(params);
+                        snack.show();
+
+//                        Snackbar.make(parentLayout,"Swipe up for Top 10",Snackbar.LENGTH_INDEFINITE).show();
                         typingView.setVisibility(View.GONE);
                     }
                 });
