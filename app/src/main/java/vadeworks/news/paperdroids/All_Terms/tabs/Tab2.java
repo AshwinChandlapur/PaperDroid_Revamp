@@ -15,7 +15,7 @@ import vadeworks.paperdroid.R;
 public class Tab2 extends Fragment {
 
 
-    String privacy="Privacy Policy\n" +
+    private final String privacy="Privacy Policy\n" +
             "\n" +
             "VadeWorks built the News Guru app as an Ad Supported app. This SERVICE is provided by VadeWorks at no cost and is intended for use as is.\n" +
             "\n" +
@@ -84,7 +84,7 @@ public class Tab2 extends Fragment {
         // Required empty public constructor
     }
 
-    View view;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

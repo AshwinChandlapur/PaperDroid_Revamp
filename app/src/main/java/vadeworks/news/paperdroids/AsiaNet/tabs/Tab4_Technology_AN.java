@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab4_Technology_AN extends Fragment {
 
-    View view;
-    Context context;
-    String tag = "technology";
+    private View view;
+    private Context context;
+    private final String tag = "technology";
 
     public Tab4_Technology_AN() {
         // Required empty public constructor
@@ -37,7 +37,7 @@ public class Tab4_Technology_AN extends Fragment {
         return view;
     }
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

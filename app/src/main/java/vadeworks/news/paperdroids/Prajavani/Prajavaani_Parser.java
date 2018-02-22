@@ -17,16 +17,18 @@ import vadeworks.news.paperdroids.Paper;
  */
 
 public class Prajavaani_Parser implements Paper {
-    ArrayList<News> headlinesList = new ArrayList<>();
+    private final ArrayList<News> headlinesList = new ArrayList<>();
 
-    String baseurl = "http://www.prajavani.net";
+    private final String baseurl = "http://www.prajavani.net";
     String category_url = "";
-    public String state = "http://www.prajavani.net/news/category/30.html";
-    public String country = "http://www.prajavani.net/news/category/31.html";
-    public String sports = "http://www.prajavani.net/news/category/64.html";
-    public String cinema = "http://www.prajavani.net/news/category/138.html";
-    public String business = "http://www.prajavani.net/news/category/136.html";
-    String head, link, imgurl;
+    public final String state = "http://www.prajavani.net/news/category/30.html";
+    public final String country = "http://www.prajavani.net/news/category/31.html";
+    public final String sports = "http://www.prajavani.net/news/category/64.html";
+    public final String cinema = "http://www.prajavani.net/news/category/138.html";
+    public final String business = "http://www.prajavani.net/news/category/136.html";
+    private String head;
+    private String link;
+    private String imgurl;
 
     @Override
     public ArrayList<News> parseHeadLines() {

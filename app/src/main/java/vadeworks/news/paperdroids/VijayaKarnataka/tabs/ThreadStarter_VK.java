@@ -25,20 +25,20 @@ import vadeworks.paperdroid.R;
  * Created by ashwinchandlapur on 19/02/18.
  */
 
-public class ThreadStarter_VK {
+class ThreadStarter_VK {
 
-    ArrayList<News> news = new ArrayList<>();
-    ListView listView;
-    Context mContext;
-    ViewHolder viewHolder;
-    TypingIndicatorView typingView;
-    String mCategory;
+    private ArrayList<News> news = new ArrayList<>();
+    private ListView listView;
+    private Context mContext;
+    private ViewHolder viewHolder;
+    private TypingIndicatorView typingView;
+    private String mCategory;
     static class ViewHolder {
         static TextView news_headline;
         static ImageView news_image;
     }
 
-    VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
+    private final VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
 
     public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category ){
 

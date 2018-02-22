@@ -38,16 +38,16 @@ import vadeworks.paperdroid.R;
 
 public class VijayaVaani_MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    ViewPager pager;
-    ViewPagerAdapter_VV adapter;
-    SlidingTabLayout tabs;
-    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಕ್ರೀಡೆ","ಜಗತ್ತು","ರಾಜಕೀಯ"};
-    int Numboftabs =6;
+    private Toolbar toolbar;
+    private ViewPager pager;
+    private ViewPagerAdapter_VV adapter;
+    private SlidingTabLayout tabs;
+    private final CharSequence[] Titles={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಕ್ರೀಡೆ","ಜಗತ್ತು","ರಾಜಕೀಯ"};
+    private final int Numboftabs =6;
     private FirebaseAnalytics mFirebaseAnalytics;
 
-    Bundle params = new Bundle();
-    String card_clicked;
+    private final Bundle params = new Bundle();
+    private String card_clicked;
 
 
     @Override
@@ -281,7 +281,7 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
     }
 
 
-    public boolean isConnected(Context context) {
+    private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
@@ -295,7 +295,7 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
             return false;
     }
 
-    public AlertDialog.Builder buildDialog(Context c) {
+    private AlertDialog.Builder buildDialog(Context c) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         LayoutInflater factory = LayoutInflater.from(c);

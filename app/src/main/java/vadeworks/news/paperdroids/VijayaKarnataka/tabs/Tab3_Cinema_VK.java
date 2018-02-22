@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
 public class Tab3_Cinema_VK extends Fragment {
 
 
-    Context context;
-    View view;
-    String tag = "cinema";
+    private Context context;
+    private View view;
+    private final String tag = "cinema";
 
     public Tab3_Cinema_VK() {
         // Required empty public constructor
@@ -38,7 +38,7 @@ public class Tab3_Cinema_VK extends Fragment {
         return view;
     }
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

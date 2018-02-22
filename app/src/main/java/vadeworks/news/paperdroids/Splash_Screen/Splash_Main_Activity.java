@@ -20,10 +20,11 @@ import vadeworks.paperdroid.R;
 public class Splash_Main_Activity extends AppCompatActivity {
 
 
-    LinearLayout l1;
+    private LinearLayout l1;
     Button read;
     ImageView space;
-    Animation uptodown,downtoup;
+    private Animation uptodown;
+    private Animation downtoup;
     private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override

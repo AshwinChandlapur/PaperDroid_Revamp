@@ -18,16 +18,16 @@ import vadeworks.news.paperdroids.Paper;
 
 public class Esanje_Parser implements Paper {
 
-    ArrayList<News> headlinesList = new ArrayList<>();
+    private final ArrayList<News> headlinesList = new ArrayList<>();
 
     String baseurl = "http://www.eesanje.com/";
     String category_url = "";
     public String headlines_link = "http://www.eesanje.com/category/latest-news/";
-    public String state = "http://www.eesanje.com/category/state-news/";
-    public String national = "http://www.eesanje.com/category/national-news/";
-    public String sports = "http://www.eesanje.com/category/sports/";
-    public String cinema = "http://www.eesanje.com/category/cinema-news/";
-    public String business = "http://www.eesanje.com/category/business/";
+    public final String state = "http://www.eesanje.com/category/state-news/";
+    public final String national = "http://www.eesanje.com/category/national-news/";
+    public final String sports = "http://www.eesanje.com/category/sports/";
+    public final String cinema = "http://www.eesanje.com/category/cinema-news/";
+    public final String business = "http://www.eesanje.com/category/business/";
 
 
     @Override

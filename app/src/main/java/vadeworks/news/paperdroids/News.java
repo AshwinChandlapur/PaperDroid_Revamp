@@ -7,9 +7,9 @@ import android.util.Log;
  */
 
 public class News {
-    public String head;
+    public final String head;
     public String imgurl;
-    public String link;
+    public final String link;
     public String content;
     public  String tag;
 

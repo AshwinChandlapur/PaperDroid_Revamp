@@ -16,9 +16,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab4_World_UV extends Fragment {
 
-    Context context;
-    View view;
-    String tag = "world";
+    private Context context;
+    private View view;
+    private final String tag = "world";
 
     public Tab4_World_UV() {
         // Required empty public constructor
@@ -38,7 +38,7 @@ public class Tab4_World_UV extends Fragment {
         return view;
     }
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

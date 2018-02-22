@@ -18,9 +18,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab5_Technology_VK extends Fragment {
 
-    Context context;
-    View view;
-    String tag = "technology";
+    private Context context;
+    private View view;
+    private final String tag = "technology";
 
     private FirebaseAnalytics mFirebaseAnalytics;
     Bundle params = new Bundle();
@@ -45,7 +45,7 @@ public class Tab5_Technology_VK extends Fragment {
         return view;
     }
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

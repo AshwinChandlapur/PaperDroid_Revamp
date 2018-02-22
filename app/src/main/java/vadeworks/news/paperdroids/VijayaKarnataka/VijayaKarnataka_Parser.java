@@ -17,14 +17,19 @@ import vadeworks.news.paperdroids.Paper;
 
 public class VijayaKarnataka_Parser implements Paper {
 
-    String vijayakarnataka_base_url = "https://vijaykarnataka.indiatimes.com/";
+    private final String vijayakarnataka_base_url = "https://vijaykarnataka.indiatimes.com/";
     String category_url;
-    String link_picker;
-    Document vijayakarnataka_doc;
-    Elements vijayakarnataka_elem;
-    ArrayList<News> news = new ArrayList<>();
-    public String sports="nav10738520",cinema="nav10738512",lifestyle="nav57869229",technology="nav60023487";
-    String link,imgurl,headline;
+    private String link_picker;
+    private Document vijayakarnataka_doc;
+    private Elements vijayakarnataka_elem;
+    private final ArrayList<News> news = new ArrayList<>();
+    public final String sports="nav10738520";
+    public final String cinema="nav10738512";
+    public final String lifestyle="nav57869229";
+    public final String technology="nav60023487";
+    private String link;
+    private String imgurl;
+    private String headline;
 
 
     @Override

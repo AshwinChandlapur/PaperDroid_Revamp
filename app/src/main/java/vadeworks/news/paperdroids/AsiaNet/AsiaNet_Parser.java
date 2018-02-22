@@ -20,14 +20,14 @@ import vadeworks.news.paperdroids.Paper;
 public class AsiaNet_Parser implements Paper {
 
 
-    String asianet_base_url = "http://kannada.asianetnews.com/";
-    Document asianet_doc;
-    Elements asianet_elem;
-    public String sports="http://kannada.asianetnews.com/sports",
-            cinema = "http://kannada.asianetnews.com/entertainment",
-            technology="http://kannada.asianetnews.com/technology",
-            lifestyle = "http://kannada.asianetnews.com/life";
-    ArrayList<News> news = new ArrayList<>();
+    private final String asianet_base_url = "http://kannada.asianetnews.com/";
+    private Document asianet_doc;
+    private Elements asianet_elem;
+    public final String sports="http://kannada.asianetnews.com/sports";
+    public final String cinema = "http://kannada.asianetnews.com/entertainment";
+    public final String technology="http://kannada.asianetnews.com/technology";
+    public final String lifestyle = "http://kannada.asianetnews.com/life";
+    private final ArrayList<News> news = new ArrayList<>();
 
     @Override
     public ArrayList<News> parseHeadLines() {

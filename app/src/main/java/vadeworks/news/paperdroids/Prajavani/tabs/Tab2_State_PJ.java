@@ -16,9 +16,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab2_State_PJ extends Fragment {
 
-    Context context;
-    View view;
-    String tag = "state";
+    private Context context;
+    private View view;
+    private final String tag = "state";
 
 
     public Tab2_State_PJ() {
@@ -38,7 +38,7 @@ public class Tab2_State_PJ extends Fragment {
     }
 
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

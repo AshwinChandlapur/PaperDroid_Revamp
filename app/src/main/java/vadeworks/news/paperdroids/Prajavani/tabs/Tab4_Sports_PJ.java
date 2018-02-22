@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
 public class Tab4_Sports_PJ extends Fragment {
 
 
-    Context context;
-    View view;
-    String tag = "sports";
+    private Context context;
+    private View view;
+    private final String tag = "sports";
 
     public Tab4_Sports_PJ() {
         // Required empty public constructor
@@ -39,7 +39,7 @@ public class Tab4_Sports_PJ extends Fragment {
     }
 
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

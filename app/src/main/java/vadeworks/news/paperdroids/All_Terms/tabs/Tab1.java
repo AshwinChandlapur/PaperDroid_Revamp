@@ -18,7 +18,7 @@ import vadeworks.paperdroid.R;
  */
 public class Tab1 extends Fragment {
 
-    View view;
+    private View view;
 
 
     String feedback = "Please write in your suggestions to \n\n" +

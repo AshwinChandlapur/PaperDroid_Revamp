@@ -16,8 +16,8 @@ import vadeworks.paperdroid.R;
  */
 public class Tab4 extends Fragment {
 
-    View view;
-    String Disclaimer ="Disclaimer\n" +
+    private View view;
+    private final String Disclaimer ="Disclaimer\n" +
             "\n" +
             "The information contained in this app is for general information purposes only. We endeavor to keep the information up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability or availability with respect to the app or the information, products, services, or related graphics contained on the app for any purpose. Any reliance you place on such information is therefore strictly at your own risk.\n" +
             "News Guru does not own any of the content provided here. The content provided here is used under fair use policy and News Guru would like to credit the original content creators and does'nt intend to infringe copyright."+

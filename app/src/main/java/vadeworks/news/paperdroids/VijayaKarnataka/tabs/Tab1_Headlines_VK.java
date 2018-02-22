@@ -16,12 +16,12 @@ import vadeworks.paperdroid.R;
 
 public class Tab1_Headlines_VK extends Fragment {
 
-    Context context;
-    View view;
-    String tag = "headlines";
+    private Context context;
+    private View view;
+    private final String tag = "headlines";
     private FirebaseAnalytics mFirebaseAnalytics;
-    Bundle params = new Bundle();
-    String category_clicked;
+    private final Bundle params = new Bundle();
+    private String category_clicked;
 
 
     @Override
@@ -41,7 +41,7 @@ public class Tab1_Headlines_VK extends Fragment {
     }
 
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

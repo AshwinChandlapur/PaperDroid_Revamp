@@ -16,9 +16,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab3_National_VV extends Fragment {
 
-    Context context;
-    View view;
-    String tag = "national";
+    private Context context;
+    private View view;
+    private final String tag = "national";
 
     public Tab3_National_VV() {
         // Required empty public constructor
@@ -37,7 +37,7 @@ public class Tab3_National_VV extends Fragment {
         return view;
     }
 
-    public void init(View v){
+    private void init(View v){
 
         context = getActivity().getApplicationContext();
 

@@ -16,9 +16,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab5_Business_UV extends Fragment {
 
-    Context context;
-    View view;
-    String tag = "business";
+    private Context context;
+    private View view;
+    private final String tag = "business";
 
 
     public Tab5_Business_UV() {
@@ -40,7 +40,7 @@ public class Tab5_Business_UV extends Fragment {
     }
 
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

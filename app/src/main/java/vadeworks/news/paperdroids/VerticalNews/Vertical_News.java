@@ -28,9 +28,9 @@ import vadeworks.paperdroid.R;
 
 public class Vertical_News extends AppCompatActivity {
 
-    ArrayList<News> news = new ArrayList<>();
+    private ArrayList<News> news = new ArrayList<>();
     private TypingIndicatorView typingView;
-    View parentLayout;
+    private View parentLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
 
 
@@ -90,7 +90,7 @@ public class Vertical_News extends AppCompatActivity {
 
 
 
-    public boolean isConnected(Context context) {
+    private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
@@ -104,7 +104,7 @@ public class Vertical_News extends AppCompatActivity {
             return false;
     }
 
-    public AlertDialog.Builder buildDialog(Context c) {
+    private AlertDialog.Builder buildDialog(Context c) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         LayoutInflater factory = LayoutInflater.from(c);

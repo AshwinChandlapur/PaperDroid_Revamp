@@ -25,19 +25,19 @@ import vadeworks.paperdroid.R;
  * Created by ashwinchandlapur on 19/02/18.
  */
 
-public class ThreadStater_PJ {
+class ThreadStater_PJ {
 
-    ArrayList<News> news = new ArrayList<>();
-    ListView listView;
-    Context mContext;
-    ViewHolder viewHolder;
-    TypingIndicatorView typingView;
-    String mCategory;
+    private ArrayList<News> news = new ArrayList<>();
+    private ListView listView;
+    private Context mContext;
+    private ViewHolder viewHolder;
+    private TypingIndicatorView typingView;
+    private String mCategory;
     static class ViewHolder {
         static TextView news_headline;
         static ImageView news_image;
     }
-    Prajavaani_Parser parser = new Prajavaani_Parser();
+    private final Prajavaani_Parser parser = new Prajavaani_Parser();
 
 
 

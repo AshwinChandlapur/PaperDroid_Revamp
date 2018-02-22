@@ -14,9 +14,9 @@ import java.util.ArrayList;
 
 public abstract class ListView_Adapter<News> extends BaseAdapter {
 
-    LayoutInflater layoutInflater;
-    Context context;
-    private ArrayList<News> news;
+    private final LayoutInflater layoutInflater;
+    private final Context context;
+    private final ArrayList<News> news;
 
     public ListView_Adapter(Context context, ArrayList<News> news) {
         this.context = context;

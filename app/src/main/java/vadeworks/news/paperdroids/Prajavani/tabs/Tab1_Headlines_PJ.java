@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab1_Headlines_PJ extends Fragment {
 
-    Context context;
-    View view;
-    String tag = "headlines";
+    private Context context;
+    private View view;
+    private final String tag = "headlines";
 
 
     public Tab1_Headlines_PJ() {
@@ -38,7 +38,7 @@ public class Tab1_Headlines_PJ extends Fragment {
         return view;
     }
 
-    public void init(View v){
+    private void init(View v){
         context = getActivity().getApplicationContext();
     }
 

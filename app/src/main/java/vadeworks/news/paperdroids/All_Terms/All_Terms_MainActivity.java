@@ -29,12 +29,12 @@ import vadeworks.paperdroid.R;
 
 public class All_Terms_MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    ViewPager pager;
-    ViewPagerAdapter_AT adapter;
-    SlidingTabLayout tabs;
-    CharSequence Titles[]={"Feedback","Privacy Policy","Terms","Disclaimer"};
-    int Numboftabs =4;
+    private Toolbar toolbar;
+    private ViewPager pager;
+    private ViewPagerAdapter_AT adapter;
+    private SlidingTabLayout tabs;
+    private final CharSequence[] Titles={"Feedback","Privacy Policy","Terms","Disclaimer"};
+    private final int Numboftabs =4;
     private FirebaseAnalytics mFirebaseAnalytics;
 
 

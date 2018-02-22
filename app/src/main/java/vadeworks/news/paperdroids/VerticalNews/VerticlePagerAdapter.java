@@ -18,14 +18,16 @@ import vadeworks.paperdroid.R;
  * Created by ashwinchandlapur on 16/02/18.
  */
 
-public class VerticlePagerAdapter extends PagerAdapter {
-    Context mContext;
-    LayoutInflater mLayoutInflater;
-    ArrayList<News> mnews = new ArrayList<>();
+class VerticlePagerAdapter extends PagerAdapter {
+    private final Context mContext;
+    private final LayoutInflater mLayoutInflater;
+    private ArrayList<News> mnews = new ArrayList<>();
 
 
-    TextView headline,newsno;
-    TextView content,link;
+    private TextView headline;
+    private TextView newsno;
+    private TextView content;
+    private TextView link;
 
 
     public VerticlePagerAdapter(Context context, ArrayList<News> news){
@@ -96,7 +98,7 @@ public class VerticlePagerAdapter extends PagerAdapter {
         return itemView;
     }
 
-    public void verticalNewsDisplay(final int position, final View itemView){
+    private void verticalNewsDisplay(final int position, final View itemView){
 
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);

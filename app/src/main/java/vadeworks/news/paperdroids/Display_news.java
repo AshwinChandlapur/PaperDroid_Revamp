@@ -40,17 +40,22 @@ import vadeworks.paperdroid.R;
 
 public class Display_news extends AppCompatActivity {
 
-    TextView headlines_textview,content_textview,link_textview;
-    ImageView imageView;
-    String head,link,content,imgurl;
-    String tag;
-    News fullnews;
-    String notif= "";
-    android.support.v7.widget.Toolbar toola;
-    TypingIndicatorView typingView;
+    private TextView headlines_textview;
+    private TextView content_textview;
+    private TextView link_textview;
+    private ImageView imageView;
+    private String head;
+    private String link;
+    String content;
+    private String imgurl;
+    private String tag;
+    private News fullnews;
+    private final String notif= "";
+    private android.support.v7.widget.Toolbar toola;
+    private TypingIndicatorView typingView;
     private FirebaseAnalytics mFirebaseAnalytics;
-    String news_display_previous_activity;
-    Bundle params = new Bundle();
+    private String news_display_previous_activity;
+    private final Bundle params = new Bundle();
 
 
     @Override
@@ -202,7 +207,7 @@ public class Display_news extends AppCompatActivity {
 
     }
 
-    public void views_init(){
+    private void views_init(){
 
         headlines_textview = findViewById(R.id.headline);
         content_textview = findViewById(R.id.content);
@@ -219,7 +224,7 @@ public class Display_news extends AppCompatActivity {
         });
     }
 
-    public void display_news(final News fullnews){
+    private void display_news(final News fullnews){
 
 
         headlines_textview.setText(fullnews.head);
@@ -310,7 +315,7 @@ public class Display_news extends AppCompatActivity {
         return true;
     }
 
-    public boolean isConnected(Context context) {
+    private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
@@ -325,7 +330,7 @@ public class Display_news extends AppCompatActivity {
     }
 
 
-    public AlertDialog.Builder buildDialog_noInternet(Context c) {
+    private AlertDialog.Builder buildDialog_noInternet(Context c) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         LayoutInflater factory = LayoutInflater.from(c);

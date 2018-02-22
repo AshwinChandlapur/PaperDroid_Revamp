@@ -38,18 +38,18 @@ import vadeworks.paperdroid.R;
 
 public class Esanje_MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
-    ViewPager pager;
-    ViewPagerAdapter_ES adapter;
-    SlidingTabLayout tabs;
-    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಸಿನಿಮಾ","ಕ್ರೀಡೆ","ವಾಣಿಜ್ಯ"};
-    int Numboftabs =6;
+    private Toolbar toolbar;
+    private ViewPager pager;
+    private ViewPagerAdapter_ES adapter;
+    private SlidingTabLayout tabs;
+    private final CharSequence[] Titles={"ಮುಖ್ಯಾಂಶಗಳು","ರಾಜ್ಯ","ದೇಶ","ಸಿನಿಮಾ","ಕ್ರೀಡೆ","ವಾಣಿಜ್ಯ"};
+    private final int Numboftabs =6;
     private FirebaseAnalytics mFirebaseAnalytics;
 
 
 
-    Bundle params = new Bundle();
-    String card_clicked;
+    private final Bundle params = new Bundle();
+    private String card_clicked;
 
 
     @Override
@@ -289,7 +289,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
 
 
 
-    public boolean isConnected(Context context) {
+    private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
@@ -303,7 +303,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
             return false;
     }
 
-    public AlertDialog.Builder buildDialog(Context c) {
+    private AlertDialog.Builder buildDialog(Context c) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         LayoutInflater factory = LayoutInflater.from(c);

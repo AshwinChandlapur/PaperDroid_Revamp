@@ -42,15 +42,15 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
     // Declaring Your View and Variables
 
-    Toolbar toolbar;
-    ViewPager pager;
-    ViewPagerAdapter_VK adapter;
-    SlidingTabLayout tabs;
-    CharSequence Titles[]={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ಲೈಫ್\u200Cಸ್ಟೈಲ್","ತಂತ್ರಜ್ಞಾನ"};
-    int Numboftabs =5;
+    private Toolbar toolbar;
+    private ViewPager pager;
+    private ViewPagerAdapter_VK adapter;
+    private SlidingTabLayout tabs;
+    private final CharSequence[] Titles={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ಲೈಫ್\u200Cಸ್ಟೈಲ್","ತಂತ್ರಜ್ಞಾನ"};
+    private final int Numboftabs =5;
     private FirebaseAnalytics mFirebaseAnalytics;
-    Bundle params = new Bundle();
-    String card_clicked;
+    private final Bundle params = new Bundle();
+    private String card_clicked;
 
 
     @Override
@@ -289,7 +289,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
 
 
-    public boolean isConnected(Context context) {
+    private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
@@ -303,7 +303,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             return false;
     }
 
-    public AlertDialog.Builder buildDialog(Context c) {
+    private AlertDialog.Builder buildDialog(Context c) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(c);
         LayoutInflater factory = LayoutInflater.from(c);

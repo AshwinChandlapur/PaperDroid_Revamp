@@ -22,13 +22,18 @@ import vadeworks.paperdroid.R;
 public class MainScreen_Activity extends AppCompatActivity {
 
 
-    CardView prajavani, vijayavani, vijayakarnataka, udayavani, suvarna, esanje;
-    View parentLayout;
-    ImageView bottomImage;
-    int click=0;
+    private CardView prajavani;
+    private CardView vijayavani;
+    private CardView vijayakarnataka;
+    private CardView udayavani;
+    private CardView suvarna;
+    private CardView esanje;
+    private View parentLayout;
+    private ImageView bottomImage;
+    private int click=0;
     private FirebaseAnalytics mFirebaseAnalytics;
-    Bundle params = new Bundle();
-    String card_clicked;
+    private final Bundle params = new Bundle();
+    private String card_clicked;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
