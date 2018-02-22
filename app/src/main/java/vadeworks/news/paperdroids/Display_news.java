@@ -3,10 +3,8 @@ package vadeworks.news.paperdroids;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v7.app.AlertDialog;
@@ -15,26 +13,16 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.select.Elements;
-
-import java.io.IOException;
-import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
@@ -42,7 +30,6 @@ import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
-import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
@@ -221,7 +208,7 @@ public class Display_news extends AppCompatActivity {
         link_textview = findViewById(R.id.link);
         imageView = findViewById(R.id.imageView);
         typingView = findViewById(R.id.loader);
-        toola = (android.support.v7.widget.Toolbar) findViewById(R.id.toola);
+        toola = findViewById(R.id.toola);
         toola.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toola.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -262,7 +249,7 @@ public class Display_news extends AppCompatActivity {
 
                 LinearLayout linearLayout = findViewById(R.id.forAds);
                 linearLayout.setVisibility(View.VISIBLE);
-                WebView webView = (WebView)findViewById(R.id.webView);
+                WebView webView = findViewById(R.id.webView);
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.loadUrl(fullnews.link);
 
@@ -331,8 +318,7 @@ public class Display_news extends AppCompatActivity {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
-            else return false;
+            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
         } else
             return false;
     }

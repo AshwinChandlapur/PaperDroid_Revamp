@@ -44,7 +44,7 @@ public class VerticlePagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((LinearLayout) object);
+        return view == object;
     }
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {

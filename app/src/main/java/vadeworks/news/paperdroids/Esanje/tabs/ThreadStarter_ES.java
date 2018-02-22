@@ -15,7 +15,6 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
-import vadeworks.news.paperdroids.AsiaNet.tabs.ThreadStarter_AN;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.ListView_Adapter;
@@ -96,14 +95,14 @@ public class ThreadStarter_ES {
                                 } else {
                                     viewHolder = (ViewHolder) view.getTag();
                                 }
-                                viewHolder.news_headline = (TextView) view.findViewById(R.id.newsHeadlines);
-                                viewHolder.news_image = (ImageView) view.findViewById(R.id.newsImage);
+                                ViewHolder.news_headline = view.findViewById(R.id.newsHeadlines);
+                                ViewHolder.news_image = view.findViewById(R.id.newsImage);
                                 view.setTag(viewHolder);
-                                viewHolder.news_headline.setText(news.head);
+                                ViewHolder.news_headline.setText(news.head);
                                 if (!news.imgurl.isEmpty()) {
-                                    Picasso.with(mContext).load(news.imgurl).into(viewHolder.news_image);
+                                    Picasso.with(mContext).load(news.imgurl).into(ViewHolder.news_image);
                                 } else {
-                                    viewHolder.news_image.setVisibility(View.GONE);
+                                    ViewHolder.news_image.setVisibility(View.GONE);
                                 }
 
                                 return view;

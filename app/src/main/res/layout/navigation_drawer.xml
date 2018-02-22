@@ -53,13 +53,13 @@
                     android:layout_width="@dimen/navigation_drawer_profile_image_size"
                     android:layout_height="@dimen/navigation_drawer_profile_image_size"
                     android:src="@drawable/logo_big"
-                    android:layout_gravity="left|center_vertical"/>
+                    android:layout_gravity="start|center_vertical"/>
 
 
                     <ImageView
                         android:layout_width="3dp"
                         android:layout_height="100dp"
-                        android:layout_marginLeft="7dp"
+                        android:layout_marginStart="7dp"
                         android:background="@color/background_white"
                         android:layout_gravity="left|center_vertical"/>
 
@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="35dp">
+                        android:layout_marginStart="35dp">
 
                     <TextView
                         android:layout_width="wrap_content"

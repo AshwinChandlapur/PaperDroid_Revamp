@@ -5,13 +5,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
-
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-
-import vadeworks.paperdroid.R;
 
 /**
  * Created by ashwinchandlapur on 10/02/18.

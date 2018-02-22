@@ -2,8 +2,6 @@ package vadeworks.news.paperdroids;
 
 import android.util.Log;
 
-import java.io.Serializable;
-
 /**
  * Created by ashwinchandlapur on 10/02/18.
  */

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 
 public interface Paper{
-    public ArrayList<News> parseHeadLines();
-    public News parseNewsPost(News news);
-    public ArrayList<News> parseCategory(String category);
+    ArrayList<News> parseHeadLines();
+    News parseNewsPost(News news);
+    ArrayList<News> parseCategory(String category);
 }

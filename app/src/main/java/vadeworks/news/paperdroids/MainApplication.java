@@ -1,20 +1,10 @@
 package vadeworks.news.paperdroids;
 
 import android.app.Application;
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.v7.app.AlertDialog;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.onesignal.OSNotification;
@@ -25,9 +15,7 @@ import com.onesignal.OneSignal;
 import org.json.JSONObject;
 
 
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
-import vadeworks.paperdroid.R;
 
 /**
  * Created by ashwinchandlapur on 15/02/18.

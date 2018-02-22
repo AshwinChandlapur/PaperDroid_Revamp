@@ -3,7 +3,6 @@ package vadeworks.news.paperdroids.VerticalNews;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
@@ -16,7 +15,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -24,15 +22,8 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.Display_news;
-import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.R;
 
 public class Vertical_News extends AppCompatActivity {
@@ -83,7 +74,7 @@ public class Vertical_News extends AppCompatActivity {
     }
 
     private void initSwipePager(){
-        VerticalViewPager verticalViewPager = (VerticalViewPager) findViewById(R.id.vPager);
+        VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
         verticalViewPager.setAdapter(new VerticlePagerAdapter(this,news));
     }
 
@@ -107,8 +98,7 @@ public class Vertical_News extends AppCompatActivity {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
-            else return false;
+            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
         } else
             return false;
     }

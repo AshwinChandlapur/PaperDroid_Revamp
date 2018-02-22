@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
-import vadeworks.news.paperdroids.UdayaVaani.tabs.ThreadStarter_UV;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.paperdroid.R;
 
@@ -93,14 +92,14 @@ public class ThreadStarter_VK {
                                 } else {
                                     viewHolder = (ViewHolder) view.getTag();
                                 }
-                                viewHolder.news_headline = (TextView) view.findViewById(R.id.newsHeadlines);
-                                viewHolder.news_image = (ImageView) view.findViewById(R.id.newsImage);
+                                ViewHolder.news_headline = view.findViewById(R.id.newsHeadlines);
+                                ViewHolder.news_image = view.findViewById(R.id.newsImage);
                                 view.setTag(viewHolder);
-                                viewHolder.news_headline.setText(news.head);
+                                ViewHolder.news_headline.setText(news.head);
                                 if (!news.imgurl.isEmpty()) {
-                                    Picasso.with(mContext).load(news.imgurl).into(viewHolder.news_image);
+                                    Picasso.with(mContext).load(news.imgurl).into(ViewHolder.news_image);
                                 } else {
-                                    viewHolder.news_image.setVisibility(View.GONE);
+                                    ViewHolder.news_image.setVisibility(View.GONE);
                                 }
 
                                 return view;

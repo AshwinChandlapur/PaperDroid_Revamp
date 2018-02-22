@@ -1,16 +1,6 @@
 package vadeworks.news.paperdroids.VerticalNews;
 
-import android.util.Log;
-
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
-
 import java.io.IOException;
-import java.util.ArrayList;
-
-import vadeworks.news.paperdroids.News;
 
 
 import android.util.Log;

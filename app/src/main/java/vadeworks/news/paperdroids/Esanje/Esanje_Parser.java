@@ -1,7 +1,5 @@
 package vadeworks.news.paperdroids.Esanje;
 
-import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 
 import org.jsoup.Jsoup;

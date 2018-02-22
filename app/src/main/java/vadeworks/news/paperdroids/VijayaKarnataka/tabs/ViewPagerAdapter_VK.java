@@ -1,14 +1,9 @@
 package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
 
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
-
-import com.google.firebase.analytics.FirebaseAnalytics;
-
-import vadeworks.paperdroid.R;
 
 public class ViewPagerAdapter_VK extends FragmentStatePagerAdapter {
 

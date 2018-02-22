@@ -3,7 +3,6 @@ package vadeworks.news.paperdroids.AsiaNet.tabs;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -92,14 +91,14 @@ public class ThreadStarter_AN {
                                 } else {
                                     viewHolder = (ViewHolder) view.getTag();
                                 }
-                                viewHolder.news_headline = (TextView) view.findViewById(R.id.newsHeadlines);
-                                viewHolder.news_image = (ImageView) view.findViewById(R.id.newsImage);
+                                ViewHolder.news_headline = view.findViewById(R.id.newsHeadlines);
+                                ViewHolder.news_image = view.findViewById(R.id.newsImage);
                                 view.setTag(viewHolder);
-                                viewHolder.news_headline.setText(news.head);
+                                ViewHolder.news_headline.setText(news.head);
                                 if (!news.imgurl.isEmpty()) {
-                                    Picasso.with(mContext).load(news.imgurl).into(viewHolder.news_image);
+                                    Picasso.with(mContext).load(news.imgurl).into(ViewHolder.news_image);
                                 } else {
-                                    viewHolder.news_image.setVisibility(View.GONE);
+                                    ViewHolder.news_image.setVisibility(View.GONE);
                                 }
 
                                 return view;

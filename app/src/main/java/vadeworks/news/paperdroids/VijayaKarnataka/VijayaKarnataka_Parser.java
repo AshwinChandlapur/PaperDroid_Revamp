@@ -1,15 +1,11 @@
 package vadeworks.news.paperdroids.VijayaKarnataka;
 
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import android.text.SpannableString;
 import android.util.Log;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.News;

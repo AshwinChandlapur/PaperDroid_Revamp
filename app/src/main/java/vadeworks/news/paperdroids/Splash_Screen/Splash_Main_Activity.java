@@ -1,17 +1,11 @@
 package vadeworks.news.paperdroids.Splash_Screen;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Handler;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -20,12 +14,7 @@ import android.widget.LinearLayout;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.R;
 
 public class Splash_Main_Activity extends AppCompatActivity {
@@ -57,7 +46,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
             // Implement this feature without material design
         }
 
-        l1 =  (LinearLayout) findViewById(R.id.l1);
+        l1 = findViewById(R.id.l1);
         uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
         downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
         l1.setAnimation(uptodown);

@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/newsHeadlines"
         android:layout_gravity="center"
-        android:gravity="left"
+        android:gravity="start"
         android:padding="10dp"
         android:layout_margin="2dp"/>
 

@@ -16,14 +16,9 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
@@ -32,7 +27,6 @@ import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
@@ -76,7 +70,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
 
 
-        FrameLayout intent_to_home = (FrameLayout)findViewById(R.id.nav_home);
+        FrameLayout intent_to_home = findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -88,7 +82,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_prajavani = (FrameLayout)findViewById(R.id.nav_prajavani);
+        FrameLayout intent_to_prajavani = findViewById(R.id.nav_prajavani);
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -99,7 +93,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_vijayavaani = (FrameLayout)findViewById(R.id.nav_vijayavani);
+        FrameLayout intent_to_vijayavaani = findViewById(R.id.nav_vijayavani);
         intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,7 +105,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         });
 
 
-        FrameLayout intent_to_vijayakarnataka = (FrameLayout)findViewById(R.id.nav_vijayakarnataka);
+        FrameLayout intent_to_vijayakarnataka = findViewById(R.id.nav_vijayakarnataka);
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -122,7 +116,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_udayavaani = (FrameLayout)findViewById(R.id.nav_udayavaani);
+        FrameLayout intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -133,7 +127,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_suvarna = (FrameLayout)findViewById(R.id.nav_suvarna);
+        FrameLayout intent_to_suvarna = findViewById(R.id.nav_suvarna);
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,7 +138,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         });
 
 
-        FrameLayout intent_to_esanje = (FrameLayout)findViewById(R.id.nav_esanje);
+        FrameLayout intent_to_esanje = findViewById(R.id.nav_esanje);
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,7 +149,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_allTerms = (FrameLayout)findViewById(R.id.nav_about);
+        FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,7 +166,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        toolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 
 
@@ -180,12 +174,12 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         adapter =  new ViewPagerAdapter_AN(getSupportFragmentManager(),Titles,Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
-        pager = (ViewPager) findViewById(R.id.pager);
+        pager = findViewById(R.id.pager);
         pager.setOffscreenPageLimit(2);
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
-        tabs = (SlidingTabLayout) findViewById(R.id.tabs);
+        tabs = findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
@@ -207,9 +201,9 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
     private void init_navigator(){
         // Navigation Drawer
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.main_activity_DrawerLayout);
+        mDrawerLayout = findViewById(R.id.main_activity_DrawerLayout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
-        mScrimInsetsFrameLayout = (ScrimInsetsFrameLayout) findViewById(R.id.main_activity_navigation_drawer_rootLayout);
+        mScrimInsetsFrameLayout = findViewById(R.id.main_activity_navigation_drawer_rootLayout);
 
         mActionBarDrawerToggle = new ActionBarDrawerToggle
                 (
@@ -271,8 +265,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-            if((mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting())) return true;
-            else return false;
+            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
         } else
             return false;
     }

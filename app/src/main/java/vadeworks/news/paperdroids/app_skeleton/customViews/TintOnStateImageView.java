@@ -15,7 +15,7 @@ import vadeworks.paperdroid.R;
  *
  * @author Sotti https://plus.google.com/+PabloCostaTirado/about
  */
-public class TintOnStateImageView extends ImageView
+public class TintOnStateImageView extends android.support.v7.widget.AppCompatImageView
 {
     private ColorStateList mColorStateList;
 
