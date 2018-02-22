@@ -29,7 +29,7 @@
                 android:fitsSystemWindows="true"
                 android:scaleType="fitXY"
                 android:id="@+id/imageView"
-                android:src="@drawable/main_screen_image"
+                android:src="@drawable/main_screen_image_one"
                 android:layout_gravity="center"
                 tools:ignore="ContentDescription" />
 
@@ -44,7 +44,7 @@
                 <ImageView
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:src="@drawable/logo_big"
+                    android:src="@drawable/logo_big_one"
                     android:layout_gravity="center|top"
                     tools:ignore="ContentDescription" />
 

@@ -47,17 +47,17 @@
                     android:gravity="center_vertical"
                     >
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
                     android:id="@+id/navigation_drawer_user_account_picture_profile"
-                    android:layout_width="@dimen/navigation_drawer_profile_image_size"
-                    android:layout_height="@dimen/navigation_drawer_profile_image_size"
-                    android:src="@drawable/logo_big"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:src="@drawable/logo_with_background"
                     android:layout_gravity="start|center_vertical"/>
 
 
                     <ImageView
                         android:layout_width="3dp"
-                        android:layout_height="100dp"
+                        android:layout_height="90dp"
                         android:layout_marginStart="7dp"
                         android:background="@color/background_white"
                         android:layout_gravity="start|center_vertical"
