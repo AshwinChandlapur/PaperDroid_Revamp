@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -226,7 +228,6 @@ public class Display_news extends AppCompatActivity {
 
     private void display_news(final News fullnews){
 
-
         headlines_textview.setText(fullnews.head);
         if(!fullnews.content.isEmpty()){
             content_textview.setText(fullnews.content);
@@ -256,6 +257,7 @@ public class Display_news extends AppCompatActivity {
                 LinearLayout linearLayout = findViewById(R.id.forAds);
                 linearLayout.setVisibility(View.VISIBLE);
                 WebView webView = findViewById(R.id.webView);
+                webView.setWebViewClient(new WebViewClient());
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.loadUrl(fullnews.link);
 
