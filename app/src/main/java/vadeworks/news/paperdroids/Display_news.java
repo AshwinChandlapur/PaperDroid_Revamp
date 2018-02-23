@@ -1,11 +1,17 @@
 package vadeworks.news.paperdroids;
 
+import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -26,6 +32,10 @@ import android.widget.Toast;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.util.Date;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
@@ -231,10 +241,75 @@ public class Display_news extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"dfghjk",Toast.LENGTH_LONG).show();
+                if(Build.VERSION.SDK_INT>22){
+                    requestPermissions(new String[] {"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
+                }
+                getScreenShot();
+//                Toast.makeText(getApplicationContext(),"dfghjk",Toast.LENGTH_LONG).show();
             }
         });
     }
+
+
+    private void getScreenShot() {
+        Date now = new Date();
+        android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
+
+        try {
+            // image naming and path  to include sd card  appending name you choose for file
+            String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
+
+            // create bitmap screen capture
+            // View v1 = getActivity().getWindow().getDecorView().getRootView();
+            imageView.setDrawingCacheEnabled(true);
+            Bitmap bitmap = Bitmap.createBitmap(imageView.getDrawingCache());
+            imageView.setDrawingCacheEnabled(false);
+
+            File imageFile = new File(mPath);
+
+            FileOutputStream outputStream = new FileOutputStream(imageFile);
+            int quality = 10;
+            bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
+            outputStream.flush();
+            outputStream.close();
+            shareImage(imageFile);
+            // openScreenshot(imageFile);
+        } catch (Throwable e) {
+            // Several error may come out with file handling or OOM
+            e.printStackTrace();
+        }
+    }
+
+
+    private void shareImage(File file){
+        Uri uri = Uri.fromFile(file);
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_SEND);
+        intent.setType("image/*");
+
+        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+        intent.putExtra(Intent.EXTRA_STREAM, uri);
+        try {
+            startActivity(Intent.createChooser(intent, "Share Screenshot"));
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(this, "No App Available", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                if (!(grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED )) {
+                    Toast.makeText(this, "Permission denied!.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+
 
     private void display_news(final News fullnews){
 
