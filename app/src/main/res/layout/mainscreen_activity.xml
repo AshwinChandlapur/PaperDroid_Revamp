@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:clickable="true"
+    android:background="@color/background_white"
     tools:context="vadeworks.news.paperdroids.MainScreen.MainScreen_Activity">
 
     <android.support.design.widget.AppBarLayout
@@ -87,11 +88,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/background_white">
-
-
-
-
-
 
             <LinearLayout
                 android:layout_width="match_parent"
