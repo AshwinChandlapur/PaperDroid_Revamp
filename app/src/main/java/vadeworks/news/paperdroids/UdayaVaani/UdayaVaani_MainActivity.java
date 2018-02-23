@@ -55,7 +55,6 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.udayavaani_mainactivity);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
 
         init_slider();

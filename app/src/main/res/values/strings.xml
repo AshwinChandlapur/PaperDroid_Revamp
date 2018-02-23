@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">News Duniya</string>
 
-    <string name="toolbar_title_home">!</string>
+    <string name="toolbar_title_home">Home</string>
     <string name="action_settings">Settings</string>
     <string name="toolbar_title_home_ab_en">About</string>
 
@@ -19,6 +19,7 @@
     <string name="toolbar_title_home_pj_en">Prajavani</string>
     <string name="toolbar_title_home_vv_en">Vijayavani</string>
     <string name="toolbar_title_home_es_en">EeSanje</string>
+    <string name="toolbar_title_home_top10">Top_Ten</string>
 
 
     <string name="headlines_vk_en">Headlines_VK</string>
