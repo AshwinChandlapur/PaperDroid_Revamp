@@ -34,6 +34,8 @@ public class Vertical_News extends AppCompatActivity {
     private TypingIndicatorView typingView;
     private View parentLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
+    private String card_clicked;
+    private Bundle params = new Bundle();
 
 
     @Override
@@ -43,6 +45,8 @@ public class Vertical_News extends AppCompatActivity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         parentLayout = findViewById(android.R.id.content);
         typingView = findViewById(R.id.loadera);
+        card_clicked = getResources().getString(R.string.toolbar_title_home_top10);
+        mFirebaseAnalytics.logEvent(card_clicked,params);
 
 
 
