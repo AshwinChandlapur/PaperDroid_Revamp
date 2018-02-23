@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -58,7 +59,7 @@ public class Display_news extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String news_display_previous_activity;
     private final Bundle params = new Bundle();
-
+    private FloatingActionButton share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -216,12 +217,21 @@ public class Display_news extends AppCompatActivity {
         link_textview = findViewById(R.id.link);
         imageView = findViewById(R.id.imageView);
         typingView = findViewById(R.id.loader);
+        share = findViewById(R.id.share);
         toola = findViewById(R.id.toola);
         toola.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toola.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(),"dfghjk",Toast.LENGTH_LONG).show();
             }
         });
     }
