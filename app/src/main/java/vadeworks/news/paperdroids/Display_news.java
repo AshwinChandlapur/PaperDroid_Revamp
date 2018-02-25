@@ -63,7 +63,7 @@ public class Display_news extends AppCompatActivity {
     private String imgurl;
     private String tag;
     private News fullnews;
-    private final String notif= "";
+    private final String notif = "";
     private android.support.v7.widget.Toolbar toola;
     private TypingIndicatorView typingView;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -78,26 +78,26 @@ public class Display_news extends AppCompatActivity {
         views_init();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        if(!isConnected(this)) {
+        if (!isConnected(this)) {
             buildDialog_noInternet(this).show();
 
         } else {
-            Log.d("Internet Working","Internet Working");
+            Log.d("Internet Working", "Internet Working");
         }
 
 
         tag = getIntent().getStringExtra("tag");
-        news_display_previous_activity = "DisplayNews_Previous_Is_"+tag;
-        mFirebaseAnalytics.logEvent(news_display_previous_activity,params);
+        news_display_previous_activity = "DisplayNews_Previous_Is_" + tag;
+        mFirebaseAnalytics.logEvent(news_display_previous_activity, params);
 
 
-        switch (tag){
+        switch (tag) {
             case "asianet":
-                Log.d("Inside Asianet Swtich","inside");
-                head= getIntent().getStringExtra("singleHead");
+                Log.d("Inside Asianet Swtich", "inside");
+                head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
-                imgurl= getIntent().getStringExtra("singleImg");
-                fullnews = new News(head,link,imgurl);
+                imgurl = getIntent().getStringExtra("singleImg");
+                fullnews = new News(head, link, imgurl);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -115,10 +115,10 @@ public class Display_news extends AppCompatActivity {
                 break;
 
             case "vijayakarnataka":
-                Log.d("Inside Vijaya Swtich","inside");
-                head= getIntent().getStringExtra("singleHead");
+                Log.d("Inside Vijaya Swtich", "inside");
+                head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
-                fullnews = new News(head,link);
+                fullnews = new News(head, link);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -135,10 +135,10 @@ public class Display_news extends AppCompatActivity {
                 break;
 
             case "udayavaani":
-                Log.d("Inside Udaya Swtich","inside");
-                head= getIntent().getStringExtra("singleHead");
+                Log.d("Inside Udaya Swtich", "inside");
+                head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
-                fullnews = new News(head,link);
+                fullnews = new News(head, link);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -155,11 +155,11 @@ public class Display_news extends AppCompatActivity {
                 break;
 
             case "vijayavani":
-                Log.d("Inside vv Swtich","inside");
-                head= getIntent().getStringExtra("singleHead");
+                Log.d("Inside vv Swtich", "inside");
+                head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
-                imgurl= getIntent().getStringExtra("singleImg");
-                fullnews = new News(head,link, imgurl);
+                imgurl = getIntent().getStringExtra("singleImg");
+                fullnews = new News(head, link, imgurl);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -176,11 +176,11 @@ public class Display_news extends AppCompatActivity {
                 break;
 
             case "prajavani":
-                Log.d("Inside pv Swtich","inside");
-                head= getIntent().getStringExtra("singleHead");
+                Log.d("Inside pv Swtich", "inside");
+                head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
-                imgurl= getIntent().getStringExtra("singleImg");
-                fullnews = new News(head,link, imgurl);
+                imgurl = getIntent().getStringExtra("singleImg");
+                fullnews = new News(head, link, imgurl);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -197,11 +197,11 @@ public class Display_news extends AppCompatActivity {
                 break;
 
             case "esanje":
-                Log.d("Inside es Swtich","inside");
-                head= getIntent().getStringExtra("singleHead");
+                Log.d("Inside es Swtich", "inside");
+                head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
-                imgurl= getIntent().getStringExtra("singleImg");
-                fullnews = new News(head,link, imgurl);
+                imgurl = getIntent().getStringExtra("singleImg");
+                fullnews = new News(head, link, imgurl);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -220,7 +220,7 @@ public class Display_news extends AppCompatActivity {
 
     }
 
-    private void views_init(){
+    private void views_init() {
 
         headlines_textview = findViewById(R.id.headline);
         content_textview = findViewById(R.id.content);
@@ -241,11 +241,10 @@ public class Display_news extends AppCompatActivity {
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(Build.VERSION.SDK_INT>22){
-                    requestPermissions(new String[] {"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
+                if (Build.VERSION.SDK_INT > 22) {
+                    requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
                 }
                 getScreenShot();
-//                Toast.makeText(getApplicationContext(),"dfghjk",Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -258,12 +257,13 @@ public class Display_news extends AppCompatActivity {
         try {
             // image naming and path  to include sd card  appending name you choose for file
             String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
-
+            String share_headline = head;
             // create bitmap screen capture
             // View v1 = getActivity().getWindow().getDecorView().getRootView();
             imageView.setDrawingCacheEnabled(true);
             Bitmap bitmap = Bitmap.createBitmap(imageView.getDrawingCache());
             imageView.setDrawingCacheEnabled(false);
+
 
             File imageFile = new File(mPath);
 
@@ -272,7 +272,7 @@ public class Display_news extends AppCompatActivity {
             bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
             outputStream.flush();
             outputStream.close();
-            shareImage(imageFile);
+            shareImage(imageFile, head);
             // openScreenshot(imageFile);
         } catch (Throwable e) {
             // Several error may come out with file handling or OOM
@@ -281,14 +281,14 @@ public class Display_news extends AppCompatActivity {
     }
 
 
-    private void shareImage(File file){
+    private void shareImage(File file, String head) {
         Uri uri = Uri.fromFile(file);
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_SEND);
         intent.setType("image/*");
-
-        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, "");
-        intent.putExtra(android.content.Intent.EXTRA_TEXT, "");
+        final String appPackageName = getPackageName();
+//        intent.putExtra(android.content.Intent.EXTRA_SUBJECT, head);
+        intent.putExtra(android.content.Intent.EXTRA_TEXT, head + "\n\nDownload News Duniya - Karnataka's Best Newspaper App\n" + "https://play.google.com/store/apps/details?id=" + appPackageName);
         intent.putExtra(Intent.EXTRA_STREAM, uri);
         try {
             startActivity(Intent.createChooser(intent, "Share Screenshot"));
@@ -303,7 +303,7 @@ public class Display_news extends AppCompatActivity {
         switch (requestCode) {
             case 1: {
                 if (!(grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED )) {
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
                     Toast.makeText(this, "Permission denied!.", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -311,25 +311,24 @@ public class Display_news extends AppCompatActivity {
     }
 
 
-    private void display_news(final News fullnews){
+    private void display_news(final News fullnews) {
 
         headlines_textview.setText(fullnews.head);
-        if(!fullnews.content.isEmpty()){
+        if (!fullnews.content.isEmpty()) {
             content_textview.setText(fullnews.content);
-        }else{
+        } else {
 
-            Toast.makeText(getApplicationContext(),"Could'nt Fetch the Content.",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Could'nt Fetch the Content.", Toast.LENGTH_LONG).show();
         }
 
-        if(!fullnews.imgurl.isEmpty())
-        {
+        if (!fullnews.imgurl.isEmpty()) {
             Picasso.with(getApplicationContext())
                     .load(fullnews.imgurl)
                     .placeholder(R.drawable.image3)
                     .error(R.drawable.image3)
                     .into(imageView);
-        }else{
-            Toast.makeText(getApplicationContext(),"Could'nt Fetch the Image.",Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Could'nt Fetch the Image.", Toast.LENGTH_LONG).show();
         }
 
 
@@ -357,12 +356,13 @@ public class Display_news extends AppCompatActivity {
         onBackPressed();
         return true;
     }
+
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if(keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent;
-            if (notif.equals("notif")){
-                switch (tag){
+            if (notif.equals("notif")) {
+                switch (tag) {
                     case "prajavani":
                         intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
                         startActivity(intent);
@@ -392,8 +392,7 @@ public class Display_news extends AppCompatActivity {
                         startActivity(intent);
                 }
 
-            }
-            else {
+            } else {
                 super.onBackPressed();
             }
 
@@ -407,7 +406,7 @@ public class Display_news extends AppCompatActivity {
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
 
-        if (netinfo != null &&  netinfo.isConnectedOrConnecting()) {
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
@@ -436,7 +435,7 @@ public class Display_news extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
+                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
                 startActivity(intent);
             }
         });
@@ -444,26 +443,6 @@ public class Display_news extends AppCompatActivity {
 
         builder.setView(view);
         return builder;
-    }
-
-
-    public AlertDialog.Builder buildDialog_failNews(Context c)
-    {
-        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        LayoutInflater factory = LayoutInflater.from(c);
-        final View view = factory.inflate(R.layout.news_fail, null);
-        Button returnBack = view.findViewById(R.id.returnBack);
-        returnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-        builder.setView(view);
-        return builder;
-
-
     }
 
 }

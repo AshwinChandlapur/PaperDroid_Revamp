@@ -6,7 +6,6 @@ import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.util.AttributeSet;
 
-
 import vadeworks.paperdroid.R;
 
 
@@ -15,23 +14,19 @@ import vadeworks.paperdroid.R;
  *
  * @author Sotti https://plus.google.com/+PabloCostaTirado/about
  */
-public class TintOnStateImageView extends android.support.v7.widget.AppCompatImageView
-{
+public class TintOnStateImageView extends android.support.v7.widget.AppCompatImageView {
     private ColorStateList mColorStateList;
 
-    public TintOnStateImageView(Context context)
-    {
+    public TintOnStateImageView(Context context) {
         super(context);
     }
 
-    public TintOnStateImageView(Context context, AttributeSet attrs)
-    {
+    public TintOnStateImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         initialise(context, attrs, 0);
     }
 
-    public TintOnStateImageView(Context context, AttributeSet attrs, int defStyleAttr)
-    {
+    public TintOnStateImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initialise(context, attrs, defStyleAttr);
     }
@@ -39,24 +34,21 @@ public class TintOnStateImageView extends android.support.v7.widget.AppCompatIma
     /**
      * Create, bind and set up the resources
      *
-     * @param context is the context to get the resources from
+     * @param context      is the context to get the resources from
      * @param attributeSet is the attributeSet
-     * @param defStyle is the style
+     * @param defStyle     is the style
      */
-    private void initialise(Context context, AttributeSet attributeSet, int defStyle)
-    {
+    private void initialise(Context context, AttributeSet attributeSet, int defStyle) {
         TypedArray a = context.obtainStyledAttributes(attributeSet, R.styleable.TintOnStateImageView, defStyle, 0);
         mColorStateList = a.getColorStateList(R.styleable.TintOnStateImageView_colorStateList);
         a.recycle();
     }
 
     @Override
-    protected void drawableStateChanged()
-    {
+    protected void drawableStateChanged() {
         super.drawableStateChanged();
 
-        if (mColorStateList != null && mColorStateList.isStateful())
-        {
+        if (mColorStateList != null && mColorStateList.isStateful()) {
             updateTintColor();
         }
     }
@@ -64,8 +56,7 @@ public class TintOnStateImageView extends android.support.v7.widget.AppCompatIma
     /**
      * Updates the color of the image
      */
-    private void updateTintColor()
-    {
+    private void updateTintColor() {
         int color = mColorStateList.getColorForState(getDrawableState(),
                 getResources().getColor(R.color.nav_drawer_item_icon_normal));
 

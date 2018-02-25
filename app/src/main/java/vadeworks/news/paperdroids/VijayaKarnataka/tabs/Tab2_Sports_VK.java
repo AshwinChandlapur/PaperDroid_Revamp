@@ -1,4 +1,5 @@
 package vadeworks.news.paperdroids.VijayaKarnataka.tabs;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,19 +17,19 @@ public class Tab2_Sports_VK extends Fragment {
     private View view;
     private final String tag = "sports";
 
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.vijayakarnataka_common_tab,container,false);
+        view = inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
         init(view);
 
 
         ThreadStarter_VK threadStarter = new ThreadStarter_VK();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
         return view;
     }
 
-    private void init(View v){
+    private void init(View v) {
         context = getActivity().getApplicationContext();
     }
 

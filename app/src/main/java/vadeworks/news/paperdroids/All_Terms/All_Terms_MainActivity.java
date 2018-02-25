@@ -1,11 +1,11 @@
 package vadeworks.news.paperdroids.All_Terms;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
 import android.view.View;
@@ -29,14 +29,16 @@ import vadeworks.paperdroid.R;
 
 public class All_Terms_MainActivity extends AppCompatActivity {
 
+    private final CharSequence[] Titles = {"Feedback", "Privacy Policy", "Terms", "Disclaimer"};
+    private final int Numboftabs = 4;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_AT adapter;
     private SlidingTabLayout tabs;
-    private final CharSequence[] Titles={"Feedback","Privacy Policy","Terms","Disclaimer"};
-    private final int Numboftabs =4;
     private FirebaseAnalytics mFirebaseAnalytics;
-
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +48,6 @@ public class All_Terms_MainActivity extends AppCompatActivity {
         init_slider();
 
         init_navigator();
-
 
 
         FrameLayout intent_to_home = findViewById(R.id.nav_home);
@@ -129,10 +130,7 @@ public class All_Terms_MainActivity extends AppCompatActivity {
         });
 
 
-
-
     }
-
 
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
@@ -142,7 +140,7 @@ public class All_Terms_MainActivity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter_AT(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter = new ViewPagerAdapter_AT(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
@@ -166,11 +164,7 @@ public class All_Terms_MainActivity extends AppCompatActivity {
 
     }
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
-
-    private void init_navigator(){
+    private void init_navigator() {
         // Navigation Drawer
         mDrawerLayout = findViewById(R.id.main_activity_DrawerLayout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
@@ -183,11 +177,9 @@ public class All_Terms_MainActivity extends AppCompatActivity {
                         toolbar,
                         R.string.navigation_drawer_opened,
                         R.string.navigation_drawer_closed
-                )
-        {
+                ) {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset)
-            {
+            public void onDrawerSlide(View drawerView, float slideOffset) {
                 // Disables the burger/arrow animation by default
                 super.onDrawerSlide(drawerView, 0);
             }
@@ -195,8 +187,7 @@ public class All_Terms_MainActivity extends AppCompatActivity {
 
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
 
-        if (getSupportActionBar() != null)
-        {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -223,9 +214,6 @@ public class All_Terms_MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
-
 
 
 }

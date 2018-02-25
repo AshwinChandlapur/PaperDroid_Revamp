@@ -27,20 +27,15 @@ import vadeworks.paperdroid.R;
 
 class ThreadStarter_AN {
 
+    private final AsiaNet_Parser parser = new AsiaNet_Parser();
     private ArrayList<News> news = new ArrayList<>();
     private ListView listView;
     private Context mContext;
     private ViewHolder viewHolder;
     private TypingIndicatorView typingView;
     private String mCategory;
-    private final AsiaNet_Parser parser = new AsiaNet_Parser();
-    static class ViewHolder {
-        static TextView news_headline;
-        static ImageView news_image;
-    }
 
-
-    public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category ){
+    public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category) {
 
         listView = view.findViewById(R.id.an_news);
         typingView = view.findViewById(R.id.loader);
@@ -52,7 +47,7 @@ class ThreadStarter_AN {
             @Override
             public void run() {
 
-                switch (mCategory){
+                switch (mCategory) {
                     case "headlines":
                         news = parser.parseHeadLines();
                         break;
@@ -76,7 +71,7 @@ class ThreadStarter_AN {
                 }
 
 
-                if(fragmentActivity==null){
+                if (fragmentActivity == null) {
                     return;
                 }
                 fragmentActivity.runOnUiThread(new Runnable() {
@@ -86,7 +81,7 @@ class ThreadStarter_AN {
                             @Override
                             public View getMyView(int i, View view, ViewGroup parent, News news) {
                                 if ((view == null) || (view.getTag() == null)) {
-                                    view =fragmentActivity.getLayoutInflater().inflate(R.layout.listview_custom_layout, null);
+                                    view = fragmentActivity.getLayoutInflater().inflate(R.layout.listview_custom_layout, null);
                                     viewHolder = new ViewHolder();
                                 } else {
                                     viewHolder = (ViewHolder) view.getTag();
@@ -124,6 +119,11 @@ class ThreadStarter_AN {
             }
         });
 
+    }
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
     }
 
 }

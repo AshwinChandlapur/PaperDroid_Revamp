@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import vadeworks.paperdroid.R;
 
 /**
@@ -15,7 +16,7 @@ import vadeworks.paperdroid.R;
 public class Tab2 extends Fragment {
 
 
-    private final String privacy="Privacy Policy\n" +
+    private final String privacy = "Privacy Policy\n" +
             "\n" +
             "VadeWorks built the News Duniya app as an Ad Supported app. This SERVICE is provided by VadeWorks at no cost and is intended for use as is.\n" +
             "\n" +
@@ -77,20 +78,17 @@ public class Tab2 extends Fragment {
             "Contact Us\n" +
             "\n" +
             "If you have any questions or suggestions about our Privacy Policy, do not hesitate to contact us.\n";
-
-
+    private View view;
 
     public Tab2() {
         // Required empty public constructor
     }
 
-    private View view;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view= inflater.inflate(R.layout.all_terms, container, false);
+        view = inflater.inflate(R.layout.all_terms, container, false);
 
         TextView terms = view.findViewById(R.id.allterms);
         terms.setText(privacy);

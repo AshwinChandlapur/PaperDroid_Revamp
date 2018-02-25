@@ -1,38 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:gravity="center">
 
 
     <TextView
+        android:id="@+id/head"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="28sp"
         android:gravity="center"
-        android:id="@+id/head"
-        android:text="@string/app_name"/>
+        android:text="@string/app_name"
+        android:textSize="28sp" />
 
     <TextView
+        android:id="@+id/tagline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:id="@+id/tagline"
         android:layout_below="@id/head"
         android:gravity="center"
-        android:text="@string/tagline"/>
-
+        android:text="@string/tagline"
+        android:textSize="15sp" />
 
 
     <TextView
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tagline"
-        android:id="@+id/content"
         android:layout_margin="20dp"
-        android:text="Thank You for choosing News Duniya. Hope you are enjoying the redefined way of news reading. We are constantly trying to improve the content and quality of the app. We would love to hear your suggestions and work on implementing them. Also, show us support by rating us on Playstore. It helps us reach out to more audience."
-        android:gravity="center"/>
+        android:gravity="center"
+        android:text="Thank You for choosing News Duniya. Hope you are enjoying the redefined way of news reading. We are constantly trying to improve the content and quality of the app. We would love to hear your suggestions and work on implementing them. Also, show us support by rating us on Playstore. It helps us reach out to more audience." />
 
 
     <LinearLayout
@@ -44,26 +43,26 @@
 
         <Button
             android:id="@+id/suggestions"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/buttonstyle"
             android:text="Suggestions"
-            style="?android:attr/buttonBarButtonStyle"
-            android:textColor="@color/text_black_100"/>
+            android:textColor="@color/text_black_100" />
 
 
         <Button
             android:id="@+id/rateus"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="140dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="10dp"
-            android:textColor="@color/text_black_100"
             android:background="@drawable/buttonstyle"
-            style="?android:attr/buttonBarButtonStyle"
-            android:text="Give us a 5" />
+            android:text="Give us a 5"
+            android:textColor="@color/text_black_100" />
 
 
     </LinearLayout>

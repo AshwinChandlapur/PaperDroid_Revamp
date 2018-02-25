@@ -19,8 +19,8 @@ import vadeworks.news.paperdroids.Paper;
 public class Vijayavaani_Parser implements Paper {
 
     private final String vijayavani_base_url = "http://vijayavani.net/";
-    String category_url= "";
-    public final String politics= "http://vijayavani.net/category/politics/";
+    String category_url = "";
+    public final String politics = "http://vijayavani.net/category/politics/";
     public final String state = "http://vijayavani.net/category/state/";
     public final String national = "http://vijayavani.net/category/national/";
     public final String sports = "http://vijayavani.net/category/sports/";
@@ -59,10 +59,10 @@ public class Vijayavaani_Parser implements Paper {
                 headlinesList.add(new News(head, link, imgurl));
             }
 
-    //        System.out.println(headlinesList.size());
-    //        headlinesList.get(7).showNews();
-        }catch (Exception e){
-            Log.e("exception in vv parser" , e.toString());
+            //        System.out.println(headlinesList.size());
+            //        headlinesList.get(7).showNews();
+        } catch (Exception e) {
+            Log.e("exception in vv parser", e.toString());
         }
 
         return headlinesList;
@@ -71,22 +71,22 @@ public class Vijayavaani_Parser implements Paper {
     @Override
     public News parseNewsPost(News news) {
         try {
-            Document d=Jsoup.connect(news.link).timeout(6000).get();
+            Document d = Jsoup.connect(news.link).timeout(6000).get();
 
             String imgurl = d.select("div.full.post-01-img").first().select("img").attr("src");
             Elements childs = d.select("div.full.post-01-content").first().select("p");
-            StringBuilder body= new StringBuilder();
+            StringBuilder body = new StringBuilder();
 
             for (Element element : childs) {
                 if (!element.text().isEmpty())
                     body.append(element.text()).append("\n\n");
             }
 
-            news.imgurl=imgurl;
-            news.content= body.toString();
+            news.imgurl = imgurl;
+            news.content = body.toString();
 //            System.out.println(body);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e("exception in vv post", e.toString());
         }
 
@@ -97,9 +97,9 @@ public class Vijayavaani_Parser implements Paper {
     public ArrayList<News> parseCategory(String category) {
         ArrayList<News> headlinesList = new ArrayList<>();
 
-        try{
+        try {
 
-            Document d=Jsoup.connect(category).timeout(6000).get();
+            Document d = Jsoup.connect(category).timeout(6000).get();
 
             d.select("div.full.inpage_cotent").first().select("header.page-header").first().remove();
             d.select("div.full.inpage_cotent").first().select("div.full.archnav").first().remove();
@@ -122,13 +122,13 @@ public class Vijayavaani_Parser implements Paper {
 //		System.out.println(contentlist.first());
 
             for (Element element : contentlist) {
-                imgurl= element.select("img").attr("src");
-                head=element.text();
-                link= element.select("a.black").attr("href");
+                imgurl = element.select("img").attr("src");
+                head = element.text();
+                link = element.select("a.black").attr("href");
                 headlinesList.add(new News(head, link, imgurl));
             }
 
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.e("exception in vv cat", e.toString());
         }
 

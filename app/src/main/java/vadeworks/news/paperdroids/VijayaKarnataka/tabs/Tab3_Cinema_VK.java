@@ -30,15 +30,15 @@ public class Tab3_Cinema_VK extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
+        view = inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
         init(view);
         ThreadStarter_VK threadStarter = new ThreadStarter_VK();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
 
         return view;
     }
 
-    private void init(View v){
+    private void init(View v) {
         context = getActivity().getApplicationContext();
     }
 

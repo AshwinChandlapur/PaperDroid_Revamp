@@ -18,12 +18,10 @@ import vadeworks.paperdroid.R;
  */
 public class Tab1 extends Fragment {
 
-    private View view;
-
-
     String feedback = "Please write in your suggestions to \n\n" +
-            "vadeworks@gmail.com\n\n"+
+            "vadeworks@gmail.com\n\n" +
             "We would like to hear from you. :)";
+    private View view;
 
 
     public Tab1() {
@@ -34,7 +32,7 @@ public class Tab1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.feedback, container, false);
+        view = inflater.inflate(R.layout.feedback, container, false);
 
 
         Button suggestions = view.findViewById(R.id.suggestions);
@@ -44,7 +42,7 @@ public class Tab1 extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("mailto:" + "vadeworks@gmail.com"));
-                intent.putExtra(Intent.EXTRA_SUBJECT, "Suggestions to improve "+ getString(R.string.app_name));
+                intent.putExtra(Intent.EXTRA_SUBJECT, "Suggestions to improve " + getString(R.string.app_name));
                 startActivity(intent);
             }
         });
@@ -61,7 +59,6 @@ public class Tab1 extends Fragment {
                 }
             }
         });
-
 
 
         return view;

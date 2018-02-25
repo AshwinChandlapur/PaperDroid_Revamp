@@ -10,8 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 
-
-
 public class ViewPagerAdapter_VV extends FragmentStatePagerAdapter {
 
     private final CharSequence[] Titles; // This will Store the Titles of the Tabs which are Going to be passed when ViewPagerAdapter_AN is created
@@ -41,14 +39,13 @@ public class ViewPagerAdapter_VV extends FragmentStatePagerAdapter {
         } else if (position == 2) {
             Tab3_National_VV tab3 = new Tab3_National_VV();
             return tab3;
-        } else if(position == 3){
+        } else if (position == 3) {
             Tab4_Sports_VV tab4 = new Tab4_Sports_VV();
             return tab4;
-        } else if(position ==4)
-        {
+        } else if (position == 4) {
             Tab5_International_VV tab5 = new Tab5_International_VV();
             return tab5;
-        }else{
+        } else {
             Tab6_Politics_VV tab6 = new Tab6_Politics_VV();
             return tab6;
         }

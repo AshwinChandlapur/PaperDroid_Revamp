@@ -5,11 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -17,7 +17,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
-
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.udevel.widgetlab.TypingIndicatorView;
@@ -46,16 +45,14 @@ public class Vertical_News extends AppCompatActivity {
         parentLayout = findViewById(android.R.id.content);
         typingView = findViewById(R.id.loadera);
         card_clicked = getResources().getString(R.string.toolbar_title_home_top10);
-        mFirebaseAnalytics.logEvent(card_clicked,params);
+        mFirebaseAnalytics.logEvent(card_clicked, params);
 
 
-
-        if(!isConnected(this)) {
+        if (!isConnected(this)) {
             buildDialog(this).show();
 
-        }
-        else {
-            Log.d("Internet Working","Internet Working");
+        } else {
+            Log.d("Internet Working", "Internet Working");
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 
@@ -65,7 +62,7 @@ public class Vertical_News extends AppCompatActivity {
             public void run() {
                 TopNews_Parser parser = new TopNews_Parser();
                 news = parser.parseHeadLines();
-                Log.d("Verticle News Size is","Vertical News size"+news.size());
+                Log.d("Verticle News Size is", "Vertical News size" + news.size());
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -73,7 +70,7 @@ public class Vertical_News extends AppCompatActivity {
 
                         Snackbar snack = Snackbar.make(parentLayout, "Swipe up for Top 10", Snackbar.LENGTH_LONG);
                         View view = snack.getView();
-                        FrameLayout.LayoutParams params =(FrameLayout.LayoutParams)view.getLayoutParams();
+                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
                         params.gravity = Gravity.TOP;
                         view.setLayoutParams(params);
                         snack.show();
@@ -88,14 +85,14 @@ public class Vertical_News extends AppCompatActivity {
 
     }
 
-    private void initSwipePager(){
+    private void initSwipePager() {
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        verticalViewPager.setAdapter(new VerticlePagerAdapter(this,news));
+        verticalViewPager.setAdapter(new VerticlePagerAdapter(this, news));
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if(keyCode == KeyEvent.KEYCODE_BACK){
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(Vertical_News.this, MainScreen_Activity.class);
             startActivity(intent);
         }
@@ -103,13 +100,12 @@ public class Vertical_News extends AppCompatActivity {
     }
 
 
-
     private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
 
-        if (netinfo != null &&  netinfo.isConnectedOrConnecting()) {
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
@@ -137,7 +133,7 @@ public class Vertical_News extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
+                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
                 startActivity(intent);
             }
         });
@@ -146,10 +142,6 @@ public class Vertical_News extends AppCompatActivity {
         builder.setView(view);
         return builder;
     }
-
-
-
-
 
 
 }

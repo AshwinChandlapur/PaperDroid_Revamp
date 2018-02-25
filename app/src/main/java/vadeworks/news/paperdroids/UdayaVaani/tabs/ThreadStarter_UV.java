@@ -33,14 +33,16 @@ class ThreadStarter_UV {
     private ViewHolder viewHolder;
     private TypingIndicatorView typingView;
     private String mCategory;
+
     static class ViewHolder {
         static TextView news_headline;
         static ImageView news_image;
     }
+
     private final Udayavaani_Parser parser = new Udayavaani_Parser();
 
 
-    public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category ){
+    public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category) {
 
         listView = view.findViewById(R.id.uv_news);
         typingView = view.findViewById(R.id.loader);
@@ -52,7 +54,7 @@ class ThreadStarter_UV {
             @Override
             public void run() {
 
-                switch (mCategory){
+                switch (mCategory) {
                     case "headlines":
                         news = parser.parseHeadLines();
                         break;
@@ -77,7 +79,7 @@ class ThreadStarter_UV {
                 }
 
 
-                if(fragmentActivity==null){
+                if (fragmentActivity == null) {
                     return;
                 }
                 fragmentActivity.runOnUiThread(new Runnable() {
@@ -87,7 +89,7 @@ class ThreadStarter_UV {
                             @Override
                             public View getMyView(int i, View view, ViewGroup parent, News news) {
                                 if ((view == null) || (view.getTag() == null)) {
-                                    view =fragmentActivity.getLayoutInflater().inflate(R.layout.listview_custom_layout, null);
+                                    view = fragmentActivity.getLayoutInflater().inflate(R.layout.listview_custom_layout, null);
                                     viewHolder = new ViewHolder();
                                 } else {
                                     viewHolder = (ViewHolder) view.getTag();

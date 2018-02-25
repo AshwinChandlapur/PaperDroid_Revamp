@@ -46,8 +46,8 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
     private ViewPager pager;
     private ViewPagerAdapter_VK adapter;
     private SlidingTabLayout tabs;
-    private final CharSequence[] Titles={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ಲೈಫ್\u200Cಸ್ಟೈಲ್","ತಂತ್ರಜ್ಞಾನ"};
-    private final int Numboftabs =5;
+    private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಕ್ರೀಡೆ", "ಸಿನಿಮಾ", "ಲೈಫ್\u200Cಸ್ಟೈಲ್", "ತಂತ್ರಜ್ಞಾನ"};
+    private final int Numboftabs = 5;
     private FirebaseAnalytics mFirebaseAnalytics;
     private final Bundle params = new Bundle();
     private String card_clicked;
@@ -64,12 +64,11 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         init_navigator();
 
 
-        if(!isConnected(this)) {
+        if (!isConnected(this)) {
             buildDialog(this).show();
 
-        }
-        else {
-            Log.d("Internet Working","Internet Working");
+        } else {
+            Log.d("Internet Working", "Internet Working");
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 
@@ -78,7 +77,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, MainScreen_Activity.class);
                 startActivity(intent);
 
@@ -90,7 +89,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -101,7 +100,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -114,7 +113,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
                 mDrawerLayout.closeDrawers();
-                Log.d("Clicked","Cliked in same category");
+                Log.d("Clicked", "Cliked in same category");
             }
         });
 
@@ -123,7 +122,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, UdayaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -134,7 +133,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_an_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, AsiaNet_MainActivity.class);
                 startActivity(intent);
             }
@@ -146,7 +145,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, Esanje_MainActivity.class);
                 startActivity(intent);
             }
@@ -158,7 +157,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_ab_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(VijayaKarnataka_MainActivity.this, All_Terms_MainActivity.class);
                 startActivity(intent);
             }
@@ -189,7 +188,6 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 //    }
 
 
-
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
@@ -198,7 +196,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter_VK(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter = new ViewPagerAdapter_VK(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
@@ -208,8 +206,6 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         // Assiging the Sliding Tab Layout View
         tabs = findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
-
-
 
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
@@ -222,7 +218,6 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         });
 
 
-
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
 
@@ -232,7 +227,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
-    private void init_navigator(){
+    private void init_navigator() {
         // Navigation Drawer
         mDrawerLayout = findViewById(R.id.main_activity_DrawerLayout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
@@ -245,11 +240,9 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
                         toolbar,
                         R.string.navigation_drawer_opened,
                         R.string.navigation_drawer_closed
-                )
-        {
+                ) {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset)
-            {
+            public void onDrawerSlide(View drawerView, float slideOffset) {
                 // Disables the burger/arrow animation by default
                 super.onDrawerSlide(drawerView, 0);
             }
@@ -257,8 +250,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
 
-        if (getSupportActionBar() != null)
-        {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -287,14 +279,12 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
 
-        if (netinfo != null &&  netinfo.isConnectedOrConnecting()) {
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
@@ -322,7 +312,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
+                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
                 startActivity(intent);
             }
         });

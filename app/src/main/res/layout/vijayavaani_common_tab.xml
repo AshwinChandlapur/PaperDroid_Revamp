@@ -3,17 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity">
 
 
     <com.udevel.widgetlab.TypingIndicatorView
+        android:id="@+id/loader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="4dp"
-        android:id="@+id/loader"
         app:animateFrequency="300"
         app:animationOrder="lastOneFirst"
         app:backgroundColor="#eaeaea"
@@ -26,12 +26,12 @@
         app:dotMaxCompressRatio="70%"
         app:dotSecondColor="#6ba4a4a4"
         app:dotSize="8dp"
-        app:showBackground="true"/>
+        app:showBackground="true" />
 
     <ListView
+        android:id="@+id/vv_news"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/vv_news"></ListView>
+        android:layout_height="wrap_content"></ListView>
 
 
 </FrameLayout>

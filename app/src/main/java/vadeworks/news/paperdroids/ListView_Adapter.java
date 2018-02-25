@@ -24,28 +24,29 @@ public abstract class ListView_Adapter<News> extends BaseAdapter {
         layoutInflater = LayoutInflater.from(context);
     }
 
-        @Override
-        public int getCount(){
-            if(news.size()==0)
-                return 0;
-            return news.size();
-        }
-
-        @Override
-        public Object getItem(int i){
-            return news.get(i);
-        }
-
-        @Override
-        public long getItemId(int i){
+    @Override
+    public int getCount() {
+        if (news.size() == 0)
             return 0;
-        }
-
-
-        public abstract View getMyView(int i, View view, ViewGroup viewGroup,News news);
-            @Override
-            public View getView(int i, View convertView, ViewGroup parent) {
-                return getMyView(i, convertView, parent,news.get(i));
-            }
-
+        return news.size();
     }
+
+    @Override
+    public Object getItem(int i) {
+        return news.get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
+
+
+    public abstract View getMyView(int i, View view, ViewGroup viewGroup, News news);
+
+    @Override
+    public View getView(int i, View convertView, ViewGroup parent) {
+        return getMyView(i, convertView, parent, news.get(i));
+    }
+
+}

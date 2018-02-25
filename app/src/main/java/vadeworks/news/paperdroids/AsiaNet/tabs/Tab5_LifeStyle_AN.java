@@ -16,9 +16,10 @@ import vadeworks.paperdroid.R;
 
 public class Tab5_LifeStyle_AN extends Fragment {
 
+    private final String tag = "lifestyle";
     private View view;
     private Context context;
-    private final String tag = "lifestyle";
+
     public Tab5_LifeStyle_AN() {
         // Required empty public constructor
     }
@@ -28,14 +29,14 @@ public class Tab5_LifeStyle_AN extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.asianet_common_tab, container, false);
+        view = inflater.inflate(R.layout.asianet_common_tab, container, false);
         init(view);
         ThreadStarter_AN threadStarter = new ThreadStarter_AN();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
         return view;
     }
 
-    private void init(View v){
+    private void init(View v) {
         context = getActivity().getApplicationContext();
     }
 

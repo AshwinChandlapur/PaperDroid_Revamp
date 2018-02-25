@@ -15,6 +15,7 @@ package vadeworks.news.paperdroids.app_skeleton.customViews;
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -32,10 +33,9 @@ import vadeworks.paperdroid.R;
  * (status and navigation bars, overlay action bars).
  */
 public class ScrimInsetsFrameLayout extends FrameLayout {
-    private Drawable mInsetForeground;
-
-    private Rect mInsets;
     private final Rect mTempRect = new Rect();
+    private Drawable mInsetForeground;
+    private Rect mInsets;
     private OnInsetsCallback mOnInsetsCallback;
 
     public ScrimInsetsFrameLayout(Context context) {

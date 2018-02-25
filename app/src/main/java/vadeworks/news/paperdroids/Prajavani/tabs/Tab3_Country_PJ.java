@@ -16,9 +16,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab3_Country_PJ extends Fragment {
 
+    private final String tag = "national";
     private Context context;
     private View view;
-    private final String tag = "national";
 
     public Tab3_Country_PJ() {
         // Required empty public constructor
@@ -32,13 +32,13 @@ public class Tab3_Country_PJ extends Fragment {
         view = inflater.inflate(R.layout.prajavaani_common_tab, container, false);
         init(view);
         ThreadStater_PJ threadStarter = new ThreadStater_PJ();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
 
 
         return view;
     }
 
-    private void init(View v){
+    private void init(View v) {
         context = getActivity().getApplicationContext();
     }
 

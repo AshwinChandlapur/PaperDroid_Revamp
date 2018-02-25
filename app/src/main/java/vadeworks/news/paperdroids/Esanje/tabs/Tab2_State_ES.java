@@ -15,9 +15,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab2_State_ES extends Fragment {
 
+    private final String tag = "state";
     private Context context;
     private View view;
-    private final String tag = "state";
 
 
     public Tab2_State_ES() {
@@ -31,16 +31,15 @@ public class Tab2_State_ES extends Fragment {
         view = inflater.inflate(R.layout.esanje_common_tab, container, false);
         init(view);
         ThreadStarter_ES threadStarter = new ThreadStarter_ES();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
 
         return view;
     }
 
 
-    private void init(View v){
+    private void init(View v) {
         context = getActivity().getApplicationContext();
     }
-
 
 
 }

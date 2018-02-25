@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
 public class Tab4_Lifestyle_VK extends Fragment {
 
 
+    private final String tag = "lifestyle";
     private Context context;
     private View view;
-    private final String tag = "lifestyle";
 
     public Tab4_Lifestyle_VK() {
         // Required empty public constructor
@@ -30,16 +30,16 @@ public class Tab4_Lifestyle_VK extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
+        view = inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
         init(view);
         ThreadStarter_VK threadStarter = new ThreadStarter_VK();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
-
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
 
 
         return view;
     }
-    private void init(View v){
+
+    private void init(View v) {
         context = getActivity().getApplicationContext();
     }
 

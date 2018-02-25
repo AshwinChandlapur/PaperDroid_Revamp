@@ -16,9 +16,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab1_Headlines_ES extends Fragment {
 
+    private final String tag = "headlines";
     private Context context;
     private View view;
-    private final String tag = "headlines";
 
     public Tab1_Headlines_ES() {
         // Required empty public constructor
@@ -32,16 +32,15 @@ public class Tab1_Headlines_ES extends Fragment {
         view = inflater.inflate(R.layout.eesanje_tab1_headlines, container, false);
         init(view);
         ThreadStarter_ES threadStarter = new ThreadStarter_ES();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
 
         return view;
     }
 
 
-    private void init(View v){
+    private void init(View v) {
         context = getActivity().getApplicationContext();
     }
-
 
 
 }

@@ -20,6 +20,7 @@ public class Tab2_state_VV extends Fragment {
     private Context context;
     private View view;
     private final String tag = "state";
+
     public Tab2_state_VV() {
         // Required empty public constructor
     }
@@ -29,15 +30,15 @@ public class Tab2_state_VV extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view= inflater.inflate(R.layout.vijayavaani_common_tab, container, false);
+        view = inflater.inflate(R.layout.vijayavaani_common_tab, container, false);
         init(view);
         ThreadStarter_VV threadStarter = new ThreadStarter_VV();
-        threadStarter.threadShuruKaro(getActivity(),context,view,tag);
+        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
 
         return view;
     }
 
-    private void init(View v){
+    private void init(View v) {
         context = getActivity().getApplicationContext();
 
     }

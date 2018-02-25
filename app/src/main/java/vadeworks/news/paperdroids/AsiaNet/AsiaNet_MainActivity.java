@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -38,17 +38,18 @@ import vadeworks.paperdroid.R;
 
 public class AsiaNet_MainActivity extends AppCompatActivity {
 
+    private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಕ್ರೀಡೆ", "ಸಿನಿಮಾ", "ತಂತ್ರಜ್ಞಾನ", "ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
+    private final int Numboftabs = 5;
+    private final Bundle params = new Bundle();
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_AN adapter;
     private SlidingTabLayout tabs;
-    private final CharSequence[] Titles={"ಮುಖ್ಯಾಂಶಗಳು","ಕ್ರೀಡೆ","ಸಿನಿಮಾ","ತಂತ್ರಜ್ಞಾನ","ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
-    private final int Numboftabs =5;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private final Bundle params = new Bundle();
     private String card_clicked;
-
-
+    private DrawerLayout mDrawerLayout;
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +62,12 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         init_navigator();
 
 
-        if(!isConnected(this)) {
-            buildDialog(this).show();}
-        else {
-            Log.d("Internet Working","Internet Working");
+        if (!isConnected(this)) {
+            buildDialog(this).show();
+        } else {
+            Log.d("Internet Working", "Internet Working");
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
-         }
-
-
+        }
 
 
         FrameLayout intent_to_home = findViewById(R.id.nav_home);
@@ -76,7 +75,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, MainScreen_Activity.class);
                 startActivity(intent);
 
@@ -88,7 +87,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -99,7 +98,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -111,7 +110,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaKarnataka_MainActivity.class);
                 startActivity(intent);
             }
@@ -122,7 +121,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, UdayaVaani_MainActivity.class);
                 startActivity(intent);
             }
@@ -134,7 +133,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
                 mDrawerLayout.closeDrawers();
-                Log.d("Clicked","Cliked in same category");
+                Log.d("Clicked", "Cliked in same category");
             }
         });
 
@@ -144,7 +143,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, Esanje_MainActivity.class);
                 startActivity(intent);
             }
@@ -155,7 +154,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_ab_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(AsiaNet_MainActivity.this, All_Terms_MainActivity.class);
                 startActivity(intent);
             }
@@ -172,7 +171,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter =  new ViewPagerAdapter_AN(getSupportFragmentManager(),Titles,Numboftabs);
+        adapter = new ViewPagerAdapter_AN(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
@@ -196,11 +195,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
     }
 
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
-
-    private void init_navigator(){
+    private void init_navigator() {
         // Navigation Drawer
         mDrawerLayout = findViewById(R.id.main_activity_DrawerLayout);
         mDrawerLayout.setStatusBarBackgroundColor(getResources().getColor(R.color.primaryDark));
@@ -213,11 +208,9 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
                         toolbar,
                         R.string.navigation_drawer_opened,
                         R.string.navigation_drawer_closed
-                )
-        {
+                ) {
             @Override
-            public void onDrawerSlide(View drawerView, float slideOffset)
-            {
+            public void onDrawerSlide(View drawerView, float slideOffset) {
                 // Disables the burger/arrow animation by default
                 super.onDrawerSlide(drawerView, 0);
             }
@@ -225,8 +218,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
         mDrawerLayout.setDrawerListener(mActionBarDrawerToggle);
 
-        if (getSupportActionBar() != null)
-        {
+        if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
             getSupportActionBar().setHomeButtonEnabled(true);
@@ -255,14 +247,12 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     }
 
 
-
-
     private boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netinfo = cm.getActiveNetworkInfo();
 
-        if (netinfo != null &&  netinfo.isConnectedOrConnecting()) {
+        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
             android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
             android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
@@ -290,7 +280,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings","com.android.settings.Settings$DataUsageSummaryActivity"));
+                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
                 startActivity(intent);
             }
         });

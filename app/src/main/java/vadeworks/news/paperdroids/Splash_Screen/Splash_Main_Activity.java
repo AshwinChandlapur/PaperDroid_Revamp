@@ -2,8 +2,8 @@ package vadeworks.news.paperdroids.Splash_Screen;
 
 import android.content.Intent;
 import android.os.Build;
-import android.os.Handler;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.animation.Animation;
@@ -15,15 +15,13 @@ import android.widget.LinearLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.paperdroid.R;
 
 public class Splash_Main_Activity extends AppCompatActivity {
 
 
+
     private LinearLayout l1;
-    Button read;
-    ImageView space;
     private Animation uptodown;
     private Animation downtoup;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -34,25 +32,21 @@ public class Splash_Main_Activity extends AppCompatActivity {
         setContentView(R.layout.splash_activity);
 
 
-
-
-
         if (Build.VERSION.SDK_INT >= 21) {
             // Call some material design APIs here
             getWindow().setNavigationBarColor(getResources().getColor(R.color.background_white)); // Navigation bar the soft bottom of some phones like nexus and some Samsung note series
             getWindow().setStatusBarColor(getResources().getColor(R.color.background_white)); //status bar or the time bar at the top
 
         } else {
-            Log.d("Lesser than 21 SDK","Lesser than 21 SDK");
-            Log.d("Lesser than 21 SDK","Lesser than 21 SDK");
+            Log.d("Lesser than 21 SDK", "Lesser than 21 SDK");
+            Log.d("Lesser than 21 SDK", "Lesser than 21 SDK");
             // Implement this feature without material design
         }
 
         l1 = findViewById(R.id.l1);
-        uptodown = AnimationUtils.loadAnimation(this,R.anim.uptodown);
-        downtoup = AnimationUtils.loadAnimation(this,R.anim.downtoup);
+        uptodown = AnimationUtils.loadAnimation(this, R.anim.uptodown);
+        downtoup = AnimationUtils.loadAnimation(this, R.anim.downtoup);
         l1.setAnimation(uptodown);
-
 
 
         new Handler().postDelayed(new Runnable() {

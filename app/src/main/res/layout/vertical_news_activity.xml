@@ -7,11 +7,11 @@
     tools:context="vadeworks.news.paperdroids.VerticalNews.Vertical_News">
 
     <com.udevel.widgetlab.TypingIndicatorView
+        android:id="@+id/loadera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:padding="4dp"
-        android:id="@+id/loadera"
         app:animateFrequency="300"
         app:animationOrder="circular"
         app:backgroundColor="#eaeaea"
@@ -24,11 +24,11 @@
         app:dotMaxCompressRatio="70%"
         app:dotSecondColor="#6ba4a4a4"
         app:dotSize="8dp"
-        app:showBackground="true"/>
+        app:showBackground="true" />
 
     <vadeworks.news.paperdroids.VerticalNews.VerticalViewPager
+        android:id="@+id/vPager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/vPager"></vadeworks.news.paperdroids.VerticalNews.VerticalViewPager>
+        android:layout_height="match_parent"></vadeworks.news.paperdroids.VerticalNews.VerticalViewPager>
 
 </FrameLayout>

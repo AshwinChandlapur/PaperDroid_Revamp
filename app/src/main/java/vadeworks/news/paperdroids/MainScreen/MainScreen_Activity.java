@@ -22,6 +22,7 @@ import vadeworks.paperdroid.R;
 public class MainScreen_Activity extends AppCompatActivity {
 
 
+    private final Bundle params = new Bundle();
     private CardView prajavani;
     private CardView vijayavani;
     private CardView vijayakarnataka;
@@ -30,10 +31,10 @@ public class MainScreen_Activity extends AppCompatActivity {
     private CardView esanje;
     private View parentLayout;
     private ImageView bottomImage;
-    private int click=0;
+    private int click = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private final Bundle params = new Bundle();
     private String card_clicked;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,22 +47,18 @@ public class MainScreen_Activity extends AppCompatActivity {
 
         prajavani = findViewById(R.id.prajavani);
         vijayavani = findViewById(R.id.vijayavani);
-        vijayakarnataka =findViewById(R.id.vijayakarnataka);
+        vijayakarnataka = findViewById(R.id.vijayakarnataka);
         udayavani = findViewById(R.id.udayavani);
         suvarna = findViewById(R.id.suvarna);
-        esanje =findViewById(R.id.esanje);
+        esanje = findViewById(R.id.esanje);
         bottomImage = findViewById(R.id.bottomimage);
-
-
-
-
 
 
         prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, PrajaVaani_MainActivity.class);
                 startActivity(i);
             }
@@ -71,7 +68,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, VijayaVaani_MainActivity.class);
                 startActivity(i);
             }
@@ -81,7 +78,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, VijayaKarnataka_MainActivity.class);
                 startActivity(i);
             }
@@ -91,7 +88,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, UdayaVaani_MainActivity.class);
                 startActivity(i);
             }
@@ -102,7 +99,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_an_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, AsiaNet_MainActivity.class);
                 startActivity(i);
             }
@@ -113,7 +110,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
-                mFirebaseAnalytics.logEvent(card_clicked,params);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, Esanje_MainActivity.class);
                 startActivity(i);
             }
@@ -123,20 +120,19 @@ public class MainScreen_Activity extends AppCompatActivity {
         bottomImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                click =click+1;
+                click = click + 1;
 
-                if(click==7){
+                if (click == 7) {
 
-                    Snackbar.make(parentLayout,"Sherlock's Guess: You must be a Developer :D",Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(parentLayout, "Sherlock's Guess: You must be a Developer :D", Snackbar.LENGTH_LONG).show();
                 }
             }
         });
 
 
-
     }
 
-    
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         Intent startMain = new Intent(Intent.ACTION_MAIN);
