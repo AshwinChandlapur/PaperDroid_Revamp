@@ -24,6 +24,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -70,6 +71,12 @@ public class Display_news extends AppCompatActivity {
     private String news_display_previous_activity;
     private final Bundle params = new Bundle();
     private FloatingActionButton share;
+
+
+
+    EditText MyInputText;
+    Button MyTranslateButton;
+    TextView MyOutputText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -247,6 +254,11 @@ public class Display_news extends AppCompatActivity {
                 getScreenShot();
             }
         });
+
+
+
+
+
     }
 
 

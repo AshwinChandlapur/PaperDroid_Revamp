@@ -16,6 +16,7 @@ import com.udevel.widgetlab.TypingIndicatorView;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Display_news;
+import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
@@ -113,11 +114,13 @@ class ThreadStater_PJ {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(fragmentActivity, Display_news.class);
-                i.putExtra("singleHead", news.get(position).head);
-                i.putExtra("singleLink", news.get(position).link);
-                i.putExtra("singleImg", news.get(position).imgurl);
+                Intent i = new Intent(fragmentActivity, Horizontal_Display_News.class);
+//                i.putExtra("singleHead", news.get(position).head);
+//                i.putExtra("singleLink", news.get(position).link);
+//                i.putExtra("singleImg", news.get(position).imgurl);
                 i.putExtra("tag", "prajavani");
+                i.putExtra("newsObject",news);
+                i.putExtra("position",position);
                 fragmentActivity.startActivity(i);
             }
         });

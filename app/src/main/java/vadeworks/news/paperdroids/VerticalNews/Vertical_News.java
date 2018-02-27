@@ -35,6 +35,7 @@ public class Vertical_News extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
     private Bundle params = new Bundle();
+    private String verticalLink;
 
 
     @Override
@@ -46,6 +47,7 @@ public class Vertical_News extends AppCompatActivity {
         typingView = findViewById(R.id.loadera);
         card_clicked = getResources().getString(R.string.toolbar_title_home_top10);
         mFirebaseAnalytics.logEvent(card_clicked, params);
+        verticalLink=  getIntent().getStringExtra("verticalLink");
 
 
         if (!isConnected(this)) {
@@ -60,8 +62,8 @@ public class Vertical_News extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                TopNews_Parser parser = new TopNews_Parser();
-                news = parser.parseHeadLines();
+                CuratedNews_Parser parser = new CuratedNews_Parser();
+                news = parser.parseTop10(verticalLink);
                 Log.d("Verticle News Size is", "Vertical News size" + news.size());
                 runOnUiThread(new Runnable() {
                     @Override

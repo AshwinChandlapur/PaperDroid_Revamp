@@ -15,6 +15,7 @@ import com.onesignal.OneSignal;
 import org.json.JSONObject;
 
 
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 
 /**
@@ -60,15 +61,15 @@ public class MainApplication extends Application {
             OSNotificationAction.ActionType actionType = result.action.type;
             JSONObject data = result.notification.payload.additionalData;
             Log.d("Incoming_Data", "Json Object Data" + data);
-            String tag, singleLink, singleHead, singleImg, promotionLink;
+            String tag, singleLink, singleHead, singleImg, promotionLink, verticalLink;
 
             if (data != null) {
-                tag = data.optString("tag", null);
+                tag = data.optString("tag", "");
                 singleHead = data.optString("singleHead", "No Headline");
-                singleLink = data.optString("singleLink", null);
+                singleLink = data.optString("singleLink", "");
                 singleImg = data.optString("singleImg", "No ImgUrl");
-
-                promotionLink = data.optString("promotionLink", null);
+                promotionLink = data.optString("promotionLink", "");
+                verticalLink = data.optString("verticalLink","");
                 Log.d("Incoming_Data", "All Values" + tag + singleHead + singleLink + singleImg);
 
 
@@ -85,12 +86,18 @@ public class MainApplication extends Application {
                     Intent i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(promotionLink));
                     i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
+                } else if (!(verticalLink.isEmpty()))
+                {
+                    Intent intent = new Intent(getApplicationContext(), Vertical_News.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("verticalLink", verticalLink);
+                    startActivity(intent);
                 }
 
-
-            } else {
+            }
+            else {
                 Log.d("Inside Else", "inside Else");
-                Intent intent = new Intent(getApplicationContext(), Vertical_News.class);
+                Intent intent = new Intent(getApplicationContext(), MainScreen_Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }

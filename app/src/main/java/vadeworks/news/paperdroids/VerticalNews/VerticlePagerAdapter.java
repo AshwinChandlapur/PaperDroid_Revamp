@@ -8,8 +8,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -27,9 +30,11 @@ class VerticlePagerAdapter extends PagerAdapter {
 
 
     private TextView headline;
-    private TextView newsno;
+    private ImageView image;
     private TextView content;
     private TextView link;
+    private int pos;
+    News news;
 
 
     public VerticlePagerAdapter(Context context, ArrayList<News> news) {
@@ -42,7 +47,7 @@ class VerticlePagerAdapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-        return mnews.size() - 10;
+        return mnews.size();
     }
 
     @Override
@@ -56,9 +61,19 @@ class VerticlePagerAdapter extends PagerAdapter {
     }
 
 
+
     @Override
-    public Object instantiateItem(ViewGroup container, final int position) {
-        final View itemView = mLayoutInflater.inflate(R.layout.vertical_news_display, container, false);
+    public Object instantiateItem(ViewGroup container,  int position) {
+        View itemView = mLayoutInflater.inflate(R.layout.vertical_news_display, container, false);
+
+//
+//        for(position=0;position<mnews.size();position++){
+//            news = mnews.get(position);
+//            verticalNewsDisplayNews(position,itemView,news);
+//        }
+
+
+
 
         if (position == 0) {
             verticalNewsDisplay(position, itemView);
@@ -66,7 +81,8 @@ class VerticlePagerAdapter extends PagerAdapter {
             verticalNewsDisplay(position, itemView);
         } else if (position == 2) {
             verticalNewsDisplay(position, itemView);
-        } else if (position == 3) {
+        }
+        else if (position == 3) {
             verticalNewsDisplay(position, itemView);
         } else if (position == 4) {
             verticalNewsDisplay(position, itemView);
@@ -83,25 +99,56 @@ class VerticlePagerAdapter extends PagerAdapter {
         }
 
         container.addView(itemView);
-
-
         return itemView;
     }
 
-    private void verticalNewsDisplay(final int position, final View itemView) {
+
+
+    private void verticalNewsDisplayNews( int position, View itemView,final News news) {
+        pos = position;
 
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
         link = itemView.findViewById(R.id.link);
-        newsno = itemView.findViewById(R.id.newsNo);
+        image = itemView.findViewById(R.id.image);
 
-        newsno.setText(String.valueOf(position + 1));
-        headline.setText(mnews.get(position).head);
-        content.setText(mnews.get(position).content);
+
+
+        headline.setText(news.head);
+        content.setText(news.content);
+        Picasso.with(mContext).load(news.imgurl).into(image);
+
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mnews.get(position).link));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.content));
+                mContext.startActivity(browserIntent);
+
+            }
+        });
+
+
+    }
+
+
+    private void verticalNewsDisplay( int position, View itemView) {
+        pos = position;
+
+        headline = itemView.findViewById(R.id.headline);
+        content = itemView.findViewById(R.id.content);
+        link = itemView.findViewById(R.id.link);
+        image = itemView.findViewById(R.id.image);
+
+
+
+        headline.setText(mnews.get(position).head);
+        content.setText(mnews.get(position).content);
+        Picasso.with(mContext).load(mnews.get(position).imgurl).into(image);
+
+        link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mnews.get(pos).content));
                 mContext.startActivity(browserIntent);
 
             }

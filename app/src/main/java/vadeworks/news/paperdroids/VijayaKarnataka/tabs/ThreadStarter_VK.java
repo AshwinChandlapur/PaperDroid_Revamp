@@ -15,7 +15,7 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
-import vadeworks.news.paperdroids.Display_news;
+import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
@@ -29,10 +29,12 @@ class ThreadStarter_VK {
 
     private ArrayList<News> news = new ArrayList<>();
     private ListView listView;
+
     private Context mContext;
     private ViewHolder viewHolder;
     private TypingIndicatorView typingView;
     private String mCategory;
+    private int checkedPos;
     static class ViewHolder {
         static TextView news_headline;
         static ImageView news_image;
@@ -40,7 +42,7 @@ class ThreadStarter_VK {
 
     private final VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
 
-    public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category ){
+    public void threadShuruKaro(final FragmentActivity fragmentActivity, final Context context, View view, final String category ){
 
         listView = view.findViewById(R.id.vk_news);
         typingView = view.findViewById(R.id.loader);
@@ -94,6 +96,7 @@ class ThreadStarter_VK {
                                 }
                                 ViewHolder.news_headline = view.findViewById(R.id.newsHeadlines);
                                 ViewHolder.news_image = view.findViewById(R.id.newsImage);
+
                                 view.setTag(viewHolder);
                                 ViewHolder.news_headline.setText(news.head);
                                 if (!news.imgurl.isEmpty()) {
@@ -116,14 +119,17 @@ class ThreadStarter_VK {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(fragmentActivity, Display_news.class);
-                i.putExtra("singleHead", news.get(position).head);
-                i.putExtra("singleLink", news.get(position).link);
-                i.putExtra("singleImg", news.get(position).imgurl);
+                Intent i = new Intent(fragmentActivity, Horizontal_Display_News.class);
+//                i.putExtra("singleHead", news.get(position).head);
+//                i.putExtra("singleLink", news.get(position).link);
+//                i.putExtra("singleImg", news.get(position).imgurl);
                 i.putExtra("tag", "vijayakarnataka");
+                i.putExtra("newsObject",news);
+                i.putExtra("position",position);
                 fragmentActivity.startActivity(i);
             }
         });
+
 
     }
 

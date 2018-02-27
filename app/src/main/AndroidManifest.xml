@@ -40,7 +40,8 @@
         <activity android:name="vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity" />
         <activity android:name="vadeworks.news.paperdroids.Esanje.Esanje_MainActivity" />
         <activity android:name="vadeworks.news.paperdroids.VerticalNews.Vertical_News" />
-        <activity android:name="vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity"></activity>
+        <activity android:name="vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity" />
+        <activity android:name="vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News"/>
     </application>
 
 </manifest>
