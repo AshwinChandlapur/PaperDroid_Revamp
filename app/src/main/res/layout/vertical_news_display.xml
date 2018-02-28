@@ -35,8 +35,7 @@
                 android:id="@+id/headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:padding="2dp"
+                android:layout_marginTop="18dp"
                 android:text="Headline"
                 android:textColor="@android:color/black"
                 android:textSize="18sp"
@@ -48,14 +47,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:layout_marginTop="7dp"
+                android:layout_marginTop="5dp"
                 android:gravity="start"
                 android:text="Content"
+                android:maxLines="7"
+                android:ellipsize="end"
                 android:lineSpacingExtra="7dp"
                 android:textSize="15sp" />
-
-
-
 
 
             <TextView
@@ -63,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_margin="30dp"
+                android:layout_margin="20dp"
                 android:text="ವಿವರವಾಗಿ ಓದಿ"
                 android:textColor="@color/link"
                 android:textStyle="bold" />

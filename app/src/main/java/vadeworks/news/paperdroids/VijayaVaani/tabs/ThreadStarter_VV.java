@@ -15,7 +15,9 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Display_news;
+import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
@@ -125,8 +127,14 @@ class ThreadStarter_VV {
                 i.putExtra("singleHead", news.get(position).head);
                 i.putExtra("singleLink", news.get(position).link);
                 i.putExtra("singleImg", news.get(position).imgurl);
-                i.putExtra("tag", "vijayavani");
+                i.putExtra("tag", Constants.vijayavani);
                 fragmentActivity.startActivity(i);
+
+//                Intent i = new Intent(fragmentActivity, Horizontal_Display_News.class);
+//                i.putExtra("tag", Constants.vijayavani);
+//                i.putExtra("newsObject",news);
+//                i.putExtra("position",position);
+//                fragmentActivity.startActivity(i);
             }
         });
 

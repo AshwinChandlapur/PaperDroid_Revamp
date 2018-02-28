@@ -70,14 +70,7 @@ public class Vertical_News extends AppCompatActivity {
                     public void run() {
                         initSwipePager();
 
-                        Snackbar snack = Snackbar.make(parentLayout, "Swipe up for Top 10", Snackbar.LENGTH_LONG);
-                        View view = snack.getView();
-                        FrameLayout.LayoutParams params = (FrameLayout.LayoutParams) view.getLayoutParams();
-                        params.gravity = Gravity.TOP;
-                        view.setLayoutParams(params);
-                        snack.show();
-
-//                        Snackbar.make(parentLayout,"Swipe up for Top 10",Snackbar.LENGTH_INDEFINITE).show();
+                        Snackbar.make(parentLayout,"Swipe up for Top 10",Snackbar.LENGTH_LONG).show();
                         typingView.setVisibility(View.GONE);
                     }
                 });

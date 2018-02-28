@@ -15,8 +15,10 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
+import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
@@ -117,8 +119,16 @@ class ThreadStarter_ES {
                 i.putExtra("singleHead", news.get(position).head);
                 i.putExtra("singleLink", news.get(position).link);
                 i.putExtra("singleImg", news.get(position).imgurl);
-                i.putExtra("tag", "esanje");
+                i.putExtra("tag", Constants.esanje);
                 fragmentActivity.startActivity(i);
+
+
+//                Intent i = new Intent(fragmentActivity, Horizontal_Display_News.class);
+//                i.putExtra("tag", Constants.esanje);
+//                i.putExtra("tag", Constants.esanje);
+//                i.putExtra("newsObject",news);
+//                i.putExtra("position",position);
+//                fragmentActivity.startActivity(i);
             }
         });
 

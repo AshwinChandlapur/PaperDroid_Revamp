@@ -15,6 +15,8 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.Display_news;
 import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
@@ -119,14 +121,18 @@ class ThreadStarter_VK {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent i = new Intent(fragmentActivity, Horizontal_Display_News.class);
-//                i.putExtra("singleHead", news.get(position).head);
-//                i.putExtra("singleLink", news.get(position).link);
-//                i.putExtra("singleImg", news.get(position).imgurl);
-                i.putExtra("tag", "vijayakarnataka");
-                i.putExtra("newsObject",news);
-                i.putExtra("position",position);
+                Intent i = new Intent(fragmentActivity, Display_news.class);
+                i.putExtra("singleHead", news.get(position).head);
+                i.putExtra("singleLink", news.get(position).link);
+                i.putExtra("singleImg", news.get(position).imgurl);
+                i.putExtra("tag", Constants.vijayakarnataka);
                 fragmentActivity.startActivity(i);
+
+//                Intent i = new Intent(fragmentActivity, Horizontal_Display_News.class);
+//                i.putExtra("tag", Constants.vijayakarnataka);
+//                i.putExtra("newsObject",news);
+//                i.putExtra("position",position);
+//                fragmentActivity.startActivity(i);
             }
         });
 

@@ -74,10 +74,6 @@ public class Display_news extends AppCompatActivity {
 
 
 
-    EditText MyInputText;
-    Button MyTranslateButton;
-    TextView MyOutputText;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -99,7 +95,7 @@ public class Display_news extends AppCompatActivity {
 
 
         switch (tag) {
-            case "asianet":
+            case Constants.asianet:
                 Log.d("Inside Asianet Swtich", "inside");
                 head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
@@ -121,7 +117,7 @@ public class Display_news extends AppCompatActivity {
 
                 break;
 
-            case "vijayakarnataka":
+            case Constants.vijayakarnataka:
                 Log.d("Inside Vijaya Swtich", "inside");
                 head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
@@ -141,7 +137,7 @@ public class Display_news extends AppCompatActivity {
                 }).start();
                 break;
 
-            case "udayavaani":
+            case Constants.udayavani:
                 Log.d("Inside Udaya Swtich", "inside");
                 head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
@@ -161,7 +157,7 @@ public class Display_news extends AppCompatActivity {
                 }).start();
                 break;
 
-            case "vijayavani":
+            case Constants.vijayavani:
                 Log.d("Inside vv Swtich", "inside");
                 head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
@@ -182,7 +178,7 @@ public class Display_news extends AppCompatActivity {
                 }).start();
                 break;
 
-            case "prajavani":
+            case Constants.prajavani:
                 Log.d("Inside pv Swtich", "inside");
                 head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
@@ -203,7 +199,7 @@ public class Display_news extends AppCompatActivity {
                 }).start();
                 break;
 
-            case "esanje":
+            case Constants.esanje:
                 Log.d("Inside es Swtich", "inside");
                 head = getIntent().getStringExtra("singleHead");
                 link = getIntent().getStringExtra("singleLink");
@@ -270,8 +266,6 @@ public class Display_news extends AppCompatActivity {
             // image naming and path  to include sd card  appending name you choose for file
             String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
             String share_headline = head;
-            // create bitmap screen capture
-            // View v1 = getActivity().getWindow().getDecorView().getRootView();
             imageView.setDrawingCacheEnabled(true);
             Bitmap bitmap = Bitmap.createBitmap(imageView.getDrawingCache());
             imageView.setDrawingCacheEnabled(false);
@@ -375,27 +369,27 @@ public class Display_news extends AppCompatActivity {
             Intent intent;
             if (notif.equals("notif")) {
                 switch (tag) {
-                    case "prajavani":
+                    case Constants.prajavani:
                         intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
                         startActivity(intent);
                         break;
-                    case "vijayavani":
+                    case Constants.vijayavani:
                         intent = new Intent(Display_news.this, VijayaVaani_MainActivity.class);
                         startActivity(intent);
                         break;
-                    case "vijayakarnataka":
+                    case Constants.vijayakarnataka:
                         intent = new Intent(Display_news.this, VijayaKarnataka_MainActivity.class);
                         startActivity(intent);
                         break;
-                    case "udayavaani":
+                    case Constants.udayavani:
                         intent = new Intent(Display_news.this, UdayaVaani_MainActivity.class);
                         startActivity(intent);
                         break;
-                    case "asianet":
+                    case Constants.asianet:
                         intent = new Intent(Display_news.this, AsiaNet_MainActivity.class);
                         startActivity(intent);
                         break;
-                    case "esanje":
+                    case Constants.esanje:
                         intent = new Intent(Display_news.this, Esanje_MainActivity.class);
                         startActivity(intent);
                         break;
@@ -409,7 +403,6 @@ public class Display_news extends AppCompatActivity {
             }
 
         }
-
         return true;
     }
 
@@ -441,7 +434,6 @@ public class Display_news extends AppCompatActivity {
             }
         });
 
-
         Button data = view.findViewById(R.id.switchData);
         data.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -451,7 +443,6 @@ public class Display_news extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         builder.setView(view);
         return builder;

@@ -2,6 +2,7 @@ package vadeworks.news.paperdroids.HorizontalNews;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
@@ -19,9 +20,14 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
+import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
+import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
+import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
 import vadeworks.paperdroid.R;
 
 /**
@@ -67,13 +73,15 @@ class CustomPagerAdapter extends PagerAdapter {
         return view == ((CoordinatorLayout) object);
     }
 
+
+
     @Override
-    public Object instantiateItem(final ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, int position) {
         final View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
         mPos = position;
 
         switch (mTag){
-            case "vijayakarnataka":
+            case Constants.vijayakarnataka:
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -83,11 +91,25 @@ class CustomPagerAdapter extends PagerAdapter {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                if(fullnews.content==null){
-                                    container.removeView(itemView);
-                                }else{
-                                    display_news(fullnews,itemView);
-                                }
+                                display_news(fullnews,itemView);
+                            }
+                        });
+                    }
+                }).start();
+
+                break;
+
+            case Constants.prajavani:
+                fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link, mNews.get(mPos).imgurl);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Prajavaani_Parser parser = new Prajavaani_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        ((Activity) mContext).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews,itemView);
                             }
                         });
                     }
@@ -95,12 +117,66 @@ class CustomPagerAdapter extends PagerAdapter {
                 container.addView(itemView);
                 break;
 
-            case "prajavani":
+            case Constants.vijayavani:
                 fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link, mNews.get(mPos).imgurl);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        Prajavaani_Parser parser = new Prajavaani_Parser();
+                        Vijayavaani_Parser parser = new Vijayavaani_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        ((Activity) mContext).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews,itemView);
+                            }
+                        });
+                    }
+                }).start();
+                container.addView(itemView);
+                break;
+
+            case Constants.udayavani:
+                fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Udayavaani_Parser parser = new Udayavaani_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        ((Activity) mContext).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews,itemView);
+                            }
+                        });
+                    }
+                }).start();
+                container.addView(itemView);
+                break;
+
+            case Constants.asianet:
+                fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link, mNews.get(mPos).imgurl);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        AsiaNet_Parser parser = new AsiaNet_Parser();
+                        fullnews = parser.parseNewsPost(fullnews);
+                        ((Activity) mContext).runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                display_news(fullnews,itemView);
+                            }
+                        });
+                    }
+                }).start();
+                container.addView(itemView);
+                break;
+
+            case Constants.esanje:
+                fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link, mNews.get(mPos).imgurl);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Esanje_Parser parser = new Esanje_Parser();
                         fullnews = parser.parseNewsPost(fullnews);
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
@@ -133,6 +209,7 @@ class CustomPagerAdapter extends PagerAdapter {
         viewholder.imageView = itemView.findViewById(R.id.imageView);
         viewholder.typingView = itemView.findViewById(R.id.loader);
         viewholder.headlines_textview.setText(fullnews.head);
+
         if (!fullnews.content.isEmpty()) {
             viewholder.content_textview.setText(fullnews.content);
         }

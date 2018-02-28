@@ -16,7 +16,9 @@ import com.udevel.widgetlab.TypingIndicatorView;
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Display_news;
+import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
@@ -114,8 +116,18 @@ class ThreadStarter_AN {
                 i.putExtra("singleHead", news.get(position).head);
                 i.putExtra("singleLink", news.get(position).link);
                 i.putExtra("singleImg", news.get(position).imgurl);
-                i.putExtra("tag", "asianet");
+                i.putExtra("tag", Constants.asianet);
                 fragmentActivity.startActivity(i);
+
+//                Intent i = new Intent(fragmentActivity, Horizontal_Display_News.class);
+//                i.putExtra("tag", Constants.asianet);
+//                i.putExtra("newsObject",news);
+//                i.putExtra("position",position);
+//                fragmentActivity.startActivity(i);
+
+
+
+
             }
         });
 
