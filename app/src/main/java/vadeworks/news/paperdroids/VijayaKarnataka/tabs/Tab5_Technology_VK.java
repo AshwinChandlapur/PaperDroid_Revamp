@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.paperdroid.R;
 
 
@@ -20,7 +21,7 @@ public class Tab5_Technology_VK extends Fragment {
 
     private Context context;
     private View view;
-    private final String tag = "technology";
+    private final String tag = Constants.technology;
 
     private FirebaseAnalytics mFirebaseAnalytics;
     Bundle params = new Bundle();

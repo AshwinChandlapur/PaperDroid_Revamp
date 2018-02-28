@@ -56,30 +56,29 @@ class ThreadStarter_VV {
             public void run() {
 
                 switch (mCategory) {
-                    case "headlines":
+                    case Constants.headlines:
                         news = parser.parseHeadLines();
                         break;
 
-                    case "state":
+                    case Constants.state:
                         news = parser.parseCategory(parser.state);
                         break;
 
-                    case "national":
+                    case Constants.national:
                         news = parser.parseCategory(parser.national);
                         break;
 
-                    case "sports":
+                    case Constants.sports:
                         news = parser.parseCategory(parser.sports);
                         break;
 
-                    case "international":
+                    case Constants.international:
                         news = parser.parseCategory(parser.international);
                         break;
 
-                    case "politics":
+                    case Constants.politics:
                         news = parser.parseCategory(parser.politics);
                         break;
-
 
                 }
 

@@ -2,18 +2,13 @@ package vadeworks.news.paperdroids.HorizontalNews;
 
 import android.app.Activity;
 import android.content.Context;
-import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
@@ -77,7 +72,7 @@ class CustomPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        final View itemView = mLayoutInflater.inflate(R.layout.pager_item, container, false);
+        final View itemView = mLayoutInflater.inflate(R.layout.horizontal_pager_item, container, false);
         mPos = position;
 
         switch (mTag){

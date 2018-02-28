@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.paperdroid.R;
 
 
@@ -16,7 +17,7 @@ import vadeworks.paperdroid.R;
  */
 public class Tab3_Cinema_AN extends Fragment {
 
-    private final String tag = "cinema";
+    private final String tag = Constants.cinema;
     private View view;
     private Context context;
 

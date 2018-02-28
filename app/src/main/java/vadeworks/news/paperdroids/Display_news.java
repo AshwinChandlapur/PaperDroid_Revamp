@@ -60,7 +60,6 @@ public class Display_news extends AppCompatActivity {
     private ImageView imageView;
     private String head;
     private String link;
-    String content;
     private String imgurl;
     private String tag;
     private News fullnews;
@@ -225,6 +224,7 @@ public class Display_news extends AppCompatActivity {
 
     private void views_init() {
 
+        final String shareAnalytics = "ShareNews";
         headlines_textview = findViewById(R.id.headline);
         content_textview = findViewById(R.id.content);
         link_textview = findViewById(R.id.link);
@@ -240,20 +240,17 @@ public class Display_news extends AppCompatActivity {
             }
         });
 
-
         share.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (Build.VERSION.SDK_INT > 22) {
                     requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
                 }
+                mFirebaseAnalytics.logEvent(shareAnalytics, params);
                 getScreenShot();
+
             }
         });
-
-
-
-
 
     }
 
@@ -265,7 +262,6 @@ public class Display_news extends AppCompatActivity {
         try {
             // image naming and path  to include sd card  appending name you choose for file
             String mPath = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
-            String share_headline = head;
             imageView.setDrawingCacheEnabled(true);
             Bitmap bitmap = Bitmap.createBitmap(imageView.getDrawingCache());
             imageView.setDrawingCacheEnabled(false);
@@ -279,7 +275,6 @@ public class Display_news extends AppCompatActivity {
             outputStream.flush();
             outputStream.close();
             shareImage(imageFile, head);
-            // openScreenshot(imageFile);
         } catch (Throwable e) {
             // Several error may come out with file handling or OOM
             e.printStackTrace();

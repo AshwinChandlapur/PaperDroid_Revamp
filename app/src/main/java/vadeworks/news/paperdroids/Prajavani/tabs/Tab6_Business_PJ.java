@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.paperdroid.R;
 
 
@@ -16,7 +17,7 @@ import vadeworks.paperdroid.R;
  */
 public class Tab6_Business_PJ extends Fragment {
 
-    private final String tag = "business";
+    private final String tag = Constants.business;
     private Context context;
     private View view;
 

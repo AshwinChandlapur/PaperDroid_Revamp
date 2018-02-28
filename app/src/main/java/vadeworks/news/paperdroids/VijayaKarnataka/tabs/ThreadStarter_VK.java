@@ -57,23 +57,23 @@ class ThreadStarter_VK {
             public void run() {
 
                 switch (mCategory){
-                    case "headlines":
+                    case Constants.headlines:
                         news = parser.parseHeadLines();
                         break;
 
-                    case "sports":
+                    case Constants.sports:
                         news = parser.parseCategory(parser.sports);
                         break;
 
-                    case "cinema":
+                    case Constants.cinema:
                         news = parser.parseCategory(parser.cinema);
                         break;
 
-                    case "lifestyle":
+                    case Constants.lifestyle:
                         news = parser.parseCategory(parser.lifestyle);
                         break;
 
-                    case "technology":
+                    case Constants.technology:
                         news = parser.parseCategory(parser.technology);
                         break;
 

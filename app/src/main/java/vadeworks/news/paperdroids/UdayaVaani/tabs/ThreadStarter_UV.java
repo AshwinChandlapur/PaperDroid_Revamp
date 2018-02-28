@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Display_news;
-import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
@@ -57,26 +56,25 @@ class ThreadStarter_UV {
             public void run() {
 
                 switch (mCategory) {
-                    case "headlines":
+                    case Constants.headlines:
                         news = parser.parseHeadLines();
                         break;
 
-                    case "cinema":
+                    case Constants.cinema:
                         news = parser.parseCategory(parser.cinema);
                         break;
 
-                    case "sports":
+                    case Constants.sports:
                         news = parser.parseCategory(parser.sports);
                         break;
 
-                    case "business":
+                    case Constants.business:
                         news = parser.parseCategory(parser.business);
                         break;
 
-                    case "world":
+                    case Constants.international:
                         news = parser.parseCategory(parser.world);
                         break;
-
 
                 }
 

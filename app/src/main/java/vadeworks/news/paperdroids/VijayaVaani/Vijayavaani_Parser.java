@@ -9,6 +9,7 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.Paper;
 
@@ -32,7 +33,7 @@ public class Vijayavaani_Parser implements Paper {
         ArrayList<News> headlinesList = new ArrayList<>();
         try {
 
-            Document d = Jsoup.connect(vijayavani_base_url).timeout(6000).get();
+            Document d = Jsoup.connect(vijayavani_base_url).get();
 
             String head = d.getElementsByClass("ftrd-title").first().select("a.black").text();
             String link = d.getElementsByClass("ftrd-title").first().select("a.black").attr("href");
@@ -71,8 +72,7 @@ public class Vijayavaani_Parser implements Paper {
     @Override
     public News parseNewsPost(News news) {
         try {
-            Document d = Jsoup.connect(news.link).timeout(6000).get();
-
+            Document d = Jsoup.connect(news.link).get();
             String imgurl = d.select("div.full.post-01-img").first().select("img").attr("src");
             Elements childs = d.select("div.full.post-01-content").first().select("p");
             StringBuilder body = new StringBuilder();
@@ -99,7 +99,7 @@ public class Vijayavaani_Parser implements Paper {
 
         try {
 
-            Document d = Jsoup.connect(category).timeout(6000).get();
+            Document d = Jsoup.connect(category).get();
 
             d.select("div.full.inpage_cotent").first().select("header.page-header").first().remove();
             d.select("div.full.inpage_cotent").first().select("div.full.archnav").first().remove();

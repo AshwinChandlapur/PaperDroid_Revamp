@@ -1,6 +1,7 @@
 package vadeworks.news.paperdroids.Esanje;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -33,7 +34,7 @@ public class Esanje_Parser implements Paper {
         String inspecturl = "http://www.eesanje.com/category/latest-news/";
         try {
 
-            Document d = Jsoup.connect(inspecturl).timeout(6000).get();
+            Document d = Jsoup.connect(inspecturl).get();
 
             String imgurl, head, link;
 
@@ -58,7 +59,7 @@ public class Esanje_Parser implements Paper {
         try {
             String inspecturl = news.link;
 
-            Document d = Jsoup.connect(inspecturl).timeout(6000).get();
+            Document d = Jsoup.connect(inspecturl).get();
 
 
             Elements articles = d.select("div.article-content.clearfix").first().select("div.entry-content").first().select("p");

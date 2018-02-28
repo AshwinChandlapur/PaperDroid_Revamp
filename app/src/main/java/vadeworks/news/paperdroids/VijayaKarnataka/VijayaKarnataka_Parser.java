@@ -86,23 +86,6 @@ public class VijayaKarnataka_Parser implements Paper {
     @Override
     public ArrayList<News> parseCategory(String category) {
 
-//        switch (category){
-//            case "sports" :
-//                    category_url = sports;
-//                break;
-//            case "cinema":
-//                    category_url = cinema;
-//                break;
-//            case "lifestyle":
-//                    category_url = lifestyle;
-//                break;
-//            case "technology":
-//                    category_url = technology;
-//                break;
-//
-//        }
-
-
         try {
             vijayakarnataka_doc = Jsoup.connect(vijayakarnataka_base_url).get();
             vijayakarnataka_elem = vijayakarnataka_doc.getElementById(category).select("a");

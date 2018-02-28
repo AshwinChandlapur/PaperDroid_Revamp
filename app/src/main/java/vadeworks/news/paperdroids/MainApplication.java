@@ -54,6 +54,9 @@ public class MainApplication extends Application {
     }
 
 
+
+
+
     private class onNotificationOpened implements OneSignal.NotificationOpenedHandler {
         // This fires when a notification is opened by tapping on it.
         @Override

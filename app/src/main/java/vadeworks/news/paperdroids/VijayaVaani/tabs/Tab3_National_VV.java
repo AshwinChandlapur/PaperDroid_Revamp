@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.paperdroid.R;
 
 
@@ -18,7 +19,7 @@ public class Tab3_National_VV extends Fragment {
 
     private Context context;
     private View view;
-    private final String tag = "national";
+    private final String tag = Constants.national;
 
     public Tab3_National_VV() {
         // Required empty public constructor

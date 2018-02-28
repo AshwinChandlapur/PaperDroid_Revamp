@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.paperdroid.R;
 
 
@@ -18,7 +19,7 @@ public class Tab1_Headlines_UV extends Fragment {
 
     private Context context;
     private View view;
-    private final String tag = "headlines";
+    private final String tag = Constants.headlines;
 
 
     public Tab1_Headlines_UV() {
