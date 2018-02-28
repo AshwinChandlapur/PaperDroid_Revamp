@@ -1,9 +1,9 @@
 package vadeworks.news.paperdroids.HorizontalNews;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import java.util.ArrayList;
 
@@ -23,13 +23,13 @@ public class Horizontal_Display_News extends AppCompatActivity {
         setContentView(R.layout.horizontal_display_news);
 
         Intent i = getIntent();
-        if(i!=null){
+        if (i != null) {
             news = (ArrayList<News>) i.getSerializableExtra("newsObject");
-            position = i.getIntExtra("position",0);
+            position = i.getIntExtra("position", 0);
             tag = i.getStringExtra("tag");
         }
 
-        CustomPagerAdapter  mCustomPagerAdapter = new CustomPagerAdapter(this,news,position,tag);
+        CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this, news, position, tag);
         mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
         mViewPager.setCurrentItem(position);

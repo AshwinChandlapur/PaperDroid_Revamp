@@ -19,14 +19,14 @@ import vadeworks.news.paperdroids.Paper;
 
 public class TopNews_Parser implements Paper {
     private final String udayavaani_base_url = "https://www.udayavani.com/";
-    private Document udayavaani_doc;
-    private Elements udayavaani_elem;
-    private Elements udayavaani_elem1;
     private final ArrayList<News> news = new ArrayList<>();
     public String sports = "https://www.udayavani.com/kannada/category/sports-news";
     public String cinema = "https://www.udayavani.com/kannada/category/bollywood-news";
     public String world = "https://www.udayavani.com/kannada/category/world-news";
     public String business = "https://www.udayavani.com/kannada/category/business-news";
+    private Document udayavaani_doc;
+    private Elements udayavaani_elem;
+    private Elements udayavaani_elem1;
 
     @Override
     public ArrayList<News> parseHeadLines() {

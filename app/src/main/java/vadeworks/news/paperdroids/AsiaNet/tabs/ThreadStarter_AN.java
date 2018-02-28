@@ -18,7 +18,6 @@ import java.util.ArrayList;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Display_news;
-import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
@@ -124,8 +123,6 @@ class ThreadStarter_AN {
 //                i.putExtra("newsObject",news);
 //                i.putExtra("position",position);
 //                fragmentActivity.startActivity(i);
-
-
 
 
             }

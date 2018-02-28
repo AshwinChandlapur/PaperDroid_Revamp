@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab3_Sports_UV extends Fragment {
 
+    private final String tag = Constants.sports;
     private Context context;
     private View view;
-    private final String tag = Constants.sports;
 
 
     public Tab3_Sports_UV() {

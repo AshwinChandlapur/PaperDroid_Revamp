@@ -5,13 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -38,17 +38,41 @@ import vadeworks.paperdroid.R;
 
 public class VijayaVaani_MainActivity extends AppCompatActivity {
 
+    private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ರಾಜ್ಯ", "ದೇಶ", "ಕ್ರೀಡೆ", "ಜಗತ್ತು", "ರಾಜಕೀಯ"};
+    private final int Numboftabs = 6;
+    private final Bundle params = new Bundle();
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_VV adapter;
     private SlidingTabLayout tabs;
-    private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ರಾಜ್ಯ", "ದೇಶ", "ಕ್ರೀಡೆ", "ಜಗತ್ತು", "ರಾಜಕೀಯ"};
-    private final int Numboftabs = 6;
     private FirebaseAnalytics mFirebaseAnalytics;
-
-    private final Bundle params = new Bundle();
     private String card_clicked;
+    private DrawerLayout mDrawerLayout;
 
+
+    //    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_main, menu);
+//        return true;
+//    }
+//
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle action bar item clicks here. The action bar will
+//        // automatically handle clicks on the Home/Up button, so long
+//        // as you specify a parent activity in AndroidManifest.xml.
+//        int id = item.getItemId();
+//
+//        //noinspection SimplifiableIfStatement
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
+//
+//        return super.onOptionsItemSelected(item);
+//    }
+    private ActionBarDrawerToggle mActionBarDrawerToggle;
+    private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,30 +186,6 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
         });
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
 
@@ -217,10 +217,6 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
         tabs.setViewPager(pager);
 
     }
-
-    private DrawerLayout mDrawerLayout;
-    private ActionBarDrawerToggle mActionBarDrawerToggle;
-    private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
     private void init_navigator() {
         // Navigation Drawer

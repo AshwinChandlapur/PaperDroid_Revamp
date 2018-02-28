@@ -18,9 +18,9 @@ import vadeworks.paperdroid.R;
 
 public class Tab4_Sports_VV extends Fragment {
 
+    private final String tag = Constants.sports;
     private Context context;
     private View view;
-    private final String tag = Constants.sports;
 
     public Tab4_Sports_VV() {
         // Required empty public constructor

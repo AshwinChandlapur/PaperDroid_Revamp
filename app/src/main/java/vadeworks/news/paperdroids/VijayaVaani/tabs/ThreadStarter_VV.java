@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Display_news;
-import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
@@ -29,19 +28,13 @@ import vadeworks.paperdroid.R;
 
 class ThreadStarter_VV {
 
+    private final Vijayavaani_Parser parser = new Vijayavaani_Parser();
     private ArrayList<News> news = new ArrayList<>();
     private ListView listView;
     private Context mContext;
     private ViewHolder viewHolder;
     private TypingIndicatorView typingView;
     private String mCategory;
-
-    static class ViewHolder {
-        static TextView news_headline;
-        static ImageView news_image;
-    }
-
-    private final Vijayavaani_Parser parser = new Vijayavaani_Parser();
 
     public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category) {
 
@@ -137,6 +130,11 @@ class ThreadStarter_VV {
             }
         });
 
+    }
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
     }
 
 

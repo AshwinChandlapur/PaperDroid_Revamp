@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab5_Business_UV extends Fragment {
 
+    private final String tag = Constants.business;
     private Context context;
     private View view;
-    private final String tag = Constants.business;
 
 
     public Tab5_Business_UV() {

@@ -9,7 +9,6 @@ import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
 
-import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.Paper;
 
@@ -19,13 +18,12 @@ import vadeworks.news.paperdroids.Paper;
 
 public class Vijayavaani_Parser implements Paper {
 
-    private final String vijayavani_base_url = "http://vijayavani.net/";
-    String category_url = "";
     public final String politics = "http://vijayavani.net/category/politics/";
     public final String state = "http://vijayavani.net/category/state/";
     public final String national = "http://vijayavani.net/category/national/";
     public final String sports = "http://vijayavani.net/category/sports/";
     public final String international = "http://vijayavani.net/category/international/";
+    private final String vijayavani_base_url = "http://vijayavani.net/";
 
     @Override
     public ArrayList<News> parseHeadLines() {

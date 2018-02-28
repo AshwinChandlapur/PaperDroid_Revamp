@@ -18,7 +18,6 @@ import vadeworks.paperdroid.R;
 public class Splash_Main_Activity extends AppCompatActivity {
 
 
-
     private LinearLayout l1;
     private Animation uptodown;
     private Animation downtoup;

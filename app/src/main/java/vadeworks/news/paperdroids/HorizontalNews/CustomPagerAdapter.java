@@ -37,26 +37,15 @@ class CustomPagerAdapter extends PagerAdapter {
     News fullnews;
     int mPos;
     String mTag;
+    Viewholder viewholder;
 
-
-    public CustomPagerAdapter(Context context, ArrayList<News> news,int position,String tag) {
+    public CustomPagerAdapter(Context context, ArrayList<News> news, int position, String tag) {
         mContext = context;
         mNews = news;
         mPos = position;
-        mTag= tag;
+        mTag = tag;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
-
-    Viewholder viewholder;
-
-    static class Viewholder{
-        static TextView content_textview;
-        static TextView link_textview;
-        static ImageView imageView;
-        static TypingIndicatorView typingView;
-        static TextView headlines_textview;
-    }
-
 
     @Override
     public int getCount() {
@@ -68,14 +57,12 @@ class CustomPagerAdapter extends PagerAdapter {
         return view == ((CoordinatorLayout) object);
     }
 
-
-
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         final View itemView = mLayoutInflater.inflate(R.layout.horizontal_pager_item, container, false);
         mPos = position;
 
-        switch (mTag){
+        switch (mTag) {
             case Constants.vijayakarnataka:
                 new Thread(new Runnable() {
                     @Override
@@ -86,7 +73,7 @@ class CustomPagerAdapter extends PagerAdapter {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                display_news(fullnews,itemView);
+                                display_news(fullnews, itemView);
                             }
                         });
                     }
@@ -104,7 +91,7 @@ class CustomPagerAdapter extends PagerAdapter {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                display_news(fullnews,itemView);
+                                display_news(fullnews, itemView);
                             }
                         });
                     }
@@ -122,7 +109,7 @@ class CustomPagerAdapter extends PagerAdapter {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                display_news(fullnews,itemView);
+                                display_news(fullnews, itemView);
                             }
                         });
                     }
@@ -140,7 +127,7 @@ class CustomPagerAdapter extends PagerAdapter {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                display_news(fullnews,itemView);
+                                display_news(fullnews, itemView);
                             }
                         });
                     }
@@ -158,7 +145,7 @@ class CustomPagerAdapter extends PagerAdapter {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                display_news(fullnews,itemView);
+                                display_news(fullnews, itemView);
                             }
                         });
                     }
@@ -176,7 +163,7 @@ class CustomPagerAdapter extends PagerAdapter {
                         ((Activity) mContext).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                display_news(fullnews,itemView);
+                                display_news(fullnews, itemView);
                             }
                         });
                     }
@@ -195,8 +182,7 @@ class CustomPagerAdapter extends PagerAdapter {
         container.removeView((CoordinatorLayout) object);
     }
 
-
-    private void display_news(News fullnews,View itemView) {
+    private void display_news(News fullnews, View itemView) {
 
         viewholder.headlines_textview = itemView.findViewById(R.id.headline);
         viewholder.content_textview = itemView.findViewById(R.id.content);
@@ -223,6 +209,14 @@ class CustomPagerAdapter extends PagerAdapter {
             }
         });
         viewholder.typingView.setVisibility(View.GONE);
+    }
+
+    static class Viewholder {
+        static TextView content_textview;
+        static TextView link_textview;
+        static ImageView imageView;
+        static TypingIndicatorView typingView;
+        static TextView headlines_textview;
     }
 
 }

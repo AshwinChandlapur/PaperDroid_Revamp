@@ -17,9 +17,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab3_National_VV extends Fragment {
 
+    private final String tag = Constants.national;
     private Context context;
     private View view;
-    private final String tag = Constants.national;
 
     public Tab3_National_VV() {
         // Required empty public constructor

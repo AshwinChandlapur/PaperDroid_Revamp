@@ -17,7 +17,6 @@ import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Display_news;
-import vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News;
 import vadeworks.news.paperdroids.ListView_Adapter;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
@@ -29,22 +28,16 @@ import vadeworks.paperdroid.R;
 
 class ThreadStarter_VK {
 
+    private final VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
     private ArrayList<News> news = new ArrayList<>();
     private ListView listView;
-
     private Context mContext;
     private ViewHolder viewHolder;
     private TypingIndicatorView typingView;
     private String mCategory;
     private int checkedPos;
-    static class ViewHolder {
-        static TextView news_headline;
-        static ImageView news_image;
-    }
 
-    private final VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-
-    public void threadShuruKaro(final FragmentActivity fragmentActivity, final Context context, View view, final String category ){
+    public void threadShuruKaro(final FragmentActivity fragmentActivity, final Context context, View view, final String category) {
 
         listView = view.findViewById(R.id.vk_news);
         typingView = view.findViewById(R.id.loader);
@@ -56,7 +49,7 @@ class ThreadStarter_VK {
             @Override
             public void run() {
 
-                switch (mCategory){
+                switch (mCategory) {
                     case Constants.headlines:
                         news = parser.parseHeadLines();
                         break;
@@ -81,7 +74,7 @@ class ThreadStarter_VK {
                 }
 
 
-                if(fragmentActivity==null){
+                if (fragmentActivity == null) {
                     return;
                 }
                 fragmentActivity.runOnUiThread(new Runnable() {
@@ -91,7 +84,7 @@ class ThreadStarter_VK {
                             @Override
                             public View getMyView(int i, View view, ViewGroup parent, News news) {
                                 if ((view == null) || (view.getTag() == null)) {
-                                    view =fragmentActivity.getLayoutInflater().inflate(R.layout.listview_custom_layout, null);
+                                    view = fragmentActivity.getLayoutInflater().inflate(R.layout.listview_custom_layout, null);
                                     viewHolder = new ViewHolder();
                                 } else {
                                     viewHolder = (ViewHolder) view.getTag();
@@ -139,6 +132,10 @@ class ThreadStarter_VK {
 
     }
 
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
+    }
 
 
 }

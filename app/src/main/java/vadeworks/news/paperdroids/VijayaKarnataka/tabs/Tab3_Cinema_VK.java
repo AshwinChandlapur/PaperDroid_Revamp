@@ -18,9 +18,9 @@ import vadeworks.paperdroid.R;
 public class Tab3_Cinema_VK extends Fragment {
 
 
+    private final String tag = Constants.cinema;
     private Context context;
     private View view;
-    private final String tag = Constants.cinema;
 
     public Tab3_Cinema_VK() {
         // Required empty public constructor

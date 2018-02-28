@@ -1,7 +1,6 @@
 package vadeworks.news.paperdroids.Esanje;
 
 import android.util.Log;
-import android.widget.Toast;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

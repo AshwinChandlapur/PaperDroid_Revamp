@@ -14,10 +14,9 @@ import vadeworks.paperdroid.R;
 
 public class Tab2_Sports_VK extends Fragment {
 
+    private final String tag = Constants.sports;
     private Context context;
     private View view;
-    private final String tag = Constants.sports;
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

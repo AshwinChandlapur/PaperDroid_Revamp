@@ -18,9 +18,9 @@ import vadeworks.paperdroid.R;
 public class Tab6_Politics_VV extends Fragment {
 
 
+    private final String tag = Constants.politics;
     private Context context;
     private View view;
-    private final String tag = Constants.politics;
 
     public Tab6_Politics_VV() {
         // Required empty public constructor

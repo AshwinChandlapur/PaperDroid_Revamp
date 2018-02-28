@@ -27,24 +27,21 @@ public class ViewPagerAdapter_UV extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        if(position == 0) // if the position is 0 we are returning the First tab
+        if (position == 0) // if the position is 0 we are returning the First tab
         {
             Tab1_Headlines_UV tab1 = new Tab1_Headlines_UV();
             return tab1;
-        }
-        else if(position == 1) {
+        } else if (position == 1) {
             Tab2_Cinema_UV tab2 = new Tab2_Cinema_UV();
             return tab2;
-        }
-        else if (position ==2){
+        } else if (position == 2) {
             Tab3_Sports_UV tab3 = new Tab3_Sports_UV();
             return tab3;
-        }
-        else if(position ==4){
+        } else if (position == 4) {
             Tab4_World_UV tab4 = new Tab4_World_UV();
             return tab4;
-        }else{
-            Tab5_Business_UV tab5 =new Tab5_Business_UV();
+        } else {
+            Tab5_Business_UV tab5 = new Tab5_Business_UV();
             return tab5;
         }
 

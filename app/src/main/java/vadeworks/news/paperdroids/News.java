@@ -10,8 +10,8 @@ import java.io.Serializable;
 
 public class News implements Serializable {
     public final String head;
-    public String imgurl;
     public final String link;
+    public String imgurl;
     public String content;
     public String tag;
 

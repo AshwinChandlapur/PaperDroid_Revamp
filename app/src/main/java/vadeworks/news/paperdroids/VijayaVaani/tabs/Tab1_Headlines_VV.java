@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.paperdroid.R;
 
@@ -18,9 +17,9 @@ import vadeworks.paperdroid.R;
  */
 public class Tab1_Headlines_VV extends Fragment {
 
+    private final String tag = Constants.headlines;
     private Context context;
     private View view;
-    private final String tag = Constants.headlines;
 
     public Tab1_Headlines_VV() {
         // Required empty public constructor

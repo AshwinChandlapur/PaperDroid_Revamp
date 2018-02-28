@@ -11,12 +11,10 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.FrameLayout;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.udevel.widgetlab.TypingIndicatorView;
@@ -47,7 +45,7 @@ public class Vertical_News extends AppCompatActivity {
         typingView = findViewById(R.id.loadera);
         card_clicked = getResources().getString(R.string.toolbar_title_home_top10);
         mFirebaseAnalytics.logEvent(card_clicked, params);
-        verticalLink=  getIntent().getStringExtra("verticalLink");
+        verticalLink = getIntent().getStringExtra("verticalLink");
 
 
         if (!isConnected(this)) {
@@ -70,7 +68,7 @@ public class Vertical_News extends AppCompatActivity {
                     public void run() {
                         initSwipePager();
 
-                        Snackbar.make(parentLayout,"Swipe up for Top 10",Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(parentLayout, "Swipe up for Top 10", Snackbar.LENGTH_LONG).show();
                         typingView.setVisibility(View.GONE);
                     }
                 });

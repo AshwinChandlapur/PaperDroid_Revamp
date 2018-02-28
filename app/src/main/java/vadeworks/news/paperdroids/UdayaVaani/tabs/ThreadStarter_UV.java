@@ -28,20 +28,13 @@ import vadeworks.paperdroid.R;
 
 class ThreadStarter_UV {
 
+    private final Udayavaani_Parser parser = new Udayavaani_Parser();
     private ArrayList<News> news = new ArrayList<>();
     private ListView listView;
     private Context mContext;
     private ViewHolder viewHolder;
     private TypingIndicatorView typingView;
     private String mCategory;
-
-    static class ViewHolder {
-        static TextView news_headline;
-        static ImageView news_image;
-    }
-
-    private final Udayavaani_Parser parser = new Udayavaani_Parser();
-
 
     public void threadShuruKaro(final FragmentActivity fragmentActivity, Context context, View view, final String category) {
 
@@ -133,6 +126,11 @@ class ThreadStarter_UV {
             }
         });
 
+    }
+
+    static class ViewHolder {
+        static TextView news_headline;
+        static ImageView news_image;
     }
 
 

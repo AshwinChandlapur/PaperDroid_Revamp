@@ -13,7 +13,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -24,7 +23,6 @@ import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,6 +52,8 @@ import vadeworks.paperdroid.R;
 
 public class Display_news extends AppCompatActivity {
 
+    private final String notif = "";
+    private final Bundle params = new Bundle();
     private TextView headlines_textview;
     private TextView content_textview;
     private TextView link_textview;
@@ -63,14 +63,11 @@ public class Display_news extends AppCompatActivity {
     private String imgurl;
     private String tag;
     private News fullnews;
-    private final String notif = "";
     private android.support.v7.widget.Toolbar toola;
     private TypingIndicatorView typingView;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String news_display_previous_activity;
-    private final Bundle params = new Bundle();
     private FloatingActionButton share;
-
 
 
     @Override

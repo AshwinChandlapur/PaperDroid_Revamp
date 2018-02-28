@@ -20,14 +20,14 @@ import vadeworks.news.paperdroids.Paper;
 public class Udayavaani_Parser implements Paper {
 
 
-    private final String udayavaani_base_url = "https://www.udayavani.com/";
-    private Document udayavaani_doc;
-    private Elements udayavaani_elem;
-    private final ArrayList<News> news = new ArrayList<>();
     public final String sports = "https://www.udayavani.com/kannada/category/sports-news";
     public final String cinema = "https://www.udayavani.com/kannada/category/bollywood-news";
-    public final String world ="https://www.udayavani.com/kannada/category/world-news";
+    public final String world = "https://www.udayavani.com/kannada/category/world-news";
     public final String business = "https://www.udayavani.com/kannada/category/business-news";
+    private final String udayavaani_base_url = "https://www.udayavani.com/";
+    private final ArrayList<News> news = new ArrayList<>();
+    private Document udayavaani_doc;
+    private Elements udayavaani_elem;
     private String link;
     private String head;
     private String imgurl;
@@ -36,21 +36,21 @@ public class Udayavaani_Parser implements Paper {
     @Override
     public ArrayList<News> parseHeadLines() {
 
-        try{
+        try {
             udayavaani_doc = Jsoup.connect(udayavaani_base_url).get();//this is of type Document
             udayavaani_elem = udayavaani_doc.getElementsByClass("item-list").select("ul").select("li").select("div:eq(2)").select("a");
-            Log.d("Udayavani Elem","Udayavani elem"+udayavaani_elem);
+            Log.d("Udayavani Elem", "Udayavani elem" + udayavaani_elem);
             int i;
-            for(i=0; i< udayavaani_elem.size(); i++){
+            for (i = 0; i < udayavaani_elem.size(); i++) {
 
                 String link = udayavaani_elem.get(i).attr("href");
-                link = "https://www.udayavani.com"+link;
+                link = "https://www.udayavani.com" + link;
                 String headline = udayavaani_elem.get(i).text();
-                news.add(new News(headline,link));
+                news.add(new News(headline, link));
                 news.get(i).showNews();
             }
-        }catch (Exception e){
-            Log.d("Exception",e.toString());
+        } catch (Exception e) {
+            Log.d("Exception", e.toString());
         }
         return news;
     }
@@ -61,8 +61,8 @@ public class Udayavaani_Parser implements Paper {
         try {
             udayavaani_doc = Jsoup.connect(news.link).get();
             udayavaani_elem = udayavaani_doc.getElementsByClass("field-item even").select("p");
-            for (Element ele: udayavaani_elem) {
-                if (!ele.text().isEmpty()){
+            for (Element ele : udayavaani_elem) {
+                if (!ele.text().isEmpty()) {
                     content.append(ele.text()).append("\n\n");
                 }
             }
@@ -72,7 +72,7 @@ public class Udayavaani_Parser implements Paper {
             news.imgurl = udayavaani_elem.get(1).attr("src");
 
         } catch (IOException e) {
-            Log.d("Exception",e.toString());
+            Log.d("Exception", e.toString());
         }
         return news;
     }
@@ -81,22 +81,22 @@ public class Udayavaani_Parser implements Paper {
     public ArrayList<News> parseCategory(String category) {
 
 
-        try{
+        try {
             udayavaani_doc = Jsoup.connect(category).get();
             udayavaani_elem = udayavaani_doc.select("div.view-taxonomy-term").get(1).select("div.view-content").first().children();
             for (Element ele : udayavaani_elem) {
-                imgurl= ele.select("div.field-content").select("img").attr("data-src");
+                imgurl = ele.select("div.field-content").select("img").attr("data-src");
                 link = "https://www.udayavani.com/" + ele.select("div.field-content").select("a").attr("href");
                 head = ele.select("span.field-content").select("a").text();
-                Log.d("log","logoi"+head);
-                Log.d("log","logoi"+link);
-                Log.d("log","logoi"+imgurl);
+                Log.d("log", "logoi" + head);
+                Log.d("log", "logoi" + link);
+                Log.d("log", "logoi" + imgurl);
                 news.add(new News(head, link, imgurl));
             }
 
 
-        }catch (Exception e){
-            Log.d("Exception",e.toString());
+        } catch (Exception e) {
+            Log.d("Exception", e.toString());
         }
 
         return news;
