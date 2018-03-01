@@ -33,7 +33,7 @@ class CustomPagerAdapter extends PagerAdapter {
 
     Context mContext;
     LayoutInflater mLayoutInflater;
-    ArrayList<News> mNews = new ArrayList<News>();
+    ArrayList<News> mNews = new ArrayList<>();
     News fullnews;
     int mPos;
     String mTag;
@@ -54,7 +54,7 @@ class CustomPagerAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((CoordinatorLayout) object);
+        return view == object;
     }
 
     @Override
@@ -184,31 +184,31 @@ class CustomPagerAdapter extends PagerAdapter {
 
     private void display_news(News fullnews, View itemView) {
 
-        viewholder.headlines_textview = itemView.findViewById(R.id.headline);
-        viewholder.content_textview = itemView.findViewById(R.id.content);
-        viewholder.link_textview = itemView.findViewById(R.id.link);
-        viewholder.imageView = itemView.findViewById(R.id.imageView);
-        viewholder.typingView = itemView.findViewById(R.id.loader);
-        viewholder.headlines_textview.setText(fullnews.head);
+        Viewholder.headlines_textview = itemView.findViewById(R.id.headline);
+        Viewholder.content_textview = itemView.findViewById(R.id.content);
+        Viewholder.link_textview = itemView.findViewById(R.id.link);
+        Viewholder.imageView = itemView.findViewById(R.id.imageView);
+        Viewholder.typingView = itemView.findViewById(R.id.loader);
+        Viewholder.headlines_textview.setText(fullnews.head);
 
         if (!fullnews.content.isEmpty()) {
-            viewholder.content_textview.setText(fullnews.content);
+            Viewholder.content_textview.setText(fullnews.content);
         }
         if (!fullnews.imgurl.isEmpty()) {
             Picasso.with(mContext)
                     .load(fullnews.imgurl)
                     .placeholder(R.drawable.image3)
                     .error(R.drawable.image3)
-                    .into(viewholder.imageView);
+                    .into(Viewholder.imageView);
         }
 
-        viewholder.link_textview.setOnClickListener(new View.OnClickListener() {
+        Viewholder.link_textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                viewholder.headlines_textview.setVisibility(View.GONE);
+                Viewholder.headlines_textview.setVisibility(View.GONE);
             }
         });
-        viewholder.typingView.setVisibility(View.GONE);
+        Viewholder.typingView.setVisibility(View.GONE);
     }
 
     static class Viewholder {

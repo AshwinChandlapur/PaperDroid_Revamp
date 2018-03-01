@@ -3,7 +3,10 @@
 
     <color name="ColorPrimary">#F44336</color>
     <color name="ColorPrimaryDark">#D32F2F</color>
-    <color name="tabsScrollColor">#C62828</color>
+    <!--<color name="tabsScrollColor">#C62828</color>-->
+    <color name="tabsScrollColor">#F6F6F6</color>
+
+
     <color name="statusbar">#152421</color>
     <color name="background_white">#F6F6F6</color>
 

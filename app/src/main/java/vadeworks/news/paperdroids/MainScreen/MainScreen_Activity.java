@@ -145,7 +145,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-
+    try{
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -153,6 +153,10 @@ public class MainScreen_Activity extends AppCompatActivity {
                 getRates();
             }
         }).start();
+    }catch (Exception e){
+        e.printStackTrace();
+    }
+
 
 
     }
@@ -166,7 +170,6 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
         try {
-
             //For Gold Rates
             goldDoc = Jsoup.connect(goldratesUrl).get();
 
@@ -177,8 +180,12 @@ public class MainScreen_Activity extends AppCompatActivity {
             carat24 = "24ct: ₹" + goldElem24.text();
             Log.d("rates are", "gold rates 24carrot   " + carat24);
             Log.d("rates are", "gold rates 22carrot   " + carat22);
+        } catch (Exception e){
+            carat22 = "- -";
+            carat24="- -";
+        }
 
-
+        try{
             // for AQI
             String aqiUrl = "http://aqicn.org/city/india/bangalore/city-railway-station/";
 
@@ -192,8 +199,14 @@ public class MainScreen_Activity extends AppCompatActivity {
                 result = 99;
             }
 
+        }catch (Exception e){
+            result=0;
 
-            //for petrol diesel
+        }
+
+
+
+        try{ //for petrol diesel
 
             String oilUrl = "http://www.petroldieselprice.com/Karnataka/petrol-diesel-kerosene-price-in-Bengaluru";
 
@@ -202,28 +215,42 @@ public class MainScreen_Activity extends AppCompatActivity {
 
             petrol = oilElem.first().children().get(1).text();
             diesel = oilElem.first().children().get(2).text();
-            petrol = petrol.replace(" Per Litre", "/L");
-            diesel = diesel.replace(" Per Litre", "/L");
+            petrol = "P: "+petrol.replace(" Per Litre", "/L");
+            diesel = "D: "+diesel.replace(" Per Litre", "/L");
 
-
-        } catch (Exception e) {
+        }catch (Exception e){
+            petrol="- -";
+            diesel="- -";
         }
+
 
 
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
+
+
+
+
                 gold22_textview.setText(carat22);
                 gold24_textview.setText(carat24);
                 petrol_textview.setText(petrol);
                 diesel_textview.setText(diesel);
-                airNo_textview.setText(result + " AQI");
+
+
+
+
+                if(result!= 0){
                 if (result <= 50) {
+                    airNo_textview.setText(result + " AQI");
                     airQuality_textview.setText("Healthy");
                 } else if (result > 50 && result <= 100) {
+                    airNo_textview.setText(result + " AQI");
                     airQuality_textview.setText("Good");
                 } else {
+                    airNo_textview.setText(result + " AQI");
                     airQuality_textview.setText("Unhealthy");
+                }
                 }
             }
         });
