@@ -2,6 +2,7 @@ package vadeworks.news.paperdroids.MainScreen;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -10,8 +11,13 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
@@ -22,6 +28,7 @@ import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
+import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
 
 public class MainScreen_Activity extends AppCompatActivity {
@@ -42,6 +49,12 @@ public class MainScreen_Activity extends AppCompatActivity {
     private int click = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+
+    private static final String CARD_VIEW_VISIBILITY="card_view_visibility";
+    private static final String CARD_VIEW_TITLE ="card_view_title";
+    private TextView mWelcomeTextView;
+    private CardView mCardView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +81,24 @@ public class MainScreen_Activity extends AppCompatActivity {
         diesel_textview = findViewById(R.id.diesel);
         airNo_textview = findViewById(R.id.airNo);
         airQuality_textview = findViewById(R.id.airQuality);
+
+
+        mWelcomeTextView = findViewById(R.id.welcomeTextView);
+        mCardView = findViewById(R.id.card_view);
+
+
+
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettings(configSettings);
+        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+
+
+        fetchCard();
+
+
 
 
         prajavani.setOnClickListener(new View.OnClickListener() {
@@ -229,16 +260,10 @@ public class MainScreen_Activity extends AppCompatActivity {
             @Override
             public void run() {
 
-
-
-
                 gold22_textview.setText(carat22);
                 gold24_textview.setText(carat24);
                 petrol_textview.setText(petrol);
                 diesel_textview.setText(diesel);
-
-
-
 
                 if(result!= 0){
                 if (result <= 50) {
@@ -255,7 +280,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-
     }
 
 
@@ -266,6 +290,56 @@ public class MainScreen_Activity extends AppCompatActivity {
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
         return true;
+    }
+
+
+
+    private void fetchCard() {
+
+        long cacheExpiration = 300; // 1 hour in seconds.
+        // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
+        // retrieve values from the service.
+        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
+            cacheExpiration = 300;
+        }
+
+        // [START fetch_config_with_callback]
+        // cacheExpirationSeconds is set to cacheExpiration here, indicating the next fetch request
+        // will use fetch data from the Remote Config service, rather than cached parameter values,
+        // if cached parameter values are more than cacheExpiration seconds old.
+        // See Best Practices in the README for more information.
+        mFirebaseRemoteConfig.fetch(cacheExpiration)
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+//                            Toast.makeText(MainScreen_Activity.this, "Fetch Succeeded",
+//                                    Toast.LENGTH_SHORT).show();
+
+                            // After config data is successfully fetched, it must be activated before newly fetched
+                            // values are returned.
+                            mFirebaseRemoteConfig.activateFetched();
+                        } else {
+//                            Toast.makeText(MainScreen_Activity.this, "Fetch Failed",
+//                                    Toast.LENGTH_SHORT).show();
+                        }
+                        displayCard();
+                    }
+                });
+        // [END fetch_config_with_callback]
+    }
+
+    private void displayCard(){
+
+        String cardTitle = mFirebaseRemoteConfig.getString(CARD_VIEW_TITLE);
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY)){
+            mCardView.setVisibility(View.VISIBLE);
+            mWelcomeTextView.setText(cardTitle);
+        }else{
+            mCardView.setVisibility(View.GONE);
+            mWelcomeTextView.setVisibility(View.GONE);
+        }
     }
 
 

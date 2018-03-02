@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- START xml_defaults -->
+<defaultsMap>
+
+    <entry>
+        <key>card_view_visibility</key>
+        <value>false</value>
+    </entry>
+
+    <entry>
+        <key>card_view_title</key>
+        <value>IPL-2018</value>
+    </entry>
+
+</defaultsMap>
+    <!-- END xml_defaults -->
