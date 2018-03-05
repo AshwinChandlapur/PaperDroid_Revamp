@@ -12,5 +12,11 @@
         <value>IPL-2018</value>
     </entry>
 
+
+    <entry>
+        <key>card_view_visibility_vk</key>
+        <value>true</value>
+    </entry>
+
 </defaultsMap>
     <!-- END xml_defaults -->

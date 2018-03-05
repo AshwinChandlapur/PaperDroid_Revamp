@@ -53,6 +53,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     private static final String CARD_VIEW_VISIBILITY="card_view_visibility";
     private static final String CARD_VIEW_TITLE ="card_view_title";
+    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
     private TextView mWelcomeTextView;
     private CardView mCardView;
 
@@ -296,11 +297,11 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     private void fetchCard() {
 
-        long cacheExpiration = 300; // 1 hour in seconds.
+        long cacheExpiration = 3600; // 1 hour in seconds.
         // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
         // retrieve values from the service.
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
-            cacheExpiration = 300;
+            cacheExpiration = 0;
         }
 
         // [START fetch_config_with_callback]
@@ -324,6 +325,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 //                                    Toast.LENGTH_SHORT).show();
                         }
                         displayCard();
+                        displayVK();
                     }
                 });
         // [END fetch_config_with_callback]
@@ -339,6 +341,15 @@ public class MainScreen_Activity extends AppCompatActivity {
         }else{
             mCardView.setVisibility(View.GONE);
             mWelcomeTextView.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayVK(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)){
+            vijayakarnataka.setVisibility(View.VISIBLE);
+        }else{
+            vijayakarnataka.setVisibility(View.GONE);
         }
     }
 

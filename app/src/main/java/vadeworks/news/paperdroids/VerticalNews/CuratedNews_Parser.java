@@ -26,11 +26,13 @@ public class CuratedNews_Parser {
 
     public ArrayList<News> parseTop10(String verticalLink) {
 
+
+
         try {
             top10_doc = Jsoup.connect(verticalLink).get();
             Log.d("Document is", "Docu is" + top10_doc);
 
-            top10_elem = top10_doc.getElementsByTag("body");
+            top10_elem = top10_doc.getElementsByClass("paste_code");
             Log.d("Document is", "docu is body" + top10_elem);
             body = top10_elem.toString();
             body = Jsoup.parse(body).text();

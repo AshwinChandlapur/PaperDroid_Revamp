@@ -26,7 +26,6 @@ import vadeworks.paperdroid.R;
 class VerticlePagerAdapter extends PagerAdapter {
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
-    News news;
     private ArrayList<News> mnews = new ArrayList<>();
     private TextView headline;
     private ImageView image;
