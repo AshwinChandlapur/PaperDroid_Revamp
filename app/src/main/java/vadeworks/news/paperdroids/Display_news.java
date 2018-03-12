@@ -41,7 +41,6 @@ import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
@@ -68,7 +67,6 @@ public class Display_news extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String news_display_previous_activity;
     private FloatingActionButton share;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -174,26 +172,26 @@ public class Display_news extends AppCompatActivity {
                 }).start();
                 break;
 
-            case Constants.prajavani:
-                Log.d("Inside pv Swtich", "inside");
-                head = getIntent().getStringExtra("singleHead");
-                link = getIntent().getStringExtra("singleLink");
-                imgurl = getIntent().getStringExtra("singleImg");
-                fullnews = new News(head, link, imgurl);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Prajavaani_Parser parser = new Prajavaani_Parser();
-                        fullnews = parser.parseNewsPost(fullnews);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                display_news(fullnews);
-                            }
-                        });
-                    }
-                }).start();
-                break;
+//            case Constants.prajavani:
+//                Log.d("Inside pv Swtich", "inside");
+//                head = getIntent().getStringExtra("singleHead");
+//                link = getIntent().getStringExtra("singleLink");
+//                imgurl = getIntent().getStringExtra("singleImg");
+//                fullnews = new News(head, link, imgurl);
+//                new Thread(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        Prajavaani_Parser parser = new Prajavaani_Parser();
+//                        fullnews = parser.parseNewsPost(fullnews);
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                display_news(fullnews);
+//                            }
+//                        });
+//                    }
+//                }).start();
+//                break;
 
             case Constants.esanje:
                 Log.d("Inside es Swtich", "inside");

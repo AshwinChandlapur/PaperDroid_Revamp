@@ -73,7 +73,9 @@ public class FirebaseNews {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
                                 Log.d("AllContent","all"+documentSnapshot.get("content"));
                                 News news  = documentSnapshot.toObject(News.class);
+                                news.showNews();
                                 newsList.add(news);
+
                             }
                             Log.d("Starting Fetch","Finishing Fetch");
                         } else {

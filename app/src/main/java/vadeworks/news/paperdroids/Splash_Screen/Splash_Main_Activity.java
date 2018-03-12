@@ -21,14 +21,11 @@ public class Splash_Main_Activity extends AppCompatActivity {
 
     private LinearLayout l1;
     private Animation uptodown;
-    private Animation downtoup;
-    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_activity);
-
 
         if (Build.VERSION.SDK_INT >= 21) {
             // Call some material design APIs here
@@ -43,7 +40,6 @@ public class Splash_Main_Activity extends AppCompatActivity {
 
         l1 = findViewById(R.id.l1);
         uptodown = AnimationUtils.loadAnimation(this, R.anim.uptodown);
-        downtoup = AnimationUtils.loadAnimation(this, R.anim.downtoup);
         l1.setAnimation(uptodown);
 
 
@@ -56,8 +52,6 @@ public class Splash_Main_Activity extends AppCompatActivity {
                 Splash_Main_Activity.this.finish();
             }
         }, 2000);
-
-
     }
 
     public void onBackPressed() {

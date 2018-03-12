@@ -22,7 +22,6 @@ import vadeworks.paperdroid.R;
  */
 
 
-
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     Context context;
     ArrayList<News> newsList;
@@ -44,9 +43,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerAdapter(Context context, ArrayList<News> news) {
+    public RecyclerAdapter(Context context, ArrayList<News> newsList) {
         this.context = context;
-        this.newsList = news;
+        this.newsList = newsList;
     }
 
 
@@ -66,7 +65,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         pos = position;
 
             holder.news_textview.setText(newsList.get(position).head);
-            Picasso.with(context).load(newsList.get(position).imgurl).fit().into(holder.news_imageview);
+            Picasso.with(context).load(newsList.get(position).thumburl).into(holder.news_imageview);
+            newsList.get(position).showNews();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

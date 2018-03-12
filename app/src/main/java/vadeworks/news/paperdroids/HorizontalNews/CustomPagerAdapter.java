@@ -1,18 +1,15 @@
 package vadeworks.news.paperdroids.HorizontalNews;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,14 +28,7 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
-import vadeworks.news.paperdroids.Constants;
-import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.News;
-import vadeworks.news.paperdroids.Prajavani.Prajavaani_Parser;
-import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
-import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
 import vadeworks.paperdroid.R;
 
 
@@ -112,7 +102,7 @@ class CustomPagerAdapter extends PagerAdapter {
                             fileName = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
                             File imageFile = new File(fileName);
                             FileOutputStream out = new FileOutputStream(imageFile);
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 60, out);
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 30, out);
                             out.flush();
                             out.close();
                             shareImage(imageFile, mNews.get(mPos).head);
