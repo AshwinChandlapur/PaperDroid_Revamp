@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +17,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
@@ -27,13 +34,15 @@ import vadeworks.paperdroid.R;
 
 public class Vertical_News extends AppCompatActivity {
 
-    private ArrayList<News> news = new ArrayList<>();
+    private ArrayList<News> newsList = new ArrayList<>();
     private TypingIndicatorView typingView;
     private View parentLayout;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
     private Bundle params = new Bundle();
     private String verticalLink;
+
+    FirebaseFirestore firestoreNews;
 
 
     @Override
@@ -47,6 +56,8 @@ public class Vertical_News extends AppCompatActivity {
         mFirebaseAnalytics.logEvent(card_clicked, params);
         verticalLink = getIntent().getStringExtra("verticalLink");
 
+        firestoreNews = FirebaseFirestore.getInstance();
+
 
         if (!isConnected(this)) {
             buildDialog(this).show();
@@ -56,31 +67,37 @@ public class Vertical_News extends AppCompatActivity {
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 
-        //showProgress();
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                CuratedNews_Parser parser = new CuratedNews_Parser();
-                news = parser.parseTop10(verticalLink);
-                Log.d("Verticle News Size is", "Vertical News size" + news.size());
-                runOnUiThread(new Runnable() {
+        Log.d("Starting Fetch","Starting Fetch");
+        firestoreNews.collection("TOP_10")
+                .orderBy("imgurl", Query.Direction.ASCENDING)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
-                    public void run() {
-                        initSwipePager();
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                                Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
 
-                        Snackbar.make(parentLayout, "Swipe up for Top 10", Snackbar.LENGTH_LONG).show();
-                        typingView.setVisibility(View.GONE);
+                                Log.d("AllContent","all"+documentSnapshot.get("content"));
+
+                                News news  = documentSnapshot.toObject(News.class);
+                                newsList.add(news);
+                                initSwipePager();
+                            }
+                            Log.d("Starting Fetch","Finishing Fetch");
+                        } else {
+                            Log.w("Docu", "Error getting documents.", task.getException());
+                        }
+
                     }
                 });
-            }
-        }).start();
 
 
     }
 
     private void initSwipePager() {
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        verticalViewPager.setAdapter(new VerticlePagerAdapter(this, news));
+        verticalViewPager.setAdapter(new VerticlePagerAdapter(this, newsList));
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

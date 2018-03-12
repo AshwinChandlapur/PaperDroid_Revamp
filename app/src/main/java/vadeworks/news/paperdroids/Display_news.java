@@ -228,6 +228,8 @@ public class Display_news extends AppCompatActivity {
         imageView = findViewById(R.id.imageView);
         typingView = findViewById(R.id.loader);
         share = findViewById(R.id.share);
+
+
         toola = findViewById(R.id.toola);
         toola.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
         toola.setNavigationOnClickListener(new View.OnClickListener() {
@@ -247,7 +249,6 @@ public class Display_news extends AppCompatActivity {
 
 
                     getScreenShot();
-
 
 
             }

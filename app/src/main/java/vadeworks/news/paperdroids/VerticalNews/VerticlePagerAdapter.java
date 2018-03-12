@@ -96,30 +96,6 @@ class VerticlePagerAdapter extends PagerAdapter {
     }
 
 
-    private void verticalNewsDisplayNews(int position, View itemView, final News news) {
-        pos = position;
-
-        headline = itemView.findViewById(R.id.headline);
-        content = itemView.findViewById(R.id.content);
-        link = itemView.findViewById(R.id.link);
-        image = itemView.findViewById(R.id.image);
-
-
-        headline.setText(news.head);
-        content.setText(news.content);
-        Picasso.with(mContext).load(news.imgurl).into(image);
-
-        link.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.content));
-                mContext.startActivity(browserIntent);
-
-            }
-        });
-
-
-    }
 
 
     private void verticalNewsDisplay(int position, View itemView) {

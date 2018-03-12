@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
+import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.paperdroid.R;
 
 public class Splash_Main_Activity extends AppCompatActivity {
@@ -49,7 +50,7 @@ public class Splash_Main_Activity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash_Main_Activity.this, MainScreen_Activity.class);
+                Intent intent = new Intent(Splash_Main_Activity.this, Vertical_News.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 Splash_Main_Activity.this.finish();

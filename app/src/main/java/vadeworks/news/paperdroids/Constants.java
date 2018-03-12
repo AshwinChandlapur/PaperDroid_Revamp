@@ -13,6 +13,11 @@ public class Constants {
     public static final String asianet = "asianet";
 
 
+
+
+
+
+
     public static final String headlines = "headlines";
     public static final String sports = "sports";
     public static final String state = "state";
@@ -23,4 +28,14 @@ public class Constants {
     public static final String technology = "technology";
     public static final String cinema = "cinema";
     public static final String business = "business";
+
+
+
+    //Prajavani
+    public static final String pj_headlines = "PJ_HEADLINES";
+    public static final String pj_sports = "PJ_SPORTS";
+    public static final String pj_state = "PJ_STATE";
+    public static final String pj_national = "PJ_NATIONAL";
+    public static final String pj_cinema = "PJ_CINEMA";
+    public static final String pj_business = "PJ_BUSINESS";
 }

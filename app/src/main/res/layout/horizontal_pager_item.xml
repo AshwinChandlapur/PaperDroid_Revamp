@@ -135,31 +135,14 @@
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 
-    <LinearLayout
-        android:id="@+id/forAds"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:visibility="gone">
 
         <WebView
             android:id="@+id/webView"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.7"></WebView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="50dp"
-            android:layout_gravity="bottom|center"
-            android:layout_weight="0.3"
-            android:gravity="center"
-            android:text="@string/app_name"
-            android:textSize="40sp"
-            android:visibility="gone" />
+            android:layout_weight="0.7"
+            android:visibility="gone"></WebView>
 
 
-    </LinearLayout>
 
 </android.support.design.widget.CoordinatorLayout>
