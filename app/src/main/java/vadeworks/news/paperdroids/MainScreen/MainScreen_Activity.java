@@ -1,7 +1,9 @@
 package vadeworks.news.paperdroids.MainScreen;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +23,8 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
+
+import java.util.Date;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
@@ -87,7 +91,24 @@ public class MainScreen_Activity extends AppCompatActivity {
         mWelcomeTextView = findViewById(R.id.welcomeTextView);
         mCardView = findViewById(R.id.card_view);
 
-
+        CardView overview_card = findViewById(R.id.overviewcard);
+        overview_card.setVisibility(View.GONE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Date firstlaunch = new Date ((long)prefs.getLong("firstlaunch", ((long)System.currentTimeMillis() / 1000L)));
+        Date currentDate = new Date(System.currentTimeMillis() / 1000L);
+        int diffInDays = (int)( (currentDate.getTime() - firstlaunch.getTime())/ (60 * 60 * 24) );
+        Log.d("diffrence :", ""+diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
+        //  if more than 3 days & not unlocked, set unlock status
+        if ((!prefs.getBoolean("isunlocked", false) )&& diffInDays>= 3)
+        {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isunlocked", true);
+            editor.apply();
+        }
+        //if unlocked enable or disable feature
+        if (prefs.getBoolean("isunlocked", false)){
+            overview_card.setVisibility(View.VISIBLE);
+        }
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()

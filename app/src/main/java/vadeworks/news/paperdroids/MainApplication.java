@@ -2,8 +2,10 @@ package vadeworks.news.paperdroids;
 
 import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -38,6 +40,18 @@ public class MainApplication extends Application {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
 
 
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        if(prefs.getBoolean("firstTime", true)) {
+            // run your one time code here
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("firstTime", false);
+            editor.putBoolean("isunlocked", false);
+            editor.putLong("firstlaunch", System.currentTimeMillis() / 1000L);
+//            editor.putLong("firstlaunch", 1520620801);
+            Log.d("launch at", "first at: "+ System.currentTimeMillis() / 1000L);
+            editor.apply();
+        }
+        Log.d("launch at", "from pref: "+ prefs.getLong("firstlaunch",System.currentTimeMillis() / 1000L ));
         // Call syncHashedEmail anywhere in your app if you have the user's email.
         // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
         // OneSignal.syncHashedEmail(userEmail);
