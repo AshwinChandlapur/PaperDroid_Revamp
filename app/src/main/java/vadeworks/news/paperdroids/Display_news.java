@@ -37,7 +37,6 @@ import java.io.FileOutputStream;
 import java.util.Date;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -83,31 +82,6 @@ public class Display_news extends AppCompatActivity {
         news_display_previous_activity = "DisplayNews_Previous_Is_" + tag;
         mFirebaseAnalytics.logEvent(news_display_previous_activity, params);
 
-
-        switch (tag) {
-            case Constants.asianet:
-                Log.d("Inside Asianet Swtich", "inside");
-                head = getIntent().getStringExtra("singleHead");
-                link = getIntent().getStringExtra("singleLink");
-                imgurl = getIntent().getStringExtra("singleImg");
-                fullnews = new News(head, link, imgurl);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        AsiaNet_Parser parser = new AsiaNet_Parser();
-                        fullnews = parser.parseNewsPost(fullnews);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                display_news(fullnews);
-                            }
-                        });
-                    }
-                }).start();
-
-                break;
-
-        }
 
     }
 

@@ -28,10 +28,11 @@
         app:dotSize="8dp"
         app:showBackground="true" />
 
-    <ListView
-        android:id="@+id/uv_news"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/firebaseRecyclerview"
+        android:scrollbars="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="match_parent"/>
 
 
 </FrameLayout>
