@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.FirebaseNews;
 import vadeworks.paperdroid.R;
 
 
@@ -17,7 +18,7 @@ import vadeworks.paperdroid.R;
  */
 public class Tab1_Headlines_VV extends Fragment {
 
-    private final String tag = Constants.headlines;
+    private final String tag = Constants.vv_headlines;
     private Context context;
     private View view;
 
@@ -32,9 +33,8 @@ public class Tab1_Headlines_VV extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.vijayavaani_tab1_headlines, container, false);
         init(view);
-        ThreadStarter_VV threadStarter = new ThreadStarter_VV();
-        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
-
+        FirebaseNews firebaseNews = new FirebaseNews();
+        firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
 
         return view;
     }

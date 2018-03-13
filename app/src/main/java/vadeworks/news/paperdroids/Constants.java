@@ -31,6 +31,16 @@ public class Constants {
 
 
 
+    //Vijayavaani
+    public static final String vv_headlines = "VV_HEADLINES";
+    public static final String vv_sports = "VV_SPORTS";
+    public static final String vv_state = "VV_STATE";
+    public static final String vv_national = "VV_NATIONAL";
+    public static final String vv_international = "VV_INTERNATIONAL";
+    public static final String vv_politics = "VV_POLITICS";
+
+
+
     //Prajavani
     public static final String pj_headlines = "PJ_HEADLINES";
     public static final String pj_sports = "PJ_SPORTS";
