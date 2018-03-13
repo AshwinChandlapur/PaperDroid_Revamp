@@ -70,6 +70,7 @@ public class Vertical_News extends AppCompatActivity {
         Log.d("Starting Fetch","Starting Fetch");
         firestoreNews.collection("TOP_10")
                 .orderBy("imgurl", Query.Direction.ASCENDING)
+                .limit(10)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
