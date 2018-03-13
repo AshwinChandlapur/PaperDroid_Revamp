@@ -13,7 +13,8 @@ public class Constants {
     public static final String asianet = "asianet";
 
 
-
+    //Common
+    public static final int UNLOCK_DAYS = 3;
 
 
 
