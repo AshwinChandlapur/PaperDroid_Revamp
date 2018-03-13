@@ -42,11 +42,10 @@ public class Splash_Main_Activity extends AppCompatActivity {
         uptodown = AnimationUtils.loadAnimation(this, R.anim.uptodown);
         l1.setAnimation(uptodown);
 
-
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(Splash_Main_Activity.this, Vertical_News.class);
+                Intent intent = new Intent(Splash_Main_Activity.this, MainScreen_Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 Splash_Main_Activity.this.finish();

@@ -91,8 +91,6 @@ public class Vertical_News extends AppCompatActivity {
 
                     }
                 });
-
-
     }
 
     private void initSwipePager() {
