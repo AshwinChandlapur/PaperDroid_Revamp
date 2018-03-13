@@ -18,7 +18,7 @@ import vadeworks.paperdroid.R;
 
 public class Tab5_LifeStyle_AN extends Fragment {
 
-    private final String tag = Constants.lifestyle;
+    private final String tag = Constants.an_lifestyle;
     private View view;
     private Context context;
 
