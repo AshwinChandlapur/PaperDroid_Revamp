@@ -39,14 +39,10 @@ import java.util.Date;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_Parser;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
-import vadeworks.news.paperdroids.Esanje.Esanje_Parser;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.UdayaVaani.Udayavaani_Parser;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_Parser;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VijayaVaani.Vijayavaani_Parser;
 import vadeworks.paperdroid.R;
 
 public class Display_news extends AppCompatActivity {
@@ -111,108 +107,6 @@ public class Display_news extends AppCompatActivity {
 
                 break;
 
-            case Constants.vijayakarnataka:
-                Log.d("Inside Vijaya Swtich", "inside");
-                head = getIntent().getStringExtra("singleHead");
-                link = getIntent().getStringExtra("singleLink");
-                fullnews = new News(head, link);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        VijayaKarnataka_Parser parser = new VijayaKarnataka_Parser();
-                        fullnews = parser.parseNewsPost(fullnews);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                display_news(fullnews);
-                            }
-                        });
-                    }
-                }).start();
-                break;
-
-            case Constants.udayavani:
-                Log.d("Inside Udaya Swtich", "inside");
-                head = getIntent().getStringExtra("singleHead");
-                link = getIntent().getStringExtra("singleLink");
-                fullnews = new News(head, link);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Udayavaani_Parser parser = new Udayavaani_Parser();
-                        fullnews = parser.parseNewsPost(fullnews);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                display_news(fullnews);
-                            }
-                        });
-                    }
-                }).start();
-                break;
-
-            case Constants.vijayavani:
-                Log.d("Inside vv Swtich", "inside");
-                head = getIntent().getStringExtra("singleHead");
-                link = getIntent().getStringExtra("singleLink");
-                imgurl = getIntent().getStringExtra("singleImg");
-                fullnews = new News(head, link, imgurl);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Vijayavaani_Parser parser = new Vijayavaani_Parser();
-                        fullnews = parser.parseNewsPost(fullnews);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                display_news(fullnews);
-                            }
-                        });
-                    }
-                }).start();
-                break;
-
-//            case Constants.prajavani:
-//                Log.d("Inside pv Swtich", "inside");
-//                head = getIntent().getStringExtra("singleHead");
-//                link = getIntent().getStringExtra("singleLink");
-//                imgurl = getIntent().getStringExtra("singleImg");
-//                fullnews = new News(head, link, imgurl);
-//                new Thread(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        Prajavaani_Parser parser = new Prajavaani_Parser();
-//                        fullnews = parser.parseNewsPost(fullnews);
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                display_news(fullnews);
-//                            }
-//                        });
-//                    }
-//                }).start();
-//                break;
-
-            case Constants.esanje:
-                Log.d("Inside es Swtich", "inside");
-                head = getIntent().getStringExtra("singleHead");
-                link = getIntent().getStringExtra("singleLink");
-                imgurl = getIntent().getStringExtra("singleImg");
-                fullnews = new News(head, link, imgurl);
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Esanje_Parser parser = new Esanje_Parser();
-                        fullnews = parser.parseNewsPost(fullnews);
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                display_news(fullnews);
-                            }
-                        });
-                    }
-                }).start();
-                break;
         }
 
     }

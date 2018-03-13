@@ -31,6 +31,41 @@ public class Constants {
 
 
 
+
+
+    //Asianet
+    public static final String an_headlines = "AN_HEADLINES";
+    public static final String an_sports = "AN_SPORTS";
+    public static final String an_cinema = "AN_CINEMA";
+    public static final String an_technology = "AN_TECHNOLOGY";
+    public static final String an_lifestyle= "AN_LIFESTYLE";
+
+
+    //Esanje
+    public static final String es_headlines = "ES_HEADLINES";
+    public static final String es_state = "ES_STATE";
+    public static final String es_national = "ES_NATIONAL";
+    public static final String es_cinema = "ES_CINEMA";
+    public static final String es_sports = "ES_SPORTS";
+    public static final String es_business = "ES_BUSINESS";
+    
+
+    //Udayavani
+    public static final String uv_headlines = "UV_HEADLINES";
+    public static final String uv_cinema = "UV_CINEMA";
+    public static final String uv_sports = "UV_SPORTS";
+    public static final String uv_international = "UV_INTERNATIONAL";
+    public static final String uv_business = "UV_BUSINESS";
+    
+    
+
+    //VijayaKarnataka
+    public static final String vk_headlines = "VK_HEADLINES";
+    public static final String vk_sports = "VK_SPORTS";
+    public static final String vk_cinema = "VK_CINEMA";
+    public static final String vk_lifestyle = "VK_LIFESTYLE";
+    public static final String vk_technology = "VK_TECHNOLOGY";
+
     //Vijayavaani
     public static final String vv_headlines = "VV_HEADLINES";
     public static final String vv_sports = "VV_SPORTS";

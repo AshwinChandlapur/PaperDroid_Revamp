@@ -9,11 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.FirebaseNews;
 import vadeworks.paperdroid.R;
 
 public class Tab1_Headlines_VK extends Fragment {
 
-    private final String tag = Constants.headlines;
+    private final String tag = Constants.vk_headlines;
     private Context context;
     private View view;
 
@@ -22,8 +23,8 @@ public class Tab1_Headlines_VK extends Fragment {
         view = inflater.inflate(R.layout.vijayakarnataka_tab1_headlines, container, false);
         init(view);
 
-        ThreadStarter_VK threadStarter = new ThreadStarter_VK();
-        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
+        FirebaseNews firebaseNews = new FirebaseNews();
+        firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
 
 
         return view;

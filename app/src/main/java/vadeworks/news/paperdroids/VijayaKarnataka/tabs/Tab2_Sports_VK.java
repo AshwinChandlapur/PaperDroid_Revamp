@@ -9,12 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.FirebaseNews;
 import vadeworks.paperdroid.R;
 
 
 public class Tab2_Sports_VK extends Fragment {
 
-    private final String tag = Constants.sports;
+    private final String tag = Constants.vk_sports;
     private Context context;
     private View view;
 
@@ -24,8 +25,8 @@ public class Tab2_Sports_VK extends Fragment {
         init(view);
 
 
-        ThreadStarter_VK threadStarter = new ThreadStarter_VK();
-        threadStarter.threadShuruKaro(getActivity(), context, view, tag);
+        FirebaseNews firebaseNews = new FirebaseNews();
+        firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
         return view;
     }
 
