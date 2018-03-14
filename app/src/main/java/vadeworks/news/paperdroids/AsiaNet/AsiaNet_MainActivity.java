@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -20,11 +21,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.FirebaseNews;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -34,6 +40,7 @@ import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayou
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
+import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
 
 public class AsiaNet_MainActivity extends AppCompatActivity {
@@ -50,12 +57,29 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    FrameLayout intent_to_vijayavaani,intent_to_vijayakarnataka,intent_to_prajavani,intent_to_udayavaani,intent_to_suvarna,intent_to_esanje;
+
+    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
+    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
+    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
+    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
+    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
+    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.asianet_mainactivity);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettings(configSettings);
+        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+        fetchCard();
 
         init_slider();
 
@@ -82,7 +106,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_prajavani = findViewById(R.id.nav_prajavani);
+        intent_to_prajavani = findViewById(R.id.nav_prajavani);
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,7 +117,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_vijayavaani = findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavaani = findViewById(R.id.nav_vijayavani);
         intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -105,7 +129,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         });
 
 
-        FrameLayout intent_to_vijayakarnataka = findViewById(R.id.nav_vijayakarnataka);
+        intent_to_vijayakarnataka = findViewById(R.id.nav_vijayakarnataka);
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -116,7 +140,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
+        intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -127,7 +151,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_suvarna = findViewById(R.id.nav_suvarna);
+        intent_to_suvarna = findViewById(R.id.nav_suvarna);
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -138,7 +162,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         });
 
 
-        FrameLayout intent_to_esanje = findViewById(R.id.nav_esanje);
+        intent_to_esanje = findViewById(R.id.nav_esanje);
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -289,6 +313,90 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         builder.setView(view);
         return builder;
     }
+
+    private void fetchCard() {
+
+//        long cacheExpiration = 0;
+
+        long cacheExpiration = 24*60*60; // 1 Day
+
+        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
+            cacheExpiration = 0;
+        }
+
+        mFirebaseRemoteConfig.fetch(cacheExpiration)
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            mFirebaseRemoteConfig.activateFetched();
+                        }
+                        displayPJ();
+                        displayVV();
+                        displayVK();
+                        displayUV();
+                        displayAN();
+                        displayES();
+                    }
+                });
+        // [END fetch_config_with_callback]
+    }
+
+
+    private void displayVK(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)){
+            intent_to_vijayakarnataka.setVisibility(View.VISIBLE);
+        }else{
+            intent_to_vijayakarnataka.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayPJ(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)){
+            intent_to_prajavani.setVisibility(View.VISIBLE);
+        }else{
+            intent_to_prajavani.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayVV(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)){
+            intent_to_vijayavaani.setVisibility(View.VISIBLE);
+        }else{
+            intent_to_vijayavaani.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayUV(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)){
+            intent_to_udayavaani.setVisibility(View.VISIBLE);
+        }else{
+            intent_to_udayavaani.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayAN(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)){
+            intent_to_suvarna.setVisibility(View.VISIBLE);
+        }else{
+            intent_to_suvarna.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayES(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)){
+            intent_to_esanje.setVisibility(View.VISIBLE);
+        }else{
+            intent_to_esanje.setVisibility(View.GONE);
+        }
+    }
+
 
 
 }
