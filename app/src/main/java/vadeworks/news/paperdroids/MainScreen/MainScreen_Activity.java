@@ -56,11 +56,14 @@ public class MainScreen_Activity extends AppCompatActivity {
     private String card_clicked;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
-    private static final String CARD_VIEW_VISIBILITY="card_view_visibility";
-    private static final String CARD_VIEW_TITLE ="card_view_title";
+
     private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
-    private TextView mWelcomeTextView;
-    private CardView mCardView;
+    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
+    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
+    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
+    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
+    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,16 @@ public class MainScreen_Activity extends AppCompatActivity {
         bottomImage = findViewById(R.id.bottomimage);
 
 
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
+                .setDeveloperModeEnabled(BuildConfig.DEBUG)
+                .build();
+        mFirebaseRemoteConfig.setConfigSettings(configSettings);
+        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
+
+        fetchCard();
+
+
         gold22_textview = findViewById(R.id.gold22);
         gold24_textview = findViewById(R.id.gold24);
         petrol_textview = findViewById(R.id.petrol);
@@ -89,8 +102,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         airQuality_textview = findViewById(R.id.airQuality);
 
 
-        mWelcomeTextView = findViewById(R.id.welcomeTextView);
-        mCardView = findViewById(R.id.card_view);
 
         CardView overview_card = findViewById(R.id.overviewcard);
         overview_card.setVisibility(View.GONE);
@@ -112,18 +123,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         if (prefs.getBoolean("isunlocked", false)){
             overview_card.setVisibility(View.VISIBLE);
         }
-
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(BuildConfig.DEBUG)
-                .build();
-        mFirebaseRemoteConfig.setConfigSettings(configSettings);
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-
-
-        fetchCard();
-
-
 
 
         prajavani.setOnClickListener(new View.OnClickListener() {
@@ -201,19 +200,17 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-    try{
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("gold thread", "run: thread for gold");
-                getRates();
+            try{
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("gold thread", "run: thread for gold");
+                        getRates();
+                    }
+                }).start();
+            }catch (Exception e){
+                e.printStackTrace();
             }
-        }).start();
-    }catch (Exception e){
-        e.printStackTrace();
-    }
-
-
 
     }
 
@@ -321,7 +318,10 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     private void fetchCard() {
 
-        long cacheExpiration = 3600; // 1 hour in seconds.
+        long cacheExpiration = 0;
+
+//      long cacheExpiration = 24*60*60; // 1 Day
+
         // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
         // retrieve values from the service.
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
@@ -348,25 +348,18 @@ public class MainScreen_Activity extends AppCompatActivity {
 //                            Toast.makeText(MainScreen_Activity.this, "Fetch Failed",
 //                                    Toast.LENGTH_SHORT).show();
                         }
-                        displayCard();
+                        displayPJ();
+                        displayVV();
                         displayVK();
+                        displayUV();
+                        displayAN();
+                        displayES();
                     }
                 });
         // [END fetch_config_with_callback]
     }
 
-    private void displayCard(){
 
-        String cardTitle = mFirebaseRemoteConfig.getString(CARD_VIEW_TITLE);
-
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY)){
-            mCardView.setVisibility(View.VISIBLE);
-            mWelcomeTextView.setText(cardTitle);
-        }else{
-            mCardView.setVisibility(View.GONE);
-            mWelcomeTextView.setVisibility(View.GONE);
-        }
-    }
 
     private void displayVK(){
 
@@ -374,6 +367,51 @@ public class MainScreen_Activity extends AppCompatActivity {
             vijayakarnataka.setVisibility(View.VISIBLE);
         }else{
             vijayakarnataka.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayPJ(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)){
+            prajavani.setVisibility(View.VISIBLE);
+        }else{
+            prajavani.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayVV(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)){
+            vijayavani.setVisibility(View.VISIBLE);
+        }else{
+            vijayavani.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayUV(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)){
+            udayavani.setVisibility(View.VISIBLE);
+        }else{
+            udayavani.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayAN(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)){
+            suvarna.setVisibility(View.VISIBLE);
+        }else{
+            suvarna.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayES(){
+
+        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)){
+            esanje.setVisibility(View.VISIBLE);
+        }else{
+            esanje.setVisibility(View.GONE);
         }
     }
 

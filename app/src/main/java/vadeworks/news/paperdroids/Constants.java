@@ -55,7 +55,7 @@ public class Constants {
     public static final String uv_headlines = "UV_HEADLINES";
     public static final String uv_cinema = "UV_CINEMA";
     public static final String uv_sports = "UV_SPORTS";
-    public static final String uv_international = "UV_INTERNATIONAL";
+    public static final String uv_world = "UV_WORLD";
     public static final String uv_business = "UV_BUSINESS";
     
     

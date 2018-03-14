@@ -18,7 +18,7 @@ import vadeworks.paperdroid.R;
  */
 public class Tab4_World_UV extends Fragment {
 
-    private final String tag = Constants.uv_international;
+    private final String tag = Constants.uv_world;
     private Context context;
     private View view;
 

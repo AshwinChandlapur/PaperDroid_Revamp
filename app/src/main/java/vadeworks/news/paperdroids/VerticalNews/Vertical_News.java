@@ -70,7 +70,6 @@ public class Vertical_News extends AppCompatActivity {
         Log.d("Starting Fetch","Starting Fetch");
         firestoreNews.collection("TOP_10")
                 .orderBy("imgurl", Query.Direction.ASCENDING)
-                .limit(10)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -80,8 +79,8 @@ public class Vertical_News extends AppCompatActivity {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
 
                                 Log.d("AllContent","all"+documentSnapshot.get("content"));
-
                                 News news  = documentSnapshot.toObject(News.class);
+
                                 newsList.add(news);
                                 initSwipePager();
                             }

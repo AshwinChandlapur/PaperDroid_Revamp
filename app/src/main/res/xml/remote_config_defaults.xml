@@ -2,21 +2,37 @@
 <!-- START xml_defaults -->
 <defaultsMap>
 
+
     <entry>
-        <key>card_view_visibility</key>
-        <value>false</value>
+        <key>card_view_visibility_pj</key>
+        <value>true</value>
     </entry>
 
     <entry>
-        <key>card_view_title</key>
-        <value>IPL-2018</value>
+        <key>card_view_visibility_vv</key>
+        <value>true</value>
     </entry>
-
 
     <entry>
         <key>card_view_visibility_vk</key>
         <value>true</value>
     </entry>
+
+    <entry>
+        <key>card_view_visibility_uv</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>card_view_visibility_an</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>card_view_visibility_es</key>
+        <value>true</value>
+    </entry>
+
 
 </defaultsMap>
     <!-- END xml_defaults -->
