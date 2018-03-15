@@ -81,9 +81,9 @@ public class FirebaseNews {
                         // use a linear layout manager
                         mLayoutManager = new LinearLayoutManager(fragmentActivity);
                         firebaseRecyclerview.setLayoutManager(mLayoutManager);
-                        // specify an adapter (see also next example)
+                        DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(firebaseRecyclerview.getContext(), LinearLayoutManager.VERTICAL);
+                        firebaseRecyclerview.addItemDecoration(dividerItemDecoration);
                         mAdapter = new RecyclerAdapter(mContext,newsList);
-                        firebaseRecyclerview.addItemDecoration(new DividerItemDecoration(mContext, LinearLayoutManager.VERTICAL));
                         firebaseRecyclerview.setAdapter(mAdapter);
                         typingView.setVisibility(View.GONE);
                     }
