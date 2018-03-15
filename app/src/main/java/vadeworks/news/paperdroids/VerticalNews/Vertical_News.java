@@ -103,6 +103,7 @@ public class Vertical_News extends AppCompatActivity {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(Vertical_News.this, MainScreen_Activity.class);
+            finish();
             startActivity(intent);
         }
         return true;

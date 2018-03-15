@@ -43,6 +43,7 @@ import java.util.Date;
 
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
@@ -133,11 +134,7 @@ public class Display_news extends AppCompatActivity {
                     requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
                 }
                 mFirebaseAnalytics.logEvent(shareAnalytics, params);
-
-
                     getScreenShot();
-
-
             }
         });
 
@@ -157,7 +154,6 @@ public class Display_news extends AppCompatActivity {
 
 
             File imageFile = new File(mPath);
-
             FileOutputStream outputStream = new FileOutputStream(imageFile);
             int quality = 20;
             bitmap.compress(Bitmap.CompressFormat.JPEG, quality, outputStream);
@@ -248,7 +244,15 @@ public class Display_news extends AppCompatActivity {
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        return  true;//TODO Handle Back here
+
+        //replaces the default 'Back' button action
+        if(keyCode==KeyEvent.KEYCODE_BACK)
+        {
+            Intent intent = new Intent(Display_news.this, MainScreen_Activity.class);
+            finish();
+            startActivity(intent);
+        }
+        return true;
     }
 
     private boolean isConnected(Context context) {
