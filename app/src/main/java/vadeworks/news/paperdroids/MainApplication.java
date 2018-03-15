@@ -41,17 +41,17 @@ public class MainApplication extends Application {
 
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        if(prefs.getBoolean("firstTime", true)) {
+        if (prefs.getBoolean("firstTime", true)) {
             // run your one time code here
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("firstTime", false);
             editor.putBoolean("isunlocked", false);
             editor.putLong("firstlaunch", System.currentTimeMillis() / 1000L);
 //            editor.putLong("firstlaunch", 1520620801);
-            Log.d("launch at", "first at: "+ System.currentTimeMillis() / 1000L);
+            Log.d("launch at", "first at: " + System.currentTimeMillis() / 1000L);
             editor.apply();
         }
-        Log.d("launch at", "from pref: "+ prefs.getLong("firstlaunch",System.currentTimeMillis() / 1000L ));
+        Log.d("launch at", "from pref: " + prefs.getLong("firstlaunch", System.currentTimeMillis() / 1000L));
         // Call syncHashedEmail anywhere in your app if you have the user's email.
         // This improves the effectiveness of OneSignal's "best-time" notification scheduling feature.
         // OneSignal.syncHashedEmail(userEmail);
@@ -93,7 +93,7 @@ public class MainApplication extends Application {
                     intent.putExtra("singleImg", singleImg);
                     intent.putExtra("singleHead", singleHead);
                     intent.putExtra("documentid", tag);
-                    Log.d("notificationOpened", "document id: "+ tag);
+                    Log.d("notificationOpened", "document id: " + tag);
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else if (!(promotionLink.isEmpty())) {

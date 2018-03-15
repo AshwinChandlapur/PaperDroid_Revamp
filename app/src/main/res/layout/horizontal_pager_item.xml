@@ -45,9 +45,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
                 android:layout_gravity="center"
+                android:background="@drawable/backrepeat"
                 android:maxHeight="250dp"
                 android:scaleType="fitXY"
-                android:background="@drawable/backrepeat"
                 app:layout_collapseMode="parallax"
                 tools:ignore="ContentDescription" />
 
@@ -136,13 +136,12 @@
     </android.support.v4.widget.NestedScrollView>
 
 
-        <WebView
-            android:id="@+id/webView"
-            android:layout_width="match_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.7"
-            android:visibility="gone"></WebView>
-
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.7"
+        android:visibility="gone"></WebView>
 
 
 </android.support.design.widget.CoordinatorLayout>

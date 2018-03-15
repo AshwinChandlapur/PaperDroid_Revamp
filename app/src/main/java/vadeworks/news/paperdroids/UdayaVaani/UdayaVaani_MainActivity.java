@@ -45,9 +45,16 @@ import vadeworks.paperdroid.R;
 public class UdayaVaani_MainActivity extends AppCompatActivity {
 
 
+    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
+    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
+    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
+    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
+    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
+    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಸಿನಿಮಾ", "ಕ್ರೀಡೆ", "ವಾಣಿಜ್ಯ", "ಜಗತ್ತು"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
+    FrameLayout intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_UV adapter;
@@ -56,16 +63,6 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
     private String card_clicked;
     private DrawerLayout mDrawerLayout;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
-    FrameLayout intent_to_vijayavaani,intent_to_vijayakarnataka,intent_to_prajavani,intent_to_udayavaani,intent_to_suvarna,intent_to_esanje;
-
-    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
-    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
-    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
-    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
-    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
-    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
-
-
     //
 //    @Override
 //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,7 +128,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
             }
         });
 
-         intent_to_prajavani = findViewById(R.id.nav_prajavani);
+        intent_to_prajavani = findViewById(R.id.nav_prajavani);
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -142,7 +139,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
             }
         });
 
-         intent_to_vijayavaani = findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavaani = findViewById(R.id.nav_vijayavani);
         intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -154,7 +151,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         });
 
 
-         intent_to_vijayakarnataka = findViewById(R.id.nav_vijayakarnataka);
+        intent_to_vijayakarnataka = findViewById(R.id.nav_vijayakarnataka);
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +162,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
             }
         });
 
-         intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
+        intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -175,7 +172,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
             }
         });
 
-         intent_to_suvarna = findViewById(R.id.nav_suvarna);
+        intent_to_suvarna = findViewById(R.id.nav_suvarna);
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,7 +184,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
         });
 
 
-         intent_to_esanje = findViewById(R.id.nav_esanje);
+        intent_to_esanje = findViewById(R.id.nav_esanje);
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -343,7 +340,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
 
 //        long cacheExpiration = 0;
 
-        long cacheExpiration = 24*60*60; // 1 Day
+        long cacheExpiration = 24 * 60 * 60; // 1 Day
 
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
@@ -368,56 +365,56 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
     }
 
 
-    private void displayVK(){
+    private void displayVK() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)) {
             intent_to_vijayakarnataka.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             intent_to_vijayakarnataka.setVisibility(View.GONE);
         }
     }
 
-    private void displayPJ(){
+    private void displayPJ() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)) {
             intent_to_prajavani.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             intent_to_prajavani.setVisibility(View.GONE);
         }
     }
 
-    private void displayVV(){
+    private void displayVV() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)) {
             intent_to_vijayavaani.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             intent_to_vijayavaani.setVisibility(View.GONE);
         }
     }
 
-    private void displayUV(){
+    private void displayUV() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)) {
             intent_to_udayavaani.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             intent_to_udayavaani.setVisibility(View.GONE);
         }
     }
 
-    private void displayAN(){
+    private void displayAN() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)) {
             intent_to_suvarna.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             intent_to_suvarna.setVisibility(View.GONE);
         }
     }
 
-    private void displayES(){
+    private void displayES() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
             intent_to_esanje.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             intent_to_esanje.setVisibility(View.GONE);
         }
     }

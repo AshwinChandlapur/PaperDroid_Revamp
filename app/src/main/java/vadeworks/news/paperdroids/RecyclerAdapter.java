@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +26,50 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     ArrayList<News> newsList;
     int pos;
 
+    // Provide a suitable constructor (depends on the kind of dataset)
+    public RecyclerAdapter(Context context, ArrayList<News> newsList) {
+        this.context = context;
+        this.newsList = newsList;
+    }
+
+    @Override
+    public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+                                                         int viewType) {
+        // create a new view
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.listview_custom_layout, parent, false);
+
+        return new ViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+
+        pos = position;
+
+        holder.news_textview.setText(newsList.get(position).head);
+        Picasso.with(context).load(newsList.get(position).thumburl).into(holder.news_imageview);
+        newsList.get(position).showNews();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(context, Horizontal_Display_News.class);
+                i.putExtra("newsObject", newsList);
+                i.putExtra("position", position);
+                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(i);
+            }
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        if (newsList.size() == 0)
+            return 0;
+        return newsList.size();
+    }
+
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
@@ -40,52 +83,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             news_imageview = v.findViewById(R.id.newsImage);
             news_textview = v.findViewById(R.id.newsHeadlines);
         }
-    }
-
-    // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerAdapter(Context context, ArrayList<News> newsList) {
-        this.context = context;
-        this.newsList = newsList;
-    }
-
-
-    @Override
-    public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
-                                                   int viewType) {
-        // create a new view
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.listview_custom_layout, parent, false);
-
-        return new ViewHolder(itemView);
-    }
-
-    @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-
-        pos = position;
-
-            holder.news_textview.setText(newsList.get(position).head);
-            Picasso.with(context).load(newsList.get(position).thumburl).into(holder.news_imageview);
-            newsList.get(position).showNews();
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(context, Horizontal_Display_News.class);
-                i.putExtra("newsObject",newsList);
-                i.putExtra("position",position);
-                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                context.startActivity(i);
-            }
-        });
-    }
-
-
-    @Override
-    public int getItemCount() {
-        if (newsList.size() == 0)
-            return 0;
-        return newsList.size();
     }
 }
 

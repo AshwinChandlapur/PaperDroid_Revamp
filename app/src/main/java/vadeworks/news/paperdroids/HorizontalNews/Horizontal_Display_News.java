@@ -1,6 +1,5 @@
 package vadeworks.news.paperdroids.HorizontalNews;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -55,7 +54,7 @@ public class Horizontal_Display_News extends AppCompatActivity {
         }
     }
 
-    public void askPermission(){
+    public void askPermission() {
         if (Build.VERSION.SDK_INT > 22) {
             requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
         }

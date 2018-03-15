@@ -8,7 +8,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -35,6 +34,7 @@ import vadeworks.paperdroid.R;
 
 public class Vertical_News extends AppCompatActivity {
 
+    FirebaseFirestore firestoreNews;
     private ArrayList<News> newsList = new ArrayList<>();
     private TypingIndicatorView typingView;
     private View parentLayout;
@@ -42,9 +42,6 @@ public class Vertical_News extends AppCompatActivity {
     private String card_clicked;
     private Bundle params = new Bundle();
     private String verticalLink;
-
-    FirebaseFirestore firestoreNews;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +65,7 @@ public class Vertical_News extends AppCompatActivity {
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
 
-        Log.d("Starting Fetch","Starting Fetch");
+        Log.d("Starting Fetch", "Starting Fetch");
         firestoreNews.collection("TOP_10")
                 .orderBy("imgurl", Query.Direction.DESCENDING).limit(Constants.TOP_10_LIMIT)
                 .get()
@@ -79,13 +76,13 @@ public class Vertical_News extends AppCompatActivity {
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
 
-                                Log.d("AllContent","all"+documentSnapshot.get("content"));
-                                News news  = documentSnapshot.toObject(News.class);
+                                Log.d("AllContent", "all" + documentSnapshot.get("content"));
+                                News news = documentSnapshot.toObject(News.class);
 
                                 newsList.add(news);
                                 initSwipePager();
                             }
-                            Log.d("Starting Fetch","Finishing Fetch");
+                            Log.d("Starting Fetch", "Finishing Fetch");
                         } else {
                             Log.w("Docu", "Error getting documents.", task.getException());
                         }

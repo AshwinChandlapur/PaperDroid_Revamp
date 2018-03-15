@@ -41,13 +41,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.R;
 
 public class Display_news extends AppCompatActivity {
@@ -94,10 +88,10 @@ public class Display_news extends AppCompatActivity {
         firestorenews.collection("NOTIFICATIONS").document(docid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()){
+                if (task.isSuccessful()) {
                     News todisplay = new News(head, link, imgurl);
                     todisplay.content = task.getResult().get("content").toString();
-                    display_news( todisplay);
+                    display_news(todisplay);
                 }
             }
         });
@@ -134,7 +128,7 @@ public class Display_news extends AppCompatActivity {
                     requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
                 }
                 mFirebaseAnalytics.logEvent(shareAnalytics, params);
-                    getScreenShot();
+                getScreenShot();
             }
         });
 
@@ -163,7 +157,7 @@ public class Display_news extends AppCompatActivity {
         } catch (Throwable e) {
             // Several error may come out with file handling or OOM
             e.printStackTrace();
-            Log.d("No Permission is Set","No Permission is Set, Try after getting permission");
+            Log.d("No Permission is Set", "No Permission is Set, Try after getting permission");
         }
     }
 
@@ -245,8 +239,7 @@ public class Display_news extends AppCompatActivity {
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         //replaces the default 'Back' button action
-        if(keyCode==KeyEvent.KEYCODE_BACK)
-        {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(Display_news.this, MainScreen_Activity.class);
             finish();
             startActivity(intent);

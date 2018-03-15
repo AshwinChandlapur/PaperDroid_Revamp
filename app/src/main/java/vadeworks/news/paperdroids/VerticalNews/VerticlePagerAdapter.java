@@ -96,8 +96,6 @@ class VerticlePagerAdapter extends PagerAdapter {
     }
 
 
-
-
     private void verticalNewsDisplay(final int position, View itemView) {
         pos = position;
 

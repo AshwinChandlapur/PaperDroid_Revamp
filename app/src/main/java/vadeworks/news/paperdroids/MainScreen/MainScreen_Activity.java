@@ -13,7 +13,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -39,6 +38,12 @@ import vadeworks.paperdroid.R;
 public class MainScreen_Activity extends AppCompatActivity {
 
 
+    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
+    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
+    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
+    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
+    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
+    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private final Bundle params = new Bundle();
     String carat22, carat24, petrol, diesel;
     int result;
@@ -55,15 +60,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
-
-
-    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
-    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
-    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
-    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
-    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
-    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,25 +98,23 @@ public class MainScreen_Activity extends AppCompatActivity {
         airQuality_textview = findViewById(R.id.airQuality);
 
 
-
         CardView overview_card = findViewById(R.id.overviewcard);
         overview_card.setVisibility(View.GONE);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Date firstlaunch = new Date ((long)prefs.getLong("firstlaunch", ((long)System.currentTimeMillis() / 1000L)));
+        Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
         Date currentDate = new Date(System.currentTimeMillis() / 1000L);
-        int diffInDays = (int)( (currentDate.getTime() - firstlaunch.getTime())/ (60 * 60 * 24) );
-        Log.d("difference :", ""+diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
+        int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
+        Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
         //  if more than 3 days & not unlocked, set unlock status
-        if ((!prefs.getBoolean("isunlocked", false) )&& diffInDays >= Constants.UNLOCK_DAYS)
-        {
+        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("isunlocked", true);
             editor.apply();
         }
 
         //if unlocked enable or disable feature
-        if (prefs.getBoolean("isunlocked", false)){
+        if (prefs.getBoolean("isunlocked", false)) {
 //            overview_card.setVisibility(View.VISIBLE);
             Log.d("shared pref", "Feature unlocked");
         }
@@ -201,17 +195,17 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-            try{
-                new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d("gold thread", "run: thread for gold");
-                        getRates();
-                    }
-                }).start();
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+        try {
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("gold thread", "run: thread for gold");
+                    getRates();
+                }
+            }).start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -234,12 +228,12 @@ public class MainScreen_Activity extends AppCompatActivity {
             carat24 = "24ct: ₹" + goldElem24.text();
             Log.d("rates are", "gold rates 24carrot   " + carat24);
             Log.d("rates are", "gold rates 22carrot   " + carat22);
-        } catch (Exception e){
+        } catch (Exception e) {
             carat22 = "- -";
-            carat24="- -";
+            carat24 = "- -";
         }
 
-        try{
+        try {
             // for AQI
             String aqiUrl = "http://aqicn.org/city/india/bangalore/city-railway-station/";
 
@@ -253,14 +247,13 @@ public class MainScreen_Activity extends AppCompatActivity {
                 result = 99;
             }
 
-        }catch (Exception e){
-            result=0;
+        } catch (Exception e) {
+            result = 0;
 
         }
 
 
-
-        try{ //for petrol diesel
+        try { //for petrol diesel
 
             String oilUrl = "http://www.petroldieselprice.com/Karnataka/petrol-diesel-kerosene-price-in-Bengaluru";
 
@@ -269,14 +262,13 @@ public class MainScreen_Activity extends AppCompatActivity {
 
             petrol = oilElem.first().children().get(1).text();
             diesel = oilElem.first().children().get(2).text();
-            petrol = "P: "+petrol.replace(" Per Litre", "/L");
-            diesel = "D: "+diesel.replace(" Per Litre", "/L");
+            petrol = "P: " + petrol.replace(" Per Litre", "/L");
+            diesel = "D: " + diesel.replace(" Per Litre", "/L");
 
-        }catch (Exception e){
-            petrol="- -";
-            diesel="- -";
+        } catch (Exception e) {
+            petrol = "- -";
+            diesel = "- -";
         }
-
 
 
         runOnUiThread(new Runnable() {
@@ -288,17 +280,17 @@ public class MainScreen_Activity extends AppCompatActivity {
                 petrol_textview.setText(petrol);
                 diesel_textview.setText(diesel);
 
-                if(result!= 0){
-                if (result <= 50) {
-                    airNo_textview.setText(result + " AQI");
-                    airQuality_textview.setText("Healthy");
-                } else if (result > 50 && result <= 100) {
-                    airNo_textview.setText(result + " AQI");
-                    airQuality_textview.setText("Good");
-                } else {
-                    airNo_textview.setText(result + " AQI");
-                    airQuality_textview.setText("Unhealthy");
-                }
+                if (result != 0) {
+                    if (result <= 50) {
+                        airNo_textview.setText(result + " AQI");
+                        airQuality_textview.setText("Healthy");
+                    } else if (result > 50 && result <= 100) {
+                        airNo_textview.setText(result + " AQI");
+                        airQuality_textview.setText("Good");
+                    } else {
+                        airNo_textview.setText(result + " AQI");
+                        airQuality_textview.setText("Unhealthy");
+                    }
                 }
             }
         });
@@ -314,7 +306,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         startActivity(startMain);
         return true;
     }
-
 
 
     private void fetchCard() {
@@ -361,57 +352,56 @@ public class MainScreen_Activity extends AppCompatActivity {
     }
 
 
+    private void displayVK() {
 
-    private void displayVK(){
-
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)) {
             vijayakarnataka.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             vijayakarnataka.setVisibility(View.GONE);
         }
     }
 
-    private void displayPJ(){
+    private void displayPJ() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)) {
             prajavani.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             prajavani.setVisibility(View.GONE);
         }
     }
 
-    private void displayVV(){
+    private void displayVV() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)) {
             vijayavani.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             vijayavani.setVisibility(View.GONE);
         }
     }
 
-    private void displayUV(){
+    private void displayUV() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)) {
             udayavani.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             udayavani.setVisibility(View.GONE);
         }
     }
 
-    private void displayAN(){
+    private void displayAN() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)) {
             suvarna.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             suvarna.setVisibility(View.GONE);
         }
     }
 
-    private void displayES(){
+    private void displayES() {
 
-        if(mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)){
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
             esanje.setVisibility(View.VISIBLE);
-        }else{
+        } else {
             esanje.setVisibility(View.GONE);
         }
     }

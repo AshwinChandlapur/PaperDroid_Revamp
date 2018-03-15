@@ -35,7 +35,8 @@ public class Tab6_Business_ES extends Fragment {
         view = inflater.inflate(R.layout.common_tab, container, false);
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
-        firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);;
+        firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
+        ;
         return view;
     }
 

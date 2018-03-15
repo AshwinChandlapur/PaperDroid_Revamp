@@ -7,8 +7,8 @@
     android:layout_margin="7dp"
     android:minHeight="500dp"
     android:orientation="vertical"
-    tools:context="vadeworks.news.paperdroids.VerticalNews.Vertical_News"
-    card_view:layout_behavior="vadeworks.news.paperdroids.FixAppBarLayoutBehavior">
+    card_view:layout_behavior="vadeworks.news.paperdroids.FixAppBarLayoutBehavior"
+    tools:context="vadeworks.news.paperdroids.VerticalNews.Vertical_News">
 
 
     <android.support.v7.widget.CardView

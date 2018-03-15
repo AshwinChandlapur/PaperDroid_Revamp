@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -45,18 +44,15 @@ class CustomPagerAdapter extends PagerAdapter {
     News fullnews;
     int mPos;
     String fileName;
-
+    TextView content_textview;
+    TextView link_textview;
+    ImageView imageView;
+    TypingIndicatorView typingView;
+    TextView headlines_textview;
     private FloatingActionButton share;
 
-     TextView content_textview;
-     TextView link_textview;
-     ImageView imageView;
-     TypingIndicatorView typingView;
-     TextView headlines_textview;
 
-
-
-    public CustomPagerAdapter(Context context, ArrayList<News> news, int position ){
+    public CustomPagerAdapter(Context context, ArrayList<News> news, int position) {
         mContext = context;
         mNews = news;
         mPos = position;
@@ -78,8 +74,8 @@ class CustomPagerAdapter extends PagerAdapter {
         final View itemView = mLayoutInflater.inflate(R.layout.horizontal_pager_item, container, false);
         mPos = position;
 
-        fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link, mNews.get(mPos).imgurl,mNews.get(mPos).content);
-        display_news(fullnews,itemView,mPos);
+        fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link, mNews.get(mPos).imgurl, mNews.get(mPos).content);
+        display_news(fullnews, itemView, mPos);
         container.addView(itemView);
 
         return itemView;
@@ -97,7 +93,7 @@ class CustomPagerAdapter extends PagerAdapter {
                 .into(new Target() {
                     @Override
                     public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                        try{
+                        try {
                             Date now = new Date();
                             android.text.format.DateFormat.format("yyyy-MM-dd_hh:mm:ss", now);
                             fileName = Environment.getExternalStorageDirectory().toString() + "/" + now + ".jpg";
@@ -107,7 +103,7 @@ class CustomPagerAdapter extends PagerAdapter {
                             out.flush();
                             out.close();
                             shareImage(imageFile, mNews.get(mPos).head);
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
@@ -140,7 +136,6 @@ class CustomPagerAdapter extends PagerAdapter {
             Toast.makeText(mContext.getApplicationContext(), "No App Available", Toast.LENGTH_SHORT).show();
         }
     }
-
 
 
     private void display_news(News fullnews, final View itemView, final int mPos) {

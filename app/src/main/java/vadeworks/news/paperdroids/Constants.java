@@ -18,8 +18,6 @@ public class Constants {
     public static final int TOP_10_LIMIT = 3;
 
 
-
-
     public static final String headlines = "headlines";
     public static final String sports = "sports";
     public static final String state = "state";
@@ -32,15 +30,12 @@ public class Constants {
     public static final String business = "business";
 
 
-
-
-
     //Asianet
     public static final String an_headlines = "AN_HEADLINES";
     public static final String an_sports = "AN_SPORTS";
     public static final String an_cinema = "AN_CINEMA";
     public static final String an_technology = "AN_TECHNOLOGY";
-    public static final String an_lifestyle= "AN_LIFESTYLE";
+    public static final String an_lifestyle = "AN_LIFESTYLE";
 
 
     //Esanje
@@ -50,7 +45,7 @@ public class Constants {
     public static final String es_cinema = "ES_CINEMA";
     public static final String es_sports = "ES_SPORTS";
     public static final String es_business = "ES_BUSINESS";
-    
+
 
     //Udayavani
     public static final String uv_headlines = "UV_HEADLINES";
@@ -58,8 +53,7 @@ public class Constants {
     public static final String uv_sports = "UV_SPORTS";
     public static final String uv_world = "UV_WORLD";
     public static final String uv_business = "UV_BUSINESS";
-    
-    
+
 
     //VijayaKarnataka
     public static final String vk_headlines = "VK_HEADLINES";
@@ -75,7 +69,6 @@ public class Constants {
     public static final String vv_national = "VV_NATIONAL";
     public static final String vv_international = "VV_INTERNATIONAL";
     public static final String vv_politics = "VV_POLITICS";
-
 
 
     //Prajavani
