@@ -45,10 +45,7 @@ public class FirebaseNews {
     private RecyclerView firebaseRecyclerview;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
     private ArrayList<News> newsList = new ArrayList<>();
-
-
 
     public void firebaseNewsFetcher(final FragmentActivity fragmentActivity, Context context, View view, final String category)
     {
@@ -59,7 +56,6 @@ public class FirebaseNews {
 
         firebaseRecyclerview = (RecyclerView) view.findViewById(R.id.firebaseRecyclerview);
         firebaseRecyclerview.setHasFixedSize(true);
-
 
         Log.d("Starting Fetch","Starting Fetch");
         firestoreNews.collection(mCategory)

@@ -21,7 +21,7 @@ public class Tab2_Sports_VK extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.vijayakarnataka_common_tab, container, false);
+        view = inflater.inflate(R.layout.common_tab, container, false);
         init(view);
 
 

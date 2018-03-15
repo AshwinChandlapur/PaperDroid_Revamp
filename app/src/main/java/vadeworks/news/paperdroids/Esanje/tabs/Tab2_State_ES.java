@@ -30,7 +30,7 @@ public class Tab2_State_ES extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.esanje_common_tab, container, false);
+        view = inflater.inflate(R.layout.common_tab, container, false);
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
         firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);

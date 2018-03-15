@@ -68,8 +68,9 @@ public class News implements Serializable {
         Log.d("news-info", "Headline is    " + this.head);
         Log.d("news-info", "Link is   " + this.link);
         Log.d("news-info", "imageUrl is   " + this.imgurl);
-        Log.d("news-info", "Content is " + this.thumburl);
+        Log.d("news-info", "Thumb is " + this.thumburl);
         Log.d("news-info", "Content is " + this.content);
     }
+
 
 }

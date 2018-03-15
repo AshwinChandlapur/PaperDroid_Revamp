@@ -32,7 +32,7 @@ public class Tab3_Sports_UV extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.udayavaani_common_tab, container, false);
+        view = inflater.inflate(R.layout.common_tab, container, false);
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
         firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
