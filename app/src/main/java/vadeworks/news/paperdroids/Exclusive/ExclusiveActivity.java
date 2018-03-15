@@ -1,15 +1,15 @@
-package vadeworks.news.paperdroids.VerticalNews;
+package vadeworks.news.paperdroids.Exclusive;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -18,41 +18,29 @@ import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
+import vadeworks.news.paperdroids.VerticalNews.VerticalViewPager;
 import vadeworks.paperdroid.R;
 
-public class Vertical_News extends AppCompatActivity {
+public class ExclusiveActivity extends AppCompatActivity {
 
     FirebaseFirestore firestoreNews;
     private ArrayList<News> newsList = new ArrayList<>();
-    private TypingIndicatorView typingView;
-    private View parentLayout;
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private String card_clicked;
-    private Bundle params = new Bundle();
-    private String verticalLink;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vertical_news_activity);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        parentLayout = findViewById(android.R.id.content);
-        typingView = findViewById(R.id.loadera);
-        card_clicked = getResources().getString(R.string.toolbar_title_home_top10);
-        mFirebaseAnalytics.logEvent(card_clicked, params);
-        verticalLink = getIntent().getStringExtra("verticalLink");
+        setContentView(R.layout.exclusive_activity);
+
 
         firestoreNews = FirebaseFirestore.getInstance();
 
@@ -89,17 +77,19 @@ public class Vertical_News extends AppCompatActivity {
 
                     }
                 });
+
     }
+
 
     private void initSwipePager() {
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        verticalViewPager.setAdapter(new VerticlePagerAdapter(this, newsList));
+        verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, newsList));
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(Vertical_News.this, MainScreen_Activity.class);
+            Intent intent = new Intent(ExclusiveActivity.this, MainScreen_Activity.class);
             finish();
             startActivity(intent);
         }

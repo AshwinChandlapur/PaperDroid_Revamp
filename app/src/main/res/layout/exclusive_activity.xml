@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_white"
+    tools:context="vadeworks.news.paperdroids.Exclusive.ExclusiveActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:layout_gravity="center"
+            android:src="@drawable/logo_with_background"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="cursive"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/loaderColor"
+            android:textSize="40sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:fontFamily="casual"
+            android:gravity="center"
+            android:text="@string/tagline"
+            android:textAlignment="center"
+            android:textColor="@color/loaderColor"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="7dp"
+            android:gravity="center"
+            android:text="Loading Exclusive Content..."
+            android:textAlignment="center"
+            android:textColor="@color/loaderColor"
+            android:textSize="15sp" />
+
+
+        <com.udevel.widgetlab.TypingIndicatorView
+            android:id="@+id/loadera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="4dp"
+            app:animateFrequency="300"
+            app:animationOrder="circular"
+            app:backgroundColor="#eaeaea"
+            app:backgroundType="rounded"
+            app:dotAnimationDuration="600"
+            app:dotAnimationType="Sliding"
+            app:dotColor="@color/loaderColor"
+            app:dotCount="7"
+            app:dotHorizontalSpacing="4dp"
+            app:dotMaxCompressRatio="70%"
+            app:dotSecondColor="#6ba4a4a4"
+            app:dotSize="8dp"
+            app:showBackground="true" />
+
+    </LinearLayout>
+
+
+    <vadeworks.news.paperdroids.VerticalNews.VerticalViewPager
+        android:id="@+id/vPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></vadeworks.news.paperdroids.VerticalNews.VerticalViewPager>
+
+</FrameLayout>

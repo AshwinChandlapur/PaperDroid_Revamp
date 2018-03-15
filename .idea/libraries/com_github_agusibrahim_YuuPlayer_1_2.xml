@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="com.github.agusibrahim:YuuPlayer-1.2">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/YuuPlayer-1.2.aar/a88dff19fe938dc9233bd758a6793006/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/YuuPlayer-1.2.aar/a88dff19fe938dc9233bd758a6793006/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.agusibrahim/YuuPlayer/1.2/76767ede0a14e143d8bc7f57bb2a34b44574ba9b/YuuPlayer-1.2-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -74,6 +74,7 @@
             android:name="vadeworks.news.paperdroids.HorizontalNews.Horizontal_Display_News"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
+        <activity android:name="vadeworks.news.paperdroids.Exclusive.ExclusiveActivity"></activity>
     </application>
 
 </manifest>

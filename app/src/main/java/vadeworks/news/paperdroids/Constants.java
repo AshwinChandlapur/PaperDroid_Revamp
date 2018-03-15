@@ -78,4 +78,10 @@ public class Constants {
     public static final String pj_national = "PJ_NATIONAL";
     public static final String pj_cinema = "PJ_CINEMA";
     public static final String pj_business = "PJ_BUSINESS";
+
+
+
+    public static final String DEVELOPER_KEY = "AIzaSyDYi9W3aTlhPgGlgqde4UuMSgSMTr28qY4";
+
+    public static final String YOUTUBE_VIDEO_CODE = "_oEA18Y8gM0";
 }

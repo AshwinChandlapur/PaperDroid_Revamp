@@ -29,6 +29,7 @@ import java.util.Date;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
@@ -125,7 +126,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Log.d("Card view ", "Clicked");
-                    Intent i = new Intent(MainScreen_Activity.this, Vertical_News.class);
+                    Intent i = new Intent(MainScreen_Activity.this, ExclusiveActivity.class);
                     finish();
                     startActivity(i);
                 }
@@ -324,36 +325,19 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     private void fetchCard() {
 
-        long cacheExpiration = 0;
+      long cacheExpiration = 24*60*60; // 1 Day
 
-//      long cacheExpiration = 24*60*60; // 1 Day
-
-        // If your app is using developer mode, cacheExpiration is set to 0, so each fetch will
-        // retrieve values from the service.
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
         }
 
-        // [START fetch_config_with_callback]
-        // cacheExpirationSeconds is set to cacheExpiration here, indicating the next fetch request
-        // will use fetch data from the Remote Config service, rather than cached parameter values,
-        // if cached parameter values are more than cacheExpiration seconds old.
-        // See Best Practices in the README for more information.
         mFirebaseRemoteConfig.fetch(cacheExpiration)
                 .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-//                            Toast.makeText(MainScreen_Activity.this, "Fetch Succeeded",
-//                                    Toast.LENGTH_SHORT).show();
-
-                            // After config data is successfully fetched, it must be activated before newly fetched
-                            // values are returned.
                             mFirebaseRemoteConfig.activateFetched();
-                        } else {
-//                            Toast.makeText(MainScreen_Activity.this, "Fetch Failed",
-//                                    Toast.LENGTH_SHORT).show();
-                        }
+                        } else {}
                         displayPJ();
                         displayVV();
                         displayVK();
@@ -362,7 +346,6 @@ public class MainScreen_Activity extends AppCompatActivity {
                         displayES();
                     }
                 });
-        // [END fetch_config_with_callback]
     }
 
 
