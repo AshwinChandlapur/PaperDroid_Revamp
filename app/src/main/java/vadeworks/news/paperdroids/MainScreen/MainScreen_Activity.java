@@ -121,7 +121,8 @@ public class MainScreen_Activity extends AppCompatActivity {
 
         //if unlocked enable or disable feature
         if (prefs.getBoolean("isunlocked", false)){
-            overview_card.setVisibility(View.VISIBLE);
+//            overview_card.setVisibility(View.VISIBLE);
+            Log.d("shared pref", "Feature unlocked");
         }
 
 

@@ -77,7 +77,7 @@ public class MainApplication extends Application {
             String tag, singleLink, singleHead, singleImg, promotionLink, verticalLink;
 
             if (data != null) {
-                tag = data.optString("tag", "");
+                tag = data.optString("documentid", "");
                 singleHead = data.optString("singleHead", "No Headline");
                 singleLink = data.optString("singleLink", "");
                 singleImg = data.optString("singleImg", "No ImgUrl");
@@ -86,13 +86,14 @@ public class MainApplication extends Application {
                 Log.d("Incoming_Data", "All Values" + tag + singleHead + singleLink + singleImg);
 
 
-                if (!(singleLink.isEmpty()) && !(tag.isEmpty())) {
+                if (!(tag.isEmpty())) {
                     Intent intent = new Intent(getApplicationContext(), Display_news.class);
                     Log.d("Incoming_Data", "Passing Intent to Display News");
                     intent.putExtra("singleLink", singleLink);
                     intent.putExtra("singleImg", singleImg);
                     intent.putExtra("singleHead", singleHead);
-                    intent.putExtra("tag", tag);
+                    intent.putExtra("documentid", tag);
+                    Log.d("notificationOpened", "document id: "+ tag);
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                 } else if (!(promotionLink.isEmpty())) {

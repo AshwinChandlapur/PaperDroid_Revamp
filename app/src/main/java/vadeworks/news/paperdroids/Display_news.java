@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +29,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
 
@@ -55,13 +60,15 @@ public class Display_news extends AppCompatActivity {
     private String head;
     private String link;
     private String imgurl;
-    private String tag;
+    private String docid;
     private News fullnews;
     private android.support.v7.widget.Toolbar toola;
     private TypingIndicatorView typingView;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String news_display_previous_activity;
     private FloatingActionButton share;
+
+    private FirebaseFirestore firestorenews;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,9 +84,23 @@ public class Display_news extends AppCompatActivity {
             Log.d("Internet Working", "Internet Working");
         }
 
+        firestorenews = FirebaseFirestore.getInstance();
 
-        tag = getIntent().getStringExtra("tag");
-        news_display_previous_activity = "DisplayNews_Previous_Is_" + tag;
+        docid = getIntent().getStringExtra("documentid");
+        head = getIntent().getStringExtra("singleHead");
+        link = getIntent().getStringExtra("singleLink");
+        imgurl = getIntent().getStringExtra("singleImg");
+        firestorenews.collection("NOTIFICATIONS").document(docid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()){
+                    News todisplay = new News(head, link, imgurl);
+                    todisplay.content = task.getResult().get("content").toString();
+                    display_news( todisplay);
+                }
+            }
+        });
+        news_display_previous_activity = "DisplayNews_Previous_Is_" + docid;
         mFirebaseAnalytics.logEvent(news_display_previous_activity, params);
 
 
@@ -227,46 +248,7 @@ public class Display_news extends AppCompatActivity {
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent;
-            if (notif.equals("notif")) {
-                switch (tag) {
-                    case Constants.prajavani:
-                        intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case Constants.vijayavani:
-                        intent = new Intent(Display_news.this, VijayaVaani_MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case Constants.vijayakarnataka:
-                        intent = new Intent(Display_news.this, VijayaKarnataka_MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case Constants.udayavani:
-                        intent = new Intent(Display_news.this, UdayaVaani_MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case Constants.asianet:
-                        intent = new Intent(Display_news.this, AsiaNet_MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    case Constants.esanje:
-                        intent = new Intent(Display_news.this, Esanje_MainActivity.class);
-                        startActivity(intent);
-                        break;
-                    default:
-                        intent = new Intent(Display_news.this, PrajaVaani_MainActivity.class);
-                        startActivity(intent);
-                }
-
-            } else {
-                super.onBackPressed();
-            }
-
-        }
-        return true;
+        return  true;//TODO Handle Back here
     }
 
     private boolean isConnected(Context context) {
