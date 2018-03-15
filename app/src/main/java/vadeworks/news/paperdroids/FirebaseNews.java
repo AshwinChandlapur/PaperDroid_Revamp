@@ -75,7 +75,7 @@ public class FirebaseNews {
                             }
                             Log.d("Starting Fetch","Finishing Fetch");
                         } else {
-                            Toast.makeText(context,"Oops, Something went wrong :( ",Toast.LENGTH_LONG).show();
+                            Toast.makeText(context,"Oops, Something went wrong :( ",Toast.LENGTH_SHORT).show();
                             Log.w("Docu", "Error getting documents.", task.getException());
                         }
                         // use a linear layout manager
