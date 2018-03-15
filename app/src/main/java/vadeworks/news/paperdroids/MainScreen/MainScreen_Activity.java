@@ -11,6 +11,7 @@ import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -30,6 +31,7 @@ import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
+import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.BuildConfig;
@@ -99,13 +101,16 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
         CardView overview_card = findViewById(R.id.overviewcard);
-        overview_card.setVisibility(View.GONE);
+        FrameLayout locklayout = findViewById(R.id.locklayout);
+        TextView locktxt = findViewById(R.id.locktext);
+//        overview_card.setVisibility(View.GONE);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
         Date currentDate = new Date(System.currentTimeMillis() / 1000L);
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
+        locktxt.setText("Exclusive Content will be available in "+ (3 - diffInDays ) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
@@ -115,7 +120,16 @@ public class MainScreen_Activity extends AppCompatActivity {
 
         //if unlocked enable or disable feature
         if (prefs.getBoolean("isunlocked", false)) {
-//            overview_card.setVisibility(View.VISIBLE);
+            locklayout.setVisibility(View.GONE);
+            overview_card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Card view ", "Clicked");
+                    Intent i = new Intent(MainScreen_Activity.this, Vertical_News.class);
+                    finish();
+                    startActivity(i);
+                }
+            });
             Log.d("shared pref", "Feature unlocked");
         }
 

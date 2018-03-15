@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:foreground="@color/black_alpha_50">
 
-                <com.android.volley.toolbox.NetworkImageView
+                <ImageView
                     android:id="@+id/navigation_drawer_user_account_picture_cover"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

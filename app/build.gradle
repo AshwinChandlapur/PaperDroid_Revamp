@@ -61,6 +61,5 @@ dependencies {
     implementation 'com.github.uDevel:widgetlab:0.9.7'
     implementation 'com.google.firebase:firebase-config:11.8.0'
     implementation 'com.google.firebase:firebase-firestore:11.8.0'
-
 }
 apply plugin: 'com.google.gms.google-services'
