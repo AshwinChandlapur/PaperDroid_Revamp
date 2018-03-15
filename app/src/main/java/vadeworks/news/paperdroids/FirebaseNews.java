@@ -47,7 +47,7 @@ public class FirebaseNews {
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<News> newsList = new ArrayList<>();
 
-    public void firebaseNewsFetcher(final FragmentActivity fragmentActivity, Context context, View view, final String category)
+    public void firebaseNewsFetcher(final FragmentActivity fragmentActivity, final Context context, View view, final String category)
     {
         firestoreNews = FirebaseFirestore.getInstance();
         typingView = view.findViewById(R.id.loader);
@@ -72,10 +72,10 @@ public class FirebaseNews {
                                 news.showNews();
                                 if(!(news.isEmpty()))
                                     newsList.add(news);
-
                             }
                             Log.d("Starting Fetch","Finishing Fetch");
                         } else {
+                            Toast.makeText(context,"Oops, Something went wrong :( ",Toast.LENGTH_LONG).show();
                             Log.w("Docu", "Error getting documents.", task.getException());
                         }
                         // use a linear layout manager

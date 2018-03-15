@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -159,8 +160,7 @@ class CustomPagerAdapter extends PagerAdapter {
         if (!fullnews.imgurl.isEmpty()) {
             Picasso.with(mContext)
                     .load(fullnews.imgurl)
-                    .placeholder(R.drawable.image3)
-                    .error(R.drawable.image3)
+                    .error(R.drawable.backrepeat)
                     .into(imageView);
         }
 

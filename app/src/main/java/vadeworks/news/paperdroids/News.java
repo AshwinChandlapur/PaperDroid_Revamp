@@ -60,7 +60,6 @@ public class News implements Serializable {
     }
 
     public boolean isEmpty(){
-
         return ((this.head.isEmpty()) && (this.imgurl.isEmpty()) && (this.content.isEmpty() && (this.link.isEmpty())));
     }
 

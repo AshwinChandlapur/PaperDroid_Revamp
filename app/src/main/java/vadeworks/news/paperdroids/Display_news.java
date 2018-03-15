@@ -210,8 +210,7 @@ public class Display_news extends AppCompatActivity {
         if (!fullnews.imgurl.isEmpty()) {
             Picasso.with(getApplicationContext())
                     .load(fullnews.imgurl)
-                    .placeholder(R.drawable.image3)
-                    .error(R.drawable.image3)
+                    .error(R.drawable.backrepeat)
                     .into(imageView);
         } else {
             Toast.makeText(getApplicationContext(), "Could'nt Fetch the Image.", Toast.LENGTH_LONG).show();
