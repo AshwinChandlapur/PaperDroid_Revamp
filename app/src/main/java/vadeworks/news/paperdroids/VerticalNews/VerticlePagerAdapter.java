@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -30,8 +31,8 @@ class VerticlePagerAdapter extends PagerAdapter {
     private TextView headline;
     private ImageView image;
     private TextView content;
+    private News fullnews;
     private TextView link;
-    private int pos;
 
 
     public VerticlePagerAdapter(Context context, ArrayList<News> news) {
@@ -60,59 +61,32 @@ class VerticlePagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        View itemView = mLayoutInflater.inflate(R.layout.vertical_news_display, container, false);
+        final View itemView = mLayoutInflater.inflate(R.layout.vertical_news_display, container, false);
 
-//
-//        for(position=0;position<mnews.size();position++){
-//            news = mnews.get(position);
-//            verticalNewsDisplayNews(position,itemView,news);
-//        }
-
-
-        if (position == 0) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 1) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 2) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 3) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 4) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 5) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 6) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 7) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 8) {
-            verticalNewsDisplay(position, itemView);
-        } else if (position == 9) {
-            verticalNewsDisplay(position, itemView);
-        }
-
+        fullnews = new News(mnews.get(position).head,mnews.get(position).link,mnews.get(position).imgurl,mnews.get(position).content);
+        verticalNewsDisplay(fullnews,position,itemView);
         container.addView(itemView);
+
         return itemView;
     }
 
 
-    private void verticalNewsDisplay(final int position, View itemView) {
-        pos = position;
 
+    private void verticalNewsDisplay(final News singleNews, int position, View itemView) {
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
         link = itemView.findViewById(R.id.link);
         image = itemView.findViewById(R.id.image);
 
 
-        headline.setText(mnews.get(position).head);
-        content.setText(mnews.get(position).content);
-        Picasso.with(mContext).load(mnews.get(position).imgurl).into(image);
+        headline.setText(singleNews.head);
+        content.setText(singleNews.content);
+        Picasso.with(mContext).load(singleNews.imgurl).into(image);
 
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mnews.get(position).link));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(singleNews.link));
                 mContext.startActivity(browserIntent);
             }
         });
