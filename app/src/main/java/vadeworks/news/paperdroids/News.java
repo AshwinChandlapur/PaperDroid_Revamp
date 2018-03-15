@@ -59,6 +59,11 @@ public class News implements Serializable {
         this.thumburl =thumburl;
     }
 
+    public boolean isEmpty(){
+
+        return ((this.head.isEmpty()) && (this.imgurl.isEmpty()) && (this.content.isEmpty() && (this.link.isEmpty())));
+    }
+
     public void showNews() {
         Log.d("news-info", "Headline is    " + this.head);
         Log.d("news-info", "Link is   " + this.link);

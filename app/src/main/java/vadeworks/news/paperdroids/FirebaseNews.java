@@ -74,7 +74,8 @@ public class FirebaseNews {
                                 Log.d("AllContent","all"+documentSnapshot.get("content"));
                                 News news  = documentSnapshot.toObject(News.class);
                                 news.showNews();
-                                newsList.add(news);
+                                if(!(news.isEmpty()))
+                                    newsList.add(news);
 
                             }
                             Log.d("Starting Fetch","Finishing Fetch");

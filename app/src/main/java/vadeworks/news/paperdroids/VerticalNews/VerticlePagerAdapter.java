@@ -98,7 +98,7 @@ class VerticlePagerAdapter extends PagerAdapter {
 
 
 
-    private void verticalNewsDisplay(int position, View itemView) {
+    private void verticalNewsDisplay(final int position, View itemView) {
         pos = position;
 
         headline = itemView.findViewById(R.id.headline);
@@ -114,7 +114,7 @@ class VerticlePagerAdapter extends PagerAdapter {
         link.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mnews.get(pos).link));
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mnews.get(position).link));
                 mContext.startActivity(browserIntent);
             }
         });
