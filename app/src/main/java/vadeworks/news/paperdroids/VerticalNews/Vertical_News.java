@@ -28,6 +28,7 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
@@ -69,7 +70,7 @@ public class Vertical_News extends AppCompatActivity {
 
         Log.d("Starting Fetch","Starting Fetch");
         firestoreNews.collection("TOP_10")
-                .orderBy("imgurl", Query.Direction.ASCENDING)
+                .orderBy("imgurl", Query.Direction.DESCENDING).limit(Constants.TOP_10_LIMIT)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
