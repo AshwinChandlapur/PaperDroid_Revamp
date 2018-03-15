@@ -36,7 +36,6 @@ public class Tab4_Sports_VV extends Fragment {
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
         firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
-        ;
 
         return view;
     }

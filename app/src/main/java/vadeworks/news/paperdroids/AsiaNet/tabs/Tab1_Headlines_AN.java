@@ -2,11 +2,15 @@ package vadeworks.news.paperdroids.AsiaNet.tabs;
 
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.FirebaseNews;
@@ -31,7 +35,9 @@ public class Tab1_Headlines_AN extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        view = inflater.inflate(R.layout.asianet_tab1_headlines, container, false);
+        view = inflater.inflate(R.layout.common_headline, container, false);
+        ImageView newsIcon = view.findViewById(R.id.newsIcon);
+        newsIcon.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.an));
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
         firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);

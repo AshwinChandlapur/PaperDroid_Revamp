@@ -7,6 +7,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.FirebaseNews;
@@ -32,7 +35,9 @@ public class Tab1_Headlines_PJ extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.prajavaani_tab1_headlines, container, false);
+        view = inflater.inflate(R.layout.common_headline, container, false);
+        ImageView newsIcon = view.findViewById(R.id.newsIcon);
+        newsIcon.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.pj));
         init(view);
 
         FirebaseNews firebaseNews = new FirebaseNews();

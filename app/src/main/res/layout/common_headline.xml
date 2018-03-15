@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="vadeworks.news.paperdroids.Esanje.Esanje_MainActivity">
+    tools:context="vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity">
 
 
     <FrameLayout
@@ -16,8 +16,8 @@
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="#ffffff"
+            android:id="@+id/newsIcon"
             android:scaleType="center"
-            android:src="@drawable/vk"
             tools:ignore="ContentDescription" />
 
         <View
@@ -52,14 +52,11 @@
             app:dotSize="8dp"
             app:showBackground="true" />
 
-
         <android.support.v7.widget.RecyclerView
             android:id="@+id/firebaseRecyclerview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical" />
-
-
     </FrameLayout>
 
 
