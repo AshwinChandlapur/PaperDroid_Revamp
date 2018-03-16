@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.onesignal.OneSignal;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
@@ -116,6 +117,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("isunlocked", true);
+            OneSignal.sendTag("unlock_status", "unlocked");
             editor.apply();
         }
 
