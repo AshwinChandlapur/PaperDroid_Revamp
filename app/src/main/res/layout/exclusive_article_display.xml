@@ -26,22 +26,29 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
             <ImageView
                 android:id="@+id/image"
                 android:layout_width="match_parent"
-                android:layout_height="23dp"
+                android:layout_height="230dp"
                 android:background="@drawable/backrepeat"
                 android:contentDescription="TODO" />
-
-            <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-                android:id="@+id/video_view"
-                android:layout_width="match_parent"
-                android:layout_height="10dp"/>
 
             <cn.jzvd.JZVideoPlayerStandard
                 android:id="@+id/videoplayer"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
+                android:layout_height="230dp"/>
+
+                <ImageView
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:id="@+id/youTube"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_lock_black_24dp" />
+            </FrameLayout>
 
 
             <TextView

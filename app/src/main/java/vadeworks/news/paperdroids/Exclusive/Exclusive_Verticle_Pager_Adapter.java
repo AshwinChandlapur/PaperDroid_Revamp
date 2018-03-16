@@ -37,6 +37,7 @@ import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.Paper;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
+import vadeworks.news.paperdroids.YouTube;
 import vadeworks.paperdroid.R;
 
 /**
@@ -48,7 +49,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private final LayoutInflater mLayoutInflater;
     private ArrayList<News> mnews = new ArrayList<>();
     private TextView headline;
-    private ImageView image;
+    private ImageView image,youTube;
     private TextView content;
     private News fullnews;
     private TextView link;
@@ -94,16 +95,41 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
 
     private void verticalNewsDisplay(final News singleNews, View itemView) {
 
-        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
-        jzVideoPlayerStandard.setUp("https://dl.dropboxusercontent.com/s/icze9l587tqai17/DIY%20Dry-brushed%20Wooden%20Furniture%20-%20Asian%20Paints%20Live%20Stylishly%281%29.mp4?dl=0"
-                , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "DIYA");
-//        jzVideoPlayerStandard.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
-
-
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
         link = itemView.findViewById(R.id.link);
         image = itemView.findViewById(R.id.image);
+        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
+        youTube = itemView.findViewById(R.id.youTube);
+
+
+        if(singleNews.imgurl.contains("firebasestorage.googleapis.com/v0/b/newsguru15022018.appspot.com"))
+        {
+            jzVideoPlayerStandard.setVisibility(View.GONE);
+            youTube.setVisibility(View.GONE);
+        }else if(singleNews.imgurl.contains(".mp4"))
+        {
+            youTube.setVisibility(View.GONE);
+            image.setVisibility(View.GONE);
+            jzVideoPlayerStandard.setUp(Constants.mp4_link
+                    , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "NewsDuniya");
+//        jzVideoPlayerStandard.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
+        }else{
+            image.setVisibility(View.GONE);
+            jzVideoPlayerStandard.setVisibility(View.GONE);
+            youTube.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext.getApplicationContext(),YouTube.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mContext.startActivity(intent);
+                }
+            });
+        }
+
+
+
+
 
 
         headline.setText(singleNews.head);

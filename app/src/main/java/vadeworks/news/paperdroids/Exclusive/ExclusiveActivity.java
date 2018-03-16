@@ -54,7 +54,7 @@ public class ExclusiveActivity extends AppCompatActivity {
         }
 
         Log.d("Starting Fetch", "Starting Fetch");
-        firestoreNews.collection("TOP_10")
+        firestoreNews.collection("EXCLUSIVE")
                 .orderBy("imgurl", Query.Direction.DESCENDING).limit(Constants.TOP_10_LIMIT)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
