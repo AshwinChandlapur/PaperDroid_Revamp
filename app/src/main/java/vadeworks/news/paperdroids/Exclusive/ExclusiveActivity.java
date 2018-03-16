@@ -66,9 +66,11 @@ public class ExclusiveActivity extends AppCompatActivity {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
                                 Log.d("AllContent", "all" + documentSnapshot.get("content"));
                                 Articles articles = documentSnapshot.toObject(Articles.class);
-                                articlesList.add( new Articles(articles.type,articles.head,articles.content,
-                                        articles.imgurl,articles.videourl,articles.audiourl,
-                                        (int)articles.articlever,(long)articles.timestamp));
+//                                if(articles.articlever == 1){
+                                    articlesList.add( new Articles(articles.type,articles.head,articles.content,
+                                            articles.imgurl,articles.videourl,articles.audiourl,
+                                            (int)articles.articlever,(long)articles.timestamp));
+//                                }
                                 initSwipePager();
                             }
                             Log.d("Starting Fetch", "Finishing Fetch");

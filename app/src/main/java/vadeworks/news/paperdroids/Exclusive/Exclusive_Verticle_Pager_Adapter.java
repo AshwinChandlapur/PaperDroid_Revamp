@@ -2,31 +2,17 @@ package vadeworks.news.paperdroids.Exclusive;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.MediaDataSource;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
-import android.view.Surface;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
-import com.google.android.youtube.player.YouTubeBaseActivity;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerFragment;
-import com.google.android.youtube.player.YouTubePlayerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -35,11 +21,6 @@ import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.Constants;
-import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.News;
-import vadeworks.news.paperdroids.Paper;
-import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
-import vadeworks.news.paperdroids.YouTube;
 import vadeworks.paperdroid.R;
 
 /**
@@ -143,6 +124,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
                 Intent intent = new Intent(mContext.getApplicationContext(), YouTube.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.putExtra("youtubeLink",singleArticle.videourl);
+                intent.putExtra("backgroundImg",singleArticle.imgurl);
                 mContext.startActivity(intent);
             }
         });
