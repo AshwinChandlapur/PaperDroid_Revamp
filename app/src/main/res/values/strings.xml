@@ -60,6 +60,11 @@
     <!-- Typeface names -->
     <string name="typeface_roboto_regular">Roboto-Regular</string>
     <string name="typeface_roboto_medium">Roboto-Medium</string>
+    
+    
+    <string name="media_url_mp3"></string>
+    <string name="media_url_mp4"></string>
+    <string name="media_url_dash"></string>
 
 
 </resources>

@@ -83,6 +83,7 @@ public class ExclusiveActivity extends AppCompatActivity {
 
     private void initSwipePager() {
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
+        verticalViewPager.setOffscreenPageLimit(2);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, newsList));
     }
 

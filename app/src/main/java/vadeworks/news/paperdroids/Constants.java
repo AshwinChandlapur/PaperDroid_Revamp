@@ -84,4 +84,6 @@ public class Constants {
     public static final String DEVELOPER_KEY = "AIzaSyDYi9W3aTlhPgGlgqde4UuMSgSMTr28qY4";
 
     public static final String YOUTUBE_VIDEO_CODE = "_oEA18Y8gM0";
+
+    public static final String mp4_link ="https://firebasestorage.googleapis.com/v0/b/newsguru15022018.appspot.com/o/DIY%20Dry-brushed%20Wooden%20Furniture%20-%20Asian%20Paints%20Live%20Stylishly(1).mp4?alt=media&token=061fd0fa-6c83-4b04-9551-a2966259d640";
 }

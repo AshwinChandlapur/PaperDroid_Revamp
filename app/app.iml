@@ -114,6 +114,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/transforms" />
       <excludeFolder url="file://$MODULE_DIR$/build/outputs" />
+      <excludeFolder url="file://$MODULE_DIR$/build/reports" />
       <excludeFolder url="file://$MODULE_DIR$/build/tmp" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
@@ -140,6 +141,7 @@
     <orderEntry type="library" name="com.google.android.gms:play-services-tasks-11.8.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-common-license-11.8.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-core-11.8.0" level="project" />
+    <orderEntry type="library" name="cn.jzvd:jiaozivideoplayer-6.2.8" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-location-license-11.8.0" level="project" />
     <orderEntry type="library" name="com.squareup.picasso:picasso:2.5.2@jar" level="project" />
     <orderEntry type="library" name="com.android.support:transition-26.1.0" level="project" />
@@ -160,7 +162,6 @@
     <orderEntry type="library" name="com.android.support:support-v4-26.1.0" level="project" />
     <orderEntry type="library" name="com.squareup.okio:okio:1.6.0@jar" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-location-11.8.0" level="project" />
-    <orderEntry type="library" name="com.github.agusibrahim:YuuPlayer-1.2" level="project" />
     <orderEntry type="library" name="com.android.support:animated-vector-drawable-26.1.0" level="project" />
     <orderEntry type="library" name="com.google.android.gms:play-services-gcm-11.8.0" level="project" />
     <orderEntry type="library" name="com.google.firebase:firebase-analytics-license-11.8.0" level="project" />

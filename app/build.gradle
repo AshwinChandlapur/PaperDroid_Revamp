@@ -22,6 +22,7 @@ android {
         targetSdkVersion 23
         versionCode 5
         versionName "1.2"
+        resConfigs "en"
         manifestPlaceholders = [onesignal_app_id               : "326ce683-dd17-4046-aa1c-1ea05e7161f3",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "REMOTE"]
@@ -60,7 +61,7 @@ dependencies {
     implementation 'com.github.uDevel:widgetlab:0.9.7'
     implementation 'com.google.firebase:firebase-config:11.8.0'
     implementation 'com.google.firebase:firebase-firestore:11.8.0'
-    implementation 'com.github.agusibrahim:YuuPlayer:1.2'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
+    implementation 'cn.jzvd:jiaozivideoplayer:6.2.8'
 }
 apply plugin: 'com.google.gms.google-services'

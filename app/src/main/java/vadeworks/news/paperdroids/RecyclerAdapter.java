@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,9 +43,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return new ViewHolder(itemView);
     }
 
+    public void setFadeAnimation(View view) {
+        AlphaAnimation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(400);
+        view.startAnimation(anim);
+    }
+
     @Override
     public void onBindViewHolder(ViewHolder holder, final int position) {
-
+        setFadeAnimation(holder.itemView);
         pos = position;
 
         holder.news_textview.setText(newsList.get(position).head);
