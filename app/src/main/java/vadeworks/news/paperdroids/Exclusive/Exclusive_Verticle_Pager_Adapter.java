@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,6 +33,7 @@ import java.util.ArrayList;
 
 import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
+import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
@@ -47,24 +49,24 @@ import vadeworks.paperdroid.R;
 class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
-    private ArrayList<News> mnews = new ArrayList<>();
+    private ArrayList<Articles> articleList = new ArrayList<>();
     private TextView headline;
     private ImageView image,youTube;
     private TextView content;
-    private News fullnews;
+    private Articles fullArticle;
     private TextView link;
 
 
-    public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<News> news) {
+    public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<Articles> articles) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        mnews = news;
-        Log.d("Mnews size", "Mnews Size" + mnews.size());
+        articleList= articles;
+        Log.d("ArticleList size", "ArticleList Size" + articleList.size());
     }
 
     @Override
     public int getCount() {
-        return mnews.size();
+        return articleList.size();
     }
 
     @Override
@@ -83,65 +85,76 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
 
         JZVideoPlayer.releaseAllVideos();
+        View itemView;
+        switch (articleList.get(position).type){
 
-        final View itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display, container, false);
-        fullnews = new News(mnews.get(position).head, mnews.get(position).link, mnews.get(position).imgurl, mnews.get(position).content);
-        verticalNewsDisplay(fullnews, itemView);
+            case Constants.type_img:
+                itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_img, container, false);
+                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl);
+                verticalNewsDisplay_img(fullArticle, itemView);
+                break;
+
+            case Constants.type_ytv:
+                itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_ytv, container, false);
+                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl,articleList.get(position).videourl);
+                verticalNewsDisplay_ytv(fullArticle, itemView);
+                break;
+
+            case Constants.type_vid:
+                itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_vid, container, false);
+                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl,articleList.get(position).videourl);
+                verticalNewsDisplay_vid(fullArticle, itemView);
+                break;
+
+            default:
+                itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_img, container, false);
+                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl);
+                verticalNewsDisplay_img(fullArticle, itemView);
+        }
         container.addView(itemView);
-
         return itemView;
     }
 
 
-    private void verticalNewsDisplay(final News singleNews, View itemView) {
+    private void verticalNewsDisplay_img(Articles singleArticle, View itemView) {
 
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
-        link = itemView.findViewById(R.id.link);
         image = itemView.findViewById(R.id.image);
-        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
+        headline.setText(singleArticle.head);
+        content.setText(singleArticle.content);
+        Picasso.with(mContext).load(singleArticle.imgurl).fit().into(image);
+    }
+
+    private void verticalNewsDisplay_ytv(final Articles singleArticle, View itemView) {
+
+        FrameLayout youtubeFrame = itemView.findViewById(R.id.youtubeFrame);
+        headline = itemView.findViewById(R.id.headline);
+        content = itemView.findViewById(R.id.content);
+        image = itemView.findViewById(R.id.image);
         youTube = itemView.findViewById(R.id.youTube);
+        headline.setText(singleArticle.head);
+        content.setText(singleArticle.content);
+        Picasso.with(mContext).load(singleArticle.imgurl).fit().into(image);
 
-
-        if(singleNews.imgurl.contains("firebasestorage.googleapis.com/v0/b/newsguru15022018.appspot.com"))
-        {
-            jzVideoPlayerStandard.setVisibility(View.GONE);
-            youTube.setVisibility(View.GONE);
-        }else if(singleNews.imgurl.contains(".mp4"))
-        {
-            youTube.setVisibility(View.GONE);
-            image.setVisibility(View.GONE);
-            jzVideoPlayerStandard.setUp(Constants.mp4_link
-                    , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "NewsDuniya");
-//        jzVideoPlayerStandard.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
-        }else{
-            image.setVisibility(View.GONE);
-            jzVideoPlayerStandard.setVisibility(View.GONE);
-            youTube.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(mContext.getApplicationContext(),YouTube.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    mContext.startActivity(intent);
-                }
-            });
-        }
-
-
-
-
-
-
-        headline.setText(singleNews.head);
-        content.setText(singleNews.content);
-        Picasso.with(mContext).load(singleNews.imgurl).fit().into(image);
-
-        link.setOnClickListener(new View.OnClickListener() {
+        youtubeFrame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(singleNews.link));
-                mContext.startActivity(browserIntent);
+                Intent intent = new Intent(mContext.getApplicationContext(), YouTube.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.putExtra("youtubeLink",singleArticle.videourl);
+                mContext.startActivity(intent);
             }
         });
+    }
+
+    private void verticalNewsDisplay_vid(final Articles singleArticle,View itemView){
+        headline = itemView.findViewById(R.id.headline);
+        content = itemView.findViewById(R.id.content);
+        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
+        jzVideoPlayerStandard.setUp(singleArticle.videourl
+                , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "NewsDuniya");
+        headline.setText(singleArticle.head);
+        content.setText(singleArticle.content);
     }
 }

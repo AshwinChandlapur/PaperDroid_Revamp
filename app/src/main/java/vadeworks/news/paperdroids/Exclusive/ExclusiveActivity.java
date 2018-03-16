@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
@@ -34,7 +35,7 @@ import vadeworks.paperdroid.R;
 public class ExclusiveActivity extends AppCompatActivity {
 
     FirebaseFirestore firestoreNews;
-    private ArrayList<News> newsList = new ArrayList<>();
+    private ArrayList<Articles> articlesList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +56,7 @@ public class ExclusiveActivity extends AppCompatActivity {
 
         Log.d("Starting Fetch", "Starting Fetch");
         firestoreNews.collection("EXCLUSIVE")
-                .orderBy("imgurl", Query.Direction.DESCENDING).limit(Constants.TOP_10_LIMIT)
+                .orderBy("timestamp", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -63,11 +64,11 @@ public class ExclusiveActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
-
                                 Log.d("AllContent", "all" + documentSnapshot.get("content"));
-                                News news = documentSnapshot.toObject(News.class);
-
-                                newsList.add(news);
+                                Articles articles = documentSnapshot.toObject(Articles.class);
+                                articlesList.add( new Articles(articles.type,articles.head,articles.content,
+                                        articles.imgurl,articles.videourl,articles.audiourl,
+                                        (int)articles.articlever,(long)articles.timestamp));
                                 initSwipePager();
                             }
                             Log.d("Starting Fetch", "Finishing Fetch");
@@ -84,7 +85,7 @@ public class ExclusiveActivity extends AppCompatActivity {
     private void initSwipePager() {
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
         verticalViewPager.setOffscreenPageLimit(2);
-        verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, newsList));
+        verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
