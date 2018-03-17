@@ -38,7 +38,7 @@ public class Horizontal_Display_News extends AppCompatActivity {
         mViewPager = findViewById(R.id.pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
         mViewPager.setCurrentItem(position);
-        mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setOffscreenPageLimit(2);
     }
 
 

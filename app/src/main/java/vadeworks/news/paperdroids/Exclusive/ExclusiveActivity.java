@@ -25,6 +25,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import cn.jzvd.JZVideoPlayer;
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
@@ -94,6 +95,7 @@ public class ExclusiveActivity extends AppCompatActivity {
 
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(ExclusiveActivity.this, MainScreen_Activity.class);
+            JZVideoPlayer.releaseAllVideos();
             finish();
             startActivity(intent);
         }

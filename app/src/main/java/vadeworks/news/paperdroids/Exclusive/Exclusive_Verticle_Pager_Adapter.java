@@ -1,7 +1,10 @@
 package vadeworks.news.paperdroids.Exclusive;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,7 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,6 +24,7 @@ import cn.jzvd.JZVideoPlayer;
 import cn.jzvd.JZVideoPlayerStandard;
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.ProxyFactory;
 import vadeworks.paperdroid.R;
 
 /**
@@ -36,6 +40,11 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private TextView content;
     private Articles fullArticle;
     private TextView link;
+    private String proxyUrl;
+
+
+
+    ProgressDialog pd;
 
 
     public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<Articles> articles) {
@@ -57,15 +66,17 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        JZVideoPlayer.releaseAllVideos();
+
         container.removeView((LinearLayout) object);
     }
 
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-
         JZVideoPlayer.releaseAllVideos();
+        ProxyFactory proxyFactory = new ProxyFactory();
+        HttpProxyCacheServer proxy= proxyFactory.getProxy(mContext);
+
         View itemView;
         switch (articleList.get(position).type){
 
@@ -84,6 +95,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
             case Constants.type_vid:
                 itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_vid, container, false);
                 fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl,articleList.get(position).videourl);
+                proxyUrl = proxy.getProxyUrl(articleList.get(position).videourl);
                 verticalNewsDisplay_vid(fullArticle, itemView);
                 break;
 
@@ -131,11 +143,20 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     }
 
     private void verticalNewsDisplay_vid(final Articles singleArticle,View itemView){
+
+
+        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
+        jzVideoPlayerStandard.setUp(proxyUrl
+                , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "饺子闭眼睛");
+//        jzVideoPlayerStandard.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
+
+//        proxyUrl
+
+
+
+
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
-        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
-        jzVideoPlayerStandard.setUp(singleArticle.videourl
-                , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "NewsDuniya");
         headline.setText(singleArticle.head);
         content.setText(singleArticle.content);
     }

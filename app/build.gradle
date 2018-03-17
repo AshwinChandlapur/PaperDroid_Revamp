@@ -5,6 +5,8 @@ apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
 
 repositories {
     maven { url 'https://maven.google.com' }
+    maven { url 'https://dl.bintray.com/drummer-aidan/maven' }
+    jcenter()
 }
 
 
@@ -65,5 +67,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:11.8.0'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.8'
+    implementation 'com.danikula:videocache:2.7.0'
 }
 apply plugin: 'com.google.gms.google-services'

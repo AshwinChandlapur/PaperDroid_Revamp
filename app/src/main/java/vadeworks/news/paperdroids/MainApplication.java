@@ -1,6 +1,7 @@
 package vadeworks.news.paperdroids;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
@@ -27,10 +29,11 @@ import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 public class MainApplication extends Application {
     Bundle params = new Bundle();
     private FirebaseAnalytics mFirebaseAnalytics;
-
     @Override
     public void onCreate() {
         super.onCreate();
+
+
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -123,6 +126,5 @@ public class MainApplication extends Application {
 
         }
     }
-
 
 }
