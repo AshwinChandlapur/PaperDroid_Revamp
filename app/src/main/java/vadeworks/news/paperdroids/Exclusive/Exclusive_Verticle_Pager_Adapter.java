@@ -41,6 +41,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private Articles fullArticle;
     private TextView link;
     private String proxyUrl;
+    private String notifId;
 
 
 
@@ -76,8 +77,10 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         JZVideoPlayer.releaseAllVideos();
         ProxyFactory proxyFactory = new ProxyFactory();
         HttpProxyCacheServer proxy= proxyFactory.getProxy(mContext);
-
         View itemView;
+
+
+
         switch (articleList.get(position).type){
 
             case Constants.type_img:

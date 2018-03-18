@@ -37,63 +37,75 @@ public class ExclusiveActivity extends AppCompatActivity {
 
     FirebaseFirestore firestoreNews;
     private ArrayList<Articles> articlesList = new ArrayList<>();
-
+    String notifId,head,imgurl,content;
+    Articles todisplay;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.exclusive_activity);
 
+        if (!isConnected(this)) {
+            buildDialog(this).show();
+        }else {
+            Log.d("Internet Working", "Internet Working");
+        }
 
         firestoreNews = FirebaseFirestore.getInstance();
 
+        notifId = getIntent().getStringExtra("notifId");
 
-        if (!isConnected(this)) {
-            buildDialog(this).show();
-
-        } else {
-            Log.d("Internet Working", "Internet Working");
-//            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
-        }
-
-        Log.d("Starting Fetch", "Starting Fetch");
-        firestoreNews.collection("EXCLUSIVE")
-                .orderBy("timestamp", Query.Direction.ASCENDING)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                                Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
-                                Log.d("AllContent", "all" + documentSnapshot.get("content"));
-                                Articles articles = documentSnapshot.toObject(Articles.class);
-//                                if(articles.articlever == 1){
-                                    articlesList.add( new Articles(articles.type,articles.head,articles.content,
-                                            articles.imgurl,articles.videourl,articles.audiourl,
-                                            (int)articles.articlever,(long)articles.timestamp));
-//                                }
-                                initSwipePager();
+                Log.d("Starting Fetch", "Starting Fetch");
+                if(notifId!=null ){
+                    firestoreNews.collection("NOTIFICATIONS").document(notifId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                content = task.getResult().get("content").toString();
+                                head = task.getResult().get("head").toString();
+                                imgurl = task.getResult().get("imgurl").toString();
+                                Log.d("Starting Notif Fetch", content+head+imgurl);
+                                todisplay = new Articles("img",head, content, imgurl,"ee","hh",1,0);
                             }
-                            Log.d("Starting Fetch", "Finishing Fetch");
-                        } else {
-                            Log.w("Docu", "Error getting documents.", task.getException());
                         }
+                    });
+                }
 
-                    }
-                });
 
+                Log.d("Starting Regular Fetch", content+head+imgurl);
+                firestoreNews.collection("EXCLUSIVE")
+                    .orderBy("timestamp", Query.Direction.ASCENDING)
+                    .get()
+                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            if (task.isSuccessful()) {
+                                for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                                    Articles articles = documentSnapshot.toObject(Articles.class);
+                                    if(articles.articlever == 1){
+                                        articlesList.add( new Articles(articles.type,articles.head,articles.content,
+                                                articles.imgurl,articles.videourl,articles.audiourl,
+                                                (int)articles.articlever,(long)articles.timestamp));
+                                    }
+                                    if(todisplay!=null){
+                                        Log.d("Starting Notif Manipu", "okok");
+                                        articlesList.set(0,todisplay);
+                                    }
+                                }
+                                initSwipePager();
+                            } else {
+                                Log.w("Docu", "Error getting documents.", task.getException());
+                            }
+                        }
+                    });
     }
-
 
     private void initSwipePager() {
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
-        verticalViewPager.setOffscreenPageLimit(2);
-//        verticalViewPager.setCurrentItem(3);
+        verticalViewPager.setOffscreenPageLimit(3);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(ExclusiveActivity.this, MainScreen_Activity.class);
             JZVideoPlayer.releaseAllVideos();
@@ -148,3 +160,8 @@ public class ExclusiveActivity extends AppCompatActivity {
     }
 
 }
+
+
+
+
+
