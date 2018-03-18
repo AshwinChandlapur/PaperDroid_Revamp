@@ -21,6 +21,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.onesignal.OneSignal;
+import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
@@ -58,7 +59,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private CardView suvarna;
     private CardView esanje;
     private View parentLayout;
-    private ImageView bottomImage;
+    private ImageView bottomImage,exclusive_background_image ;
     private TextView gold22_textview, gold24_textview, petrol_textview, diesel_textview, airNo_textview, airQuality_textview;
     private int click = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -82,7 +83,9 @@ public class MainScreen_Activity extends AppCompatActivity {
         suvarna = findViewById(R.id.suvarna);
         esanje = findViewById(R.id.esanje);
         bottomImage = findViewById(R.id.bottomimage);
+        exclusive_background_image = findViewById(R.id.exclusive_background);
 
+        Picasso.with(this).load(R.drawable.kannada).placeholder(R.drawable.kannada).error(R.drawable.kannada).into(exclusive_background_image);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -112,7 +115,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText("Exclusive Content will be available in "+ (3 - diffInDays ) + " days...");
+        locktxt.setText("Kannada Kampu will be available in "+ (3 - diffInDays ) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
@@ -204,9 +207,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 click = click + 1;
-
                 if (click == 7) {
-
                     Snackbar.make(parentLayout, "Sherlock's Guess: You must be a Developer :D", Snackbar.LENGTH_LONG).show();
                 }
             }
@@ -271,9 +272,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
         try { //for petrol diesel
-
             String oilUrl = "http://www.petroldieselprice.com/Karnataka/petrol-diesel-kerosene-price-in-Bengaluru";
-
             org.jsoup.nodes.Document oilDoc = Jsoup.connect(oilUrl).get();
             Elements oilElem = oilDoc.select("tr.cart-subtotal");
 

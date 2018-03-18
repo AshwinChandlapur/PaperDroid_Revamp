@@ -54,12 +54,37 @@ public class YouTube extends YouTubeBaseActivity implements
         cardView_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 YouTube.super.onBackPressed();
             }
         });
 
         // Initializing video player with developer key
         youTubeView.initialize(Constants.DEVELOPER_KEY, this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     @Override
@@ -80,7 +105,7 @@ public class YouTube extends YouTubeBaseActivity implements
         if (errorReason.isUserRecoverableError()) {
             errorReason.getErrorDialog(this, RECOVERY_DIALOG_REQUEST).show();
         } else {
-            Toast.makeText(this, "cvbnm", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Failed to Load video. Please Retry!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -96,4 +121,5 @@ public class YouTube extends YouTubeBaseActivity implements
     private YouTubePlayer.Provider getYouTubePlayerProvider() {
         return (YouTubePlayerView) findViewById(R.id.youtube_view);
     }
+
 }

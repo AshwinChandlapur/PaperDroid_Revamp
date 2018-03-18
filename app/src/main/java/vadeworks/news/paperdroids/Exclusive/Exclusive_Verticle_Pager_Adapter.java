@@ -143,16 +143,13 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     }
 
     private void verticalNewsDisplay_vid(final Articles singleArticle,View itemView){
+        JZVideoPlayer.releaseAllVideos();
 
 
         JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
         jzVideoPlayerStandard.setUp(proxyUrl
-                , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, "饺子闭眼睛");
-//        jzVideoPlayerStandard.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
-
-//        proxyUrl
-
-
+                , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, singleArticle.head);
+//       jzVideoPlayerStandard.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
 
 
         headline = itemView.findViewById(R.id.headline);

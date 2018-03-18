@@ -20,7 +20,6 @@ public class Horizontal_Display_News extends AppCompatActivity {
     private ArrayList<News> news = new ArrayList<>();
     private int position;
 
-    private FloatingActionButton share;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
