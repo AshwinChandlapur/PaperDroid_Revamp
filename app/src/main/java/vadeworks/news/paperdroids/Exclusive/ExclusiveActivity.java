@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -70,7 +71,6 @@ public class ExclusiveActivity extends AppCompatActivity {
                     });
                 }
 
-
                 Log.d("Starting Regular Fetch", content+head+imgurl);
                 firestoreNews.collection("EXCLUSIVE")
                     .orderBy("timestamp", Query.Direction.ASCENDING)
@@ -86,10 +86,6 @@ public class ExclusiveActivity extends AppCompatActivity {
                                                 articles.imgurl,articles.videourl,articles.audiourl,
                                                 (int)articles.articlever,(long)articles.timestamp));
                                     }
-                                    if(todisplay!=null){
-                                        Log.d("Starting Notif Manipu", "okok");
-                                        articlesList.set(0,todisplay);
-                                    }
                                 }
                                 initSwipePager();
                             } else {
@@ -100,9 +96,27 @@ public class ExclusiveActivity extends AppCompatActivity {
     }
 
     private void initSwipePager() {
+
+        if(todisplay!=null){
+            Log.d("Starting Notif Manipu", "okok");
+            articlesList.set(0,todisplay);
+        }
+
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
-        verticalViewPager.setOffscreenPageLimit(3);
+        verticalViewPager.setOffscreenPageLimit(2);
+
+
+
+        verticalViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageSelected(int position) {
+                // Check if this is the page you want.
+                JZVideoPlayer.releaseAllVideos();
+            }
+        });
+
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

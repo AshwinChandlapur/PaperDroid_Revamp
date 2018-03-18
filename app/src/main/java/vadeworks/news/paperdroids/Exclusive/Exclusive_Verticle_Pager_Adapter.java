@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
+import android.support.v7.widget.CardView;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -80,7 +83,6 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         View itemView;
 
 
-
         switch (articleList.get(position).type){
 
             case Constants.type_img:
@@ -113,7 +115,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
 
 
     private void verticalNewsDisplay_img(Articles singleArticle, View itemView) {
-
+        JZVideoPlayer.releaseAllVideos();
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
         image = itemView.findViewById(R.id.image);
@@ -123,7 +125,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     }
 
     private void verticalNewsDisplay_ytv(final Articles singleArticle, View itemView) {
-
+        JZVideoPlayer.releaseAllVideos();
         FrameLayout youtubeFrame = itemView.findViewById(R.id.youtubeFrame);
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
@@ -146,18 +148,14 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     }
 
     private void verticalNewsDisplay_vid(final Articles singleArticle,View itemView){
-        JZVideoPlayer.releaseAllVideos();
-
-
         JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
         jzVideoPlayerStandard.setUp(proxyUrl
                 , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, singleArticle.head);
-//       jzVideoPlayerStandard.thumbImageView.setImage("http://p.qpic.cn/videoyun/0/2449_43b6f696980311e59ed467f22794e792_1/640");
-
-
+       jzVideoPlayerStandard.thumbImageView.setImageURI(Uri.parse(singleArticle.imgurl));
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
         headline.setText(singleArticle.head);
         content.setText(singleArticle.content);
     }
+
 }

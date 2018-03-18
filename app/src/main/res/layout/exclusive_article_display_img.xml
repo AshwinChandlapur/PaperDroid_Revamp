@@ -57,8 +57,7 @@
                 android:layout_marginTop="10dp"
                 android:ellipsize="end"
                 android:gravity="start"
-                android:lineSpacingExtra="7dp"
-                android:maxLines="7"
+                android:lineSpacingExtra="5dp"
                 android:text="Content"
                 android:textSize="15sp" />
 
