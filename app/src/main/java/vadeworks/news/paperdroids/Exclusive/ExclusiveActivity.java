@@ -19,6 +19,7 @@ import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -38,8 +39,10 @@ public class ExclusiveActivity extends AppCompatActivity {
 
     FirebaseFirestore firestoreNews;
     private ArrayList<Articles> articlesList = new ArrayList<>();
-    String notifId,head,imgurl,content;
-    Articles todisplay;
+    private String notifId,head,imgurl,content;
+    private Articles todisplay;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private final Bundle params = new Bundle();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +53,7 @@ public class ExclusiveActivity extends AppCompatActivity {
         }else {
             Log.d("Internet Working", "Internet Working");
         }
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         firestoreNews = FirebaseFirestore.getInstance();
 
         notifId = getIntent().getStringExtra("notifId");
@@ -114,6 +117,9 @@ public class ExclusiveActivity extends AppCompatActivity {
             public void onPageSelected(int position) {
                 // Check if this is the page you want.
                 JZVideoPlayer.releaseAllVideos();
+                params.putInt("Cards",position);
+                String  cards_read = "Cards_Read";
+                mFirebaseAnalytics.logEvent(cards_read, params);
             }
         });
 
