@@ -383,20 +383,18 @@
                 android:layout_margin="5dp"
                 app:cardBackgroundColor="@color/background_white"
                 app:cardCornerRadius="7dp"
-                app:cardElevation="2dp">
+                app:cardElevation="4dp">
 
 
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-
-
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:id="@+id/exclusive_background"
-                        android:scaleType="centerCrop"/>
+                        android:scaleType="centerCrop" />
 
 
 
@@ -411,7 +409,7 @@
                             android:layout_height="wrap_content"
                             app:cardBackgroundColor="@color/ColorPrimaryDark"
                             app:cardCornerRadius="7dp"
-                            app:cardElevation="2dp"
+                            app:cardElevation="15dp"
                             android:layout_gravity="center">
 
 
@@ -419,7 +417,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_margin="5dp">
+                                android:layout_margin="10dp">
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
@@ -434,7 +432,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:textSize="12sp"
-                                    android:text="ಸ್ವಾರಸ್ಯಕರ ಕನ್ನಡ ಮಾಹಿತಿ"
+                                    android:text="ಕನ್ನಡಿಗರ ಹೊಸ ಧ್ವನಿ"
                                     android:layout_gravity="center"
                                     android:gravity="center"
                                     android:textColor="@color/background_white"/>

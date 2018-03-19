@@ -43,17 +43,6 @@
             android:textColor="@color/loaderColor"
             android:textSize="15sp" />
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="7dp"
-            android:gravity="center"
-            android:text="Loading Exclusive Content..."
-            android:textAlignment="center"
-            android:textColor="@color/loaderColor"
-            android:textSize="15sp" />
-
 
         <com.udevel.widgetlab.TypingIndicatorView
             android:id="@+id/loadera"

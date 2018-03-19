@@ -8,6 +8,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -15,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -80,6 +82,7 @@ public class Vertical_News extends AppCompatActivity {
                                 News news = documentSnapshot.toObject(News.class);
 
                                 newsList.add(news);
+                                Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
                                 initSwipePager();
                             }
                             Log.d("Starting Fetch", "Finishing Fetch");

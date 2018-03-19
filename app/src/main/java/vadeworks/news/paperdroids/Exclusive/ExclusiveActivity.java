@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +17,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,6 +35,7 @@ import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.VerticalNews.VerticalViewPager;
+import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.paperdroid.R;
 
 public class ExclusiveActivity extends AppCompatActivity {
@@ -48,6 +51,7 @@ public class ExclusiveActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        final View parentLayout = findViewById(android.R.id.content);
         setContentView(R.layout.exclusive_activity);
 
         if (!isConnected(this)) {
@@ -74,6 +78,7 @@ public class ExclusiveActivity extends AppCompatActivity {
                                                 (int)articles.articlever,(long)articles.timestamp));
                                     }
                                 }
+                                Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
                                 initSwipePager();
                             } else {
                                 Log.w("Docu", "Error getting documents.", task.getException());
