@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.udevel.widgetlab.TypingIndicatorView;
@@ -40,6 +41,11 @@ public class FirebaseNews {
 
     public void firebaseNewsFetcher(final FragmentActivity fragmentActivity, final Context context, View view, final String category) {
         firestoreNews = FirebaseFirestore.getInstance();
+        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                .setPersistenceEnabled(true)
+                .build();
+        firestoreNews.setFirestoreSettings(settings);
+
         typingView = view.findViewById(R.id.loader);
         mContext = context;
         mCategory = category;
@@ -58,14 +64,22 @@ public class FirebaseNews {
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
                                 Log.d("AllContent", "all" + documentSnapshot.get("content"));
-                                News news = documentSnapshot.toObject(News.class);
-                                news.showNews();
-                                if (!(news.isEmpty()))
-                                    newsList.add(news);
+//                                News news = documentSnapshot.toObject(News.class);
+                                News news1 = new News();
+                                news1.head = documentSnapshot.get("head").toString();
+                                news1.link = documentSnapshot.get("link").toString();
+                                news1.content = documentSnapshot.get("content").toString();
+                                news1.thumburl = documentSnapshot.get("thumburl").toString();
+                                news1.imgurl = documentSnapshot.get("imgurl").toString();
+                                news1.tag = documentSnapshot.get("tag").toString();
+                                news1.subtag = documentSnapshot.get("subtag").toString();
+                                news1.showNews();
+                                if (!(news1.isEmpty()))
+                                    newsList.add(news1);
                             }
                             Log.d("Starting Fetch", "Finishing Fetch");
                         } else {
-                            Toast.makeText(context, "Oops, Something went wrong. Could'nt Fetch ews :( ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "Oops, Something went wrong. Could'nt Fetch News :( ", Toast.LENGTH_SHORT).show();
                             Log.w("Docu", "Error getting documents.", task.getException());
                         }
                         // use a linear layout manager

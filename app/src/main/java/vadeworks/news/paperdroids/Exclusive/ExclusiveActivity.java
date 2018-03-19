@@ -61,6 +61,7 @@ public class ExclusiveActivity extends AppCompatActivity {
         }
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         todisplay = (Articles)getIntent().getSerializableExtra("exclusiveNotif");
+//        Log.d("Inside ExclusiveIDity","To display"+todisplay.head);
 
         firestoreNews = FirebaseFirestore.getInstance();
                 firestoreNews.collection("EXCLUSIVE")
@@ -119,6 +120,12 @@ public class ExclusiveActivity extends AppCompatActivity {
             JZVideoPlayer.releaseAllVideos();
             finish();
             startActivity(intent);
+        }
+
+
+        if(keyCode==KeyEvent.KEYCODE_HOME)
+        {
+            JZVideoPlayer.releaseAllVideos();
         }
         return true;
     }

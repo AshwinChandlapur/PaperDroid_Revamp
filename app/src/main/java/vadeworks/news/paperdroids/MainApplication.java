@@ -12,6 +12,7 @@ import android.util.Log;
 
 import com.danikula.videocache.HttpProxyCacheServer;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -20,7 +21,7 @@ import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
-import com.squareup.leakcanary.LeakCanary;
+
 
 import org.json.JSONObject;
 
@@ -40,13 +41,6 @@ public class MainApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(this);
         OneSignal.startInit(this)
                 .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
                 .unsubscribeWhenNotificationsAreDisabled(true)
@@ -80,6 +74,43 @@ public class MainApplication extends Application {
         public void notificationReceived(OSNotification notification) {
             //Will be used to log No of Notifications Received.
             //Automatically done by OneSignal.
+            JSONObject data = notification.payload.additionalData;
+            String exclusiveId;
+
+            if (data != null) {
+                exclusiveId = data.optString("exclusiveId","");
+                if(!exclusiveId.isEmpty()){
+                    Log.d("Inside ExclusiveID","indiseExclusive");
+                    FirebaseFirestore firestoreNews = FirebaseFirestore.getInstance();
+                    firestoreNews.collection("EXCLUSIVE").document(exclusiveId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                String content,head,imgurl,type,videourl,audiourl;
+                                int articlever; long timestamp;
+                                type = task.getResult().get("type").toString();
+                                content = task.getResult().get("content").toString();
+                                head = task.getResult().get("head").toString();
+                                imgurl = task.getResult().get("imgurl").toString();
+                                videourl = task.getResult().get("videourl").toString();
+                                audiourl = task.getResult().get("audiourl").toString();
+                                String arti = task.getResult().get("articlever").toString();
+                                articlever = Integer.parseInt(arti);
+                                String time = task.getResult().get("timestamp").toString();
+                                timestamp = Long.parseLong(time);
+                                Log.d("Inside ExclusiveID","News Fetch Success");
+                                todisplay = new Articles(type,head, content, imgurl,videourl,audiourl,articlever,timestamp);
+                            }
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("Inside ExclusiveID","Failed to get Notif");
+                        }
+                    });
+                }
+
+            }
         }
     }
 
@@ -100,7 +131,7 @@ public class MainApplication extends Application {
                 singleImg = data.optString("singleImg", "No ImgUrl");
                 promotionLink = data.optString("promotionLink", "");
                 verticalLink = data.optString("verticalLink", "");
-                exclusiveId = data.optString("exlusiveId","") ;
+                exclusiveId = data.optString("exclusiveId","") ;
                 Log.d("Incoming_Data", "All Values" + tag + singleHead + singleLink + singleImg);
 
 
@@ -124,25 +155,14 @@ public class MainApplication extends Application {
                     intent.putExtra("verticalLink", verticalLink);
                     startActivity(intent);
                 }else if(!(exclusiveId.isEmpty())){
-
-                    FirebaseFirestore firestoreNews = FirebaseFirestore.getInstance();
-                    firestoreNews.collection("NOTIFICATIONS").document(exclusiveId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                String content,head,imgurl;
-                                content = task.getResult().get("content").toString();
-                                head = task.getResult().get("head").toString();
-                                imgurl = task.getResult().get("imgurl").toString();
-                                Log.d("Starting Notif Fetch", content+head+imgurl);
-                                todisplay = new Articles("img",head, content, imgurl,"ee","hh",1,0);
-                            }
-                        }
-                    });
-                    Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    intent.putExtra("exclusiveNotif",todisplay );
-                    startActivity(intent);
+                    Log.d("Inside ExclusiveID","TodisplayIntent");
+                    if(todisplay!=null){
+                        Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
+                        Log.d("Inside ExclusiveID","Intent");
+                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        intent.putExtra("exclusiveNotif",todisplay );
+                        startActivity(intent);
+                    }
                 }
 
             } else {

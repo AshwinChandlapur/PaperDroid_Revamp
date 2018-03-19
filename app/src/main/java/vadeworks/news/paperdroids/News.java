@@ -9,12 +9,13 @@ import java.io.Serializable;
  */
 
 public class News implements Serializable {
-    public final String head;
-    public final String link;
+    public String head;
+    public String link;
     public String imgurl;
     public String content;
     public String tag;
     public String thumburl;
+    public String subtag;
 
     public News() {
         this.head = "";
@@ -22,6 +23,8 @@ public class News implements Serializable {
         this.imgurl = "";
         this.content = "";
         this.thumburl = "";
+        this.tag ="";
+        this.subtag ="";
     }
 
 
@@ -31,6 +34,8 @@ public class News implements Serializable {
         this.imgurl = "";
         this.content = "";
         this.thumburl = "";
+        this.tag ="";
+        this.subtag ="";
     }
 
     public News(String head, String link, String imgurl) {
@@ -39,6 +44,8 @@ public class News implements Serializable {
         this.imgurl = imgurl;
         this.content = "";
         this.thumburl = "";
+        this.tag ="";
+        this.subtag ="";
     }
 
 
@@ -48,6 +55,8 @@ public class News implements Serializable {
         this.imgurl = imgurl;
         this.content = content;
         this.thumburl = "";
+        this.tag ="";
+        this.subtag ="";
     }
 
 
@@ -57,6 +66,18 @@ public class News implements Serializable {
         this.imgurl = imgurl;
         this.content = content;
         this.thumburl = thumburl;
+        this.tag ="";
+        this.subtag ="";
+    }
+
+    public News(String thumburl, String imgurl, String tag, String content, String link,String head,String subtag) {
+        this.head = head;
+        this.link = link;
+        this.imgurl = imgurl;
+        this.content = content;
+        this.thumburl = thumburl;
+        this.tag =tag;
+        this.subtag =subtag;
     }
 
     public boolean isEmpty() {

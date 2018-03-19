@@ -46,11 +46,6 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private String proxyUrl;
     private String notifId;
 
-
-
-    ProgressDialog pd;
-
-
     public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<Articles> articles) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

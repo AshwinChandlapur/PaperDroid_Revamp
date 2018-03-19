@@ -92,6 +92,6 @@ public class Constants {
 
     public static final String DEVELOPER_KEY = "AIzaSyDYi9W3aTlhPgGlgqde4UuMSgSMTr28qY4";
 
-    public static final String exclusiveBackground = "img";
+    public static final String exclusiveBackground = "https://raw.githubusercontent.com/AshwinChandlapur/PaperDroid_Revamp/master/kannada.png";
 
 }

@@ -89,7 +89,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         bottomImage = findViewById(R.id.bottomimage);
         exclusive_background_image = findViewById(R.id.exclusive_background);
 
-        Picasso.with(this).load(R.drawable.kannada).placeholder(R.drawable.kannada).error(R.drawable.kannada).into(exclusive_background_image);
+        Picasso.with(this).load(Constants.exclusiveBackground).placeholder(R.drawable.kannada).error(R.drawable.kannada).into(exclusive_background_image);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -99,7 +99,39 @@ public class MainScreen_Activity extends AppCompatActivity {
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
 
         fetchCard();
+        CardView overview_card = findViewById(R.id.overviewcard);
+        FrameLayout locklayout = findViewById(R.id.locklayout);
+        TextView locktxt = findViewById(R.id.locktext);
+//        overview_card.setVisibility(View.GONE);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
+        Date currentDate = new Date(System.currentTimeMillis() / 1000L);
+        int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
+        Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
+        locktxt.setText("Kannada Kampu will be available in "+ (3 - diffInDays ) + " days...");
+        //  if more than 3 days & not unlocked, set unlock status
+        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("isunlocked", true);
+            OneSignal.sendTag("unlock_status", "unlocked");
+            editor.apply();
+        }
+
+        //if unlocked enable or disable feature
+        if (prefs.getBoolean("isunlocked", false)) {
+            locklayout.setVisibility(View.GONE);
+            overview_card.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d("Card view ", "Clicked");
+                    Intent i = new Intent(MainScreen_Activity.this, ExclusiveActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(i);
+                }
+            });
+            Log.d("shared pref", "Feature unlocked");
+        }
 
         gold22_textview = findViewById(R.id.gold22);
         gold24_textview = findViewById(R.id.gold24);
