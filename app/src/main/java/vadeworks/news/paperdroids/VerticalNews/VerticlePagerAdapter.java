@@ -83,7 +83,7 @@ class VerticlePagerAdapter extends PagerAdapter {
 
         headline.setText(singleNews.head);
         content.setText(singleNews.content);
-        Picasso.with(mContext).load(singleNews.imgurl).into(image);
+        Picasso.with(mContext).load(singleNews.imgurl).fit().error(R.drawable.backrepeat).into(image);
 
         link.setOnClickListener(new View.OnClickListener() {
             @Override

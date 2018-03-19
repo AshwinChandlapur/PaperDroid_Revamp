@@ -116,7 +116,14 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         image = itemView.findViewById(R.id.image);
         headline.setText(singleArticle.head);
         content.setText(singleArticle.content);
-        Picasso.with(mContext).load(singleArticle.imgurl).fit().into(image);
+
+        if(singleArticle.imgurl==null){
+            image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_big_one));
+        }else{
+            Picasso.with(mContext).load(singleArticle.imgurl).fit().into(image);
+        }
+
+
     }
 
     private void verticalNewsDisplay_ytv(final Articles singleArticle, View itemView) {
@@ -128,7 +135,12 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         youTube = itemView.findViewById(R.id.youTube);
         headline.setText(singleArticle.head);
         content.setText(singleArticle.content);
-        Picasso.with(mContext).load(singleArticle.imgurl).fit().into(image);
+        if(singleArticle.imgurl==null){
+            image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_big_one));
+        }else{
+            Picasso.with(mContext).load(singleArticle.imgurl).fit().error(R.drawable.backrepeat).into(image);
+        }
+
 
         youtubeFrame.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -146,7 +158,6 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
         jzVideoPlayerStandard.setUp(proxyUrl
                 , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, singleArticle.head);
-       jzVideoPlayerStandard.thumbImageView.setImageURI(Uri.parse(singleArticle.imgurl));
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
         headline.setText(singleArticle.head);

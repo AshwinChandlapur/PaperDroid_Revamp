@@ -421,7 +421,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText("Kannada Kampu will be available in "+ (3 - diffInDays ) + " days...");
+        locktxt.setText("Kannada Kampu will be unlocked in "+ (3 - diffInDays ) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();

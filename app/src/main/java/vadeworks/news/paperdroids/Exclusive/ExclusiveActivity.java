@@ -66,13 +66,23 @@ public class ExclusiveActivity extends AppCompatActivity {
         firestoreNews = FirebaseFirestore.getInstance();
                 firestoreNews.collection("EXCLUSIVE")
                     .orderBy("timestamp", Query.Direction.ASCENDING)
+                    .limit(25)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
                                 for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                                    Articles articles = documentSnapshot.toObject(Articles.class);
+                                    Articles articles = new Articles();
+                                    articles.type = ( documentSnapshot.get("type") != null) ?  documentSnapshot.get("type").toString() : "";
+                                    articles.head = ( documentSnapshot.get("head") != null) ?  documentSnapshot.get("head").toString() : "";
+                                    articles.content =  ( documentSnapshot.get("content") != null) ?  documentSnapshot.get("content").toString() : "";
+                                    articles.imgurl = ( documentSnapshot.get("imgurl") != null) ?  documentSnapshot.get("imgurl").toString() : Constants.exclusiveBackground;
+                                    articles.videourl =( documentSnapshot.get("videourl") != null) ?  documentSnapshot.get("videourl").toString() : "";
+                                    articles.audiourl =( documentSnapshot.get("audiourl") != null) ?  documentSnapshot.get("audiourl").toString() : "";
+                                    articles.articlever = ( documentSnapshot.get("articlever") != null) ? Integer.parseInt(documentSnapshot.get("articlever").toString())  : null;
+                                    articles.timestamp =( documentSnapshot.get("timestamp") != null) ?  Long.parseLong(documentSnapshot.get("timestamp").toString()): null;
+
                                     if(articles.articlever == 1){
                                         articlesList.add( new Articles(articles.type,articles.head,articles.content,
                                                 articles.imgurl,articles.videourl,articles.audiourl,
