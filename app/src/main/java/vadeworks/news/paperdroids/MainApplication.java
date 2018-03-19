@@ -7,10 +7,15 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.danikula.videocache.HttpProxyCacheServer;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
@@ -19,6 +24,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 import org.json.JSONObject;
 
+import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 
@@ -29,6 +35,7 @@ import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 public class MainApplication extends Application {
     Bundle params = new Bundle();
     private FirebaseAnalytics mFirebaseAnalytics;
+    Articles todisplay;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -84,7 +91,7 @@ public class MainApplication extends Application {
             OSNotificationAction.ActionType actionType = result.action.type;
             JSONObject data = result.notification.payload.additionalData;
             Log.d("Incoming_Data", "Json Object Data" + data);
-            String tag, singleLink, singleHead, singleImg, promotionLink, verticalLink;
+            String tag, singleLink, singleHead, singleImg, promotionLink, verticalLink,exclusiveId;
 
             if (data != null) {
                 tag = data.optString("documentid", "");
@@ -93,6 +100,7 @@ public class MainApplication extends Application {
                 singleImg = data.optString("singleImg", "No ImgUrl");
                 promotionLink = data.optString("promotionLink", "");
                 verticalLink = data.optString("verticalLink", "");
+                exclusiveId = data.optString("exlusiveId","") ;
                 Log.d("Incoming_Data", "All Values" + tag + singleHead + singleLink + singleImg);
 
 
@@ -115,15 +123,33 @@ public class MainApplication extends Application {
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("verticalLink", verticalLink);
                     startActivity(intent);
+                }else if(!(exclusiveId.isEmpty())){
+
+                    FirebaseFirestore firestoreNews = FirebaseFirestore.getInstance();
+                    firestoreNews.collection("NOTIFICATIONS").document(exclusiveId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                String content,head,imgurl;
+                                content = task.getResult().get("content").toString();
+                                head = task.getResult().get("head").toString();
+                                imgurl = task.getResult().get("imgurl").toString();
+                                Log.d("Starting Notif Fetch", content+head+imgurl);
+                                todisplay = new Articles("img",head, content, imgurl,"ee","hh",1,0);
+                            }
+                        }
+                    });
+                    Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("exclusiveNotif",todisplay );
+                    startActivity(intent);
                 }
 
             } else {
-                Log.d("Inside Else", "inside Else");
                 Intent intent = new Intent(getApplicationContext(), MainScreen_Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
-
         }
     }
 

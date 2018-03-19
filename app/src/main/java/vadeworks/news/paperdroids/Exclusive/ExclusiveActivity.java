@@ -43,6 +43,8 @@ public class ExclusiveActivity extends AppCompatActivity {
     private Articles todisplay;
     private FirebaseAnalytics mFirebaseAnalytics;
     private final Bundle params = new Bundle();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,27 +56,9 @@ public class ExclusiveActivity extends AppCompatActivity {
             Log.d("Internet Working", "Internet Working");
         }
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        todisplay = (Articles)getIntent().getSerializableExtra("exclusiveNotif");
+
         firestoreNews = FirebaseFirestore.getInstance();
-
-        notifId = getIntent().getStringExtra("notifId");
-
-                Log.d("Starting Fetch", "Starting Fetch");
-                if(notifId!=null ){
-                    firestoreNews.collection("NOTIFICATIONS").document(notifId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                content = task.getResult().get("content").toString();
-                                head = task.getResult().get("head").toString();
-                                imgurl = task.getResult().get("imgurl").toString();
-                                Log.d("Starting Notif Fetch", content+head+imgurl);
-                                todisplay = new Articles("img",head, content, imgurl,"ee","hh",1,0);
-                            }
-                        }
-                    });
-                }
-
-                Log.d("Starting Regular Fetch", content+head+imgurl);
                 firestoreNews.collection("EXCLUSIVE")
                     .orderBy("timestamp", Query.Direction.ASCENDING)
                     .get()
@@ -99,9 +83,7 @@ public class ExclusiveActivity extends AppCompatActivity {
     }
 
     private void initSwipePager() {
-
         if(todisplay!=null){
-            Log.d("Starting Notif Manipu", "okok");
             articlesList.set(0,todisplay);
         }
 
@@ -118,6 +100,7 @@ public class ExclusiveActivity extends AppCompatActivity {
                 // Check if this is the page you want.
                 JZVideoPlayer.releaseAllVideos();
                 params.putInt("Cards",position);
+                Log.d("Position",""+position);
                 String  cards_read = "Cards_Read";
                 mFirebaseAnalytics.logEvent(cards_read, params);
             }

@@ -18,6 +18,8 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.onesignal.OneSignal;
@@ -28,6 +30,7 @@ import org.jsoup.select.Elements;
 
 import java.util.Date;
 
+import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
@@ -65,6 +68,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    Articles todisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +137,6 @@ public class MainScreen_Activity extends AppCompatActivity {
                     Log.d("Card view ", "Clicked");
                     Intent i = new Intent(MainScreen_Activity.this, ExclusiveActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("notifId","KC0N1xvXe4CPbng2CmrY");
                     startActivity(i);
                 }
             });
@@ -439,7 +442,6 @@ public class MainScreen_Activity extends AppCompatActivity {
                     Log.d("Card view ", "Clicked");
                     Intent i = new Intent(MainScreen_Activity.this, ExclusiveActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    i.putExtra("notifId","KC0N1xvXe4CPbng2CmrY");
                     startActivity(i);
                 }
             });
