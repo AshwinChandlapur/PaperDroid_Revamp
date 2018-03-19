@@ -65,14 +65,15 @@ public class FirebaseNews {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
                                 Log.d("AllContent", "all" + documentSnapshot.get("content"));
 //                                News news = documentSnapshot.toObject(News.class);
+
                                 News news1 = new News();
-                                news1.head = documentSnapshot.get("head").toString();
-                                news1.link = documentSnapshot.get("link").toString();
-                                news1.content = documentSnapshot.get("content").toString();
-                                news1.thumburl = documentSnapshot.get("thumburl").toString();
-                                news1.imgurl = documentSnapshot.get("imgurl").toString();
-                                news1.tag = documentSnapshot.get("tag").toString();
-                                news1.subtag = documentSnapshot.get("subtag").toString();
+                                news1.head = ( documentSnapshot.get("head") != null) ?  documentSnapshot.get("head").toString() : "";
+                                news1.link = ( documentSnapshot.get("link") != null) ?  documentSnapshot.get("link").toString() : "";
+                                news1.content = ( documentSnapshot.get("content") != null) ?  documentSnapshot.get("content").toString() : "";
+                                news1.thumburl = ( documentSnapshot.get("thumburl") != null) ?  documentSnapshot.get("thumburl").toString() : "";
+                                news1.imgurl = ( documentSnapshot.get("imgurl") != null) ?  documentSnapshot.get("imgurl").toString() : "";
+                                news1.tag = ( documentSnapshot.get("tag") != null) ?  documentSnapshot.get("tag").toString() : "";
+                                news1.subtag = ( documentSnapshot.get("subtag") != null) ?  documentSnapshot.get("subtag").toString() : "";
                                 news1.showNews();
                                 if (!(news1.isEmpty()))
                                     newsList.add(news1);
