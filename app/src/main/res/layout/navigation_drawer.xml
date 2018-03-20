@@ -245,6 +245,42 @@
                 <include layout="@layout/navigation_drawer_divider" />
 
                 <FrameLayout
+                    android:id="@+id/nav_deccan"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/deccan"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_dh"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/nav_hindustantimes"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/deccan"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_ht"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+                <include layout="@layout/navigation_drawer_divider" />
+
+                <FrameLayout
                     android:id="@+id/nav_about"
                     style="@style/NavDrawerRowLayout.Secondary"
                     android:layout_gravity="bottom">

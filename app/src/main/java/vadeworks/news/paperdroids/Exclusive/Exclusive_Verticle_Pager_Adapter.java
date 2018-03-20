@@ -37,7 +37,7 @@ import vadeworks.paperdroid.R;
 class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
-    private ArrayList<Articles> articleList = new ArrayList<>();
+    private ArrayList<ExclusiveActivity.DocIdRetrive> articleList = new ArrayList<>();
     private TextView headline;
     private ImageView image,youTube;
     private TextView content;
@@ -46,7 +46,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private String proxyUrl;
     private String notifId;
 
-    public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<Articles> articles) {
+    public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<ExclusiveActivity.DocIdRetrive> articles) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         articleList= articles;

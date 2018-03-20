@@ -1,11 +1,10 @@
-package vadeworks.news.paperdroids.VijayaKarnataka;
+package vadeworks.news.paperdroids.DeccanHerald;
 
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -13,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -28,14 +28,13 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
+import vadeworks.news.paperdroids.DeccanHerald.tabs.ViewPagerAdapter_DH;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
@@ -44,10 +43,9 @@ import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
 
+public class DeccanHerald_Activiy extends AppCompatActivity {
 
-public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
-    // Declaring Your View and Variables
 
     private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
     private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
@@ -57,25 +55,27 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
-    private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಕ್ರೀಡೆ", "ಸಿನಿಮಾ", "ಲೈಫ್\u200Cಸ್ಟೈಲ್", "ತಂತ್ರಜ್ಞಾನ"};
+    private final CharSequence[] Titles = {"Headlines", "State", "Sports", "Entertainment", "World"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_deccan,intent_to_hindustan,intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    FrameLayout intent_to_hindustan,intent_to_deccan,intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
     private Toolbar toolbar;
     private ViewPager pager;
-    private ViewPagerAdapter_VK adapter;
+    private ViewPagerAdapter_DH adapter;
     private SlidingTabLayout tabs;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
     private DrawerLayout mDrawerLayout;
-    private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
+    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vijayakarnataka_activity_main);
+        setContentView(R.layout.deccan_herald_activity);
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
@@ -93,11 +93,11 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
         if (!isConnected(this)) {
             buildDialog(this).show();
-
         } else {
             Log.d("Internet Working", "Internet Working");
 //            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
+
 
         FrameLayout intent_to_home = findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
@@ -105,7 +105,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, MainScreen_Activity.class);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, MainScreen_Activity.class);
                 startActivity(intent);
 
             }
@@ -117,7 +117,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, PrajaVaani_MainActivity.class);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, PrajaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -128,7 +128,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, VijayaVaani_MainActivity.class);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, VijayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -138,9 +138,10 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
-                mDrawerLayout.closeDrawers();
-                Log.d("Clicked", "Cliked in same category");
+                card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, VijayaKarnataka_MainActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -150,7 +151,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, UdayaVaani_MainActivity.class);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, UdayaVaani_MainActivity.class);
                 startActivity(intent);
             }
         });
@@ -159,10 +160,9 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_an_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, AsiaNet_MainActivity.class);
-                startActivity(intent);
+//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+                mDrawerLayout.closeDrawers();
+                Log.d("Clicked", "Cliked in same category");
             }
         });
 
@@ -173,20 +173,17 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, Esanje_MainActivity.class);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, Esanje_MainActivity.class);
                 startActivity(intent);
             }
         });
-
 
         intent_to_deccan = findViewById(R.id.nav_deccan);
         intent_to_deccan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_dh);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, DeccanHerald_Activiy.class);
-                startActivity(intent);
+                mDrawerLayout.closeDrawers();
+                Log.d("Clicked", "Cliked in same category");
             }
         });
 
@@ -196,10 +193,11 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_ht);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, HindustanTimes_Activity.class);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, HindustanTimes_Activity.class);
                 startActivity(intent);
             }
         });
+
 
 
         FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);
@@ -208,11 +206,13 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_ab_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(VijayaKarnataka_MainActivity.this, All_Terms_MainActivity.class);
+                Intent intent = new Intent(DeccanHerald_Activiy.this, All_Terms_MainActivity.class);
                 startActivity(intent);
             }
         });
+
     }
+
 
     private void init_slider() {
         // Creating The Toolbar and setting it as the Toolbar for the activity
@@ -222,17 +222,16 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new ViewPagerAdapter_VK(getSupportFragmentManager(), Titles, Numboftabs);
+        adapter = new ViewPagerAdapter_DH(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(2);//TODO : Based on Network (2G,3G,4G) set the no of screens to load.
+        pager.setOffscreenPageLimit(2);
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
         tabs = findViewById(R.id.tabs);
         tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
-
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
@@ -240,9 +239,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
             public int getIndicatorColor(int position) {
                 return getResources().getColor(R.color.tabsScrollColor);
             }
-
         });
-
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
@@ -287,14 +284,14 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
 
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
-        getSupportActionBar().setTitle(R.string.toolbar_title_home_vk);
-
+        getSupportActionBar().setTitle(R.string.toolbar_title_home_dh);
+//        getSupportActionBar().setIcon(getApplicationContext().getResources().getDrawable(R.drawable.an));
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(VijayaKarnataka_MainActivity.this, MainScreen_Activity.class);
+            Intent intent = new Intent(DeccanHerald_Activiy.this, MainScreen_Activity.class);
             startActivity(intent);
         }
         return true;
@@ -367,8 +364,8 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
                         displayUV();
                         displayAN();
                         displayES();
-                        displayHT();
                         displayDH();
+                        displayHT();
                     }
                 });
         // [END fetch_config_with_callback]

@@ -30,6 +30,22 @@ public class Constants {
     public static final String business = "business";
 
 
+
+
+    //Deccan Herald
+    public static final String dh_headlines = "DH_HEADLINES";
+    public static final String dh_state = "DH_STATE";
+    public static final String dh_sports = "DH_SPORTS";
+    public static final String dh_entertainment = "DH_ENTERTAINMENT";
+    public static final String dh_world = "DH_WORLD";
+
+    //Hindustan Times
+    public static final String ht_headlines = "HT_HEADLINES";
+    public static final String ht_india = "HT_INDIA";
+    public static final String ht_sports = "HT_SPORTS";
+    public static final String ht_business = "HT_BUSINESS";
+    public static final String ht_world = "HT_WORLD";
+
     //Asianet
     public static final String an_headlines = "AN_HEADLINES";
     public static final String an_sports = "AN_SPORTS";

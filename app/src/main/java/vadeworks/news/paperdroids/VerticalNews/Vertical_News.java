@@ -90,9 +90,9 @@ public class Vertical_News extends AppCompatActivity {
                                 if(news.content!=null){
                                     newsList.add(new News(news.thumburl,news.imgurl,news.tag,news.content,news.link,news.head,news.subtag));
                                 }
-                                Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
                                 initSwipePager();
                             }
+                            Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
                             Log.d("Starting Fetch", "Finishing Fetch");
                         } else {
                             Log.w("Docu", "Error getting documents.", task.getException());

@@ -29,7 +29,9 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.tabs.ViewPagerAdapter_UV;
@@ -51,10 +53,12 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
     private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
+    private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
+    private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಸಿನಿಮಾ", "ಕ್ರೀಡೆ", "ವಾಣಿಜ್ಯ", "ಜಗತ್ತು"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    FrameLayout intent_to_deccan,intent_to_hindustan,intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_UV adapter;
@@ -63,28 +67,6 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
     private String card_clicked;
     private DrawerLayout mDrawerLayout;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
-    //
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        // Handle action bar item clicks here. The action bar will
-//        // automatically handle clicks on the Home/Up button, so long
-//        // as you specify a parent activity in AndroidManifest.xml.
-//        int id = item.getItemId();
-//
-//        //noinspection SimplifiableIfStatement
-//        if (id == R.id.action_settings) {
-//            return true;
-//        }
-//
-//        return super.onOptionsItemSelected(item);
-//    }
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
@@ -194,6 +176,30 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        intent_to_deccan = findViewById(R.id.nav_deccan);
+        intent_to_deccan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_dh);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(UdayaVaani_MainActivity.this, DeccanHerald_Activiy.class);
+                startActivity(intent);
+            }
+        });
+
+        intent_to_hindustan = findViewById(R.id.nav_hindustantimes);
+        intent_to_hindustan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_ht);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(UdayaVaani_MainActivity.this, HindustanTimes_Activity.class);
+                startActivity(intent);
+            }
+        });
+
 
         FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
@@ -359,6 +365,8 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
                         displayUV();
                         displayAN();
                         displayES();
+                        displayHT();
+                        displayDH();
                     }
                 });
         // [END fetch_config_with_callback]
@@ -418,6 +426,25 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
             intent_to_esanje.setVisibility(View.GONE);
         }
     }
+
+    private void displayDH() {
+
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_DH)) {
+            intent_to_deccan.setVisibility(View.VISIBLE);
+        } else {
+            intent_to_deccan.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayHT() {
+
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_HT)) {
+            intent_to_hindustan.setVisibility(View.VISIBLE);
+        } else {
+            intent_to_hindustan.setVisibility(View.GONE);
+        }
+    }
+
 
 
 }

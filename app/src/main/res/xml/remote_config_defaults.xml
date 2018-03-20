@@ -32,5 +32,16 @@
         <value>true</value>
     </entry>
 
+    <entry>
+        <key>card_view_visibility_dh</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>card_view_visibility_ht</key>
+        <value>true</value>
+    </entry>
+
+
 
 </defaultsMap><!-- END xml_defaults -->

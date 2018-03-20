@@ -41,11 +41,12 @@ import vadeworks.paperdroid.R;
 public class ExclusiveActivity extends AppCompatActivity {
 
     FirebaseFirestore firestoreNews;
-    private ArrayList<Articles> articlesList = new ArrayList<>();
+    private ArrayList<DocIdRetrive> articlesList = new ArrayList<>();
     private String notifId,head,imgurl,content;
-    private Articles todisplay;
+    private DocIdRetrive todisplay;
     private FirebaseAnalytics mFirebaseAnalytics;
     private final Bundle params = new Bundle();
+
 
 
     @Override
@@ -60,20 +61,25 @@ public class ExclusiveActivity extends AppCompatActivity {
             Log.d("Internet Working", "Internet Working");
         }
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-        todisplay = (Articles)getIntent().getSerializableExtra("exclusiveNotif");
-//        Log.d("Inside ExclusiveIDity","To display"+todisplay.head);
+        notifId = getIntent().getStringExtra("exclusiveNotif");
+        if(notifId!=null)
+            Log.d("Notifid is :",notifId);
+
 
         firestoreNews = FirebaseFirestore.getInstance();
                 firestoreNews.collection("EXCLUSIVE")
-                    .orderBy("timestamp", Query.Direction.ASCENDING)
-                    .limit(25)
+                    .orderBy("timestamp", Query.Direction.DESCENDING)
+                    .limit(41)
                     .get()
                     .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<QuerySnapshot> task) {
                             if (task.isSuccessful()) {
+                                DocIdRetrive temp = new DocIdRetrive();
                                 for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                                    Articles articles = new Articles();
+                                    DocIdRetrive articles = new DocIdRetrive();
+                                    articles.docid =  ( documentSnapshot.getId() != null) ?  documentSnapshot.getId() : "";
+
                                     articles.type = ( documentSnapshot.get("type") != null) ?  documentSnapshot.get("type").toString() : "";
                                     articles.head = ( documentSnapshot.get("head") != null) ?  documentSnapshot.get("head").toString() : "";
                                     articles.content =  ( documentSnapshot.get("content") != null) ?  documentSnapshot.get("content").toString() : "";
@@ -84,11 +90,18 @@ public class ExclusiveActivity extends AppCompatActivity {
                                     articles.timestamp =( documentSnapshot.get("timestamp") != null) ?  Long.parseLong(documentSnapshot.get("timestamp").toString()): null;
 
                                     if(articles.articlever == 1){
-                                        articlesList.add( new Articles(articles.type,articles.head,articles.content,
+                                        if (notifId != null)
+                                            if (articles.docid.equals(notifId))
+                                                temp = articles;
+
+                                        articlesList.add( new DocIdRetrive(articles.docid,articles.type,articles.head,articles.content,
                                                 articles.imgurl,articles.videourl,articles.audiourl,
                                                 (int)articles.articlever,(long)articles.timestamp));
+
                                     }
                                 }
+                                if(notifId!=null)
+                                    articlesList.add(0,temp);
                                 Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
                                 initSwipePager();
                             } else {
@@ -99,13 +112,18 @@ public class ExclusiveActivity extends AppCompatActivity {
     }
 
     private void initSwipePager() {
-        if(todisplay!=null){
-            articlesList.set(0,todisplay);
-        }
 
+//        if(notifId!=null){
+//            for(int i = 0;i<articlesList.size();i++){
+//                if(articlesList.get(i).docid.equals(notifId)){
+//                    articlesList.set(0,articlesList.get(i));
+//                }
+//            }
+//        }
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
+        Log.d("initSwipePager docid: ",articlesList.get(0).docid + "1 :"+ articlesList.get(1).docid);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
-        verticalViewPager.setOffscreenPageLimit(2);
+        verticalViewPager.setOffscreenPageLimit(3);
 
 
 
@@ -183,6 +201,39 @@ public class ExclusiveActivity extends AppCompatActivity {
         builder.setView(view);
         return builder;
     }
+
+    class  DocIdRetrive  extends Articles{
+        String docid = "";
+
+
+        DocIdRetrive(){
+            this.docid = "";
+            this.type = "";
+            this.head = "";
+            this.content = "";
+            this.imgurl = "";
+            this.videourl = "";
+            this.audiourl = "";
+            this.articlever = 1;
+            this.timestamp= System.currentTimeMillis();
+        }
+
+        DocIdRetrive(String docid,String type,String head,String content,String imgurl,String videourl,String audiourl, int articlever,long timestamp){
+            this.docid = docid;
+            this.type = type;
+            this.head = head;
+            this.content = content;
+            this.imgurl = imgurl;
+            this.videourl = videourl;
+            this.audiourl = audiourl;
+            this.articlever = articlever;
+            this.timestamp=timestamp;
+        }
+
+
+    }
+
+
 
 }
 

@@ -12,6 +12,8 @@
     <string name="toolbar_title_home_pj">ಪ್ರಜಾವಾಣಿ</string>
     <string name="toolbar_title_home_vv">ವಿಜಯವಾಣಿ</string>
     <string name="toolbar_title_home_es">ಈ ಸಂಜೆ</string>
+    <string name="toolbar_title_home_dh">Deccan Herald</string>
+    <string name="toolbar_title_home_ht">Hindustan Times</string>
 
     <string name="toolbar_title_home_vk_en">VijayaKarnataka</string>
     <string name="toolbar_title_home_an_en">Suvarna</string>
@@ -65,6 +67,9 @@
     <string name="media_url_mp3"></string>
     <string name="media_url_mp4"></string>
     <string name="media_url_dash"></string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

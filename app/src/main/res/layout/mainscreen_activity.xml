@@ -481,10 +481,101 @@
 
 
                 </FrameLayout>
-
-
-
             </android.support.v7.widget.CardView>
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/background_white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/deccanherald"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/logo_with_background"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_dh" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/hindustantimes"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/logo_with_background"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_ht" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+            </LinearLayout>
+
 
 
         <android.support.v7.widget.CardView

@@ -33,8 +33,10 @@ import java.util.Date;
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
+import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
@@ -52,6 +54,8 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
     private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
+    private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
+    private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private final Bundle params = new Bundle();
     String carat22, carat24, petrol, diesel;
     int result;
@@ -61,6 +65,8 @@ public class MainScreen_Activity extends AppCompatActivity {
     private CardView udayavani;
     private CardView suvarna;
     private CardView esanje;
+    private CardView deccanherald;
+    private CardView hindustantimes;
     private View parentLayout;
     private ImageView bottomImage,exclusive_background_image ;
     private TextView gold22_textview, gold24_textview, petrol_textview, diesel_textview, airNo_textview, airQuality_textview;
@@ -86,6 +92,8 @@ public class MainScreen_Activity extends AppCompatActivity {
         udayavani = findViewById(R.id.udayavani);
         suvarna = findViewById(R.id.suvarna);
         esanje = findViewById(R.id.esanje);
+        deccanherald = findViewById(R.id.deccanherald);
+        hindustantimes = findViewById(R.id.hindustantimes);
         bottomImage = findViewById(R.id.bottomimage);
         exclusive_background_image = findViewById(R.id.exclusive_background);
 
@@ -202,6 +210,27 @@ public class MainScreen_Activity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        deccanherald.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_dh);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent i = new Intent(MainScreen_Activity.this, DeccanHerald_Activiy.class);
+                startActivity(i);
+            }
+        });
+
+        hindustantimes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_ht);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent i = new Intent(MainScreen_Activity.this, HindustanTimes_Activity.class);
+                startActivity(i);
+            }
+        });
+
 
 
         bottomImage.setOnClickListener(new View.OnClickListener() {
@@ -346,6 +375,8 @@ public class MainScreen_Activity extends AppCompatActivity {
                         displayUV();
                         displayAN();
                         displayES();
+                        displayDH();
+                        displayHT();
                     }
                 });
     }
@@ -405,6 +436,26 @@ public class MainScreen_Activity extends AppCompatActivity {
         }
     }
 
+    private void displayDH() {
+
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_DH)) {
+            deccanherald.setVisibility(View.VISIBLE);
+        } else {
+            deccanherald.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayHT() {
+
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_HT)) {
+            hindustantimes.setVisibility(View.VISIBLE);
+        } else {
+            hindustantimes.setVisibility(View.GONE);
+        }
+    }
+
+
+
 
     @Override
     protected void onResume() {
@@ -445,6 +496,5 @@ public class MainScreen_Activity extends AppCompatActivity {
             Log.d("shared pref", "Feature unlocked");
         }
     }
-
 
 }

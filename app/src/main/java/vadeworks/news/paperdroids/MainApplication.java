@@ -36,7 +36,8 @@ import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 public class MainApplication extends Application {
     Bundle params = new Bundle();
     private FirebaseAnalytics mFirebaseAnalytics;
-    Articles todisplay;
+    private Articles todisplay;
+    private String exclusiveId;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -76,7 +77,6 @@ public class MainApplication extends Application {
             //Automatically done by OneSignal.
             JSONObject data = notification.payload.additionalData;
             String exclusiveId;
-
             if (data != null) {
                 exclusiveId = data.optString("exclusiveId","");
                 if(!exclusiveId.isEmpty()){
@@ -109,7 +109,6 @@ public class MainApplication extends Application {
                         }
                     });
                 }
-
             }
         }
     }
@@ -122,7 +121,7 @@ public class MainApplication extends Application {
             OSNotificationAction.ActionType actionType = result.action.type;
             JSONObject data = result.notification.payload.additionalData;
             Log.d("Incoming_Data", "Json Object Data" + data);
-            String tag, singleLink, singleHead, singleImg, promotionLink, verticalLink,exclusiveId;
+            String tag, singleLink, singleHead, singleImg, promotionLink, verticalLink;
 
             if (data != null) {
                 tag = data.optString("documentid", "");
@@ -133,7 +132,6 @@ public class MainApplication extends Application {
                 verticalLink = data.optString("verticalLink", "");
                 exclusiveId = data.optString("exclusiveId","") ;
                 Log.d("Incoming_Data", "All Values" + tag + singleHead + singleLink + singleImg);
-
 
                 if (!(tag.isEmpty())) {
                     Intent intent = new Intent(getApplicationContext(), Display_news.class);
@@ -156,15 +154,12 @@ public class MainApplication extends Application {
                     startActivity(intent);
                 }else if(!(exclusiveId.isEmpty())){
                     Log.d("Inside ExclusiveID","TodisplayIntent");
-                    if(todisplay!=null){
                         Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
                         Log.d("Inside ExclusiveID","Intent");
                         intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("exclusiveNotif",todisplay );
+                        intent.putExtra("exclusiveNotif",exclusiveId );
                         startActivity(intent);
-                    }
                 }
-
             } else {
                 Intent intent = new Intent(getApplicationContext(), MainScreen_Activity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
