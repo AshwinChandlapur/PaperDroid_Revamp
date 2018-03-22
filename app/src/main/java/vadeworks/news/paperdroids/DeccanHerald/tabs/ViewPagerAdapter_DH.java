@@ -9,12 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab1_Headlines_AN;
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab2_Sports_AN;
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab3_Cinema_AN;
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab4_Technology_AN;
-import vadeworks.news.paperdroids.AsiaNet.tabs.Tab5_LifeStyle_AN;
-
 /**
  * Created by ashwinchandlapur on 10/02/18.
  */

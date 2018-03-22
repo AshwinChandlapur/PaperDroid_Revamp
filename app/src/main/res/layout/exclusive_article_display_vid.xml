@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="7dp"
+    android:background="@color/background_white"
     android:minHeight="500dp"
     android:orientation="vertical"
-    android:background="@color/background_white"
     card_view:layout_behavior="vadeworks.news.paperdroids.FixAppBarLayoutBehavior"
     tools:context="vadeworks.news.paperdroids.VerticalNews.Vertical_News">
 
@@ -25,11 +25,11 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
             <cn.jzvd.JZVideoPlayerStandard
                 android:id="@+id/videoplayer"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-
+                android:layout_height="200dp" />
 
 
             <TextView
@@ -56,8 +56,6 @@
                 android:lineSpacingExtra="5dp"
                 android:text="Content"
                 android:textSize="15sp" />
-
-
 
 
         </LinearLayout>

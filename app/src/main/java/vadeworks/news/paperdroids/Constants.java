@@ -30,8 +30,6 @@ public class Constants {
     public static final String business = "business";
 
 
-
-
     //Deccan Herald
     public static final String dh_headlines = "DH_HEADLINES";
     public static final String dh_state = "DH_STATE";
@@ -98,12 +96,11 @@ public class Constants {
 
     //Types
     public static final String type_img = "img";
-    public static final String type_ytv="ytv";
-    public static final String type_vid="vid";
-    public static final String type_aud="aud";
-    public static final String type_add="add";
-    public static final String type_fac="fac";
-
+    public static final String type_ytv = "ytv";
+    public static final String type_vid = "vid";
+    public static final String type_aud = "aud";
+    public static final String type_add = "add";
+    public static final String type_fac = "fac";
 
 
     public static final String DEVELOPER_KEY = "AIzaSyDYi9W3aTlhPgGlgqde4UuMSgSMTr28qY4";

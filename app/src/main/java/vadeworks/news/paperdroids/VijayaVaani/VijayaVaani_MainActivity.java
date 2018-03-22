@@ -57,7 +57,7 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
     private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ರಾಜ್ಯ", "ದೇಶ", "ಕ್ರೀಡೆ", "ಜಗತ್ತು", "ರಾಜಕೀಯ"};
     private final int Numboftabs = 6;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_deccan,intent_to_hindustan,intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    FrameLayout intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_VV adapter;

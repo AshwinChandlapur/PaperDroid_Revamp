@@ -23,8 +23,8 @@ public class News implements Serializable {
         this.imgurl = "";
         this.content = "";
         this.thumburl = "";
-        this.tag ="";
-        this.subtag ="";
+        this.tag = "";
+        this.subtag = "";
     }
 
 
@@ -34,8 +34,8 @@ public class News implements Serializable {
         this.imgurl = "";
         this.content = "";
         this.thumburl = "";
-        this.tag ="";
-        this.subtag ="";
+        this.tag = "";
+        this.subtag = "";
     }
 
     public News(String head, String link, String imgurl) {
@@ -44,8 +44,8 @@ public class News implements Serializable {
         this.imgurl = imgurl;
         this.content = "";
         this.thumburl = "";
-        this.tag ="";
-        this.subtag ="";
+        this.tag = "";
+        this.subtag = "";
     }
 
 
@@ -55,8 +55,8 @@ public class News implements Serializable {
         this.imgurl = imgurl;
         this.content = content;
         this.thumburl = "";
-        this.tag ="";
-        this.subtag ="";
+        this.tag = "";
+        this.subtag = "";
     }
 
 
@@ -66,18 +66,18 @@ public class News implements Serializable {
         this.imgurl = imgurl;
         this.content = content;
         this.thumburl = thumburl;
-        this.tag ="";
-        this.subtag ="";
+        this.tag = "";
+        this.subtag = "";
     }
 
-    public News(String thumburl, String imgurl, String tag, String content, String link,String head,String subtag) {
+    public News(String thumburl, String imgurl, String tag, String content, String link, String head, String subtag) {
         this.head = head;
         this.link = link;
         this.imgurl = imgurl;
         this.content = content;
         this.thumburl = thumburl;
-        this.tag =tag;
-        this.subtag =subtag;
+        this.tag = tag;
+        this.subtag = subtag;
     }
 
     public boolean isEmpty() {

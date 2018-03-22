@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -12,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -30,8 +30,6 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
-import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
-import vadeworks.news.paperdroids.DeccanHerald.tabs.ViewPagerAdapter_DH;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.HindustanTimes.tabs.ViewPagerAdapter_HT;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
@@ -60,7 +58,7 @@ public class HindustanTimes_Activity extends AppCompatActivity {
     private final CharSequence[] Titles = {"Headlines", "India", "Sports", "Business", "World"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_hindustan,intent_to_deccan,intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    FrameLayout intent_to_hindustan, intent_to_deccan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_HT adapter;
@@ -216,7 +214,6 @@ public class HindustanTimes_Activity extends AppCompatActivity {
         });
 
     }
-
 
 
     private void init_slider() {

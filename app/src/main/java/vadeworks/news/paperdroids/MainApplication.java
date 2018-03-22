@@ -1,7 +1,6 @@
 package vadeworks.news.paperdroids;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -10,7 +9,6 @@ import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.danikula.videocache.HttpProxyCacheServer;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -21,7 +19,6 @@ import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
-
 
 import org.json.JSONObject;
 
@@ -38,6 +35,7 @@ public class MainApplication extends Application {
     private FirebaseAnalytics mFirebaseAnalytics;
     private Articles todisplay;
     private String exclusiveId;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -78,16 +76,17 @@ public class MainApplication extends Application {
             JSONObject data = notification.payload.additionalData;
             String exclusiveId;
             if (data != null) {
-                exclusiveId = data.optString("exclusiveId","");
-                if(!exclusiveId.isEmpty()){
-                    Log.d("Inside ExclusiveID","indiseExclusive");
+                exclusiveId = data.optString("exclusiveId", "");
+                if (!exclusiveId.isEmpty()) {
+                    Log.d("Inside ExclusiveID", "indiseExclusive");
                     FirebaseFirestore firestoreNews = FirebaseFirestore.getInstance();
                     firestoreNews.collection("EXCLUSIVE").document(exclusiveId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                         @Override
                         public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                             if (task.isSuccessful()) {
-                                String content,head,imgurl,type,videourl,audiourl;
-                                int articlever; long timestamp;
+                                String content, head, imgurl, type, videourl, audiourl;
+                                int articlever;
+                                long timestamp;
                                 type = task.getResult().get("type").toString();
                                 content = task.getResult().get("content").toString();
                                 head = task.getResult().get("head").toString();
@@ -98,14 +97,14 @@ public class MainApplication extends Application {
                                 articlever = Integer.parseInt(arti);
                                 String time = task.getResult().get("timestamp").toString();
                                 timestamp = Long.parseLong(time);
-                                Log.d("Inside ExclusiveID","News Fetch Success");
-                                todisplay = new Articles(type,head, content, imgurl,videourl,audiourl,articlever,timestamp);
+                                Log.d("Inside ExclusiveID", "News Fetch Success");
+                                todisplay = new Articles(type, head, content, imgurl, videourl, audiourl, articlever, timestamp);
                             }
                         }
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Log.d("Inside ExclusiveID","Failed to get Notif");
+                            Log.d("Inside ExclusiveID", "Failed to get Notif");
                         }
                     });
                 }
@@ -130,7 +129,7 @@ public class MainApplication extends Application {
                 singleImg = data.optString("singleImg", "No ImgUrl");
                 promotionLink = data.optString("promotionLink", "");
                 verticalLink = data.optString("verticalLink", "");
-                exclusiveId = data.optString("exclusiveId","") ;
+                exclusiveId = data.optString("exclusiveId", "");
                 Log.d("Incoming_Data", "All Values" + tag + singleHead + singleLink + singleImg);
 
                 if (!(tag.isEmpty())) {
@@ -152,13 +151,13 @@ public class MainApplication extends Application {
                     intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.putExtra("verticalLink", verticalLink);
                     startActivity(intent);
-                }else if(!(exclusiveId.isEmpty())){
-                    Log.d("Inside ExclusiveID","TodisplayIntent");
-                        Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
-                        Log.d("Inside ExclusiveID","Intent");
-                        intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        intent.putExtra("exclusiveNotif",exclusiveId );
-                        startActivity(intent);
+                } else if (!(exclusiveId.isEmpty())) {
+                    Log.d("Inside ExclusiveID", "TodisplayIntent");
+                    Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
+                    Log.d("Inside ExclusiveID", "Intent");
+                    intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.putExtra("exclusiveNotif", exclusiveId);
+                    startActivity(intent);
                 }
             } else {
                 Intent intent = new Intent(getApplicationContext(), MainScreen_Activity.class);

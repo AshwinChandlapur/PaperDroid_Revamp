@@ -137,6 +137,7 @@
 
                 </FrameLayout>
 
+                <include layout="@layout/navigation_drawer_divider" />
 
                 <FrameLayout
                     android:id="@+id/nav_prajavani"
@@ -250,7 +251,7 @@
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/deccan"
+                        android:src="@drawable/dh_new"
                         tools:ignore="ContentDescription" />
 
                     <TextView
@@ -267,7 +268,7 @@
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/deccan"
+                        android:src="@drawable/ht_new"
                         tools:ignore="ContentDescription" />
 
                     <TextView

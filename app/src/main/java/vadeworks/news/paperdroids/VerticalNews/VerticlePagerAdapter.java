@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
 
@@ -65,16 +62,15 @@ class VerticlePagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         final View itemView = mLayoutInflater.inflate(R.layout.vertical_news_display, container, false);
 
-        fullnews = new News(mnews.get(position).head,mnews.get(position).link,mnews.get(position).imgurl,mnews.get(position).content);
-        verticalNewsDisplay(fullnews,itemView);
+        fullnews = new News(mnews.get(position).head, mnews.get(position).link, mnews.get(position).imgurl, mnews.get(position).content);
+        verticalNewsDisplay(fullnews, itemView);
         container.addView(itemView);
 
         return itemView;
     }
 
 
-
-    private void verticalNewsDisplay (final News singleNews, View itemView) {
+    private void verticalNewsDisplay(final News singleNews, View itemView) {
         headline = itemView.findViewById(R.id.headline);
         content = itemView.findViewById(R.id.content);
         link = itemView.findViewById(R.id.link);

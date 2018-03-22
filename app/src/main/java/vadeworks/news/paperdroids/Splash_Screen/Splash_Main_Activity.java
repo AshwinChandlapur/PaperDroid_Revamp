@@ -11,7 +11,6 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.paperdroid.R;
 
 public class Splash_Main_Activity extends AppCompatActivity {

@@ -13,10 +13,10 @@
         android:layout_height="120dp">
 
         <ImageView
+            android:id="@+id/newsIcon"
             android:layout_width="match_parent"
             android:layout_height="120dp"
             android:background="#ffffff"
-            android:id="@+id/newsIcon"
             android:scaleType="center"
             tools:ignore="ContentDescription" />
 

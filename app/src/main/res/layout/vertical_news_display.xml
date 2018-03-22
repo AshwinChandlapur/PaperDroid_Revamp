@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="7dp"
+    android:background="@color/background_white"
     android:minHeight="500dp"
     android:orientation="vertical"
-    android:background="@color/background_white"
     card_view:layout_behavior="vadeworks.news.paperdroids.FixAppBarLayoutBehavior"
     tools:context="vadeworks.news.paperdroids.VerticalNews.Vertical_News">
 

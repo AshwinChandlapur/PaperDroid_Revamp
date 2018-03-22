@@ -5,19 +5,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,21 +32,17 @@ import cn.jzvd.JZVideoPlayer;
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.VerticalNews.VerticalViewPager;
-import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.paperdroid.R;
 
 public class ExclusiveActivity extends AppCompatActivity {
 
+    private final Bundle params = new Bundle();
     FirebaseFirestore firestoreNews;
     private ArrayList<DocIdRetrive> articlesList = new ArrayList<>();
-    private String notifId,head,imgurl,content;
+    private String notifId, head, imgurl, content;
     private DocIdRetrive todisplay;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private final Bundle params = new Bundle();
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,58 +52,58 @@ public class ExclusiveActivity extends AppCompatActivity {
 
         if (!isConnected(this)) {
             buildDialog(this).show();
-        }else {
+        } else {
             Log.d("Internet Working", "Internet Working");
         }
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         notifId = getIntent().getStringExtra("exclusiveNotif");
-        if(notifId!=null)
-            Log.d("Notifid is :",notifId);
+        if (notifId != null)
+            Log.d("Notifid is :", notifId);
 
 
         firestoreNews = FirebaseFirestore.getInstance();
-                firestoreNews.collection("EXCLUSIVE")
-                    .orderBy("timestamp", Query.Direction.DESCENDING)
-                    .limit(41)
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                            if (task.isSuccessful()) {
-                                DocIdRetrive temp = new DocIdRetrive();
-                                for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                                    DocIdRetrive articles = new DocIdRetrive();
-                                    articles.docid =  ( documentSnapshot.getId() != null) ?  documentSnapshot.getId() : "";
+        firestoreNews.collection("EXCLUSIVE")
+                .orderBy("timestamp", Query.Direction.DESCENDING)
+                .limit(41)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocIdRetrive temp = new DocIdRetrive();
+                            for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                                DocIdRetrive articles = new DocIdRetrive();
+                                articles.docid = (documentSnapshot.getId() != null) ? documentSnapshot.getId() : "";
 
-                                    articles.type = ( documentSnapshot.get("type") != null) ?  documentSnapshot.get("type").toString() : "";
-                                    articles.head = ( documentSnapshot.get("head") != null) ?  documentSnapshot.get("head").toString() : "";
-                                    articles.content =  ( documentSnapshot.get("content") != null) ?  documentSnapshot.get("content").toString() : "";
-                                    articles.imgurl = ( documentSnapshot.get("imgurl") != null) ?  documentSnapshot.get("imgurl").toString() : Constants.exclusiveBackground;
-                                    articles.videourl =( documentSnapshot.get("videourl") != null) ?  documentSnapshot.get("videourl").toString() : "";
-                                    articles.audiourl =( documentSnapshot.get("audiourl") != null) ?  documentSnapshot.get("audiourl").toString() : "";
-                                    articles.articlever = ( documentSnapshot.get("articlever") != null) ? Integer.parseInt(documentSnapshot.get("articlever").toString())  : null;
-                                    articles.timestamp =( documentSnapshot.get("timestamp") != null) ?  Long.parseLong(documentSnapshot.get("timestamp").toString()): null;
+                                articles.type = (documentSnapshot.get("type") != null) ? documentSnapshot.get("type").toString() : "";
+                                articles.head = (documentSnapshot.get("head") != null) ? documentSnapshot.get("head").toString() : "";
+                                articles.content = (documentSnapshot.get("content") != null) ? documentSnapshot.get("content").toString() : "";
+                                articles.imgurl = (documentSnapshot.get("imgurl") != null) ? documentSnapshot.get("imgurl").toString() : Constants.exclusiveBackground;
+                                articles.videourl = (documentSnapshot.get("videourl") != null) ? documentSnapshot.get("videourl").toString() : "";
+                                articles.audiourl = (documentSnapshot.get("audiourl") != null) ? documentSnapshot.get("audiourl").toString() : "";
+                                articles.articlever = (documentSnapshot.get("articlever") != null) ? Integer.parseInt(documentSnapshot.get("articlever").toString()) : null;
+                                articles.timestamp = (documentSnapshot.get("timestamp") != null) ? Long.parseLong(documentSnapshot.get("timestamp").toString()) : null;
 
-                                    if(articles.articlever == 1){
-                                        if (notifId != null)
-                                            if (articles.docid.equals(notifId))
-                                                temp = articles;
+                                if (articles.articlever == 1) {
+                                    if (notifId != null)
+                                        if (articles.docid.equals(notifId))
+                                            temp = articles;
 
-                                        articlesList.add( new DocIdRetrive(articles.docid,articles.type,articles.head,articles.content,
-                                                articles.imgurl,articles.videourl,articles.audiourl,
-                                                (int)articles.articlever,(long)articles.timestamp));
+                                    articlesList.add(new DocIdRetrive(articles.docid, articles.type, articles.head, articles.content,
+                                            articles.imgurl, articles.videourl, articles.audiourl,
+                                            (int) articles.articlever, (long) articles.timestamp));
 
-                                    }
                                 }
-                                if(notifId!=null)
-                                    articlesList.add(0,temp);
-                                Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
-                                initSwipePager();
-                            } else {
-                                Log.w("Docu", "Error getting documents.", task.getException());
                             }
+                            if (notifId != null)
+                                articlesList.add(0, temp);
+                            Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
+                            initSwipePager();
+                        } else {
+                            Log.w("Docu", "Error getting documents.", task.getException());
                         }
-                    });
+                    }
+                });
     }
 
     private void initSwipePager() {
@@ -121,21 +116,24 @@ public class ExclusiveActivity extends AppCompatActivity {
 //            }
 //        }
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        Log.d("initSwipePager docid: ",articlesList.get(0).docid + "1 :"+ articlesList.get(1).docid);
+        Log.d("initSwipePager docid: ", articlesList.get(0).docid + "1 :" + articlesList.get(1).docid);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
         verticalViewPager.setOffscreenPageLimit(3);
 
 
-
         verticalViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            public void onPageScrollStateChanged(int state) {}
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrollStateChanged(int state) {
+            }
+
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+
             public void onPageSelected(int position) {
                 // Check if this is the page you want.
                 JZVideoPlayer.releaseAllVideos();
-                params.putInt("Cards",position);
-                Log.d("Position",""+position);
-                String  cards_read = "Cards_Read";
+                params.putInt("Cards", position);
+                Log.d("Position", "" + position);
+                String cards_read = "Cards_Read";
                 mFirebaseAnalytics.logEvent(cards_read, params);
             }
         });
@@ -151,8 +149,7 @@ public class ExclusiveActivity extends AppCompatActivity {
         }
 
 
-        if(keyCode==KeyEvent.KEYCODE_HOME)
-        {
+        if (keyCode == KeyEvent.KEYCODE_HOME) {
             JZVideoPlayer.releaseAllVideos();
         }
         return true;
@@ -202,11 +199,11 @@ public class ExclusiveActivity extends AppCompatActivity {
         return builder;
     }
 
-    class  DocIdRetrive  extends Articles{
+    class DocIdRetrive extends Articles {
         String docid = "";
 
 
-        DocIdRetrive(){
+        DocIdRetrive() {
             this.docid = "";
             this.type = "";
             this.head = "";
@@ -215,10 +212,10 @@ public class ExclusiveActivity extends AppCompatActivity {
             this.videourl = "";
             this.audiourl = "";
             this.articlever = 1;
-            this.timestamp= System.currentTimeMillis();
+            this.timestamp = System.currentTimeMillis();
         }
 
-        DocIdRetrive(String docid,String type,String head,String content,String imgurl,String videourl,String audiourl, int articlever,long timestamp){
+        DocIdRetrive(String docid, String type, String head, String content, String imgurl, String videourl, String audiourl, int articlever, long timestamp) {
             this.docid = docid;
             this.type = type;
             this.head = head;
@@ -227,12 +224,11 @@ public class ExclusiveActivity extends AppCompatActivity {
             this.videourl = videourl;
             this.audiourl = audiourl;
             this.articlever = articlever;
-            this.timestamp=timestamp;
+            this.timestamp = timestamp;
         }
 
 
     }
-
 
 
 }

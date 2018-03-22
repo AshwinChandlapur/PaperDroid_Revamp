@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 
-
 /**
  * Created by ashwinchandlapur on 10/02/18.
  */

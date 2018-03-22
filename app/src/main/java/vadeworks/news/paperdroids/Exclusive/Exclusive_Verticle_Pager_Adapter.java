@@ -1,16 +1,10 @@
 package vadeworks.news.paperdroids.Exclusive;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
-import android.support.v7.widget.CardView;
 import android.util.Log;
-import android.view.GestureDetector;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -39,7 +33,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private final LayoutInflater mLayoutInflater;
     private ArrayList<ExclusiveActivity.DocIdRetrive> articleList = new ArrayList<>();
     private TextView headline;
-    private ImageView image,youTube;
+    private ImageView image, youTube;
     private TextView content;
     private Articles fullArticle;
     private TextView link;
@@ -49,7 +43,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<ExclusiveActivity.DocIdRetrive> articles) {
         mContext = context;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        articleList= articles;
+        articleList = articles;
         Log.d("ArticleList size", "ArticleList Size" + articleList.size());
     }
 
@@ -74,11 +68,11 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         JZVideoPlayer.releaseAllVideos();
         ProxyFactory proxyFactory = new ProxyFactory();
-        HttpProxyCacheServer proxy= proxyFactory.getProxy(mContext);
+        HttpProxyCacheServer proxy = proxyFactory.getProxy(mContext);
         View itemView;
 
 
-        switch (articleList.get(position).type){
+        switch (articleList.get(position).type) {
 
             case Constants.type_img:
                 itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_img, container, false);
@@ -88,13 +82,13 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
 
             case Constants.type_ytv:
                 itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_ytv, container, false);
-                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl,articleList.get(position).videourl);
+                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl, articleList.get(position).videourl);
                 verticalNewsDisplay_ytv(fullArticle, itemView);
                 break;
 
             case Constants.type_vid:
                 itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_vid, container, false);
-                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl,articleList.get(position).videourl);
+                fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl, articleList.get(position).videourl);
                 proxyUrl = proxy.getProxyUrl(articleList.get(position).videourl);
                 verticalNewsDisplay_vid(fullArticle, itemView);
                 break;
@@ -117,9 +111,9 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         headline.setText(singleArticle.head);
         content.setText(singleArticle.content);
 
-        if(singleArticle.imgurl==null){
+        if (singleArticle.imgurl == null) {
             image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_big_one));
-        }else{
+        } else {
             Picasso.with(mContext).load(singleArticle.imgurl).fit().into(image);
         }
 
@@ -135,9 +129,9 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         youTube = itemView.findViewById(R.id.youTube);
         headline.setText(singleArticle.head);
         content.setText(singleArticle.content);
-        if(singleArticle.imgurl==null){
+        if (singleArticle.imgurl == null) {
             image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_big_one));
-        }else{
+        } else {
             Picasso.with(mContext).load(singleArticle.imgurl).fit().error(R.drawable.backrepeat).into(image);
         }
 
@@ -147,14 +141,14 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
             public void onClick(View v) {
                 Intent intent = new Intent(mContext.getApplicationContext(), YouTube.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("youtubeLink",singleArticle.videourl);
-                intent.putExtra("backgroundImg",singleArticle.imgurl);
+                intent.putExtra("youtubeLink", singleArticle.videourl);
+                intent.putExtra("backgroundImg", singleArticle.imgurl);
                 mContext.startActivity(intent);
             }
         });
     }
 
-    private void verticalNewsDisplay_vid(final Articles singleArticle,View itemView){
+    private void verticalNewsDisplay_vid(final Articles singleArticle, View itemView) {
         JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
         jzVideoPlayerStandard.setUp(proxyUrl
                 , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, singleArticle.head);

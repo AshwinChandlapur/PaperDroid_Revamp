@@ -16,7 +16,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -80,15 +79,15 @@ public class Vertical_News extends AppCompatActivity {
 
                                 Log.d("AllContent", "all" + documentSnapshot.get("content"));
                                 News news = new News();
-                                news.head = ( documentSnapshot.get("head") != null) ?  documentSnapshot.get("head").toString() : "";
-                                news.link = ( documentSnapshot.get("link") != null) ?  documentSnapshot.get("link").toString() : "";
-                                news.content = ( documentSnapshot.get("content") != null) ?  documentSnapshot.get("content").toString() : "";
-                                news.thumburl = ( documentSnapshot.get("thumburl") != null) ?  documentSnapshot.get("thumburl").toString() : Constants.exclusiveBackground;
-                                news.imgurl = ( documentSnapshot.get("imgurl") != null) ?  documentSnapshot.get("imgurl").toString() : Constants.exclusiveBackground;
-                                news.tag = ( documentSnapshot.get("tag") != null) ?  documentSnapshot.get("tag").toString() : "";
-                                news.subtag = ( documentSnapshot.get("subtag") != null) ?  documentSnapshot.get("subtag").toString() : "";
-                                if(news.content!=null){
-                                    newsList.add(new News(news.thumburl,news.imgurl,news.tag,news.content,news.link,news.head,news.subtag));
+                                news.head = (documentSnapshot.get("head") != null) ? documentSnapshot.get("head").toString() : "";
+                                news.link = (documentSnapshot.get("link") != null) ? documentSnapshot.get("link").toString() : "";
+                                news.content = (documentSnapshot.get("content") != null) ? documentSnapshot.get("content").toString() : "";
+                                news.thumburl = (documentSnapshot.get("thumburl") != null) ? documentSnapshot.get("thumburl").toString() : Constants.exclusiveBackground;
+                                news.imgurl = (documentSnapshot.get("imgurl") != null) ? documentSnapshot.get("imgurl").toString() : Constants.exclusiveBackground;
+                                news.tag = (documentSnapshot.get("tag") != null) ? documentSnapshot.get("tag").toString() : "";
+                                news.subtag = (documentSnapshot.get("subtag") != null) ? documentSnapshot.get("subtag").toString() : "";
+                                if (news.content != null) {
+                                    newsList.add(new News(news.thumburl, news.imgurl, news.tag, news.content, news.link, news.head, news.subtag));
                                 }
                                 initSwipePager();
                             }
@@ -161,7 +160,6 @@ public class Vertical_News extends AppCompatActivity {
         builder.setView(view);
         return builder;
     }
-
 
 
 }

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -12,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -45,8 +45,6 @@ import vadeworks.paperdroid.R;
 
 public class DeccanHerald_Activiy extends AppCompatActivity {
 
-
-
     private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
     private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
     private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
@@ -58,7 +56,8 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
     private final CharSequence[] Titles = {"Headlines", "State", "Sports", "Entertainment", "World"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_hindustan,intent_to_deccan,intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    FrameLayout intent_to_hindustan, intent_to_deccan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    View view;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_DH adapter;
@@ -70,12 +69,11 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deccan_herald_activity);
-
+        View view = findViewById(R.id.content);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
@@ -86,8 +84,8 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
         mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
         fetchCard();
 
-        init_slider();
 
+        init_slider();
         init_navigator();
 
 
@@ -95,9 +93,7 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
             buildDialog(this).show();
         } else {
             Log.d("Internet Working", "Internet Working");
-//            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
         }
-
 
         FrameLayout intent_to_home = findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
@@ -171,7 +167,7 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
+                card_clicked = getResources().getString(R.string.toolbar_title_home_dh);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent intent = new Intent(DeccanHerald_Activiy.this, Esanje_MainActivity.class);
                 startActivity(intent);
@@ -197,7 +193,6 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);
@@ -226,7 +221,7 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(2);
+        pager.setOffscreenPageLimit(3);
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View
@@ -364,8 +359,9 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
                         displayUV();
                         displayAN();
                         displayES();
-                        displayDH();
                         displayHT();
+                        displayDH();
+
                     }
                 });
         // [END fetch_config_with_callback]
@@ -443,6 +439,4 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
             intent_to_hindustan.setVisibility(View.GONE);
         }
     }
-
-
 }

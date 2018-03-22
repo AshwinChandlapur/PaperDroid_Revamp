@@ -58,7 +58,7 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
     private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಸಿನಿಮಾ", "ಕ್ರೀಡೆ", "ವಾಣಿಜ್ಯ", "ಜಗತ್ತು"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_deccan,intent_to_hindustan,intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    FrameLayout intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_UV adapter;
@@ -444,7 +444,6 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
             intent_to_hindustan.setVisibility(View.GONE);
         }
     }
-
 
 
 }

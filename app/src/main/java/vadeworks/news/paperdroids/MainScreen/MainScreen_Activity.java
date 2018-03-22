@@ -18,8 +18,6 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.onesignal.OneSignal;
@@ -39,7 +37,6 @@ import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.BuildConfig;
@@ -59,6 +56,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private final Bundle params = new Bundle();
     String carat22, carat24, petrol, diesel;
     int result;
+    Articles todisplay;
     private CardView prajavani;
     private CardView vijayavani;
     private CardView vijayakarnataka;
@@ -68,13 +66,12 @@ public class MainScreen_Activity extends AppCompatActivity {
     private CardView deccanherald;
     private CardView hindustantimes;
     private View parentLayout;
-    private ImageView bottomImage,exclusive_background_image ;
+    private ImageView bottomImage, exclusive_background_image;
     private TextView gold22_textview, gold24_textview, petrol_textview, diesel_textview, airNo_textview, airQuality_textview;
     private int click = 0;
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
-    Articles todisplay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,7 +94,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         bottomImage = findViewById(R.id.bottomimage);
         exclusive_background_image = findViewById(R.id.exclusive_background);
 
-        Picasso.with(this).load(Constants.exclusiveBackground).placeholder(R.drawable.kannada).error(R.drawable.kannada).into(exclusive_background_image);
+        Picasso.with(this).load(R.drawable.kannadas).placeholder(R.drawable.kannadas).error(R.drawable.kannadas).into(exclusive_background_image);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -117,7 +114,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText("Kannada Kampu will be available in "+ (3 - diffInDays ) + " days...");
+        locktxt.setText("News Duniya Exclusive will be unlocked in " + (3 - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
@@ -230,7 +227,6 @@ public class MainScreen_Activity extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
 
 
         bottomImage.setOnClickListener(new View.OnClickListener() {
@@ -356,7 +352,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     private void fetchCard() {
 
-      long cacheExpiration = 24*60*60; // 1 Day
+        long cacheExpiration = 24 * 60 * 60; // 1 Day
 
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
             cacheExpiration = 0;
@@ -368,7 +364,8 @@ public class MainScreen_Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             mFirebaseRemoteConfig.activateFetched();
-                        } else {}
+                        } else {
+                        }
                         displayPJ();
                         displayVV();
                         displayVK();
@@ -455,8 +452,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     }
 
 
-
-
     @Override
     protected void onResume() {
         super.onResume();
@@ -472,7 +467,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText("Kannada Kampu will be unlocked in "+ (3 - diffInDays ) + " days...");
+        locktxt.setText("Kannada Kampu will be unlocked in " + (3 - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();

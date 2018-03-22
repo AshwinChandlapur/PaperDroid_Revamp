@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.FirebaseNews;
 import vadeworks.paperdroid.R;

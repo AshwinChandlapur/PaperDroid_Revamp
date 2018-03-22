@@ -375,11 +375,10 @@
             </LinearLayout>
 
 
-
             <android.support.v7.widget.CardView
+                android:id="@+id/overviewcard"
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
-                android:id="@+id/overviewcard"
                 android:layout_margin="5dp"
                 app:cardBackgroundColor="@color/background_white"
                 app:cardCornerRadius="7dp"
@@ -391,100 +390,51 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/exclusive_background"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/exclusive_background"
                         android:scaleType="centerCrop" />
 
 
-
                     <FrameLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center">
-
-
-                        <android.support.v7.widget.CardView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardBackgroundColor="@color/ColorPrimaryDark"
-                            app:cardCornerRadius="7dp"
-                            app:cardElevation="15dp"
-                            android:layout_gravity="center">
-
-
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical"
-                                android:layout_margin="10dp">
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="18sp"
-                                    android:text="ಕನ್ನಡ ಕಂಪು"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:textStyle="bold"
-                                    android:textColor="@color/background_white"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:textSize="12sp"
-                                    android:text="ಕನ್ನಡಿಗರ ಹೊಸ ಧ್ವನಿ"
-                                    android:layout_gravity="center"
-                                    android:gravity="center"
-                                    android:textColor="@color/background_white"/>
-                            </LinearLayout>
-                        </android.support.v7.widget.CardView>
-
-
-                    </FrameLayout>
-
-
-                    <FrameLayout
+                        android:id="@+id/locklayout"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:id="@+id/locklayout"
                         android:layout_gravity="center">
-                        
+
                         <ImageView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:alpha="0.7"
-                            android:background="@color/text_black_100"/>
+                            android:background="@color/text_black_100" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="vertical"
                             android:layout_gravity="center"
-                            android:gravity="center">
+                            android:gravity="center"
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="48dp"
                                 android:layout_height="48dp"
                                 android:layout_gravity="center"
-                                android:tint="@color/background_white"
-                                android:src="@drawable/ic_lock_black_24dp"/>
+                                android:src="@drawable/ic_lock_black_24dp"
+                                android:tint="@color/background_white" />
 
                             <TextView
+                                android:id="@+id/locktext"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
                                 android:textColor="@color/background_white"
-                                android:textSize="12sp"
-                                android:id="@+id/locktext"/>
+                                android:textSize="12sp" />
                         </LinearLayout>
                     </FrameLayout>
 
 
                 </FrameLayout>
             </android.support.v7.widget.CardView>
-
-
-
 
 
             <LinearLayout
@@ -519,7 +469,6 @@
                             android:layout_height="84dp"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            android:scaleType="centerCrop"
                             android:src="@drawable/dh_new"
                             tools:ignore="ContentDescription" />
 
@@ -558,8 +507,8 @@
                             android:layout_width="84dp"
                             android:layout_height="84dp"
                             android:layout_gravity="center"
-                            android:scaleType="fitCenter"
                             android:background="@color/background_white"
+                            android:scaleType="fitCenter"
                             android:src="@drawable/ht_new"
                             tools:ignore="ContentDescription" />
 
@@ -579,8 +528,7 @@
             </LinearLayout>
 
 
-
-        <android.support.v7.widget.CardView
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
                 android:layout_margin="5dp"

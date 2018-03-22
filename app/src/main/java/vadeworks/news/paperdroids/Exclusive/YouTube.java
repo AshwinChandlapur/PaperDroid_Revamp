@@ -1,11 +1,6 @@
 package vadeworks.news.paperdroids.Exclusive;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
-import android.media.Image;
-import android.sax.RootElement;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -27,9 +22,8 @@ import vadeworks.paperdroid.R;
 public class YouTube extends YouTubeBaseActivity implements
         YouTubePlayer.OnInitializedListener {
 
-    String videolink,imgurl;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
-
+    String videolink, imgurl;
     // YouTube player view
     private YouTubePlayerView youTubeView;
     private ImageView backgroundImage;
@@ -48,7 +42,7 @@ public class YouTube extends YouTubeBaseActivity implements
         backgroundImage = findViewById(R.id.backgroundimage);
         cardView_close = findViewById(R.id.card_view_close);
         videolink = getIntent().getStringExtra("youtubeLink");
-        Log.d("youtubeLink",videolink);
+        Log.d("youtubeLink", videolink);
         imgurl = getIntent().getStringExtra("backgroundImg");
         Picasso.with(this).load(imgurl).into(backgroundImage);
         cardView_close.setOnClickListener(new View.OnClickListener() {
@@ -82,6 +76,7 @@ public class YouTube extends YouTubeBaseActivity implements
     protected void onStop() {
         super.onStop();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -1,7 +1,6 @@
 package vadeworks.news.paperdroids;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 
 /**
  * Created by ashwinchandlapur on 16/03/18.
@@ -18,31 +17,31 @@ public class Articles implements Serializable {
     public long timestamp;
 
 
-    public Articles(){
-        this.type="";
+    public Articles() {
+        this.type = "";
         this.head = "";
         this.content = "";
         this.imgurl = "";
-        this.videourl ="";
-        this.audiourl="";
+        this.videourl = "";
+        this.audiourl = "";
         this.articlever = 1;
         this.timestamp = System.currentTimeMillis();
     }
 
-    public Articles(String head,String content,String imgurl){
+    public Articles(String head, String content, String imgurl) {
         this.head = head;
         this.content = content;
         this.imgurl = imgurl;
     }
 
-    public Articles(String head,String content,String imgurl,String videourl){
+    public Articles(String head, String content, String imgurl, String videourl) {
         this.head = head;
         this.content = content;
         this.imgurl = imgurl;
         this.videourl = videourl;
     }
 
-    public Articles(String type,String head,String content,String imgurl,String videourl,String audiourl,int articlever,long timestamp){
+    public Articles(String type, String head, String content, String imgurl, String videourl, String audiourl, int articlever, long timestamp) {
         this.type = type;
         this.head = head;
         this.content = content;
@@ -50,7 +49,7 @@ public class Articles implements Serializable {
         this.videourl = videourl;
         this.audiourl = audiourl;
         this.articlever = articlever;
-        this.timestamp=timestamp;
+        this.timestamp = timestamp;
     }
 
 }

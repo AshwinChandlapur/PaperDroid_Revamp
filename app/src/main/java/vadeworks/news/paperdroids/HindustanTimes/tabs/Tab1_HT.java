@@ -36,7 +36,7 @@ public class Tab1_HT extends Fragment {
 
         view = inflater.inflate(R.layout.common_headline, container, false);
         ImageView newsIcon = view.findViewById(R.id.newsIcon);
-        Picasso.with(getContext()).load(R.drawable.ht).resize(300,43).into(newsIcon);
+        Picasso.with(getContext()).load(R.drawable.ht).resize(300, 43).into(newsIcon);
 //        newsIcon.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.ht));
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
