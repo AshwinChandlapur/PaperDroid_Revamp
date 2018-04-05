@@ -1,6 +1,8 @@
 package vadeworks.news.paperdroids.DeccanHerald.tabs;
 
 
+import android.app.job.JobInfo;
+import android.app.job.JobScheduler;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,8 @@ import vadeworks.paperdroid.R;
  * A simple {@link Fragment} subclass.
  */
 public class Tab1 extends Fragment {
+
+
 
     private final String tag = Constants.dh_headlines;//TODO:Should Change Accordingly
     private View view;

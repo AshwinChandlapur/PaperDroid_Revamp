@@ -114,7 +114,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText("News Duniya Exclusive will be unlocked in " + (3 - diffInDays) + " days...");
+        locktxt.setText(Constants.unlock + (3 - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
@@ -302,10 +302,10 @@ public class MainScreen_Activity extends AppCompatActivity {
             org.jsoup.nodes.Document oilDoc = Jsoup.connect(oilUrl).get();
             Elements oilElem = oilDoc.select("tr.cart-subtotal");
 
-            petrol = oilElem.first().children().get(1).text();
-            diesel = oilElem.first().children().get(2).text();
-            petrol = "P: " + petrol.replace(" Per Litre", "/L");
-            diesel = "D: " + diesel.replace(" Per Litre", "/L");
+            petrol = oilElem.first().children().get(2).text();
+            diesel = oilElem.first().children().get(4).text();
+            petrol = "P: " + petrol.replace(" Litre", "L");
+            diesel = "D: " + diesel.replace(" Litre", "L");
 
         } catch (Exception e) {
             petrol = "- -";
@@ -467,7 +467,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText("Kannada Kampu will be unlocked in " + (3 - diffInDays) + " days...");
+        locktxt.setText(Constants.unlock + (3 - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();

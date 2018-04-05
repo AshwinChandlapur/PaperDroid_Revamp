@@ -228,7 +228,7 @@ public class HindustanTimes_Activity extends AppCompatActivity {
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
-        pager.setOffscreenPageLimit(2);
+        pager.setOffscreenPageLimit(3);
         pager.setAdapter(adapter);
 
         // Assiging the Sliding Tab Layout View

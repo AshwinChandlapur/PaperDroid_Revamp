@@ -118,6 +118,8 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         }
 
 
+        image.setOnClickListener(null);
+
     }
 
     private void verticalNewsDisplay_ytv(final Articles singleArticle, View itemView) {

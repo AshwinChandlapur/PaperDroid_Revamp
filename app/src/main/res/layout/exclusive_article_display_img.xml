@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="7dp"
     android:background="@color/background_white"
     android:minHeight="500dp"
     android:orientation="vertical"
@@ -18,7 +17,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="7dp"
-        card_view:cardCornerRadius="7dp"
+        card_view:cardCornerRadius="9dp"
         card_view:cardElevation="8dp">
 
         <LinearLayout
@@ -32,6 +31,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="230dp"
                 android:background="@drawable/backrepeat"
+                android:clickable="false"
                 android:contentDescription="TODO" />
 
 

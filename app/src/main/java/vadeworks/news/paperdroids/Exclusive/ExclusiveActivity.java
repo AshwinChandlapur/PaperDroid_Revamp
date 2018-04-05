@@ -74,7 +74,6 @@ public class ExclusiveActivity extends AppCompatActivity {
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
                                 DocIdRetrive articles = new DocIdRetrive();
                                 articles.docid = (documentSnapshot.getId() != null) ? documentSnapshot.getId() : "";
-
                                 articles.type = (documentSnapshot.get("type") != null) ? documentSnapshot.get("type").toString() : "";
                                 articles.head = (documentSnapshot.get("head") != null) ? documentSnapshot.get("head").toString() : "";
                                 articles.content = (documentSnapshot.get("content") != null) ? documentSnapshot.get("content").toString() : "";

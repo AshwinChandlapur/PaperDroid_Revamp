@@ -103,7 +103,7 @@ public class Vertical_News extends AppCompatActivity {
 
     private void initSwipePager() {
         VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        verticalViewPager.setOffscreenPageLimit(5);
+        verticalViewPager.setOffscreenPageLimit(3);
         verticalViewPager.setAdapter(new VerticlePagerAdapter(this, newsList));
     }
 

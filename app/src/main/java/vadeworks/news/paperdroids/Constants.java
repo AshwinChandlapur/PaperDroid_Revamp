@@ -13,6 +13,7 @@ public class Constants {
     public static final String asianet = "asianet";
 
 
+
     //Common
     public static final int UNLOCK_DAYS = 3;
     public static final int TOP_10_LIMIT = 10;
@@ -99,7 +100,6 @@ public class Constants {
     public static final String type_ytv = "ytv";
     public static final String type_vid = "vid";
     public static final String type_aud = "aud";
-    public static final String type_add = "add";
     public static final String type_fac = "fac";
 
 
@@ -107,4 +107,5 @@ public class Constants {
 
     public static final String exclusiveBackground = "https://raw.githubusercontent.com/AshwinChandlapur/PaperDroid_Revamp/master/kannada.png";
 
+    public static final String unlock = "News Duniya Exclusive will be unlocked in ";
 }
