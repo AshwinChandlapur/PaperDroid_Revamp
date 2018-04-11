@@ -68,8 +68,7 @@ public class ExclusiveActivity extends AppCompatActivity {
 
         first  = firestoreNews.collection("EXCLUSIVE")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
-                .limit(3);
-
+                .limit(41);
                 first.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -141,80 +140,9 @@ public class ExclusiveActivity extends AppCompatActivity {
                 Log.d("Position", "" + position);
                 String cards_read = "Cards_Read";
                 mFirebaseAnalytics.logEvent(cards_read, params);
-
-                if(position ==2){
-                    first.get()
-                            .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                                @Override
-                                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                                    DocumentSnapshot lastVisible = queryDocumentSnapshots.getDocuments()
-                                            .get(queryDocumentSnapshots.size() -1);
-
-                                    // Construct a new query starting at this document,
-                                    // get the next 25 cities.
-                                    Query next = firestoreNews.collection("EXCLUSIVE")
-                                            .orderBy("timestamp", Query.Direction.DESCENDING)
-                                            .startAfter(lastVisible)
-                                            .limit(2);
-
-                                    next.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                            if (task.isSuccessful()) {
-                                                DocIdRetrive temp = new DocIdRetrive();
-                                                for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                                                    DocIdRetrive articles = new DocIdRetrive();
-                                                    articles.docid = (documentSnapshot.getId() != null) ? documentSnapshot.getId() : "";
-                                                    articles.type = (documentSnapshot.get("type") != null) ? documentSnapshot.get("type").toString() : "";
-                                                    articles.head = (documentSnapshot.get("head") != null) ? documentSnapshot.get("head").toString() : "";
-                                                    articles.content = (documentSnapshot.get("content") != null) ? documentSnapshot.get("content").toString() : "";
-                                                    articles.imgurl = (documentSnapshot.get("imgurl") != null) ? documentSnapshot.get("imgurl").toString() : Constants.exclusiveBackground;
-                                                    articles.videourl = (documentSnapshot.get("videourl") != null) ? documentSnapshot.get("videourl").toString() : "";
-                                                    articles.audiourl = (documentSnapshot.get("audiourl") != null) ? documentSnapshot.get("audiourl").toString() : "";
-                                                    articles.articlever = (documentSnapshot.get("articlever") != null) ? Integer.parseInt(documentSnapshot.get("articlever").toString()) : null;
-                                                    articles.timestamp = (documentSnapshot.get("timestamp") != null) ? Long.parseLong(documentSnapshot.get("timestamp").toString()) : null;
-
-                                                    Log.d("Snap2",articles.head);
-
-                                                    if (articles.articlever == 1) {
-                                                        if (notifId != null)
-                                                            if (articles.docid.equals(notifId))
-                                                                temp = articles;
-
-                                                        articlesList.add(new DocIdRetrive(articles.docid, articles.type, articles.head, articles.content,
-                                                                articles.imgurl, articles.videourl, articles.audiourl,
-                                                                (int) articles.articlever, (long) articles.timestamp));
-
-                                                    }
-                                                }
-                                                if (notifId != null)
-                                                    articlesList.add(position+1, temp);
-//                                                Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
-                                                    initSwipePagers();
-                                            } else {
-                                                Log.w("Docu", "Error getting documents.", task.getException());
-                                            }
-                                        }
-                                    });
-
-
-
-                                }
-                            });
-                }
-
             }
         });
 
-    }
-
-    private void initSwipePagers(){
-        final VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        Log.d("initSwipePager docid: ", articlesList.get(0).docid + "1 :" + articlesList.get(1).docid);
-        verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
-        verticalViewPager.setCurrentItem(3);
-        verticalViewPager.setOffscreenPageLimit(10);
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
