@@ -670,6 +670,93 @@
 
             </android.support.v7.widget.CardView>
 
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:transitionName="cardSpecial"
+                app:cardBackgroundColor="@color/background_white"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="2dp"
+                android:id="@+id/specialCards">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:id="@+id/cricketImage"
+                        android:src="@drawable/cricback"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.6"
+                        android:background="@color/text_black_100" />
+
+                </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_margin="5dp"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textSize="20sp"
+                                android:gravity="center"
+                                android:text="MatchDesc"
+                                android:textColor="@color/background_white"
+                                android:id="@+id/mchDesc"/>
+
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:src="@drawable/logo_with_background"
+                                android:id="@+id/battingTeamImage" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:textSize="20sp"
+                                android:layout_gravity="center"
+                                android:textColor="@color/background_white"
+                                android:id="@+id/battingTeamText"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:layout_gravity="center"
+                                android:id="@+id/scoreCard"
+                                android:textColor="@color/background_white"
+                                android:textSize="20sp"/>
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textSize="16sp"
+                                android:gravity="center"
+                                android:textColor="@color/background_white"
+                                android:id="@+id/mchStatus"/>
+                </LinearLayout>
+
+
+
+            </android.support.v7.widget.CardView>
+
             <ImageView
                 android:id="@+id/bottomimage"
                 android:layout_width="match_parent"

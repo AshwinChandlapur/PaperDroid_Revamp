@@ -1,11 +1,16 @@
 package vadeworks.news.paperdroids.MainScreen;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
@@ -18,24 +23,39 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.onesignal.OneSignal;
 import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.Date;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
+import vadeworks.news.paperdroids.Cricbuzz;
 import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
+import vadeworks.news.paperdroids.SpecialCard.Special_Card;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
@@ -53,6 +73,25 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
+
+
+
+    static int match_id;
+    CardView ipl_parent;
+    TextView mchDesc;
+    TextView mchStatus;
+
+    ImageView battingTeamImage;
+    TextView battingTeamText;
+    TextView scoreCard;
+    ImageView cricketImage;
+
+
+    FirebaseFirestore firestoreNews;
+
+
+
+
     private final Bundle params = new Bundle();
     String carat22, carat24, petrol, diesel;
     int result;
@@ -65,6 +104,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private CardView esanje;
     private CardView deccanherald;
     private CardView hindustantimes;
+    private CardView specialCards;
     private View parentLayout;
     private ImageView bottomImage, exclusive_background_image;
     private TextView gold22_textview, gold24_textview, petrol_textview, diesel_textview, airNo_textview, airQuality_textview;
@@ -82,6 +122,16 @@ public class MainScreen_Activity extends AppCompatActivity {
         parentLayout.setFocusableInTouchMode(true);
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
+        initializeNewViews();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshScores(true);
+            }
+        }, 2000);
+
+
 
         prajavani = findViewById(R.id.prajavani);
         vijayavani = findViewById(R.id.vijayavani);
@@ -225,6 +275,16 @@ public class MainScreen_Activity extends AppCompatActivity {
                 mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, HindustanTimes_Activity.class);
                 startActivity(i);
+            }
+        });
+
+        specialCards = findViewById(R.id.specialCards);
+        specialCards.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainScreen_Activity.this, Special_Card.class);
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainScreen_Activity.this,findViewById(R.id.specialCards),"cardSpecial");
+                startActivity(intent,optionsCompat.toBundle());
             }
         });
 
@@ -492,4 +552,182 @@ public class MainScreen_Activity extends AppCompatActivity {
         }
     }
 
+
+    private void initializeNewViews() {
+
+        final SharedPreferences sharedPreferences = getSharedPreferences("ipl_sp", Context.MODE_PRIVATE);
+        match_id = sharedPreferences.getInt("match1", 0);
+        firestoreNews = FirebaseFirestore.getInstance();
+
+        DocumentReference docRef = firestoreNews.collection("ipl").document("match_id");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+
+                        match_id = Integer.parseInt(document.get("match_id").toString());
+                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + match_id);
+                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d("DocumentSnapshot", "No such document");
+                    }
+                } else {
+                    Log.d("DocumentSnapshot", "get failed with ", task.getException());
+                }
+            }
+        });
+
+
+        ipl_parent = findViewById(R.id.specialCards);
+        cricketImage = findViewById(R.id.cricketImage);
+
+        if(Math.random()>0.5){
+            cricketImage.setImageDrawable(getResources().getDrawable(R.drawable.cricback));
+        }else{
+            cricketImage.setImageDrawable(getResources().getDrawable(R.drawable.ground));
+        }
+
+
+
+        mchDesc = findViewById(R.id.mchDesc);
+        mchStatus = findViewById(R.id.mchStatus);
+
+        battingTeamImage = findViewById(R.id.battingTeamImage);
+        battingTeamText = findViewById(R.id.battingTeamText);
+        scoreCard = findViewById(R.id.scoreCard);
+        ipl_parent.setVisibility(View.GONE);
+    }
+
+    private void refreshScores(boolean auto_refresh_){
+        if(auto_refresh_){
+            Log.d("DocumentSnapshot data", "DocumentSnapshot datas: " + match_id);
+            if(match_id != 0){
+
+                ipl_parent.setVisibility(View.VISIBLE);
+
+                try{
+                    Cricbuzz cricbuzz = new Cricbuzz();
+                    Map<String,Map> score = cricbuzz.livescore(match_id+"");
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    String data = gson.toJson(score);
+
+                    JSONObject _data = new JSONObject(data);
+                    Log.d("data",data.toString());
+
+                    JSONObject matchinfo = _data.getJSONObject("matchinfo");
+                    Log.d("matchinfo",matchinfo.toString());
+
+
+                        String match = matchinfo.get("mchdesc").toString();
+                        String status = matchinfo.get("status").toString();
+                        mchDesc.setText(match);
+                        mchStatus.setText(status);
+
+                        JSONObject batting = _data.getJSONObject("batting");
+                        JSONArray team = batting.getJSONArray("team");
+                        JSONObject _team = team.getJSONObject(0);
+
+                        battingTeamText.setText(_team.getString("team"));
+                        switch (_team.getString("team")) {
+                            case "CSK":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.chennai));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "KKR":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.kolkatta));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "RCB":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.bangalore));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "RR":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.rajasthan));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "DD":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.dehli));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "SRH":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.hyderabad));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "MI":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.mumbai));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "K11P":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.punjab));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "IND":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.ind));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "AUS":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.aus));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "BAN":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.bangladesh));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "ENG":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.eng));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "NZ":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.nz));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "PAK":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.pakistan));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "RSA":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.sf));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "SL":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.sl));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            case "WI":
+                                battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.wi));
+                                battingTeamText.setVisibility(View.GONE);
+                                break;
+                            default:
+                                battingTeamImage.setVisibility(View.GONE);
+                                battingTeamText.setVisibility(View.VISIBLE);
+                                break;
+                        }
+
+                        JSONArray _score = batting.getJSONArray("score");
+                        Log.d("_score",_score.toString());
+                        JSONObject __score = _score.getJSONObject(0);
+                        scoreCard.setText(__score.getString("runs") + "-" + __score.getString("wickets") + " (" + __score.getString("overs") + ")");
+
+
+                }catch (Exception e){
+
+                }finally {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            refreshScores(true);
+                        }
+                    }, 10000);
+                }
+            }
+        }
+    }
 }
+
+
+
+
+
+

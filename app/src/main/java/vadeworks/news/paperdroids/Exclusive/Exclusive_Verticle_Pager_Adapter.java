@@ -49,7 +49,12 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
 
     @Override
     public int getCount() {
+
+        if(articleList.size()==2){
+            notifyDataSetChanged();
+        }
         return articleList.size();
+
     }
 
     @Override

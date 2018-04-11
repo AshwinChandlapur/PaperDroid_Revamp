@@ -19,7 +19,7 @@ android {
 
     defaultConfig {
         applicationId "vadeworks.news.duniya"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 23
         versionCode 5
         versionName "2.0"
@@ -65,5 +65,6 @@ dependencies {
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.8'
     implementation 'com.danikula:videocache:2.7.0'
+    compile 'com.google.code.gson:gson:2.8.2'
 }
 apply plugin: 'com.google.gms.google-services'
