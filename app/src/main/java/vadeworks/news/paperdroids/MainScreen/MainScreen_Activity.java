@@ -55,7 +55,7 @@ import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.SpecialCard.Special_Card;
+import vadeworks.news.paperdroids.Special_Card;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
@@ -80,13 +80,10 @@ public class MainScreen_Activity extends AppCompatActivity {
     CardView ipl_parent;
     TextView mchDesc;
     TextView mchStatus;
-
     ImageView battingTeamImage;
     TextView battingTeamText;
     TextView scoreCard;
     ImageView cricketImage;
-
-
     FirebaseFirestore firestoreNews;
 
 
@@ -582,12 +579,8 @@ public class MainScreen_Activity extends AppCompatActivity {
 
         ipl_parent = findViewById(R.id.specialCards);
         cricketImage = findViewById(R.id.cricketImage);
+        cricketImage.setImageDrawable(getResources().getDrawable(R.drawable.cricback));
 
-        if(Math.random()>0.5){
-            cricketImage.setImageDrawable(getResources().getDrawable(R.drawable.cricback));
-        }else{
-            cricketImage.setImageDrawable(getResources().getDrawable(R.drawable.ground));
-        }
 
 
 

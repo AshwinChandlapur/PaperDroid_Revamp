@@ -84,7 +84,8 @@
             android:screenOrientation="portrait" />
         <activity android:name="vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy" />
         <activity android:name="vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity" />
-        <activity android:name="vadeworks.news.paperdroids.SpecialCard.Special_Card"></activity>
+        <activity android:name="vadeworks.news.paperdroids.SpecialCard.Special_Card" />
+        <activity android:name="vadeworks.news.paperdroids.Special_Card"></activity>
     </application>
 
 </manifest>

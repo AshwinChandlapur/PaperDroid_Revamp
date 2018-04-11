@@ -674,6 +674,7 @@
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="160dp"
+                android:layout_margin="5dp"
                 android:transitionName="cardSpecial"
                 app:cardBackgroundColor="@color/background_white"
                 app:cardCornerRadius="7dp"
