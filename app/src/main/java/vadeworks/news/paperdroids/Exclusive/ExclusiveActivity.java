@@ -69,6 +69,10 @@ public class ExclusiveActivity extends AppCompatActivity {
         first  = firestoreNews.collection("EXCLUSIVE")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .limit(41);
+
+        first.orderBy("timestamp", Query.Direction.DESCENDING);
+
+
                 first.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -87,7 +91,7 @@ public class ExclusiveActivity extends AppCompatActivity {
                                 articles.articlever = (documentSnapshot.get("articlever") != null) ? Integer.parseInt(documentSnapshot.get("articlever").toString()) : null;
                                 articles.timestamp = (documentSnapshot.get("timestamp") != null) ? Long.parseLong(documentSnapshot.get("timestamp").toString()) : null;
 
-                                Log.d("Snap1",articles.head);
+                                Log.d("Snap1",articles.head+articles.timestamp);
 
                                 if (articles.articlever == 1) {
                                     if (notifId != null)
@@ -112,16 +116,8 @@ public class ExclusiveActivity extends AppCompatActivity {
     }
 
     private void initSwipePager() {
-
-//        if(notifId!=null){
-//            for(int i = 0;i<articlesList.size();i++){
-//                if(articlesList.get(i).docid.equals(notifId)){
-//                    articlesList.set(0,articlesList.get(i));
-//                }
-//            }
-//        }
         final VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        Log.d("initSwipePager docid: ", articlesList.get(0).docid + "1 :" + articlesList.get(1).docid);
+        Log.d("initSwipePager docid: ", articlesList.get(0).head + "1 :" + articlesList.get(1).head);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
         verticalViewPager.setOffscreenPageLimit(10);
 

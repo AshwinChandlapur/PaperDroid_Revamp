@@ -200,7 +200,7 @@ public class Special_Card extends AppCompatActivity {
                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.mumbai));
                             battingTeamText.setVisibility(View.GONE);
                             break;
-                        case "K11P":
+                        case "KXIP":
                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.punjab));
                             battingTeamText.setVisibility(View.GONE);
                             break;
