@@ -671,9 +671,13 @@
             </android.support.v7.widget.CardView>
 
 
+
+
+
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="260dp"
                 android:layout_margin="5dp"
                 android:transitionName="cardSpecial"
                 app:cardBackgroundColor="@color/background_white"
@@ -723,7 +727,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:src="@drawable/logo_with_background"
+                                android:src="@drawable/logo_notif"
                                 android:id="@+id/battingTeamImage" />
 
                             <TextView
@@ -732,6 +736,7 @@
                                 android:gravity="center"
                                 android:textSize="20sp"
                                 android:layout_gravity="center"
+                                android:text="Batting Team"
                                 android:textColor="@color/background_white"
                                 android:id="@+id/battingTeamText"/>
 
@@ -740,6 +745,7 @@
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
                                 android:layout_gravity="center"
+                                android:text="ScoreCard"
                                 android:id="@+id/scoreCard"
                                 android:textColor="@color/background_white"
                                 android:textSize="20sp"/>
@@ -749,6 +755,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:textSize="16sp"
+                                android:text="Match Status"
                                 android:gravity="center"
                                 android:textColor="@color/background_white"
                                 android:id="@+id/mchStatus"/>

@@ -119,15 +119,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         parentLayout.setFocusableInTouchMode(true);
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
-        initializeNewViews();
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                refreshScores(true);
-            }
-        }, 2500);
-
 
 
         prajavani = findViewById(R.id.prajavani);
@@ -140,6 +131,17 @@ public class MainScreen_Activity extends AppCompatActivity {
         hindustantimes = findViewById(R.id.hindustantimes);
         bottomImage = findViewById(R.id.bottomimage);
         exclusive_background_image = findViewById(R.id.exclusive_background);
+
+
+
+        ipl_parent = findViewById(R.id.specialCards);
+        cricketImage = findViewById(R.id.cricketImage);
+        mchDesc = findViewById(R.id.mchDesc);
+        mchStatus = findViewById(R.id.mchStatus);
+
+        battingTeamImage = findViewById(R.id.battingTeamImage);
+        battingTeamText = findViewById(R.id.battingTeamText);
+        scoreCard = findViewById(R.id.scoreCard);
 
         Picasso.with(this).load(R.drawable.kannadas).placeholder(R.drawable.kannadas).error(R.drawable.kannadas).into(exclusive_background_image);
 
@@ -307,6 +309,15 @@ public class MainScreen_Activity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        initializeNewViews();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                refreshScores(true);
+            }
+        }, 2500);
 
     }
 
@@ -552,8 +563,6 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     private void initializeNewViews() {
 
-        final SharedPreferences sharedPreferences = getSharedPreferences("ipl_sp", Context.MODE_PRIVATE);
-        match_id = sharedPreferences.getInt("match1", 0);
         firestoreNews = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = firestoreNews.collection("ipl").document("match_id");
@@ -576,21 +585,13 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-
-        ipl_parent = findViewById(R.id.specialCards);
-        cricketImage = findViewById(R.id.cricketImage);
-        cricketImage.setImageDrawable(getResources().getDrawable(R.drawable.cricback));
-
-
-
-
-        mchDesc = findViewById(R.id.mchDesc);
-        mchStatus = findViewById(R.id.mchStatus);
-
-        battingTeamImage = findViewById(R.id.battingTeamImage);
-        battingTeamText = findViewById(R.id.battingTeamText);
-        scoreCard = findViewById(R.id.scoreCard);
         ipl_parent.setVisibility(View.GONE);
+        cricketImage.setVisibility(View.GONE);
+        mchDesc.setVisibility(View.GONE);
+        mchStatus.setVisibility(View.GONE);
+        battingTeamImage.setVisibility(View.GONE);
+        battingTeamText.setVisibility(View.GONE);
+        scoreCard.setVisibility(View.GONE);
     }
 
     private void refreshScores(boolean auto_refresh_){
@@ -599,6 +600,12 @@ public class MainScreen_Activity extends AppCompatActivity {
             if(match_id != 0){
 
                 ipl_parent.setVisibility(View.VISIBLE);
+                cricketImage.setVisibility(View.VISIBLE);
+                mchDesc.setVisibility(View.VISIBLE);
+                mchStatus.setVisibility(View.VISIBLE);
+                battingTeamImage.setVisibility(View.VISIBLE);
+                battingTeamText.setVisibility(View.VISIBLE);
+                scoreCard.setVisibility(View.VISIBLE);
 
                 try{
                     Cricbuzz cricbuzz = new Cricbuzz();

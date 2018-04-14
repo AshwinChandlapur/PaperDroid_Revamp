@@ -21,8 +21,8 @@ android {
         applicationId "vadeworks.news.duniya"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 6
-        versionName "2.1"
+        versionCode 8
+        versionName "2.2"
         resConfigs "en"
         manifestPlaceholders = [onesignal_app_id               : "326ce683-dd17-4046-aa1c-1ea05e7161f3",
                                 // Project number pulled from dashboard, local value is ignored.
@@ -65,7 +65,6 @@ dependencies {
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.8'
     implementation 'com.danikula:videocache:2.7.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.google.code.gson:gson:2.8.2'
 }
 apply plugin: 'com.google.gms.google-services'
