@@ -73,7 +73,7 @@ public class Special_Card extends AppCompatActivity {
         match_id = sharedPreferences.getInt("match1", 0);
         firestoreNews = FirebaseFirestore.getInstance();
 
-        DocumentReference docRef = firestoreNews.collection("ipl").document("match_id");
+        DocumentReference docRef = firestoreNews.collection("ipl").document("match_ids");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -81,7 +81,7 @@ public class Special_Card extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document != null && document.exists()) {
 
-                        match_id = Integer.parseInt(document.get("match_id").toString());
+                        match_id = Integer.parseInt(document.get("match_ids").toString());
                         Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + match_id);
                         Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + document.getData());
                     } else {
