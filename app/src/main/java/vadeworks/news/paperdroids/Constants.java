@@ -13,6 +13,10 @@ public class Constants {
     public static final String asianet = "asianet";
 
 
+    public static final String deccanherald = "Deccan Herald";
+    public static final String hindustantimes = "Hindustan Times";
+
+
     public static final String home = "home";
     public static final String pj = "pj";
     public static final String vv ="vv";

@@ -90,6 +90,15 @@ public class MainScreen_Activity extends AppCompatActivity {
     private TypingIndicatorView typingView;
 
 
+    String match;
+    String status;
+    String runs;
+    String wickets;
+    String overs;
+    String battingteam;
+
+
+
     private final Bundle params = new Bundle();
     String carat22, carat24, petrol, diesel;
     int result;
@@ -137,12 +146,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
         ipl_parent = findViewById(R.id.specialCards);
         cricketImage = findViewById(R.id.cricketImage);
-        mchDesc = findViewById(R.id.mchDesc);
-        mchStatus = findViewById(R.id.mchStatus);
 
-        battingTeamImage = findViewById(R.id.battingTeamImage);
-        battingTeamText = findViewById(R.id.battingTeamText);
-        scoreCard = findViewById(R.id.scoreCard);
 
         typingView = findViewById(R.id.loader);
 
@@ -318,6 +322,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                Log.d("Test","Inside 2500 Runnable");
                 refreshScores(true);
             }
         }, 2500);
@@ -565,7 +570,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
     private void initializeNewViews() {
-
+        Log.d("Test","InitializeNewViews");
         firestoreNews = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = firestoreNews.collection("ipl").document("match_ids");
@@ -589,7 +594,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         });
 
         ipl_parent.setVisibility(View.GONE);
-
+        Log.d("Test","InitializeNewViews Done");
     }
 
     private void refreshScores(boolean auto_refresh_){
@@ -598,6 +603,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             Log.d("DocumentSnapshot data", "DocumentSnapshot datas: " + match_id);
             if(match_id != 0){
                 ipl_parent.setVisibility(View.VISIBLE);
+
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -632,7 +638,17 @@ public class MainScreen_Activity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+
                                     typingView.setVisibility(View.GONE);
+                                    mchDesc = findViewById(R.id.mchDesc);
+                                    mchStatus = findViewById(R.id.mchStatus);
+
+                                    battingTeamImage = findViewById(R.id.battingTeamImage);
+                                    battingTeamText = findViewById(R.id.battingTeamText);
+                                    scoreCard = findViewById(R.id.scoreCard);
+
+
+
                                     mchDesc.setText(match);
                                     mchStatus.setText(status);
                                     battingTeamText.setText(battingteam);
@@ -731,6 +747,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     }
 
 }
+
 
 
 

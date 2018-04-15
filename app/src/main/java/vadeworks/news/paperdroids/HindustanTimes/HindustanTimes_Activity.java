@@ -34,6 +34,7 @@ public class HindustanTimes_Activity extends AppCompatActivity {
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
