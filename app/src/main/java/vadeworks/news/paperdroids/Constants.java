@@ -13,6 +13,18 @@ public class Constants {
     public static final String asianet = "asianet";
 
 
+    public static final String home = "home";
+    public static final String pj = "pj";
+    public static final String vv ="vv";
+    public static final String vk="vk";
+    public static final String uv = "uv";
+    public static final String an= "an";
+    public static final String es = "es";
+    public static final String dh="dh";
+    public static final String ht = "ht";
+    public static final String at="at";
+
+
 
     //Common
     public static final int UNLOCK_DAYS = 3;

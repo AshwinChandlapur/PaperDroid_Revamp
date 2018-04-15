@@ -37,6 +37,7 @@ import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
+import vadeworks.news.paperdroids.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.paperdroid.BuildConfig;
@@ -57,11 +58,17 @@ public class Utils {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
-    FirebaseRemoteConfig mFirebaseRemoteConfig;
-    FrameLayout intent_to_allTerms,intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje,intent_to_asianet;
-    String card_clicked;
     private FirebaseAnalytics mFirebaseAnalytics;
     private final Bundle params = new Bundle();
+    FirebaseRemoteConfig mFirebaseRemoteConfig;
+
+    private android.support.v7.widget.Toolbar toolbar;
+    private ViewPager pager;
+
+
+    FrameLayout intent_to_allTerms,intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje,intent_to_asianet;
+    String card_clicked;
+
 
     public Activity activity;
     public Utils( Activity _activity){
@@ -195,8 +202,6 @@ public class Utils {
 
 
 
-
-
     public boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -241,7 +246,7 @@ public class Utils {
 
 
 
-    public void onClickers(final Context context, final DrawerLayout mDrawerLayout){
+    public void onClickers(final Context context, final DrawerLayout mDrawerLayout,final String tag){
 
         intent_to_home = (FrameLayout) this.activity.findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
@@ -249,8 +254,13 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(context, MainScreen_Activity.class);
-                context.startActivity(intent);
+                if(Constants.home.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
+                    Intent intent = new Intent(context, MainScreen_Activity.class);
+                    context.startActivity(intent);
+                }
+
 
             }
         });
@@ -261,8 +271,12 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_pj_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
+                if(Constants.pj.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
                 Intent intent = new Intent(context, PrajaVaani_MainActivity.class);
                 context.startActivity(intent);
+                }
             }
         });
 
@@ -272,8 +286,13 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_vv_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(context, VijayaVaani_MainActivity.class);
-                context.startActivity(intent);
+
+                if(Constants.vv.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
+                    Intent intent = new Intent(context, VijayaVaani_MainActivity.class);
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -284,8 +303,12 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_vk_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(context, VijayaKarnataka_MainActivity.class);
-                context.startActivity(intent);
+                if(Constants.vk.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent intent = new Intent(context, VijayaKarnataka_MainActivity.class);
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -295,8 +318,12 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_uv_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(context, UdayaVaani_MainActivity.class);
-                context.startActivity(intent);
+                if(Constants.uv.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else {
+                    Intent intent = new Intent(context, UdayaVaani_MainActivity.class);
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -304,9 +331,14 @@ public class Utils {
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
-                mDrawerLayout.closeDrawers();
-                Log.d("Clicked", "Cliked in same category");
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_an_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                if(Constants.an.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
+                    Intent intent = new Intent(context, AsiaNet_MainActivity.class);
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -317,8 +349,11 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_es_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(context, Esanje_MainActivity.class);
-                context.startActivity(intent);
+                if(Constants.es.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
+
+                }
             }
         });
 
@@ -328,8 +363,12 @@ public class Utils {
             public void onClick(View v) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_ab_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
+                if(Constants.at.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
                 Intent intent = new Intent(context, All_Terms_MainActivity.class);
                 context.startActivity(intent);
+                }
             }
         });
 
@@ -340,8 +379,11 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_dh);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
+                if(Constants.dh.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
                 Intent intent = new Intent(context, DeccanHerald_Activiy.class);
-                context.startActivity(intent);
+                context.startActivity(intent);}
             }
         });
 
@@ -351,12 +393,16 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_ht);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
+                if(Constants.ht.equals(tag)){
+                    mDrawerLayout.closeDrawers();
+                }else{
                 Intent intent = new Intent(context, HindustanTimes_Activity.class);
-                context.startActivity(intent);
+                context.startActivity(intent);}
             }
         });
 
     }
+
 }
 
 

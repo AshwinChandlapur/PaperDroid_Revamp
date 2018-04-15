@@ -28,12 +28,14 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.DeccanHerald.tabs.ViewPagerAdapter_DH;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
+import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
@@ -45,166 +47,36 @@ import vadeworks.paperdroid.R;
 
 public class DeccanHerald_Activiy extends AppCompatActivity {
 
-    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
-    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
-    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
-    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
-    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
-    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
-    private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
-    private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private final CharSequence[] Titles = {"Headlines", "State", "Sports", "Entertainment", "World"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_hindustan, intent_to_deccan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
-    View view;
+
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_DH adapter;
     private SlidingTabLayout tabs;
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private String card_clicked;
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
-    private FirebaseRemoteConfig mFirebaseRemoteConfig;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deccan_herald_activity);
-        View view = findViewById(R.id.content);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(BuildConfig.DEBUG)
-                .build();
-        mFirebaseRemoteConfig.setConfigSettings(configSettings);
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-        fetchCard();
 
 
         init_slider();
         init_navigator();
 
+        Utils utils = new Utils(this);
+        utils.onClickers(this,mDrawerLayout, Constants.dh);
+        utils.fetchCard(getApplicationContext());
 
-        if (!isConnected(this)) {
-            buildDialog(this).show();
-        } else {
-            Log.d("Internet Working", "Internet Working");
+        if( !(utils.isConnected(getApplicationContext()))){
+            utils.buildDialog(this).show();
         }
 
-        FrameLayout intent_to_home = findViewById(R.id.nav_home);
-        intent_to_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, MainScreen_Activity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        intent_to_prajavani = findViewById(R.id.nav_prajavani);
-        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, PrajaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        intent_to_vijayavaani = findViewById(R.id.nav_vijayavani);
-        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, VijayaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        intent_to_vijayakarnataka = findViewById(R.id.nav_vijayakarnataka);
-        intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, VijayaKarnataka_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
-        intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, UdayaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        intent_to_suvarna = findViewById(R.id.nav_suvarna);
-        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
-                mDrawerLayout.closeDrawers();
-                Log.d("Clicked", "Cliked in same category");
-            }
-        });
-
-
-        intent_to_esanje = findViewById(R.id.nav_esanje);
-        intent_to_esanje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_dh);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, Esanje_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        intent_to_deccan = findViewById(R.id.nav_deccan);
-        intent_to_deccan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mDrawerLayout.closeDrawers();
-                Log.d("Clicked", "Cliked in same category");
-            }
-        });
-
-        intent_to_hindustan = findViewById(R.id.nav_hindustantimes);
-        intent_to_hindustan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_ht);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, HindustanTimes_Activity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);
-        intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_ab_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(DeccanHerald_Activiy.this, All_Terms_MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
     }
 
@@ -290,153 +162,5 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
-    }
-
-
-    private boolean isConnected(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
-
-        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
-            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
-        } else
-            return false;
-    }
-
-    private AlertDialog.Builder buildDialog(Context c) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        LayoutInflater factory = LayoutInflater.from(c);
-        final View view = factory.inflate(R.layout.no_internet, null);
-        Button wifi = view.findViewById(R.id.switchWifi);
-        wifi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-            }
-        });
-
-
-        Button data = view.findViewById(R.id.switchData);
-        data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
-                startActivity(intent);
-            }
-        });
-
-
-        builder.setView(view);
-        return builder;
-    }
-
-    private void fetchCard() {
-
-//        long cacheExpiration = 0;
-
-        long cacheExpiration = 24 * 60 * 60; // 1 Day
-
-        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
-            cacheExpiration = 0;
-        }
-
-        mFirebaseRemoteConfig.fetch(cacheExpiration)
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            mFirebaseRemoteConfig.activateFetched();
-                        }
-                        displayPJ();
-                        displayVV();
-                        displayVK();
-                        displayUV();
-                        displayAN();
-                        displayES();
-                        displayHT();
-                        displayDH();
-
-                    }
-                });
-        // [END fetch_config_with_callback]
-    }
-
-
-    private void displayVK() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)) {
-            intent_to_vijayakarnataka.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_vijayakarnataka.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayPJ() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)) {
-            intent_to_prajavani.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_prajavani.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayVV() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)) {
-            intent_to_vijayavaani.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_vijayavaani.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayUV() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)) {
-            intent_to_udayavaani.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_udayavaani.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayAN() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)) {
-            intent_to_suvarna.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_suvarna.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayES() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
-            intent_to_esanje.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_esanje.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayDH() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_DH)) {
-            intent_to_deccan.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_deccan.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayHT() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_HT)) {
-            intent_to_hindustan.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_hindustan.setVisibility(View.GONE);
-        }
     }
 }

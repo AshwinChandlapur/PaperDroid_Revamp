@@ -26,6 +26,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
+import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Utils;
@@ -44,14 +45,6 @@ import vadeworks.paperdroid.R;
 
 public class AsiaNet_MainActivity extends AppCompatActivity {
 
-    private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
-    private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
-    private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
-    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
-    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
-    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
-    private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
-    private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಕ್ರೀಡೆ", "ಸಿನಿಮಾ", "ತಂತ್ರಜ್ಞಾನ", "ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
     private final int Numboftabs = 5;
 
@@ -71,22 +64,18 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.asianet_mainactivity);
+
         init_slider();
         init_navigator();
 
 
-
-
-
         Utils utils = new Utils(this);
-        utils.onClickers(this,mDrawerLayout);
-
+        utils.onClickers(this,mDrawerLayout, Constants.an);
         utils.fetchCard(getApplicationContext());
 
         if( !(utils.isConnected(getApplicationContext()))){
             utils.buildDialog(this).show();
         }
-
 
     }
 
