@@ -54,14 +54,13 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಕ್ರೀಡೆ", "ಸಿನಿಮಾ", "ತಂತ್ರಜ್ಞಾನ", "ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
     private final int Numboftabs = 5;
-    private final Bundle params = new Bundle();
-    FrameLayout intent_to_allTerms,intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje,intent_to_asianet;
+
+
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_AN adapter;
     private SlidingTabLayout tabs;
-    private FirebaseAnalytics mFirebaseAnalytics;
-    private String card_clicked;
+
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
@@ -72,131 +71,17 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.asianet_mainactivity);
-
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         init_slider();
         init_navigator();
 
 
-        intent_to_home = findViewById(R.id.nav_home);
-        intent_to_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, MainScreen_Activity.class);
-                startActivity(intent);
-
-            }
-        });
-
-        intent_to_prajavani = findViewById(R.id.nav_prajavani);
-        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_pj_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, PrajaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        intent_to_vijayavaani = findViewById(R.id.nav_vijayavani);
-        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_vv_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
-        intent_to_vijayakarnataka = findViewById(R.id.nav_vijayakarnataka);
-        intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_vk_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, VijayaKarnataka_MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
-        intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
-        intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_uv_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, UdayaVaani_MainActivity.class);
-                startActivity(intent);
-            }
-        });
+        Utils utils = new Utils(this);
+        utils.onClickers(this,mDrawerLayout);
 
-        intent_to_suvarna = findViewById(R.id.nav_suvarna);
-        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
-                mDrawerLayout.closeDrawers();
-                Log.d("Clicked", "Cliked in same category");
-            }
-        });
-
-
-        intent_to_esanje = findViewById(R.id.nav_esanje);
-        intent_to_esanje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, Esanje_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);
-        intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_ab_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, All_Terms_MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        intent_to_deccan = findViewById(R.id.nav_deccan);
-        intent_to_deccan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_dh);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, DeccanHerald_Activiy.class);
-                startActivity(intent);
-            }
-        });
-
-        intent_to_hindustan = findViewById(R.id.nav_hindustantimes);
-        intent_to_hindustan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_ht);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent intent = new Intent(AsiaNet_MainActivity.this, HindustanTimes_Activity.class);
-                startActivity(intent);
-            }
-        });
-
-
-        Utils utils = new Utils();
-        utils.fetchCard(getApplicationContext(),intent_to_prajavani,intent_to_vijayavaani,
-                intent_to_vijayakarnataka,intent_to_udayavaani,
-                intent_to_asianet,intent_to_esanje,
-                intent_to_deccan,intent_to_hindustan);
+        utils.fetchCard(getApplicationContext());
 
         if( !(utils.isConnected(getApplicationContext()))){
             utils.buildDialog(this).show();

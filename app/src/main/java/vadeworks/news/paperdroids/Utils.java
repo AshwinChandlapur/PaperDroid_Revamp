@@ -1,14 +1,18 @@
 package vadeworks.news.paperdroids;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AlertDialog;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -17,12 +21,23 @@ import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.net.PortUnreachableException;
 
+import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
+import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
+import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
+import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
+import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
+import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
+import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
+import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
@@ -43,12 +58,20 @@ public class Utils {
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     FirebaseRemoteConfig mFirebaseRemoteConfig;
+    FrameLayout intent_to_allTerms,intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje,intent_to_asianet;
+    String card_clicked;
+    private FirebaseAnalytics mFirebaseAnalytics;
+    private final Bundle params = new Bundle();
+
+    public Activity activity;
+    public Utils( Activity _activity){
+        this.activity = _activity;
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this.activity);
+    }
 
 
-    public void fetchCard(Context context, final FrameLayout intent_to_prajavani,
-                          final FrameLayout intent_to_vijayavaani,final FrameLayout intent_to_vijayakarnataka,
-                          final FrameLayout intent_to_udayavaani,final FrameLayout intent_to_asianet,
-                          final FrameLayout intent_to_esanje,final FrameLayout intent_to_hindustan,final FrameLayout intent_to_deccan) {
+
+    public void fetchCard(Context context) {
 
 //        long cacheExpiration = 0;
 
@@ -218,8 +241,122 @@ public class Utils {
 
 
 
+    public void onClickers(final Context context, final DrawerLayout mDrawerLayout){
+
+        intent_to_home = (FrameLayout) this.activity.findViewById(R.id.nav_home);
+        intent_to_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, MainScreen_Activity.class);
+                context.startActivity(intent);
+
+            }
+        });
+
+        intent_to_prajavani = (FrameLayout) this.activity.findViewById(R.id.nav_prajavani);
+        intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_pj_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, PrajaVaani_MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        intent_to_vijayavaani = (FrameLayout) this.activity.findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_vv_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, VijayaVaani_MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
 
 
+        intent_to_vijayakarnataka = (FrameLayout) this.activity.findViewById(R.id.nav_vijayakarnataka);
+        intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_vk_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, VijayaKarnataka_MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        intent_to_udayavaani = (FrameLayout) this.activity.findViewById(R.id.nav_udayavaani);
+        intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_uv_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, UdayaVaani_MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        intent_to_suvarna = (FrameLayout) this.activity.findViewById(R.id.nav_suvarna);
+        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
+                mDrawerLayout.closeDrawers();
+                Log.d("Clicked", "Cliked in same category");
+            }
+        });
+
+
+        intent_to_esanje = (FrameLayout) this.activity.findViewById(R.id.nav_esanje);
+        intent_to_esanje.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_es_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, Esanje_MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+        intent_to_allTerms = (FrameLayout) this.activity.findViewById(R.id.nav_about);
+        intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_ab_en);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, All_Terms_MainActivity.class);
+                context.startActivity(intent);
+            }
+        });
+
+
+        intent_to_deccan = (FrameLayout) this.activity.findViewById(R.id.nav_deccan);
+        intent_to_deccan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_dh);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, DeccanHerald_Activiy.class);
+                context.startActivity(intent);
+            }
+        });
+
+        intent_to_hindustan = (FrameLayout) this.activity.findViewById(R.id.nav_hindustantimes);
+        intent_to_hindustan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_ht);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent intent = new Intent(context, HindustanTimes_Activity.class);
+                context.startActivity(intent);
+            }
+        });
+
+    }
 }
 
 
