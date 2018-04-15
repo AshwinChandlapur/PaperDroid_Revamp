@@ -673,8 +673,6 @@
 
 
 
-
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -697,12 +695,32 @@
                         android:id="@+id/cricketImage"
                         android:src="@drawable/cricback"/>
 
-
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:alpha="0.6"
                         android:background="@color/text_black_100" />
+
+
+                    <com.udevel.widgetlab.TypingIndicatorView
+                        android:id="@+id/loader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="4dp"
+                        app:animateFrequency="300"
+                        app:animationOrder="lastOneFirst"
+                        app:backgroundColor="@android:color/transparent"
+                        app:backgroundType="rounded"
+                        app:dotAnimationDuration="600"
+                        app:dotAnimationType="Sliding"
+                        app:dotColor="@color/background_white"
+                        app:dotCount="6"
+                        app:dotHorizontalSpacing="4dp"
+                        app:dotMaxCompressRatio="70%"
+                        app:dotSecondColor="#6ba4a4a4"
+                        app:dotSize="10dp"
+                        app:showBackground="true" />
 
                 </FrameLayout>
 

@@ -7,7 +7,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -21,8 +20,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
@@ -31,6 +28,7 @@ import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.tabs.ViewPagerAdapter_AN;
 import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
+import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
@@ -57,7 +55,7 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     private final CharSequence[] Titles = {"ಮುಖ್ಯಾಂಶಗಳು", "ಕ್ರೀಡೆ", "ಸಿನಿಮಾ", "ತಂತ್ರಜ್ಞಾನ", "ಲೈಫ್\u200Cಸ್ಟೈಲ್"};
     private final int Numboftabs = 5;
     private final Bundle params = new Bundle();
-    FrameLayout intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje;
+    FrameLayout intent_to_allTerms,intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje,intent_to_asianet;
     private Toolbar toolbar;
     private ViewPager pager;
     private ViewPagerAdapter_AN adapter;
@@ -67,36 +65,20 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
-    private FirebaseRemoteConfig mFirebaseRemoteConfig;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.asianet_mainactivity);
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
-                .setDeveloperModeEnabled(BuildConfig.DEBUG)
-                .build();
-        mFirebaseRemoteConfig.setConfigSettings(configSettings);
-        mFirebaseRemoteConfig.setDefaults(R.xml.remote_config_defaults);
-        fetchCard();
-
         init_slider();
-
         init_navigator();
 
 
-        if (!isConnected(this)) {
-            buildDialog(this).show();
-        } else {
-            Log.d("Internet Working", "Internet Working");
-//            Toast.makeText(this,"Welcome", Toast.LENGTH_SHORT).show();
-        }
-
-
-        FrameLayout intent_to_home = findViewById(R.id.nav_home);
+        intent_to_home = findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -210,6 +192,17 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         });
 
 
+        Utils utils = new Utils();
+        utils.fetchCard(getApplicationContext(),intent_to_prajavani,intent_to_vijayavaani,
+                intent_to_vijayakarnataka,intent_to_udayavaani,
+                intent_to_asianet,intent_to_esanje,
+                intent_to_deccan,intent_to_hindustan);
+
+        if( !(utils.isConnected(getApplicationContext()))){
+            utils.buildDialog(this).show();
+        }
+
+
     }
 
     private void init_slider() {
@@ -241,7 +234,6 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
 
         // Setting the ViewPager For the SlidingTabsLayout
         tabs.setViewPager(pager);
-
     }
 
     private void init_navigator() {
@@ -294,153 +286,5 @@ public class AsiaNet_MainActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
-    private boolean isConnected(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
-
-        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
-            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
-        } else
-            return false;
-    }
-
-    private AlertDialog.Builder buildDialog(Context c) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        LayoutInflater factory = LayoutInflater.from(c);
-        final View view = factory.inflate(R.layout.no_internet, null);
-        Button wifi = view.findViewById(R.id.switchWifi);
-        wifi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-            }
-        });
-
-
-        Button data = view.findViewById(R.id.switchData);
-        data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
-                startActivity(intent);
-            }
-        });
-
-
-        builder.setView(view);
-        return builder;
-    }
-
-    private void fetchCard() {
-
-//        long cacheExpiration = 0;
-
-        long cacheExpiration = 24 * 60 * 60; // 1 Day
-
-        if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
-            cacheExpiration = 0;
-        }
-
-        mFirebaseRemoteConfig.fetch(cacheExpiration)
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            mFirebaseRemoteConfig.activateFetched();
-                        }
-                        displayPJ();
-                        displayVV();
-                        displayVK();
-                        displayUV();
-                        displayAN();
-                        displayES();
-                        displayHT();
-                        displayDH();
-                    }
-                });
-        // [END fetch_config_with_callback]
-    }
-
-
-    private void displayVK() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)) {
-            intent_to_vijayakarnataka.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_vijayakarnataka.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayPJ() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)) {
-            intent_to_prajavani.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_prajavani.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayVV() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)) {
-            intent_to_vijayavaani.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_vijayavaani.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayUV() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)) {
-            intent_to_udayavaani.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_udayavaani.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayAN() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)) {
-            intent_to_suvarna.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_suvarna.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayES() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
-            intent_to_esanje.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_esanje.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayDH() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_DH)) {
-            intent_to_deccan.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_deccan.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayHT() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_HT)) {
-            intent_to_hindustan.setVisibility(View.VISIBLE);
-        } else {
-            intent_to_hindustan.setVisibility(View.GONE);
-        }
-    }
-
 
 }

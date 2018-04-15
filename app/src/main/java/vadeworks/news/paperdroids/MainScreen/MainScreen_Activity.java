@@ -589,6 +589,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         });
 
         ipl_parent.setVisibility(View.GONE);
+
     }
 
     private void refreshScores(boolean auto_refresh_){
@@ -631,6 +632,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
+                                    typingView.setVisibility(View.GONE);
                                     mchDesc.setText(match);
                                     mchStatus.setText(status);
                                     battingTeamText.setText(battingteam);
@@ -713,6 +715,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                             });
 
                         }catch (Exception e){
+                            e.printStackTrace();
                         }
                     }
                 }).start();
@@ -727,43 +730,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         }
     }
 
-
-    private class AsyncCaller extends AsyncTask<Void, Void, Void>
-    {
-        ProgressDialog pdLoading = new ProgressDialog(MainScreen_Activity.this);
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            //this method will be running on UI thread
-            pdLoading.setMessage("\tLoading...");
-            pdLoading.show();
-        }
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            //this method will be running on background thread so don't update UI frome here
-            //do your long running http tasks here,you dont want to pass argument and u can access the parent class' variable url over here
-            try{
-
-            }catch (Exception e){
-
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-
-            //this method will be running on UI thread
-
-            pdLoading.dismiss();
-        }
-
-    }
 }
 
 
