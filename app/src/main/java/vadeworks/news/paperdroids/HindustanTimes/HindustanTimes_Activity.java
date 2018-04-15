@@ -1,49 +1,23 @@
 package vadeworks.news.paperdroids.HindustanTimes;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.FrameLayout;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
-import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
-
-import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
-import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
-import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.HindustanTimes.tabs.ViewPagerAdapter_HT;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
 import vadeworks.news.paperdroids.Utils;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
-import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
 
 public class HindustanTimes_Activity extends AppCompatActivity {
