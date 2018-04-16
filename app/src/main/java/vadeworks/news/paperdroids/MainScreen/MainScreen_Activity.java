@@ -90,15 +90,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     private TypingIndicatorView typingView;
 
 
-    String match;
-    String status;
-    String runs;
-    String wickets;
-    String overs;
-    String battingteam;
-
-
-
     private final Bundle params = new Bundle();
     String carat22, carat24, petrol, diesel;
     int result;
@@ -646,7 +637,6 @@ public class MainScreen_Activity extends AppCompatActivity {
                                     battingTeamImage = findViewById(R.id.battingTeamImage);
                                     battingTeamText = findViewById(R.id.battingTeamText);
                                     scoreCard = findViewById(R.id.scoreCard);
-
 
 
                                     mchDesc.setText(match);

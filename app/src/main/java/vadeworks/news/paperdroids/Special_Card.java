@@ -19,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.udevel.widgetlab.TypingIndicatorView;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -39,6 +40,7 @@ public class Special_Card extends AppCompatActivity {
     TextView scoreCard;
     ImageView cricketImage;
     FirebaseFirestore firestoreNews;
+    private TypingIndicatorView typingView;
 
 
     TextView
@@ -96,7 +98,7 @@ public class Special_Card extends AppCompatActivity {
 
         ipl_parent = findViewById(R.id.specialCards);
         cricketImage = findViewById(R.id.cricketImage);
-        
+        typingView = findViewById(R.id.loader);
         mchDesc = findViewById(R.id.mchDesc);
         mchStatus = findViewById(R.id.mchStatus);
 
@@ -148,6 +150,7 @@ public class Special_Card extends AppCompatActivity {
             Log.d("DocumentSnapshot data", "DocumentSnapshot datas: " + match_id);
             if(match_id != 0){
                 ipl_parent.setVisibility(View.VISIBLE);
+                typingView.setVisibility(View.GONE);
                 try{
                     Cricbuzz cricbuzz = new Cricbuzz();
                     Map<String,Map> score = cricbuzz.livescore(match_id+"");
