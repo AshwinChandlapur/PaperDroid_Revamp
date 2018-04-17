@@ -61,6 +61,7 @@
             android:layout_margin="5dp"
             app:cardBackgroundColor="@android:color/transparent"
             app:cardCornerRadius="7dp"
+            android:visibility="gone"
             app:cardElevation="2dp"
             android:id="@+id/specialCards">
 

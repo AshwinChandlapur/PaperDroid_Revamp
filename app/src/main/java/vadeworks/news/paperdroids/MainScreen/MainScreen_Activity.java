@@ -40,6 +40,8 @@ import org.jsoup.select.Elements;
 import java.util.Date;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
@@ -71,68 +73,62 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
     static int match_id;
-    CardView ipl_parent;
-    TextView mchDesc;
-    TextView mchStatus;
-    ImageView battingTeamImage;
-    TextView battingTeamText;
-    TextView scoreCard;
-    ImageView cricketImage;
-    FirebaseFirestore firestoreNews;
-    private TypingIndicatorView typingView;
+    @BindView(R.id.specialCards) CardView ipl_parent;
+    @BindView(R.id.mchDesc) TextView mchDesc;
+    @BindView(R.id.mchStatus) TextView mchStatus;
+    @BindView(R.id.battingTeamImage) ImageView battingTeamImage;
+    @BindView(R.id.battingTeamText) TextView battingTeamText;
+    @BindView(R.id.scoreCard) TextView scoreCard;
+    @BindView(R.id.cricketImage) ImageView cricketImage;
+    @BindView(R.id.loader) TypingIndicatorView typingView;
 
 
-    private final Bundle params = new Bundle();
-    String carat22, carat24, petrol, diesel;
-    int result;
-    Articles todisplay;
-    private CardView prajavani;
-    private CardView vijayavani;
-    private CardView vijayakarnataka;
-    private CardView udayavani;
-    private CardView suvarna;
-    private CardView esanje;
-    private CardView deccanherald;
-    private CardView hindustantimes;
-    private CardView specialCards;
-    private View parentLayout;
-    private ImageView bottomImage, exclusive_background_image;
-    private TextView gold22_textview, gold24_textview, petrol_textview, diesel_textview, airNo_textview, airQuality_textview;
-    private int click = 0;
+
+
+    @BindView(R.id.prajavani) CardView prajavani;
+    @BindView(R.id.vijayavani) CardView vijayavani;
+    @BindView(R.id.vijayakarnataka) CardView vijayakarnataka;
+    @BindView(R.id.udayavani) CardView udayavani;
+    @BindView(R.id.suvarna) CardView suvarna;
+    @BindView(R.id.esanje) CardView esanje;
+    @BindView(R.id.deccanherald) CardView deccanherald;
+    @BindView(R.id.hindustantimes) CardView hindustantimes;
+    @BindView(R.id.bottomimage) ImageView bottomImage;
+    @BindView(R.id.exclusive_background) ImageView exclusive_background_image;
+
+
+    
+
+
+    @BindView(R.id.gold22) TextView gold22_textview;
+    @BindView(R.id.gold24) TextView gold24_textview;
+    @BindView(R.id.petrol) TextView petrol_textview;
+    @BindView(R.id.diesel) TextView diesel_textview;
+    @BindView(R.id.airNo) TextView airNo_textview;
+    @BindView(R.id.airQuality) TextView airQuality_textview;
+
+
+    private FirebaseFirestore firestoreNews;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private String card_clicked;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    private final Bundle params = new Bundle();
+    private String carat22, carat24, petrol, diesel;
+    private int result;
+    private String card_clicked;
+    private View parentLayout;
+    private int click = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen_activity);
-
+        ButterKnife.bind(this);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         parentLayout = findViewById(android.R.id.content);
         parentLayout.setFocusableInTouchMode(true);
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
 
-
-        prajavani = findViewById(R.id.prajavani);
-        vijayavani = findViewById(R.id.vijayavani);
-        vijayakarnataka = findViewById(R.id.vijayakarnataka);
-        udayavani = findViewById(R.id.udayavani);
-        suvarna = findViewById(R.id.suvarna);
-        esanje = findViewById(R.id.esanje);
-        deccanherald = findViewById(R.id.deccanherald);
-        hindustantimes = findViewById(R.id.hindustantimes);
-        bottomImage = findViewById(R.id.bottomimage);
-        exclusive_background_image = findViewById(R.id.exclusive_background);
-
-
-
-        ipl_parent = findViewById(R.id.specialCards);
-        cricketImage = findViewById(R.id.cricketImage);
-
-
-        typingView = findViewById(R.id.loader);
 
         Picasso.with(this).load(R.drawable.kannadas).placeholder(R.drawable.kannadas).error(R.drawable.kannadas).into(exclusive_background_image);
 
@@ -188,12 +184,6 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
 
-        gold22_textview = findViewById(R.id.gold22);
-        gold24_textview = findViewById(R.id.gold24);
-        petrol_textview = findViewById(R.id.petrol);
-        diesel_textview = findViewById(R.id.diesel);
-        airNo_textview = findViewById(R.id.airNo);
-        airQuality_textview = findViewById(R.id.airQuality);
 
 
         prajavani.setOnClickListener(new View.OnClickListener() {
@@ -278,8 +268,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-        specialCards = findViewById(R.id.specialCards);
-        specialCards.setOnClickListener(new View.OnClickListener() {
+        ipl_parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainScreen_Activity.this, Special_Card.class);
@@ -437,7 +426,6 @@ public class MainScreen_Activity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             mFirebaseRemoteConfig.activateFetched();
-                        } else {
                         }
                         displayPJ();
                         displayVV();
@@ -529,11 +517,9 @@ public class MainScreen_Activity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
-
         CardView overview_card = findViewById(R.id.overviewcard);
         FrameLayout locklayout = findViewById(R.id.locklayout);
         TextView locktxt = findViewById(R.id.locktext);
-//        overview_card.setVisibility(View.GONE);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
         Date currentDate = new Date(System.currentTimeMillis() / 1000L);
@@ -636,13 +622,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                                 public void run() {
 
                                     typingView.setVisibility(View.GONE);
-                                    mchDesc = findViewById(R.id.mchDesc);
-                                    mchStatus = findViewById(R.id.mchStatus);
-
-                                    battingTeamImage = findViewById(R.id.battingTeamImage);
-                                    battingTeamText = findViewById(R.id.battingTeamText);
-                                    scoreCard = findViewById(R.id.scoreCard);
-
+                                    
                                     mchDesc.setText(match);
                                     mchStatus.setText(status);
                                     battingTeamText.setText(battingteam);

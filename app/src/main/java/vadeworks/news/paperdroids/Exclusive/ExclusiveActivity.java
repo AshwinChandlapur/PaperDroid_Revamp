@@ -44,7 +44,6 @@ public class ExclusiveActivity extends AppCompatActivity {
     private String notifId, head, imgurl, content;
     private DocIdRetrive todisplay;
     private FirebaseAnalytics mFirebaseAnalytics;
-
     Query first;
 
 
@@ -116,7 +115,6 @@ public class ExclusiveActivity extends AppCompatActivity {
 
     private void initSwipePager() {
         final VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-//        Log.d("initSwipePager docid: ", articlesList.get(0).head + "1 :" + articlesList.get(1).head);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
         verticalViewPager.setOffscreenPageLimit(10);
 

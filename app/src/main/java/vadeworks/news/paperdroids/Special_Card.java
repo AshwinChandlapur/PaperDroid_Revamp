@@ -27,34 +27,58 @@ import org.json.JSONObject;
 import java.text.DecimalFormat;
 import java.util.Map;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import vadeworks.paperdroid.R;
 
 public class Special_Card extends AppCompatActivity {
 
-    static int match_id;
-    CardView ipl_parent;
-    TextView mchDesc;
-    TextView mchStatus;
-    ImageView battingTeamImage;
-    TextView battingTeamText;
-    TextView scoreCard;
-    ImageView cricketImage;
     FirebaseFirestore firestoreNews;
-    private TypingIndicatorView typingView;
+    static int match_id;
+    @BindView(R.id.specialCards) CardView  ipl_parent;
+    @BindView(R.id.mchDesc) TextView mchDesc;
+    @BindView(R.id.mchStatus) TextView mchStatus;
+    @BindView(R.id.battingTeamImage) ImageView battingTeamImage;
+    @BindView(R.id.battingTeamText) TextView battingTeamText;
+    @BindView(R.id.scoreCard) TextView scoreCard;
+    @BindView(R.id.loader) TypingIndicatorView typingView;
 
 
-    TextView
-            batsman1_name, batsman1_balls, batsman1_4s, batsman1_6s, batsman1_sr, batsman1_runs,
-            batsman2_name, batsman2_balls, batsman2_4s, batsman2_6s, batsman2_sr, batsman2_runs,
-            bowler1_name, bowler1_overs, bowler1_maidens, bowler1_runs, bowler1_wickets, bowler1_economy,
-            bowler2_name, bowler2_overs, bowler2_maidens, bowler2_runs, bowler2_wickets, bowler2_economy;
-    CardView team_score_card, batting_score_card, bowling_score_card;
+    @BindView(R.id.batsman1_name) TextView batsman1_name;
+    @BindView(R.id.batsman1_balls) TextView batsman1_balls;
+    @BindView(R.id.batsman1_4s) TextView batsman1_4s;
+    @BindView(R.id.batsman1_6s) TextView batsman1_6s;
+    @BindView(R.id.batsman1_sr) TextView batsman1_sr;
+    @BindView(R.id.batsman1_runs) TextView batsman1_runs;
+
+    @BindView(R.id.batsman2_name) TextView batsman2_name;
+    @BindView(R.id.batsman2_balls) TextView batsman2_balls;
+    @BindView(R.id.batsman2_4s) TextView batsman2_4s;
+    @BindView(R.id.batsman2_6s) TextView batsman2_6s;
+    @BindView(R.id.batsman2_sr) TextView batsman2_sr;
+    @BindView(R.id.batsman2_runs) TextView batsman2_runs;
+
+
+    @BindView(R.id.bowler1_name) TextView bowler1_name;
+    @BindView(R.id.bowler1_overs) TextView bowler1_overs;
+    @BindView(R.id.bowler1_maidens) TextView bowler1_maidens;
+    @BindView(R.id.bowler1_runs) TextView bowler1_runs;
+    @BindView(R.id.bowler1_wickets) TextView bowler1_wickets;
+    @BindView(R.id.bowler1_economy) TextView bowler1_economy;
+
+    @BindView(R.id.bowler2_name) TextView bowler2_name;
+    @BindView(R.id.bowler2_overs) TextView bowler2_overs;
+    @BindView(R.id.bowler2_maidens) TextView bowler2_maidens;
+    @BindView(R.id.bowler2_runs) TextView bowler2_runs;
+    @BindView(R.id.bowler2_wickets) TextView bowler2_wickets;
+    @BindView(R.id.bowler2_economy) TextView bowler2_economy;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_special__card);
-
+        ButterKnife.bind(this);
         initializeNewViews();
 
         new Handler().postDelayed(new Runnable() {
@@ -94,53 +118,6 @@ public class Special_Card extends AppCompatActivity {
                 }
             }
         });
-
-
-        ipl_parent = findViewById(R.id.specialCards);
-        cricketImage = findViewById(R.id.cricketImage);
-        typingView = findViewById(R.id.loader);
-        mchDesc = findViewById(R.id.mchDesc);
-        mchStatus = findViewById(R.id.mchStatus);
-
-        battingTeamImage = findViewById(R.id.battingTeamImage);
-        battingTeamText = findViewById(R.id.battingTeamText);
-        scoreCard = findViewById(R.id.scoreCard);
-
-
-
-
-        batsman1_name = findViewById(R.id.batsman1_name);
-        batsman1_runs = findViewById(R.id.batsman1_runs);
-        batsman1_balls = findViewById(R.id.batsman1_balls);
-        batsman1_4s = findViewById(R.id.batsman1_4s);
-        batsman1_6s = findViewById(R.id.batsman1_6s);
-        batsman1_sr = findViewById(R.id.batsman1_sr);
-
-        batsman2_name = findViewById(R.id.batsman2_name);
-        batsman2_runs = findViewById(R.id.batsman2_runs);
-        batsman2_balls = findViewById(R.id.batsman2_balls);
-        batsman2_4s = findViewById(R.id.batsman2_4s);
-        batsman2_6s = findViewById(R.id.batsman2_6s);
-        batsman2_sr = findViewById(R.id.batsman2_sr);
-
-
-        bowler1_name = findViewById(R.id.bowler1_name);
-        bowler1_overs = findViewById(R.id.bowler1_overs);
-        bowler1_maidens = findViewById(R.id.bowler1_maidens);
-        bowler1_wickets = findViewById(R.id.bowler1_wickets);
-        bowler1_economy = findViewById(R.id.bowler1_economy);
-        bowler1_runs = findViewById(R.id.bowler1_runs);
-
-        bowler2_name = findViewById(R.id.bowler2_name);
-        bowler2_overs = findViewById(R.id.bowler2_overs);
-        bowler2_maidens = findViewById(R.id.bowler2_maidens);
-        bowler2_wickets = findViewById(R.id.bowler2_wickets);
-        bowler2_economy = findViewById(R.id.bowler2_economy);
-        bowler2_runs = findViewById(R.id.bowler2_runs);
-
-        team_score_card = findViewById(R.id.team_score_card);
-        batting_score_card = findViewById(R.id.batting_score_card);
-        bowling_score_card = findViewById(R.id.bowling_score_card);
 
         ipl_parent.setVisibility(View.GONE);
     }

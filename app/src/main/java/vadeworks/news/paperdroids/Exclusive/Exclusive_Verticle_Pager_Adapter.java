@@ -32,13 +32,14 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     private final Context mContext;
     private final LayoutInflater mLayoutInflater;
     private ArrayList<ExclusiveActivity.DocIdRetrive> articleList = new ArrayList<>();
+
+
     private TextView headline;
     private ImageView image, youTube;
     private TextView content;
+
     private Articles fullArticle;
-    private TextView link;
     private String proxyUrl;
-    private String notifId;
 
     public Exclusive_Verticle_Pager_Adapter(Context context, ArrayList<ExclusiveActivity.DocIdRetrive> articles) {
         mContext = context;
