@@ -26,6 +26,8 @@ import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 
+import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
+
 /**
  * Created by ashwinchandlapur on 15/02/18.
  */
@@ -73,42 +75,6 @@ public class MainApplication extends Application {
         public void notificationReceived(OSNotification notification) {
             //Will be used to log No of Notifications Received.
             //Automatically done by OneSignal.
-            JSONObject data = notification.payload.additionalData;
-            String exclusiveId;
-            if (data != null) {
-                exclusiveId = data.optString("exclusiveId", "");
-                if (!exclusiveId.isEmpty()) {
-                    Log.d("Inside ExclusiveID", "indiseExclusive");
-                    FirebaseFirestore firestoreNews = FirebaseFirestore.getInstance();
-                    firestoreNews.collection("EXCLUSIVE").document(exclusiveId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                String content, head, imgurl, type, videourl, audiourl;
-                                int articlever;
-                                long timestamp;
-                                type = task.getResult().get("type").toString();
-                                content = task.getResult().get("content").toString();
-                                head = task.getResult().get("head").toString();
-                                imgurl = task.getResult().get("imgurl").toString();
-                                videourl = task.getResult().get("videourl").toString();
-                                audiourl = task.getResult().get("audiourl").toString();
-                                String arti = task.getResult().get("articlever").toString();
-                                articlever = Integer.parseInt(arti);
-                                String time = task.getResult().get("timestamp").toString();
-                                timestamp = Long.parseLong(time);
-                                Log.d("Inside ExclusiveID", "News Fetch Success");
-                                todisplay = new Articles(type, head, content, imgurl, videourl, audiourl, articlever, timestamp);
-                            }
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Log.d("Inside ExclusiveID", "Failed to get Notif");
-                        }
-                    });
-                }
-            }
         }
     }
 
@@ -140,28 +106,28 @@ public class MainApplication extends Application {
                     intent.putExtra("singleHead", singleHead);
                     intent.putExtra("documentid", tag);
                     Log.d("notificationOpened", "document id: " + tag);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else if (!(promotionLink.isEmpty())) {
                     Intent i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(promotionLink));
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    i.setFlags(FLAG_ACTIVITY_NEW_TASK);
                     startActivity(i);
                 } else if (!(verticalLink.isEmpty())) {
                     Intent intent = new Intent(getApplicationContext(), Vertical_News.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("verticalLink", verticalLink);
                     startActivity(intent);
                 } else if (!(exclusiveId.isEmpty())) {
                     Log.d("Inside ExclusiveID", "TodisplayIntent");
                     Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
                     Log.d("Inside ExclusiveID", "Intent");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("exclusiveNotif", exclusiveId);
                     startActivity(intent);
                 }
             } else {
                 Intent intent = new Intent(getApplicationContext(), MainScreen_Activity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT | FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
             }
         }

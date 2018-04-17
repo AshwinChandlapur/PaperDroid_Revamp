@@ -2,6 +2,7 @@ package vadeworks.news.paperdroids.MainScreen;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -115,6 +117,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen_activity);
+
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         parentLayout = findViewById(android.R.id.content);
         parentLayout.setFocusableInTouchMode(true);
@@ -161,9 +164,9 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText(Constants.unlock + (3 - diffInDays) + " days...");
+        locktxt.setText(Constants.unlock + (Constants.UNLOCK_DAYS - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
-        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
+        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >=Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("isunlocked", true);
             OneSignal.sendTag("unlock_status", "unlocked");
@@ -184,6 +187,16 @@ public class MainScreen_Activity extends AppCompatActivity {
             });
             Log.d("shared pref", "Feature unlocked");
         }
+
+//        String manufacturer = "xiaomi";
+//        if (manufacturer.equalsIgnoreCase(android.os.Build.MANUFACTURER)) {
+//            //this will open auto start screen where user can enable permission for your app
+//            Intent intent1 = new Intent();
+//            intent1.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
+//            startActivity(intent1);
+//        }
+
+
 
         gold22_textview = findViewById(R.id.gold22);
         gold24_textview = findViewById(R.id.gold24);
