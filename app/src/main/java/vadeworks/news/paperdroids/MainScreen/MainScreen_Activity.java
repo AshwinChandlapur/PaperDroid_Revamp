@@ -83,8 +83,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     @BindView(R.id.loader) TypingIndicatorView typingView;
 
 
-
-
     @BindView(R.id.prajavani) CardView prajavani;
     @BindView(R.id.vijayavani) CardView vijayavani;
     @BindView(R.id.vijayakarnataka) CardView vijayakarnataka;
@@ -95,9 +93,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     @BindView(R.id.hindustantimes) CardView hindustantimes;
     @BindView(R.id.bottomimage) ImageView bottomImage;
     @BindView(R.id.exclusive_background) ImageView exclusive_background_image;
-
-
-    
 
 
     @BindView(R.id.gold22) TextView gold22_textview;
@@ -112,6 +107,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private final Bundle params = new Bundle();
+
     private String carat22, carat24, petrol, diesel;
     private int result;
     private String card_clicked;
@@ -143,7 +139,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         CardView overview_card = findViewById(R.id.overviewcard);
         FrameLayout locklayout = findViewById(R.id.locklayout);
         TextView locktxt = findViewById(R.id.locktext);
-//        overview_card.setVisibility(View.GONE);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
         Date currentDate = new Date(System.currentTimeMillis() / 1000L);
@@ -323,7 +318,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         org.jsoup.nodes.Document goldDoc;
         Elements goldElem24, goldElem22;
 
-
         try {
             //For Gold Rates
             goldDoc = Jsoup.connect(goldratesUrl).get();
@@ -378,7 +372,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-
                 gold22_textview.setText(carat22);
                 gold24_textview.setText(carat24);
                 petrol_textview.setText(petrol);

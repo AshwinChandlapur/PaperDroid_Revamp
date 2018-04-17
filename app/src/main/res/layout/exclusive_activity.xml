@@ -36,12 +36,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_margin="7dp"
-            android:fontFamily="casual"
+            android:fontFamily="cursive"
             android:gravity="center"
-            android:text="@string/tagline"
+            android:text="@string/exclusive_tagline"
             android:textAlignment="center"
             android:textColor="@color/loaderColor"
-            android:textSize="15sp" />
+            android:textSize="16sp" />
 
 
         <com.udevel.widgetlab.TypingIndicatorView

@@ -15,6 +15,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -104,7 +105,7 @@ public class ExclusiveActivity extends AppCompatActivity {
                             }
                             if (notifId != null)
                                 articlesList.add(0, temp);
-                            Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_LONG).show();
                             initSwipePager();
                         } else {
                             Log.w("Docu", "Error getting documents.", task.getException());
@@ -133,6 +134,15 @@ public class ExclusiveActivity extends AppCompatActivity {
                 Log.d("Position", "" + position);
                 String cards_read = "Cards_Read";
                 mFirebaseAnalytics.logEvent(cards_read, params);
+            }
+        });
+
+        verticalViewPager.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                verticalViewPager.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
             }
         });
 
