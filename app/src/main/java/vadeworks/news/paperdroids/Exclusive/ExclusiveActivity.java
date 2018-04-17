@@ -32,6 +32,7 @@ import cn.jzvd.JZVideoPlayer;
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
+import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.VerticalNews.VerticalViewPager;
 import vadeworks.paperdroid.R;
 
@@ -53,10 +54,9 @@ public class ExclusiveActivity extends AppCompatActivity {
         final View parentLayout = findViewById(android.R.id.content);
         setContentView(R.layout.exclusive_activity);
 
-        if (!isConnected(this)) {
-            buildDialog(this).show();
-        } else {
-            Log.d("Internet Working", "Internet Working");
+        Utils utils = new Utils(this);
+        if( !(utils.isConnected(getApplicationContext()))){
+            utils.buildDialog(this).show();
         }
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         notifId = getIntent().getStringExtra("exclusiveNotif");
@@ -116,7 +116,7 @@ public class ExclusiveActivity extends AppCompatActivity {
 
     private void initSwipePager() {
         final VerticalViewPager verticalViewPager = findViewById(R.id.vPager);
-        Log.d("initSwipePager docid: ", articlesList.get(0).head + "1 :" + articlesList.get(1).head);
+//        Log.d("initSwipePager docid: ", articlesList.get(0).head + "1 :" + articlesList.get(1).head);
         verticalViewPager.setAdapter(new Exclusive_Verticle_Pager_Adapter(this, articlesList));
         verticalViewPager.setOffscreenPageLimit(10);
 
@@ -155,49 +155,6 @@ public class ExclusiveActivity extends AppCompatActivity {
         return true;
     }
 
-
-    private boolean isConnected(Context context) {
-
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
-
-        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
-            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-
-            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
-        } else
-            return false;
-    }
-
-    private AlertDialog.Builder buildDialog(Context c) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        LayoutInflater factory = LayoutInflater.from(c);
-        final View view = factory.inflate(R.layout.no_internet, null);
-        Button wifi = view.findViewById(R.id.switchWifi);
-        wifi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-            }
-        });
-
-
-        Button data = view.findViewById(R.id.switchData);
-        data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
-                startActivity(intent);
-            }
-        });
-
-
-        builder.setView(view);
-        return builder;
-    }
 
     class DocIdRetrive extends Articles {
         String docid = "";

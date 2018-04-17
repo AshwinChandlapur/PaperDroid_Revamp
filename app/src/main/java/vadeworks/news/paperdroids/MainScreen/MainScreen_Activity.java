@@ -1,12 +1,8 @@
 package vadeworks.news.paperdroids.MainScreen;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -21,7 +17,6 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,17 +33,12 @@ import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
 
 import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
@@ -61,6 +51,7 @@ import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Special_Card;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
+import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.BuildConfig;
@@ -77,7 +68,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
-
 
 
     static int match_id;
@@ -321,15 +311,19 @@ public class MainScreen_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        initializeNewViews();
+        Utils utils =new Utils(this);
+        if(utils.isConnected(getApplicationContext())){
+            initializeNewViews();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Log.d("Test","Inside 2500 Runnable");
-                refreshScores(true);
-            }
-        }, 2500);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("Test","Inside 2500 Runnable");
+                    refreshScores(true);
+                }
+            }, 2500);
+        }
+
 
     }
 
@@ -375,7 +369,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             result = 0;
 
         }
-
 
         try { //for petrol diesel
             String oilUrl = "http://www.petroldieselprice.com/Karnataka/petrol-diesel-kerosene-price-in-Bengaluru";
@@ -547,7 +540,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText(Constants.unlock + (3 - diffInDays) + " days...");
+        locktxt.setText(Constants.unlock + (Constants.UNLOCK_DAYS - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
         if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
@@ -571,7 +564,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             Log.d("shared pref", "Feature unlocked");
         }
     }
-
 
     private void initializeNewViews() {
         Log.d("Test","InitializeNewViews");
@@ -597,7 +589,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-        ipl_parent.setVisibility(View.GONE);
+//        ipl_parent.setVisibility(View.GONE);
         Log.d("Test","InitializeNewViews Done");
     }
 
@@ -650,7 +642,6 @@ public class MainScreen_Activity extends AppCompatActivity {
                                     battingTeamImage = findViewById(R.id.battingTeamImage);
                                     battingTeamText = findViewById(R.id.battingTeamText);
                                     scoreCard = findViewById(R.id.scoreCard);
-
 
                                     mchDesc.setText(match);
                                     mchStatus.setText(status);
