@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?><!-- START xml_defaults -->
 <defaultsMap>
 
+    <entry>
+        <key>UNLOCK_DAYS</key>
+        <value>5</value>
+    </entry>
 
     <entry>
         <key>card_view_visibility_pj</key>

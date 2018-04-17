@@ -52,6 +52,7 @@ public class MainApplication extends Application {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("firstTime", false);
             editor.putBoolean("isunlocked", false);
+            editor.putInt("refresh", 3);
             editor.putLong("firstlaunch", System.currentTimeMillis() / 1000L);
 //            editor.putLong("firstlaunch", 1520620801);
             Log.d("launch at", "first at: " + System.currentTimeMillis() / 1000L);

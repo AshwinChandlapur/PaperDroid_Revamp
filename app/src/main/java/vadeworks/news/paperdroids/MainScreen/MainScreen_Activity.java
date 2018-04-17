@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+import android.widget.Toolbar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -68,7 +70,8 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
-
+    private static final String UNLOCKER = "UNLOCK_DAYS";
+    int UNLOCK_DAYS;
 
     static int match_id;
     CardView ipl_parent;
@@ -102,6 +105,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private String card_clicked;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
+    SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +117,10 @@ public class MainScreen_Activity extends AppCompatActivity {
         parentLayout.setFocusableInTouchMode(true);
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
+
+
+        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        UNLOCK_DAYS = prefs.getInt("refresh", 5);
 
 
         prajavani = findViewById(R.id.prajavani);
@@ -148,15 +156,16 @@ public class MainScreen_Activity extends AppCompatActivity {
         FrameLayout locklayout = findViewById(R.id.locklayout);
         TextView locktxt = findViewById(R.id.locktext);
 //        overview_card.setVisibility(View.GONE);
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
         Date currentDate = new Date(System.currentTimeMillis() / 1000L);
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText(Constants.unlock + (Constants.UNLOCK_DAYS - diffInDays) + " days...");
+        locktxt.setText(Constants.unlock + (UNLOCK_DAYS - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
-        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >=Constants.UNLOCK_DAYS) {
+        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >=UNLOCK_DAYS) {
+            Toast.makeText(this, "Unlock Days"+UNLOCK_DAYS, Toast.LENGTH_SHORT).show();
+            Log.d("Unlocks Days","un"+UNLOCK_DAYS);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("isunlocked", true);
             OneSignal.sendTag("unlock_status", "unlocked");
@@ -424,7 +433,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
     private void fetchCard() {
-
+        Log.d("Initial Val","kjd"+UNLOCK_DAYS);
         long cacheExpiration = 24 * 60 * 60; // 1 Day
 
         if (mFirebaseRemoteConfig.getInfo().getConfigSettings().isDeveloperModeEnabled()) {
@@ -447,10 +456,19 @@ public class MainScreen_Activity extends AppCompatActivity {
                         displayES();
                         displayDH();
                         displayHT();
+                        unlockingCard();
                     }
                 });
     }
 
+    private void unlockingCard() {
+
+       UNLOCK_DAYS = (int)mFirebaseRemoteConfig.getLong(UNLOCKER);
+       SharedPreferences.Editor simple_editor =prefs.edit();
+       simple_editor.putInt("refresh", UNLOCK_DAYS);
+       Toast.makeText(this, "Oo"+UNLOCK_DAYS, Toast.LENGTH_SHORT).show();
+
+    }
 
     private void displayVK() {
 
@@ -540,9 +558,11 @@ public class MainScreen_Activity extends AppCompatActivity {
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
 
-        locktxt.setText(Constants.unlock + (Constants.UNLOCK_DAYS - diffInDays) + " days...");
+        locktxt.setText(Constants.unlock + (UNLOCK_DAYS - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
-        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
+        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= UNLOCK_DAYS) {
+            Toast.makeText(this, "Unlock Days"+UNLOCK_DAYS, Toast.LENGTH_SHORT).show();
+            Log.d("Unlocks Days","un"+UNLOCK_DAYS);
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("isunlocked", true);
             OneSignal.sendTag("unlock_status", "unlocked");
