@@ -42,11 +42,11 @@ public class VijayaVaani_MainActivity extends AppCompatActivity {
         init_navigator();
 
         Utils utils = new Utils(this);
-        utils.onClickers(this,mDrawerLayout, Constants.vv);
+        utils.onClickers(this, mDrawerLayout, Constants.vv);
 
         utils.fetchCard(getApplicationContext());
 
-        if( !(utils.isConnected(getApplicationContext()))){
+        if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
 

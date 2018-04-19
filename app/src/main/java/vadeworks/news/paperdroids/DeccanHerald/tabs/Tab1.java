@@ -20,7 +20,6 @@ import vadeworks.paperdroid.R;
 public class Tab1 extends Fragment {
 
 
-
     private final String tag = Constants.dh_headlines;//TODO:Should Change Accordingly
     private View view;
     private Context context;

@@ -15,8 +15,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
         tools:replace="android:theme">
-        <meta-data android:name="com.onesignal.NotificationOpened.DEFAULT" android:value="DISABLE" />
-
+        <meta-data
+            android:name="com.onesignal.NotificationOpened.DEFAULT"
+            android:value="DISABLE" />
 
         <activity
             android:name="vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity"

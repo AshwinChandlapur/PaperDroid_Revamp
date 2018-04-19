@@ -45,10 +45,10 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
         init_navigator();
 
         Utils utils = new Utils(this);
-        utils.onClickers(this,mDrawerLayout, Constants.dh);
+        utils.onClickers(this, mDrawerLayout, Constants.dh);
         utils.fetchCard(getApplicationContext());
 
-        if( !(utils.isConnected(getApplicationContext()))){
+        if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
 

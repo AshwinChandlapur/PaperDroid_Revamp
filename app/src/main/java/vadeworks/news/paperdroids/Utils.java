@@ -49,24 +49,19 @@ public class Utils {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
-    private FirebaseAnalytics mFirebaseAnalytics;
     private final Bundle params = new Bundle();
+    public Activity activity;
     FirebaseRemoteConfig mFirebaseRemoteConfig;
-
+    FrameLayout intent_to_allTerms, intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje, intent_to_asianet;
+    String card_clicked;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private android.support.v7.widget.Toolbar toolbar;
     private ViewPager pager;
 
-
-    FrameLayout intent_to_allTerms,intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje,intent_to_asianet;
-    String card_clicked;
-
-
-    public Activity activity;
-    public Utils( Activity _activity){
+    public Utils(Activity _activity) {
         this.activity = _activity;
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this.activity);
     }
-
 
 
     public void fetchCard(Context context) {
@@ -89,22 +84,22 @@ public class Utils {
         mFirebaseRemoteConfig.fetch(cacheExpiration).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                displayPJ(mFirebaseRemoteConfig,intent_to_prajavani);
-                displayVV(mFirebaseRemoteConfig,intent_to_vijayavaani);
-                displayVK(mFirebaseRemoteConfig,intent_to_vijayakarnataka);
-                displayUV(mFirebaseRemoteConfig,intent_to_udayavaani);
-                displayAN(mFirebaseRemoteConfig,intent_to_asianet);
-                displayES(mFirebaseRemoteConfig,intent_to_esanje);
-                displayHT(mFirebaseRemoteConfig,intent_to_hindustan);
-                displayDH(mFirebaseRemoteConfig,intent_to_deccan);
+                displayPJ(mFirebaseRemoteConfig, intent_to_prajavani);
+                displayVV(mFirebaseRemoteConfig, intent_to_vijayavaani);
+                displayVK(mFirebaseRemoteConfig, intent_to_vijayakarnataka);
+                displayUV(mFirebaseRemoteConfig, intent_to_udayavaani);
+                displayAN(mFirebaseRemoteConfig, intent_to_asianet);
+                displayES(mFirebaseRemoteConfig, intent_to_esanje);
+                displayHT(mFirebaseRemoteConfig, intent_to_hindustan);
+                displayDH(mFirebaseRemoteConfig, intent_to_deccan);
             }
         });
     }
 
 
-    private void displayVK(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_vijayakarnataka) {
+    private void displayVK(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_vijayakarnataka) {
 
-        if(intent_to_vijayakarnataka!=null){
+        if (intent_to_vijayakarnataka != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VK)) {
                 intent_to_vijayakarnataka.setVisibility(View.VISIBLE);
             } else {
@@ -113,8 +108,8 @@ public class Utils {
         }
     }
 
-    private void displayPJ(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_prajavani) {
-        if(intent_to_prajavani!=null){
+    private void displayPJ(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_prajavani) {
+        if (intent_to_prajavani != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_PJ)) {
                 intent_to_prajavani.setVisibility(View.VISIBLE);
             } else {
@@ -124,9 +119,9 @@ public class Utils {
 
     }
 
-    private void displayVV(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_vijayavaani) {
+    private void displayVV(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_vijayavaani) {
 
-        if(intent_to_vijayavaani!=null){
+        if (intent_to_vijayavaani != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_VV)) {
                 intent_to_vijayavaani.setVisibility(View.VISIBLE);
             } else {
@@ -135,9 +130,9 @@ public class Utils {
         }
     }
 
-    private void displayUV(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_udayavaani) {
+    private void displayUV(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_udayavaani) {
 
-        if(intent_to_udayavaani!=null){
+        if (intent_to_udayavaani != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)) {
                 intent_to_udayavaani.setVisibility(View.VISIBLE);
             } else {
@@ -146,9 +141,9 @@ public class Utils {
         }
     }
 
-    private void displayAN(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_suvarna) {
+    private void displayAN(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_suvarna) {
 
-        if(intent_to_suvarna!=null){
+        if (intent_to_suvarna != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)) {
                 intent_to_suvarna.setVisibility(View.VISIBLE);
             } else {
@@ -157,9 +152,9 @@ public class Utils {
         }
     }
 
-    private void displayES(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_esanje) {
+    private void displayES(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_esanje) {
 
-        if(intent_to_esanje!=null){
+        if (intent_to_esanje != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
                 intent_to_esanje.setVisibility(View.VISIBLE);
             } else {
@@ -168,10 +163,9 @@ public class Utils {
         }
     }
 
-    private void displayDH(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_deccan) {
+    private void displayDH(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_deccan) {
 
-        if(intent_to_deccan!=null)
-        {
+        if (intent_to_deccan != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_DH)) {
                 intent_to_deccan.setVisibility(View.VISIBLE);
             } else {
@@ -180,9 +174,9 @@ public class Utils {
         }
     }
 
-    private void displayHT(FirebaseRemoteConfig mFirebaseRemoteConfig,FrameLayout intent_to_hindustan) {
+    private void displayHT(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_hindustan) {
 
-        if(intent_to_hindustan!=null){
+        if (intent_to_hindustan != null) {
             if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_HT)) {
                 intent_to_hindustan.setVisibility(View.VISIBLE);
             } else {
@@ -190,7 +184,6 @@ public class Utils {
             }
         }
     }
-
 
 
     public boolean isConnected(Context context) {
@@ -206,7 +199,6 @@ public class Utils {
         } else
             return false;
     }
-
 
 
     public AlertDialog.Builder buildDialog(final Context c) {
@@ -236,8 +228,7 @@ public class Utils {
     }
 
 
-
-    public void onClickers(final Context context, final DrawerLayout mDrawerLayout,final String tag){
+    public void onClickers(final Context context, final DrawerLayout mDrawerLayout, final String tag) {
 
         intent_to_home = (FrameLayout) this.activity.findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
@@ -245,9 +236,9 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.home.equals(tag)){
+                if (Constants.home.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
+                } else {
                     Intent intent = new Intent(context, MainScreen_Activity.class);
                     context.startActivity(intent);
                 }
@@ -262,11 +253,11 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_pj_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.pj.equals(tag)){
+                if (Constants.pj.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
-                Intent intent = new Intent(context, PrajaVaani_MainActivity.class);
-                context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, PrajaVaani_MainActivity.class);
+                    context.startActivity(intent);
                 }
             }
         });
@@ -278,9 +269,9 @@ public class Utils {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_vv_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
 
-                if(Constants.vv.equals(tag)){
+                if (Constants.vv.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
+                } else {
                     Intent intent = new Intent(context, VijayaVaani_MainActivity.class);
                     context.startActivity(intent);
                 }
@@ -294,9 +285,9 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_vk_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.vk.equals(tag)){
+                if (Constants.vk.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else {
+                } else {
                     Intent intent = new Intent(context, VijayaKarnataka_MainActivity.class);
                     context.startActivity(intent);
                 }
@@ -309,9 +300,9 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_uv_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.uv.equals(tag)){
+                if (Constants.uv.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else {
+                } else {
                     Intent intent = new Intent(context, UdayaVaani_MainActivity.class);
                     context.startActivity(intent);
                 }
@@ -324,9 +315,9 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_an_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.an.equals(tag)){
+                if (Constants.an.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
+                } else {
                     Intent intent = new Intent(context, AsiaNet_MainActivity.class);
                     context.startActivity(intent);
                 }
@@ -340,9 +331,9 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_es_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.es.equals(tag)){
+                if (Constants.es.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
+                } else {
 
                 }
             }
@@ -354,11 +345,11 @@ public class Utils {
             public void onClick(View v) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_ab_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.at.equals(tag)){
+                if (Constants.at.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
-                Intent intent = new Intent(context, All_Terms_MainActivity.class);
-                context.startActivity(intent);
+                } else {
+                    Intent intent = new Intent(context, All_Terms_MainActivity.class);
+                    context.startActivity(intent);
                 }
             }
         });
@@ -370,11 +361,12 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_dh);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.dh.equals(tag)){
+                if (Constants.dh.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
-                Intent intent = new Intent(context, DeccanHerald_Activiy.class);
-                context.startActivity(intent);}
+                } else {
+                    Intent intent = new Intent(context, DeccanHerald_Activiy.class);
+                    context.startActivity(intent);
+                }
             }
         });
 
@@ -384,11 +376,12 @@ public class Utils {
             public void onClick(View view) {
                 card_clicked = context.getResources().getString(R.string.toolbar_title_home_ht);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if(Constants.ht.equals(tag)){
+                if (Constants.ht.equals(tag)) {
                     mDrawerLayout.closeDrawers();
-                }else{
-                Intent intent = new Intent(context, HindustanTimes_Activity.class);
-                context.startActivity(intent);}
+                } else {
+                    Intent intent = new Intent(context, HindustanTimes_Activity.class);
+                    context.startActivity(intent);
+                }
             }
         });
 

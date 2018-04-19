@@ -2,7 +2,6 @@ package vadeworks.news.paperdroids.Exclusive;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,12 +50,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
 
     @Override
     public int getCount() {
-
-        if(articleList.size()==2){
-            notifyDataSetChanged();
-        }
         return articleList.size();
-
     }
 
     @Override

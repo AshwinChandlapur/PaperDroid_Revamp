@@ -20,8 +20,8 @@ import java.util.concurrent.ExecutionException;
 
 public class Cricbuzz {
 
-    final String url = "http://synd.cricbuzz.com/j2me/1.0/livematches.xml";
     static Document doc;
+    final String url = "http://synd.cricbuzz.com/j2me/1.0/livematches.xml";
 
     public Document getxml(final String url) throws IOException {
         try {
@@ -34,29 +34,15 @@ public class Cricbuzz {
         return doc;
     }
 
-    public static class fetch_cricbuzz extends AsyncTask<String, Void, Void> {
-        @Override
-        protected Void doInBackground(String... strings) {
-            try {
-                 doc = Jsoup.connect(strings[0]).get();
-                Log.d("CricDoc",doc.toString());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-    }
-
-
-    public Map<String,String> matchinfo(Element match) {
-        Map<String,String> map = new HashMap<String,String>();
-        map.put("id",match.attr("id"));
-        map.put("srs",match.attr("srs"));
-        map.put("mchdesc",match.attr("mchdesc"));
-        map.put("mnum",match.attr("mnum"));
-        map.put("type",match.attr("type"));
-        map.put("mchstate",match.select("state").attr("mchstate"));
-        map.put("status",match.select("state").attr("status"));
+    public Map<String, String> matchinfo(Element match) {
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("id", match.attr("id"));
+        map.put("srs", match.attr("srs"));
+        map.put("mchdesc", match.attr("mchdesc"));
+        map.put("mnum", match.attr("mnum"));
+        map.put("type", match.attr("type"));
+        map.put("mchstate", match.select("state").attr("mchstate"));
+        map.put("status", match.select("state").attr("status"));
         return map;
     }
 
@@ -69,23 +55,19 @@ public class Cricbuzz {
                 matches.add(matchinfo(x));
             }
             return matches;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return matches;
         }
     }
 
-
-
-
-    public Map<String,Map> livescore(String mid) throws IOException {
-        Map<String,Map> score = new HashMap<String,Map>();
+    public Map<String, Map> livescore(String mid) throws IOException {
+        Map<String, Map> score = new HashMap<String, Map>();
         try {
             Document doc = getxml(url);
             String query = String.format("match[id = %s]", mid);
 
             Element match = doc.select(query).get(0);
-            score.put("matchinfo",matchinfo(match));
+            score.put("matchinfo", matchinfo(match));
 
             String commurl = match.attr("datapath") + "commentary.xml";
             doc = getxml(commurl);
@@ -96,17 +78,17 @@ public class Cricbuzz {
             Elements batsman = mscr.select("btsmn");
             Elements bowler = mscr.select("blrs");
 
-            HashMap<String,Vector<HashMap<String,String>>> b1 = new HashMap<String,Vector<HashMap<String,String>>>();
+            HashMap<String, Vector<HashMap<String, String>>> b1 = new HashMap<String, Vector<HashMap<String, String>>>();
             Vector v1 = new Vector();
-            HashMap<String,String> m1 = new HashMap<String,String>();
-            m1.put("team",batting.attr("sname"));
+            HashMap<String, String> m1 = new HashMap<String, String>();
+            m1.put("team", batting.attr("sname"));
             v1.add(m1);
 
-            b1.put("team",v1);
+            b1.put("team", v1);
             Vector v2 = new Vector();
 
-            for(Element b: batsman) {
-                HashMap<String,String> m2 = new HashMap<String,String>();
+            for (Element b : batsman) {
+                HashMap<String, String> m2 = new HashMap<String, String>();
                 m2.put("name", b.attr("sname"));
                 m2.put("runs", b.attr("r"));
                 m2.put("balls", b.attr("b"));
@@ -115,31 +97,31 @@ public class Cricbuzz {
                 v2.addElement(m2);
             }
 
-            b1.put("batsman",v2);
+            b1.put("batsman", v2);
             Elements binnings = batting.select("inngs");
             Vector v3 = new Vector();
-            for(Element i: binnings) {
-                HashMap<String,String> m3 = new HashMap<String,String>();
-                m3.put("desc",i.attr("desc"));
-                m3.put("runs",i.attr("r"));
-                m3.put("wickets",i.attr("wkts"));
-                m3.put("overs",i.attr("ovrs"));
+            for (Element i : binnings) {
+                HashMap<String, String> m3 = new HashMap<String, String>();
+                m3.put("desc", i.attr("desc"));
+                m3.put("runs", i.attr("r"));
+                m3.put("wickets", i.attr("wkts"));
+                m3.put("overs", i.attr("ovrs"));
                 v3.add(m3);
             }
-            b1.put("score",v3);
-            score.put("batting",b1);
+            b1.put("score", v3);
+            score.put("batting", b1);
 
-            HashMap<String,Vector<HashMap<String,String>>> b2 = new HashMap<String,Vector<HashMap<String,String>>>();
+            HashMap<String, Vector<HashMap<String, String>>> b2 = new HashMap<String, Vector<HashMap<String, String>>>();
             Vector v = new Vector();
 
-            HashMap<String,String> m = new HashMap<String,String>();
-            m.put("team",bowling.attr("sname"));
+            HashMap<String, String> m = new HashMap<String, String>();
+            m.put("team", bowling.attr("sname"));
             v.add(m);
-            b2.put("team",v);
+            b2.put("team", v);
             //System.out.print(b2);
             Vector v5 = new Vector();
-            for(Element b: bowler) {
-                HashMap<String,String> m4 = new HashMap<String,String>();
+            for (Element b : bowler) {
+                HashMap<String, String> m4 = new HashMap<String, String>();
                 m4.put("name", b.attr("sname"));
                 m4.put("overs", b.attr("ovrs"));
                 m4.put("maidens", b.attr("mdns"));
@@ -147,55 +129,66 @@ public class Cricbuzz {
                 m4.put("wickets", b.attr("wkts"));
                 v5.add(m4);
             }
-            b2.put("bowler",v5);
+            b2.put("bowler", v5);
             binnings = bowling.select("inngs");
 
             Vector v6 = new Vector();
-            for(Element i: binnings) {
-                HashMap<String,String> m5 = new HashMap<String,String>();
-                m5.put("desc",i.attr("desc"));
-                m5.put("runs",i.attr("r"));
-                m5.put("wickets",i.attr("wkts"));
-                m5.put("overs",i.attr("ovrs"));
+            for (Element i : binnings) {
+                HashMap<String, String> m5 = new HashMap<String, String>();
+                m5.put("desc", i.attr("desc"));
+                m5.put("runs", i.attr("r"));
+                m5.put("wickets", i.attr("wkts"));
+                m5.put("overs", i.attr("ovrs"));
                 v6.add(m5);
             }
-            b2.put("score",v6);
-            score.put("bowling",b2);
+            b2.put("score", v6);
+            score.put("bowling", b2);
             //Log.d("DATA", score.toString());
 
             return score;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return score;
         }
 
     }
 
-    public Map<String,Map> commentary(String mid) throws IOException {
-        Map<String,Map> score = new HashMap<String,Map>();
+    public Map<String, Map> commentary(String mid) throws IOException {
+        Map<String, Map> score = new HashMap<String, Map>();
         try {
             Document doc = getxml(url);
             String query = String.format("match[id = %s]", mid);
             Element match = doc.select(query).get(0);
-            score.put("matchinfo",matchinfo(match));
+            score.put("matchinfo", matchinfo(match));
 
             String commurl = match.attr("datapath") + "commentary.xml";
             doc = getxml(commurl);
             Elements comm = getxml(commurl).select("c");
 
 
-            HashMap<String,Vector> h = new HashMap<String,Vector>();
+            HashMap<String, Vector> h = new HashMap<String, Vector>();
             Vector v = new Vector();
-            for(Element c: comm) {
+            for (Element c : comm) {
                 v.add(c.text());
             }
-            h.put("text",v);
-            score.put("commentary",h);
+            h.put("text", v);
+            score.put("commentary", h);
 
             return score;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             return score;
+        }
+    }
+
+    public static class fetch_cricbuzz extends AsyncTask<String, Void, Void> {
+        @Override
+        protected Void doInBackground(String... strings) {
+            try {
+                doc = Jsoup.connect(strings[0]).get();
+                Log.d("CricDoc", doc.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
         }
     }
 

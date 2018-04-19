@@ -1,23 +1,15 @@
 package vadeworks.news.paperdroids.Exclusive;
 
-import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -41,12 +33,11 @@ public class ExclusiveActivity extends AppCompatActivity {
 
     private final Bundle params = new Bundle();
     FirebaseFirestore firestoreNews;
+    Query first;
     private ArrayList<DocIdRetrive> articlesList = new ArrayList<>();
     private String notifId, head, imgurl, content;
     private DocIdRetrive todisplay;
     private FirebaseAnalytics mFirebaseAnalytics;
-    Query first;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +46,7 @@ public class ExclusiveActivity extends AppCompatActivity {
         setContentView(R.layout.exclusive_activity);
 
         Utils utils = new Utils(this);
-        if( !(utils.isConnected(getApplicationContext()))){
+        if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
@@ -65,14 +56,11 @@ public class ExclusiveActivity extends AppCompatActivity {
 
         firestoreNews = FirebaseFirestore.getInstance();
 
-        first  = firestoreNews.collection("EXCLUSIVE")
+        first = firestoreNews.collection("EXCLUSIVE")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .limit(41);
 
-        first.orderBy("timestamp", Query.Direction.DESCENDING);
-
-
-                first.get()
+        first.get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -90,7 +78,7 @@ public class ExclusiveActivity extends AppCompatActivity {
                                 articles.articlever = (documentSnapshot.get("articlever") != null) ? Integer.parseInt(documentSnapshot.get("articlever").toString()) : null;
                                 articles.timestamp = (documentSnapshot.get("timestamp") != null) ? Long.parseLong(documentSnapshot.get("timestamp").toString()) : null;
 
-                                Log.d("Snap1",articles.head+articles.timestamp);
+                                Log.d("Snap1", articles.head + articles.timestamp);
 
                                 if (articles.articlever == 1) {
                                     if (notifId != null)
@@ -100,9 +88,9 @@ public class ExclusiveActivity extends AppCompatActivity {
                                     articlesList.add(new DocIdRetrive(articles.docid, articles.type, articles.head, articles.content,
                                             articles.imgurl, articles.videourl, articles.audiourl,
                                             (int) articles.articlever, (long) articles.timestamp));
-
                                 }
                             }
+//                            Collections.reverse(articlesList);
                             if (notifId != null)
                                 articlesList.add(0, temp);
                             Snackbar.make(parentLayout, "Swipe Up to read more...", Snackbar.LENGTH_LONG).show();

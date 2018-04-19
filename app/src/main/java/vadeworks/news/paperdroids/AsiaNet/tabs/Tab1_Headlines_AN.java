@@ -36,6 +36,7 @@ public class Tab1_Headlines_AN extends Fragment {
         ImageView newsIcon = view.findViewById(R.id.newsIcon);
         newsIcon.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.an));
         init(view);
+
         FirebaseNews firebaseNews = new FirebaseNews();
         firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
         return view;

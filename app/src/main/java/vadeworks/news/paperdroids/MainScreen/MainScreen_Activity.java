@@ -1,6 +1,5 @@
 package vadeworks.news.paperdroids.MainScreen;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -42,7 +41,6 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import vadeworks.news.paperdroids.Articles;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Cricbuzz;
@@ -73,41 +71,58 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
     static int match_id;
-    @BindView(R.id.specialCards) CardView ipl_parent;
-    @BindView(R.id.mchDesc) TextView mchDesc;
-    @BindView(R.id.mchStatus) TextView mchStatus;
-    @BindView(R.id.battingTeamImage) ImageView battingTeamImage;
-    @BindView(R.id.battingTeamText) TextView battingTeamText;
-    @BindView(R.id.scoreCard) TextView scoreCard;
-    @BindView(R.id.cricketImage) ImageView cricketImage;
-    @BindView(R.id.loader) TypingIndicatorView typingView;
-
-
-    @BindView(R.id.prajavani) CardView prajavani;
-    @BindView(R.id.vijayavani) CardView vijayavani;
-    @BindView(R.id.vijayakarnataka) CardView vijayakarnataka;
-    @BindView(R.id.udayavani) CardView udayavani;
-    @BindView(R.id.suvarna) CardView suvarna;
-    @BindView(R.id.esanje) CardView esanje;
-    @BindView(R.id.deccanherald) CardView deccanherald;
-    @BindView(R.id.hindustantimes) CardView hindustantimes;
-    @BindView(R.id.bottomimage) ImageView bottomImage;
-    @BindView(R.id.exclusive_background) ImageView exclusive_background_image;
-
-
-    @BindView(R.id.gold22) TextView gold22_textview;
-    @BindView(R.id.gold24) TextView gold24_textview;
-    @BindView(R.id.petrol) TextView petrol_textview;
-    @BindView(R.id.diesel) TextView diesel_textview;
-    @BindView(R.id.airNo) TextView airNo_textview;
-    @BindView(R.id.airQuality) TextView airQuality_textview;
-
-
+    private final Bundle params = new Bundle();
+    @BindView(R.id.specialCards)
+    CardView ipl_parent;
+    @BindView(R.id.mchDesc)
+    TextView mchDesc;
+    @BindView(R.id.mchStatus)
+    TextView mchStatus;
+    @BindView(R.id.battingTeamImage)
+    ImageView battingTeamImage;
+    @BindView(R.id.battingTeamText)
+    TextView battingTeamText;
+    @BindView(R.id.scoreCard)
+    TextView scoreCard;
+    @BindView(R.id.cricketImage)
+    ImageView cricketImage;
+    @BindView(R.id.loader)
+    TypingIndicatorView typingView;
+    @BindView(R.id.prajavani)
+    CardView prajavani;
+    @BindView(R.id.vijayavani)
+    CardView vijayavani;
+    @BindView(R.id.vijayakarnataka)
+    CardView vijayakarnataka;
+    @BindView(R.id.udayavani)
+    CardView udayavani;
+    @BindView(R.id.suvarna)
+    CardView suvarna;
+    @BindView(R.id.esanje)
+    CardView esanje;
+    @BindView(R.id.deccanherald)
+    CardView deccanherald;
+    @BindView(R.id.hindustantimes)
+    CardView hindustantimes;
+    @BindView(R.id.bottomimage)
+    ImageView bottomImage;
+    @BindView(R.id.exclusive_background)
+    ImageView exclusive_background_image;
+    @BindView(R.id.gold22)
+    TextView gold22_textview;
+    @BindView(R.id.gold24)
+    TextView gold24_textview;
+    @BindView(R.id.petrol)
+    TextView petrol_textview;
+    @BindView(R.id.diesel)
+    TextView diesel_textview;
+    @BindView(R.id.airNo)
+    TextView airNo_textview;
+    @BindView(R.id.airQuality)
+    TextView airQuality_textview;
     private FirebaseFirestore firestoreNews;
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
-    private final Bundle params = new Bundle();
-
     private String carat22, carat24, petrol, diesel;
     private int result;
     private String card_clicked;
@@ -147,7 +162,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
         locktxt.setText(Constants.unlock + (Constants.UNLOCK_DAYS - diffInDays) + " days...");
         //  if more than 3 days & not unlocked, set unlock status
-        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >=Constants.UNLOCK_DAYS) {
+        if ((!prefs.getBoolean("isunlocked", false)) && diffInDays >= Constants.UNLOCK_DAYS) {
             SharedPreferences.Editor editor = prefs.edit();
             editor.putBoolean("isunlocked", true);
             OneSignal.sendTag("unlock_status", "unlocked");
@@ -176,9 +191,6 @@ public class MainScreen_Activity extends AppCompatActivity {
 //            intent1.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
 //            startActivity(intent1);
 //        }
-
-
-
 
 
         prajavani.setOnClickListener(new View.OnClickListener() {
@@ -263,14 +275,14 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-        ipl_parent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainScreen_Activity.this, Special_Card.class);
-                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainScreen_Activity.this,findViewById(R.id.specialCards),"cardSpecial");
-                startActivity(intent,optionsCompat.toBundle());
-            }
-        });
+//        ipl_parent.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(MainScreen_Activity.this, Special_Card.class);
+//                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainScreen_Activity.this,findViewById(R.id.specialCards),"cardSpecial");
+//                startActivity(intent,optionsCompat.toBundle());
+//            }
+//        });
 
 
         bottomImage.setOnClickListener(new View.OnClickListener() {
@@ -295,14 +307,14 @@ public class MainScreen_Activity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        Utils utils =new Utils(this);
-        if(utils.isConnected(getApplicationContext())){
-            initializeNewViews();
+        Utils utils = new Utils(this);
+        if (utils.isConnected(getApplicationContext())) {
 
+            initializeNewViews();
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("Test","Inside 2500 Runnable");
+                    Log.d("Test", "Inside 2500 Runnable");
                     refreshScores(true);
                 }
             }, 2500);
@@ -545,7 +557,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     }
 
     private void initializeNewViews() {
-        Log.d("Test","InitializeNewViews");
+        Log.d("Test", "InitializeNewViews");
         firestoreNews = FirebaseFirestore.getInstance();
 
         DocumentReference docRef = firestoreNews.collection("ipl").document("match_ids");
@@ -569,30 +581,29 @@ public class MainScreen_Activity extends AppCompatActivity {
         });
 
 //        ipl_parent.setVisibility(View.GONE);
-        Log.d("Test","InitializeNewViews Done");
+        Log.d("Test", "InitializeNewViews Done");
     }
 
-    private void refreshScores(boolean auto_refresh_){
-
-        if(auto_refresh_){
+    private void refreshScores(boolean auto_refresh_) {
+        if (auto_refresh_) {
             Log.d("DocumentSnapshot data", "DocumentSnapshot datas: " + match_id);
-            if(match_id != 0){
+            if (match_id != 0) {
                 ipl_parent.setVisibility(View.VISIBLE);
-
+                ipl_parent.setOnClickListener(null);
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        try{
+                        try {
                             Cricbuzz cricbuzz = new Cricbuzz();
-                            Map<String,Map> score = cricbuzz.livescore(match_id+"");
+                            Map<String, Map> score = cricbuzz.livescore(match_id + "");
                             Gson gson = new GsonBuilder().setPrettyPrinting().create();
                             String data = gson.toJson(score);
 
                             JSONObject _data = new JSONObject(data);
-                            Log.d("data",data.toString());
+                            Log.d("data", data.toString());
 
                             JSONObject matchinfo = _data.getJSONObject("matchinfo");
-                            Log.d("matchinfo",matchinfo.toString());
+                            Log.d("matchinfo", matchinfo.toString());
                             final String match = matchinfo.get("mchdesc").toString();
                             final String status = matchinfo.get("status").toString();
 
@@ -600,10 +611,10 @@ public class MainScreen_Activity extends AppCompatActivity {
                             JSONObject batting = _data.getJSONObject("batting");
                             JSONArray team = batting.getJSONArray("team");
                             JSONObject _team = team.getJSONObject(0);
-                            final String battingteam =  _team.getString("team");
+                            final String battingteam = _team.getString("team");
 
                             JSONArray _score = batting.getJSONArray("score");
-                            Log.d("_score",_score.toString());
+                            Log.d("_score", _score.toString());
                             JSONObject __score = _score.getJSONObject(0);
                             final String runs = __score.getString("runs");
                             final String wickets = __score.getString("wickets");
@@ -613,78 +624,79 @@ public class MainScreen_Activity extends AppCompatActivity {
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-
                                     typingView.setVisibility(View.GONE);
-                                    
+
                                     mchDesc.setText(match);
                                     mchStatus.setText(status);
                                     battingTeamText.setText(battingteam);
-                                    switch (battingteam) {
-                                        case "CSK":
+                                    String ignoreCase = battingteam.toLowerCase();
+                                    switch (ignoreCase) {
+                                        case "csk":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.chennai));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "KKR":
+                                        case "kkr":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.kolkatta));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "RCB":
+                                        case "rcb":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.bangalore));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "RR":
+                                        case "rr":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.rajasthan));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "DD":
+                                        case "dd":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.dehli));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "SRH":
+                                        case "srh":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.hyderabad));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "MI":
+                                        case "mi":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.mumbai));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "KXIP":
+                                        case "kxip":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.punjab));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "IND":
+
+                                        case "ind":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.ind));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "AUS":
+                                        case "aus":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.aus));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "BAN":
+                                        case "ban":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.bangladesh));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "ENG":
+                                        case "eng":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.eng));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "NZ":
+                                        case "nz":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.nz));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "PAK":
+                                        case "pak":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.pakistan));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "RSA":
+                                        case "rsa":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.sf));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "SL":
+                                        case "sl":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.sl));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
-                                        case "WI":
+                                        case "wi":
                                             battingTeamImage.setImageDrawable(getResources().getDrawable(R.drawable.wi));
                                             battingTeamText.setVisibility(View.GONE);
                                             break;
@@ -694,10 +706,19 @@ public class MainScreen_Activity extends AppCompatActivity {
                                             break;
                                     }
                                     scoreCard.setText(runs + "-" + wickets + " (" + overs + ")");
+
+                                    ipl_parent.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            Intent intent = new Intent(MainScreen_Activity.this, Special_Card.class);
+                                            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainScreen_Activity.this, findViewById(R.id.specialCards), "cardSpecial");
+                                            startActivity(intent, optionsCompat.toBundle());
+                                        }
+                                    });
                                 }
                             });
 
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }

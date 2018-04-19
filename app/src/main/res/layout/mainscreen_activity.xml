@@ -671,9 +671,8 @@
             </android.support.v7.widget.CardView>
 
 
-
-
             <android.support.v7.widget.CardView
+                android:id="@+id/specialCards"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
@@ -681,8 +680,7 @@
                 android:visibility="gone"
                 app:cardBackgroundColor="@color/background_white"
                 app:cardCornerRadius="7dp"
-                app:cardElevation="2dp"
-                android:id="@+id/specialCards">
+                app:cardElevation="2dp">
 
 
                 <FrameLayout
@@ -690,11 +688,11 @@
                     android:layout_height="match_parent">
 
                     <ImageView
+                        android:id="@+id/cricketImage"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:scaleType="centerCrop"
-                        android:id="@+id/cricketImage"
-                        android:src="@drawable/cricback"/>
+                        android:src="@drawable/cricback" />
 
                     <ImageView
                         android:layout_width="match_parent"
@@ -725,57 +723,57 @@
 
                 </FrameLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_margin="5dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/mchDesc"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:layout_margin="5dp"
                         android:layout_gravity="center"
-                        android:gravity="center">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textSize="20sp"
-                                android:gravity="center"
-                                android:textColor="@color/background_white"
-                                android:id="@+id/mchDesc"/>
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="20sp" />
 
 
-                            <ImageView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:id="@+id/battingTeamImage" />
+                    <ImageView
+                        android:id="@+id/battingTeamImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:textSize="20sp"
-                                android:layout_gravity="center"
-                                android:textColor="@color/background_white"
-                                android:id="@+id/battingTeamText"/>
+                    <TextView
+                        android:id="@+id/battingTeamText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="20sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:gravity="center"
-                                android:layout_gravity="center"
-                                android:id="@+id/scoreCard"
-                                android:textColor="@color/background_white"
-                                android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/scoreCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="20sp" />
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textSize="16sp"
-                                android:gravity="center"
-                                android:textColor="@color/background_white"
-                                android:id="@+id/mchStatus"/>
+                    <TextView
+                        android:id="@+id/mchStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="16sp" />
                 </LinearLayout>
-
 
 
             </android.support.v7.widget.CardView>

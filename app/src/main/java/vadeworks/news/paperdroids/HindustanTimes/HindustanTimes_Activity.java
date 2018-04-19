@@ -34,7 +34,6 @@ public class HindustanTimes_Activity extends AppCompatActivity {
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,10 +44,10 @@ public class HindustanTimes_Activity extends AppCompatActivity {
         init_navigator();
 
         Utils utils = new Utils(this);
-        utils.onClickers(this,mDrawerLayout, Constants.ht);
+        utils.onClickers(this, mDrawerLayout, Constants.ht);
         utils.fetchCard(getApplicationContext());
 
-        if( !(utils.isConnected(getApplicationContext()))){
+        if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
 

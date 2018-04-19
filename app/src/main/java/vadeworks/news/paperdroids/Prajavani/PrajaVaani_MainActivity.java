@@ -41,13 +41,12 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         init_navigator();
 
         Utils utils = new Utils(this);
-        utils.onClickers(this,mDrawerLayout, Constants.pj);
+        utils.onClickers(this, mDrawerLayout, Constants.pj);
         utils.fetchCard(getApplicationContext());
 
-        if( !(utils.isConnected(getApplicationContext()))){
+        if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
-
 
 
     }

@@ -42,10 +42,10 @@ public class UdayaVaani_MainActivity extends AppCompatActivity {
 
 
         Utils utils = new Utils(this);
-        utils.onClickers(this,mDrawerLayout, Constants.uv);
+        utils.onClickers(this, mDrawerLayout, Constants.uv);
         utils.fetchCard(getApplicationContext());
 
-        if( !(utils.isConnected(getApplicationContext()))){
+        if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
 

@@ -43,10 +43,10 @@ public class Esanje_MainActivity extends AppCompatActivity {
         init_navigator();
 
         Utils utils = new Utils(this);
-        utils.onClickers(this,mDrawerLayout, Constants.es);
+        utils.onClickers(this, mDrawerLayout, Constants.es);
         utils.fetchCard(getApplicationContext());
 
-        if( !(utils.isConnected(getApplicationContext()))){
+        if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
 

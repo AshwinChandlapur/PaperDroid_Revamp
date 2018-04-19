@@ -100,7 +100,7 @@ public class MainApplication extends Application {
                     intent.putExtra("singleHead", singleHead);
                     intent.putExtra("documentid", tag);
                     Log.d("notificationOpened", "document id: " + tag);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 } else if (!(promotionLink.isEmpty())) {
                     Intent i = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(promotionLink));
@@ -108,14 +108,14 @@ public class MainApplication extends Application {
                     startActivity(i);
                 } else if (!(verticalLink.isEmpty())) {
                     Intent intent = new Intent(getApplicationContext(), Vertical_News.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("verticalLink", verticalLink);
                     startActivity(intent);
                 } else if (!(exclusiveId.isEmpty())) {
                     Log.d("Inside ExclusiveID", "TodisplayIntent");
                     Intent intent = new Intent(getApplicationContext(), ExclusiveActivity.class);
                     Log.d("Inside ExclusiveID", "Intent");
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP|Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.putExtra("exclusiveNotif", exclusiveId);
                     startActivity(intent);
                 }
