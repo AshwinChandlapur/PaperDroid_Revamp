@@ -5,8 +5,7 @@
     android:id="@+id/main_activity_DrawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context="vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity">
+    android:fitsSystemWindows="true">
 
     <LinearLayout
         android:layout_width="match_parent"

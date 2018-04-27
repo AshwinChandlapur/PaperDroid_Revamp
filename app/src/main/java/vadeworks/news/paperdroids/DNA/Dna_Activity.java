@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.HindustanTimes;
+package vadeworks.news.paperdroids.DNA;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,8 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import vadeworks.news.paperdroids.Constants;
-import vadeworks.news.paperdroids.HindustanTimes.tabs.ViewPagerAdapter_HT;
+import vadeworks.news.paperdroids.DNA.tabs.ViewPagerAdapter_DNA;
+import vadeworks.news.paperdroids.IndianExpress.tabs.ViewPagerAdapter_IE;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
@@ -20,14 +21,14 @@ import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
-public class HindustanTimes_Activity extends AppCompatActivity {
+public class Dna_Activity extends AppCompatActivity {
 
 
-    private final CharSequence[] Titles = {"Headlines", "India", "Sports", "Business", "World"};
-    private final int Numboftabs = 5;
+    private final CharSequence[] Titles = {"Headlines", "India", "Sports","Business","World","Entertainment"};
+    private final int Numboftabs = 6;
     private Toolbar toolbar;
     private ViewPager pager;
-    private ViewPagerAdapter_HT adapter;
+    private ViewPagerAdapter_DNA adapter;
     private SlidingTabLayout tabs;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
@@ -44,7 +45,7 @@ public class HindustanTimes_Activity extends AppCompatActivity {
         init_navigator();
 
         Utils utils = new Utils(this);
-        utils.onClickers(this, mDrawerLayout, Constants.ht);
+        utils.onClickers(this, mDrawerLayout, Constants.dna);
         utils.fetchCard(getApplicationContext());
 
         if (!(utils.isConnected(getApplicationContext()))) {
@@ -63,7 +64,7 @@ public class HindustanTimes_Activity extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new ViewPagerAdapter_HT(getSupportFragmentManager(), Titles, Numboftabs);
+        adapter = new ViewPagerAdapter_DNA(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
@@ -125,14 +126,14 @@ public class HindustanTimes_Activity extends AppCompatActivity {
 
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
-        getSupportActionBar().setTitle(R.string.toolbar_title_home_ht);
+        getSupportActionBar().setTitle(R.string.toolbar_title_home_dna);
 //        getSupportActionBar().setIcon(getApplicationContext().getResources().getDrawable(R.drawable.an));
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(HindustanTimes_Activity.this, MainScreen_Activity.class);
+            Intent intent = new Intent(Dna_Activity.this, MainScreen_Activity.class);
             startActivity(intent);
         }
         return true;

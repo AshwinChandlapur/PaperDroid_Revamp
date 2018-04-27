@@ -278,6 +278,39 @@
 
                 </FrameLayout>
 
+                <FrameLayout
+                    android:id="@+id/nav_indianexpress"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/ie_logo"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_ie"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/nav_dna"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/dna_logo"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_dna"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
 
                 <include layout="@layout/navigation_drawer_divider" />
 

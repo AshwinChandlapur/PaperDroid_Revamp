@@ -36,7 +36,7 @@ public class Esanje_MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.esanje_mainactivity);
+        setContentView(R.layout.common_activity_layout);
 
 
         init_slider();

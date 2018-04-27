@@ -42,5 +42,15 @@
         <value>true</value>
     </entry>
 
+    <entry>
+        <key>card_view_visibility_ie</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>card_view_visibility_dna</key>
+        <value>true</value>
+    </entry>
+
 
 </defaultsMap><!-- END xml_defaults -->

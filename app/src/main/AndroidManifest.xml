@@ -82,8 +82,10 @@
             android:name="vadeworks.news.paperdroids.Exclusive.YouTube"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor" />
-        <activity android:name="vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy" />
+        <activity android:name="vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activity" />
         <activity android:name="vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity" />
+        <activity android:name="vadeworks.news.paperdroids.DNA.Dna_Activity" />
+        <activity android:name="vadeworks.news.paperdroids.IndianExpress.IndianExpress_Activity" />
         <activity android:name="vadeworks.news.paperdroids.Special_Card"></activity>
     </application>
 

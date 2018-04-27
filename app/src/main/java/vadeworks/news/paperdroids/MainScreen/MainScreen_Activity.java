@@ -44,10 +44,12 @@ import butterknife.ButterKnife;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Cricbuzz;
-import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
+import vadeworks.news.paperdroids.DNA.Dna_Activity;
+import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activity;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
+import vadeworks.news.paperdroids.IndianExpress.IndianExpress_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Special_Card;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -68,6 +70,8 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
+    private static final String CARD_VIEW_VISIBILITY_IE = "card_view_visibility_ie";
+    private static final String CARD_VIEW_VISIBILITY_DNA = "card_view_visibility_dna";
 
 
     private static int match_id;
@@ -104,6 +108,10 @@ public class MainScreen_Activity extends AppCompatActivity {
     CardView deccanherald;
     @BindView(R.id.hindustantimes)
     CardView hindustantimes;
+    @BindView(R.id.indianExpress)
+    CardView indianExpress;
+    @BindView(R.id.dna)
+    CardView dna;
     @BindView(R.id.bottomimage)
     ImageView bottomImage;
     @BindView(R.id.exclusive_background)
@@ -260,7 +268,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             public void onClick(View v) {
                 card_clicked = getResources().getString(R.string.toolbar_title_home_dh);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent i = new Intent(MainScreen_Activity.this, DeccanHerald_Activiy.class);
+                Intent i = new Intent(MainScreen_Activity.this, DeccanHerald_Activity.class);
                 startActivity(i);
             }
         });
@@ -275,14 +283,25 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-//        ipl_parent.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainScreen_Activity.this, Special_Card.class);
-//                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(MainScreen_Activity.this,findViewById(R.id.specialCards),"cardSpecial");
-//                startActivity(intent,optionsCompat.toBundle());
-//            }
-//        });
+        indianExpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_ie);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent i = new Intent(MainScreen_Activity.this, IndianExpress_Activity.class);
+                startActivity(i);
+            }
+        });
+
+        dna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = getResources().getString(R.string.toolbar_title_home_dna);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent i = new Intent(MainScreen_Activity.this, Dna_Activity.class);
+                startActivity(i);
+            }
+        });
 
 
         bottomImage.setOnClickListener(new View.OnClickListener() {
@@ -440,6 +459,8 @@ public class MainScreen_Activity extends AppCompatActivity {
                         displayES();
                         displayDH();
                         displayHT();
+                        displayIE();
+                        displayDNA();
                     }
                 });
     }
@@ -514,6 +535,24 @@ public class MainScreen_Activity extends AppCompatActivity {
             hindustantimes.setVisibility(View.VISIBLE);
         } else {
             hindustantimes.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayIE() {
+
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_IE)) {
+            indianExpress.setVisibility(View.VISIBLE);
+        } else {
+            indianExpress.setVisibility(View.GONE);
+        }
+    }
+
+    private void displayDNA() {
+
+        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_DNA)) {
+            dna.setVisibility(View.VISIBLE);
+        } else {
+            dna.setVisibility(View.GONE);
         }
     }
 

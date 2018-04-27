@@ -1,4 +1,4 @@
-package vadeworks.news.paperdroids.DeccanHerald;
+package vadeworks.news.paperdroids.IndianExpress;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,8 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import vadeworks.news.paperdroids.Constants;
-import vadeworks.news.paperdroids.DeccanHerald.tabs.ViewPagerAdapter_DH;
+import vadeworks.news.paperdroids.HindustanTimes.tabs.ViewPagerAdapter_HT;
+import vadeworks.news.paperdroids.IndianExpress.tabs.ViewPagerAdapter_IE;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
@@ -20,32 +21,31 @@ import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsMiscellaneous;
 import vadeworks.paperdroid.R;
 
-public class DeccanHerald_Activiy extends AppCompatActivity {
+public class IndianExpress_Activity extends AppCompatActivity {
 
-    private final CharSequence[] Titles = {"Headlines", "State", "Sports", "Entertainment", "World"};
+
+    private final CharSequence[] Titles = {"Headlines", "India", "Sports", "Entertainment", "World"};
     private final int Numboftabs = 5;
-    private final Bundle params = new Bundle();
-
     private Toolbar toolbar;
     private ViewPager pager;
-    private ViewPagerAdapter_DH adapter;
+    private ViewPagerAdapter_IE adapter;
     private SlidingTabLayout tabs;
-
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.deccan_herald_activity);
+        setContentView(R.layout.common_activity_layout);
 
 
         init_slider();
         init_navigator();
 
         Utils utils = new Utils(this);
-        utils.onClickers(this, mDrawerLayout, Constants.dh);
+        utils.onClickers(this, mDrawerLayout, Constants.ie);
         utils.fetchCard(getApplicationContext());
 
         if (!(utils.isConnected(getApplicationContext()))) {
@@ -64,7 +64,7 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
 
 
         // Creating The ViewPagerAdapter_AN and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
-        adapter = new ViewPagerAdapter_DH(getSupportFragmentManager(), Titles, Numboftabs);
+        adapter = new ViewPagerAdapter_IE(getSupportFragmentManager(), Titles, Numboftabs);
 
         // Assigning ViewPager View and setting the adapter
         pager = findViewById(R.id.pager);
@@ -126,16 +126,18 @@ public class DeccanHerald_Activiy extends AppCompatActivity {
 
         mScrimInsetsFrameLayout.getLayoutParams().width = Math.min(possibleMinDrawerWidth, maxDrawerWidth);
         // Set the first item as selected for the first time
-        getSupportActionBar().setTitle(R.string.toolbar_title_home_dh);
+        getSupportActionBar().setTitle(R.string.toolbar_title_home_ie);
 //        getSupportActionBar().setIcon(getApplicationContext().getResources().getDrawable(R.drawable.an));
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            Intent intent = new Intent(DeccanHerald_Activiy.this, MainScreen_Activity.class);
+            Intent intent = new Intent(IndianExpress_Activity.this, MainScreen_Activity.class);
             startActivity(intent);
         }
         return true;
     }
+
+
 }

@@ -24,9 +24,11 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
+import vadeworks.news.paperdroids.DNA.Dna_Activity;
+import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activity;
 import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
+import vadeworks.news.paperdroids.IndianExpress.IndianExpress_Activity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -50,10 +52,15 @@ public class Utils {
     private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
+    private static final String CARD_VIEW_VISIBILITY_IE = "card_view_visibility_ie";
+    private static final String CARD_VIEW_VISIBILITY_DNA = "card_view_visibility_dna";
     private final Bundle params = new Bundle();
     public Activity activity;
     FirebaseRemoteConfig mFirebaseRemoteConfig;
-    FrameLayout intent_to_allTerms, intent_to_home, intent_to_deccan, intent_to_hindustan, intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani, intent_to_suvarna, intent_to_esanje, intent_to_asianet;
+    FrameLayout intent_to_allTerms, intent_to_home, intent_to_deccan, intent_to_hindustan,
+            intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani,
+            intent_to_suvarna, intent_to_esanje, intent_to_asianet,intent_to_indianexpress,intent_to_dna;
+
     String card_clicked;
     private FirebaseAnalytics mFirebaseAnalytics;
     private android.support.v7.widget.Toolbar toolbar;
@@ -93,6 +100,8 @@ public class Utils {
                 displayES(mFirebaseRemoteConfig, intent_to_esanje);
                 displayHT(mFirebaseRemoteConfig, intent_to_hindustan);
                 displayDH(mFirebaseRemoteConfig, intent_to_deccan);
+                displayIE(mFirebaseRemoteConfig, intent_to_indianexpress);
+                displayDNA(mFirebaseRemoteConfig, intent_to_dna);
             }
         });
     }
@@ -185,6 +194,29 @@ public class Utils {
             }
         }
     }
+
+    private void displayIE(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_indianexpress) {
+
+        if (intent_to_indianexpress != null) {
+            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_IE)) {
+                intent_to_indianexpress.setVisibility(View.VISIBLE);
+            } else {
+                intent_to_indianexpress.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void displayDNA(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_dna) {
+
+        if (intent_to_dna != null) {
+            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_DNA)) {
+                intent_to_dna.setVisibility(View.VISIBLE);
+            } else {
+                intent_to_dna.setVisibility(View.GONE);
+            }
+        }
+    }
+
 
 
     public boolean isConnected(Context context) {
@@ -366,7 +398,7 @@ public class Utils {
                 if (Constants.dh.equals(tag)) {
                     mDrawerLayout.closeDrawers();
                 } else {
-                    Intent intent = new Intent(context, DeccanHerald_Activiy.class);
+                    Intent intent = new Intent(context, DeccanHerald_Activity.class);
                     context.startActivity(intent);
                 }
             }
@@ -382,6 +414,36 @@ public class Utils {
                     mDrawerLayout.closeDrawers();
                 } else {
                     Intent intent = new Intent(context, HindustanTimes_Activity.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+        intent_to_indianexpress = this.activity.findViewById(R.id.nav_indianexpress);
+        intent_to_indianexpress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_ie);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                if (Constants.ie.equals(tag)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    Intent intent = new Intent(context, IndianExpress_Activity.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+        intent_to_dna = this.activity.findViewById(R.id.nav_dna);
+        intent_to_dna.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_dna);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                if (Constants.dna.equals(tag)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    Intent intent = new Intent(context, Dna_Activity.class);
                     context.startActivity(intent);
                 }
             }

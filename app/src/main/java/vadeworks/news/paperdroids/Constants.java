@@ -26,6 +26,8 @@ public class Constants {
     public static final String es = "es";
     public static final String dh = "dh";
     public static final String ht = "ht";
+    public static final String ie = "ie";
+    public static final String dna = "dna";
     public static final String at = "at";
 
 
@@ -59,6 +61,22 @@ public class Constants {
     public static final String ht_sports = "HT_SPORTS";
     public static final String ht_business = "HT_BUSINESS";
     public static final String ht_world = "HT_WORLD";
+
+    //Indian Express
+    public static final String ie_headlines = "IE_HEADLINES";
+    public static final String ie_india = "IE_INDIA";
+    public static final String ie_sports = "IE_SPORTS";
+    public static final String ie_entertainment = "IE_ENTERTAINMENT";
+    public static final String ie_world = "IE_WORLD";
+
+
+    //DNA
+    public static final String dna_headlines = "DNA_HEADLINES";
+    public static final String dna_india = "DNA_INDIA";
+    public static final String dna_sports = "DNA_SPORTS";
+    public static final String dna_business = "DNA_BUSINESS";
+    public static final String dna_entertainment = "DNA_ENTERTAINMENT";
+    public static final String dna_world = "DNA_WORLD";
 
     //Asianet
     public static final String an_headlines = "AN_HEADLINES";

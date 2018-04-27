@@ -38,7 +38,7 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.vijayakarnataka_activity_main);
+        setContentView(R.layout.common_activity_layout);
 
         init_slider();
         init_navigator();
