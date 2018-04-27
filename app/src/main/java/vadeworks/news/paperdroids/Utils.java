@@ -25,6 +25,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
 import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activiy;
+import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
@@ -230,7 +231,7 @@ public class Utils {
 
     public void onClickers(final Context context, final DrawerLayout mDrawerLayout, final String tag) {
 
-        intent_to_home = (FrameLayout) this.activity.findViewById(R.id.nav_home);
+        intent_to_home = this.activity.findViewById(R.id.nav_home);
         intent_to_home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -247,7 +248,7 @@ public class Utils {
             }
         });
 
-        intent_to_prajavani = (FrameLayout) this.activity.findViewById(R.id.nav_prajavani);
+        intent_to_prajavani = this.activity.findViewById(R.id.nav_prajavani);
         intent_to_prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -262,7 +263,7 @@ public class Utils {
             }
         });
 
-        intent_to_vijayavaani = (FrameLayout) this.activity.findViewById(R.id.nav_vijayavani);
+        intent_to_vijayavaani = this.activity.findViewById(R.id.nav_vijayavani);
         intent_to_vijayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -279,7 +280,7 @@ public class Utils {
         });
 
 
-        intent_to_vijayakarnataka = (FrameLayout) this.activity.findViewById(R.id.nav_vijayakarnataka);
+        intent_to_vijayakarnataka = this.activity.findViewById(R.id.nav_vijayakarnataka);
         intent_to_vijayakarnataka.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -294,7 +295,7 @@ public class Utils {
             }
         });
 
-        intent_to_udayavaani = (FrameLayout) this.activity.findViewById(R.id.nav_udayavaani);
+        intent_to_udayavaani = this.activity.findViewById(R.id.nav_udayavaani);
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -309,7 +310,7 @@ public class Utils {
             }
         });
 
-        intent_to_suvarna = (FrameLayout) this.activity.findViewById(R.id.nav_suvarna);
+        intent_to_suvarna = this.activity.findViewById(R.id.nav_suvarna);
         intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -325,7 +326,7 @@ public class Utils {
         });
 
 
-        intent_to_esanje = (FrameLayout) this.activity.findViewById(R.id.nav_esanje);
+        intent_to_esanje = this.activity.findViewById(R.id.nav_esanje);
         intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -334,12 +335,13 @@ public class Utils {
                 if (Constants.es.equals(tag)) {
                     mDrawerLayout.closeDrawers();
                 } else {
-
+                    Intent intent = new Intent(context, Esanje_MainActivity.class);
+                    context.startActivity(intent);
                 }
             }
         });
 
-        intent_to_allTerms = (FrameLayout) this.activity.findViewById(R.id.nav_about);
+        intent_to_allTerms = this.activity.findViewById(R.id.nav_about);
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -355,7 +357,7 @@ public class Utils {
         });
 
 
-        intent_to_deccan = (FrameLayout) this.activity.findViewById(R.id.nav_deccan);
+        intent_to_deccan = this.activity.findViewById(R.id.nav_deccan);
         intent_to_deccan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -370,7 +372,7 @@ public class Utils {
             }
         });
 
-        intent_to_hindustan = (FrameLayout) this.activity.findViewById(R.id.nav_hindustantimes);
+        intent_to_hindustan = this.activity.findViewById(R.id.nav_hindustantimes);
         intent_to_hindustan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

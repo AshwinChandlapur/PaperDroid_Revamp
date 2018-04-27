@@ -38,7 +38,7 @@ public class YouTube extends YouTubeBaseActivity implements
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.youtube_activity);
-        youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
+        youTubeView = findViewById(R.id.youtube_view);
         backgroundImage = findViewById(R.id.backgroundimage);
         cardView_close = findViewById(R.id.card_view_close);
         videolink = getIntent().getStringExtra("youtubeLink");

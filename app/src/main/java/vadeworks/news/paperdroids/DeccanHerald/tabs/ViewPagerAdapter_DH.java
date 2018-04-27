@@ -1,7 +1,7 @@
 package vadeworks.news.paperdroids.DeccanHerald.tabs;
 
-/**
- * Created by ashwinchandlapur on 20/03/18.
+/*
+  Created by ashwinchandlapur on 20/03/18.
  */
 
 

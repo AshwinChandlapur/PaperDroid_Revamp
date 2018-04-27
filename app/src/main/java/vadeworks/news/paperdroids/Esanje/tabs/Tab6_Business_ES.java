@@ -36,7 +36,6 @@ public class Tab6_Business_ES extends Fragment {
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
         firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
-        ;
         return view;
     }
 

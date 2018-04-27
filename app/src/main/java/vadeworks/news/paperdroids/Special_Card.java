@@ -165,7 +165,7 @@ public class Special_Card extends AppCompatActivity {
                     String data = gson.toJson(score);
 
                     JSONObject _data = new JSONObject(data);
-                    Log.d("data", data.toString());
+                    Log.d("data", data);
 
                     JSONObject matchinfo = _data.getJSONObject("matchinfo");
                     Log.d("matchinfo", matchinfo.toString());

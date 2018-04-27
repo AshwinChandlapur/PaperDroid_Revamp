@@ -70,7 +70,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
 
 
-    static int match_id;
+    private static int match_id;
     private final Bundle params = new Bundle();
     @BindView(R.id.specialCards)
     CardView ipl_parent;
@@ -155,7 +155,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         FrameLayout locklayout = findViewById(R.id.locklayout);
         TextView locktxt = findViewById(R.id.locktext);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
+        Date firstlaunch = new Date(prefs.getLong("firstlaunch", (System.currentTimeMillis() / 1000L)));
         Date currentDate = new Date(System.currentTimeMillis() / 1000L);
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
@@ -526,7 +526,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         FrameLayout locklayout = findViewById(R.id.locklayout);
         TextView locktxt = findViewById(R.id.locktext);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Date firstlaunch = new Date((long) prefs.getLong("firstlaunch", ((long) System.currentTimeMillis() / 1000L)));
+        Date firstlaunch = new Date(prefs.getLong("firstlaunch", (System.currentTimeMillis() / 1000L)));
         Date currentDate = new Date(System.currentTimeMillis() / 1000L);
         int diffInDays = (int) ((currentDate.getTime() - firstlaunch.getTime()) / (60 * 60 * 24));
         Log.d("difference :", "" + diffInDays + ": " + currentDate.getTime() + ": " + firstlaunch.getTime());
@@ -600,7 +600,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                             String data = gson.toJson(score);
 
                             JSONObject _data = new JSONObject(data);
-                            Log.d("data", data.toString());
+                            Log.d("data", data);
 
                             JSONObject matchinfo = _data.getJSONObject("matchinfo");
                             Log.d("matchinfo", matchinfo.toString());

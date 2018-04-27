@@ -50,7 +50,7 @@ public class FirebaseNews {
         mContext = context;
         mCategory = category;
 
-        firebaseRecyclerview = (RecyclerView) view.findViewById(R.id.firebaseRecyclerview);
+        firebaseRecyclerview = view.findViewById(R.id.firebaseRecyclerview);
         firebaseRecyclerview.setHasFixedSize(true);
 
         Log.d("Starting Fetch", "Starting Fetch");

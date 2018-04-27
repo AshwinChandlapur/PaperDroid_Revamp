@@ -69,7 +69,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         JZVideoPlayer.releaseAllVideos();
         ProxyFactory proxyFactory = new ProxyFactory();
-        HttpProxyCacheServer proxy = proxyFactory.getProxy(mContext);
+        HttpProxyCacheServer proxy = ProxyFactory.getProxy(mContext);
         View itemView;
 
 
@@ -152,7 +152,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     }
 
     private void verticalNewsDisplay_vid(final Articles singleArticle, View itemView) {
-        JZVideoPlayerStandard jzVideoPlayerStandard = (JZVideoPlayerStandard) itemView.findViewById(R.id.videoplayer);
+        JZVideoPlayerStandard jzVideoPlayerStandard = itemView.findViewById(R.id.videoplayer);
         jzVideoPlayerStandard.setUp(proxyUrl
                 , JZVideoPlayerStandard.SCREEN_WINDOW_NORMAL, singleArticle.head);
         headline = itemView.findViewById(R.id.headline);

@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
@@ -39,6 +40,7 @@ import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.Date;
 
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;

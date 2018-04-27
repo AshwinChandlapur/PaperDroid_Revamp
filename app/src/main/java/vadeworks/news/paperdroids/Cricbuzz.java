@@ -23,7 +23,7 @@ public class Cricbuzz {
     static Document doc;
     final String url = "http://synd.cricbuzz.com/j2me/1.0/livematches.xml";
 
-    public Document getxml(final String url) throws IOException {
+    public Document getxml(final String url) {
         try {
             new fetch_cricbuzz().execute(url).get();
         } catch (InterruptedException e) {
@@ -46,7 +46,7 @@ public class Cricbuzz {
         return map;
     }
 
-    public Vector matches() throws IOException {
+    public Vector matches() {
         Vector matches = new Vector();
         try {
             Document doc = getxml(url);
@@ -60,7 +60,7 @@ public class Cricbuzz {
         }
     }
 
-    public Map<String, Map> livescore(String mid) throws IOException {
+    public Map<String, Map> livescore(String mid) {
         Map<String, Map> score = new HashMap<String, Map>();
         try {
             Document doc = getxml(url);
@@ -152,7 +152,7 @@ public class Cricbuzz {
 
     }
 
-    public Map<String, Map> commentary(String mid) throws IOException {
+    public Map<String, Map> commentary(String mid) {
         Map<String, Map> score = new HashMap<String, Map>();
         try {
             Document doc = getxml(url);

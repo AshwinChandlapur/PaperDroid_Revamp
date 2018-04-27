@@ -32,8 +32,8 @@ import vadeworks.paperdroid.R;
 public class ExclusiveActivity extends AppCompatActivity {
 
     private final Bundle params = new Bundle();
-    FirebaseFirestore firestoreNews;
-    Query first;
+    private FirebaseFirestore firestoreNews;
+    private Query first;
     private ArrayList<DocIdRetrive> articlesList = new ArrayList<>();
     private String notifId, head, imgurl, content;
     private DocIdRetrive todisplay;
@@ -87,7 +87,7 @@ public class ExclusiveActivity extends AppCompatActivity {
 
                                     articlesList.add(new DocIdRetrive(articles.docid, articles.type, articles.head, articles.content,
                                             articles.imgurl, articles.videourl, articles.audiourl,
-                                            (int) articles.articlever, (long) articles.timestamp));
+                                            articles.articlever, articles.timestamp));
                                 }
                             }
 //                            Collections.reverse(articlesList);
