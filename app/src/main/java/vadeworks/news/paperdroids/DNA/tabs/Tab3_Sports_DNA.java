@@ -18,7 +18,7 @@ import vadeworks.paperdroid.R;
  */
 public class Tab3_Sports_DNA extends Fragment {
 
-    private final String tag = Constants.dna_india;//TODO:Should Change Accordingly
+    private final String tag = Constants.dna_sports;//TODO:Should Change Accordingly
     private View view;
     private Context context;
 
