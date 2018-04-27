@@ -561,7 +561,7 @@
                             android:layout_height="84dp"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            android:src="@drawable/logo_with_background"
+                            android:src="@drawable/ie_new"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -601,7 +601,7 @@
                             android:layout_gravity="center"
                             android:background="@color/background_white"
                             android:scaleType="fitCenter"
-                            android:src="@drawable/logo_with_background"
+                            android:src="@drawable/dna_new"
                             tools:ignore="ContentDescription" />
 
                         <TextView

@@ -11,7 +11,6 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import vadeworks.news.paperdroids.Constants;
-import vadeworks.news.paperdroids.HindustanTimes.tabs.ViewPagerAdapter_HT;
 import vadeworks.news.paperdroids.IndianExpress.tabs.ViewPagerAdapter_IE;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Utils;

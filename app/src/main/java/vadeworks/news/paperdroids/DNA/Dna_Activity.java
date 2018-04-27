@@ -12,7 +12,6 @@ import android.view.View;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.DNA.tabs.ViewPagerAdapter_DNA;
-import vadeworks.news.paperdroids.IndianExpress.tabs.ViewPagerAdapter_IE;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
