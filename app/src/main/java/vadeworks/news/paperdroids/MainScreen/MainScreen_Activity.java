@@ -193,15 +193,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             Log.d("shared pref", "Feature unlocked");
         }
 
-//        String manufacturer = "xiaomi";
-//        if (manufacturer.equalsIgnoreCase(android.os.Build.MANUFACTURER)) {
-//            //this will open auto start screen where user can enable permission for your app
-//            Intent intent1 = new Intent();
-//            intent1.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
-//            startActivity(intent1);
-//        }
-
-
         prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -319,10 +310,9 @@ public class MainScreen_Activity extends AppCompatActivity {
             }, 2500);
 
 
-
             AppRate.with(this)
                     .setInstallDays(0) // default 10, 0 means install day.
-                    .setLaunchTimes(3) // default 10
+                    .setLaunchTimes(10) // default 10
                     .setRemindInterval(2) // default 1
                     .setShowLaterButton(true) // default true
                     .setShowNeverButton(false)

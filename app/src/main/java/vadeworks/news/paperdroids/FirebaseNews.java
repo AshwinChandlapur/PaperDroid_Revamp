@@ -1,6 +1,10 @@
 package vadeworks.news.paperdroids;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.support.annotation.NonNull;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.DividerItemDecoration;
@@ -20,6 +24,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import vadeworks.paperdroid.R;
 
@@ -52,6 +57,10 @@ public class FirebaseNews {
 
         firebaseRecyclerview = view.findViewById(R.id.firebaseRecyclerview);
         firebaseRecyclerview.setHasFixedSize(true);
+
+
+
+
 
         Log.d("Starting Fetch", "Starting Fetch");
         firestoreNews.collection(mCategory)
