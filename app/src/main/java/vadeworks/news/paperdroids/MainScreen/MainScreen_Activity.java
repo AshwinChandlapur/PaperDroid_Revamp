@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -26,7 +27,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.gson.Gson;
@@ -133,7 +136,8 @@ public class MainScreen_Activity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseRemoteConfig mFirebaseRemoteConfig;
     private String carat22, carat24, petrol, diesel;
-    private int result;
+    private String result;
+    private String aqi_status;
     private String card_clicked;
     private View parentLayout;
     private int click = 0;
@@ -149,6 +153,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
 
+        firestoreNews = FirebaseFirestore.getInstance();
 
         Picasso.with(this).load(R.drawable.kannadas).placeholder(R.drawable.kannadas).error(R.drawable.kannadas).into(exclusive_background_image);
 
@@ -193,6 +198,9 @@ public class MainScreen_Activity extends AppCompatActivity {
             Log.d("shared pref", "Feature unlocked");
         }
 
+
+
+     //OnClick Listeners of All Papers
         prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -285,21 +293,13 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
-        try {
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d("gold thread", "run: thread for gold");
-                    getRates();
-                }
-            }).start();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
+
+        //Check for Internet Connectivity and Intitialize views for Cricket Score, Rates and App Rating
 
         Utils utils = new Utils(this);
         if (utils.isConnected(getApplicationContext())) {
-
+            getRates();
             initializeNewViews();
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -336,83 +336,69 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     public void getRates() {
 
-        String goldratesUrl = "http://www.sify.com/finance/gold_rates/";
-        org.jsoup.nodes.Document goldDoc;
-        Elements goldElem24, goldElem22;
-
-        try {
-            //For Gold Rates
-            goldDoc = Jsoup.connect(goldratesUrl).get();
-
-            goldElem22 = goldDoc.getElementsByTag("tbody").select("tr:eq(1)").select("td:eq(7)");
-            carat22 = "22ct: ₹" + goldElem22.text();
-
-            goldElem24 = goldDoc.getElementsByTag("tbody").select("tr:eq(2)").select("td:eq(6)");
-            carat24 = "24ct: ₹" + goldElem24.text();
-            Log.d("rates are", "gold rates 24carrot   " + carat24);
-            Log.d("rates are", "gold rates 22carrot   " + carat22);
-        } catch (Exception e) {
-            carat22 = "- -";
-            carat24 = "- -";
-        }
-
-        try {
-            // for AQI
-            String aqiUrl = "http://aqicn.org/city/india/bangalore/city-railway-station/";
-
-            org.jsoup.nodes.Document aqiDoc = Jsoup.connect(aqiUrl).get();
-            Elements aqiElem = aqiDoc.select("td.aqiwgt-table-aqicell");
-
-            result = 0;
-            try {
-                result = Integer.parseInt(aqiElem.text());
-            } catch (NumberFormatException e) {
-                result = 99;
-            }
-
-        } catch (Exception e) {
-            result = 0;
-
-        }
-
-        try { //for petrol diesel
-            String oilUrl = "http://www.petroldieselprice.com/Karnataka/petrol-diesel-kerosene-price-in-Bengaluru";
-            org.jsoup.nodes.Document oilDoc = Jsoup.connect(oilUrl).get();
-            Elements oilElem = oilDoc.select("tr.cart-subtotal");
-
-            petrol = oilElem.first().children().get(2).text();
-            diesel = oilElem.first().children().get(4).text();
-            petrol = "P: " + petrol.replace(" Litre", "L");
-            diesel = "D: " + diesel.replace(" Litre", "L");
-
-        } catch (Exception e) {
-            petrol = "- -";
-            diesel = "- -";
-        }
-
-
-        runOnUiThread(new Runnable() {
+        final DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
+        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
             @Override
-            public void run() {
-                gold22_textview.setText(carat22);
-                gold24_textview.setText(carat24);
-                petrol_textview.setText(petrol);
-                diesel_textview.setText(diesel);
-
-                if (result != 0) {
-                    if (result <= 50) {
-                        airNo_textview.setText(result + " AQI");
-                        airQuality_textview.setText("Healthy");
-                    } else if (result > 50 && result <= 100) {
-                        airNo_textview.setText(result + " AQI");
-                        airQuality_textview.setText("Good");
-                    } else {
-                        airNo_textview.setText(result + " AQI");
-                        airQuality_textview.setText("Unhealthy");
-                    }
+            public void onEvent(@Nullable DocumentSnapshot snapshot,
+                                @Nullable FirebaseFirestoreException e) {
+                if (e != null) {
+                    Log.w("Snapshot", "Listen failed.", e);
+                    return;
                 }
+
+                if (snapshot != null && snapshot.exists()) {
+                    Log.d("Snapshot", "Current data: " + snapshot.getData());
+                            snapshot.getData();
+                        carat22 = snapshot.getData().get("gold_22").toString();
+                        carat24 = snapshot.getData().get("gold_24").toString();
+                        result = snapshot.getData().get("aqi").toString();
+                        aqi_status = snapshot.getData().get("aqi_status").toString();
+                        petrol = snapshot.getData().get("petrol").toString();
+                        diesel = snapshot.getData().get("diesel").toString();
+
+                        gold22_textview.setText(carat22);
+                        gold24_textview.setText(carat24);
+                        petrol_textview.setText(petrol);
+                        diesel_textview.setText(diesel);
+                        airNo_textview.setText(result);
+                        airQuality_textview.setText(aqi_status);
+                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + snapshot.getData());
             }
+        }
         });
+
+
+
+//        DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
+//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//                    if (document != null && document.exists()) {
+//                        carat22 = document.get("gold_22").toString();
+//                        carat24 = document.get("gold_24").toString();
+//                        result = document.get("aqi").toString();
+//                        aqi_status = document.get("aqi_status").toString();
+//                        petrol = document.get("petrol").toString();
+//                        diesel = document.get("diesel").toString();
+//
+//
+//                        gold22_textview.setText(carat22);
+//                        gold24_textview.setText(carat24);
+//                        petrol_textview.setText(petrol);
+//                        diesel_textview.setText(diesel);
+//                        airNo_textview.setText(result);
+//                        airQuality_textview.setText(aqi_status);
+//                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + document.getData());
+//                    } else {
+//                        Log.d("DocumentSnapshot", "No such document");
+//                    }
+//                } else {
+//                    Log.d("DocumentSnapshot", "get failed with ", task.getException());
+//                }
+//            }
+//        });
 
     }
 
@@ -570,7 +556,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     private void initializeNewViews() {
         Log.d("Test", "InitializeNewViews");
-        firestoreNews = FirebaseFirestore.getInstance();
+
 
         DocumentReference docRef = firestoreNews.collection("ipl").document("match_ids");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -591,12 +577,8 @@ public class MainScreen_Activity extends AppCompatActivity {
                 }
             }
         });
-
 //        ipl_parent.setVisibility(View.GONE);
         Log.d("Test", "InitializeNewViews Done");
-
-
-
     }
 
     private void refreshScores(boolean auto_refresh_) {

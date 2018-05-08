@@ -68,8 +68,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
         JZVideoPlayer.releaseAllVideos();
-        ProxyFactory proxyFactory = new ProxyFactory();
-        HttpProxyCacheServer proxy = ProxyFactory.getProxy(mContext);
+
         View itemView;
 
 
@@ -88,6 +87,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
                 break;
 
             case Constants.type_vid:
+                HttpProxyCacheServer proxy = ProxyFactory.getProxy(mContext);
                 itemView = mLayoutInflater.inflate(R.layout.exclusive_article_display_vid, container, false);
                 fullArticle = new Articles(articleList.get(position).head, articleList.get(position).content, articleList.get(position).imgurl, articleList.get(position).videourl);
                 proxyUrl = proxy.getProxyUrl(articleList.get(position).videourl);
