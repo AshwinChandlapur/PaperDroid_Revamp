@@ -13,7 +13,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -317,9 +319,10 @@ public class MainScreen_Activity extends AppCompatActivity {
             }, 2500);
 
 
+
             AppRate.with(this)
                     .setInstallDays(0) // default 10, 0 means install day.
-                    .setLaunchTimes(4) // default 10
+                    .setLaunchTimes(3) // default 10
                     .setRemindInterval(2) // default 1
                     .setShowLaterButton(true) // default true
                     .setShowNeverButton(false)
@@ -328,7 +331,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                     .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
                         @Override
                         public void onClickButton(int which) {
-                            Log.d("OKOK"+MainScreen_Activity.class.getName(), Integer.toString(which));
+                            Log.d(MainScreen_Activity.class.getName(), Integer.toString(which));
 
                         }
                     })
@@ -338,8 +341,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             AppRate.showRateDialogIfMeetsConditions(this);
 
         }
-
-
     }
 
 
