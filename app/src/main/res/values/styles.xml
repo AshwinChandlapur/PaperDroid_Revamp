@@ -7,6 +7,16 @@
         <item name="colorPrimaryDark">@color/ColorPrimaryDark</item>
         <item name="android:windowActivityTransitions">true</item>
 
+        <!-- Assign dialog style here. -->
+        <item name="alertDialogTheme">@style/MyAlertDialogStyle</item>
+        <item name="alertDialogStyle">@style/MyAlertDialogStyle</item>
+
+        <!-- Assign custom text styles for title, description, comment -->
+        <!--<item name="appRatingDialogTitleStyle">@style/MyDialogTitleStyle</item>-->
+        <!--<item name="appRatingDialogDescriptionStyle">@style/MyDialogDescriptionStyle</item>-->
+        <!--<item name="appRatingDialogNoteDescriptionStyle">@style/MyDialogNoteDescriptionStyle</item>-->
+        <!--<item name="appRatingDialogCommentStyle">@style/MyDialogCommentStyle</item>-->
+
     </style>
 
     <!-- ScrimInsetLayout -->
@@ -78,5 +88,26 @@
         <item name="android:layout_height">1dp</item>
         <item name="android:background">@color/background_white</item>
     </style>
+
+
+
+    <!-- Dialog -->
+    <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/background_white</item>
+        <item name="buttonBarPositiveButtonStyle">@style/MyAlertDialogButtonStyle</item>
+        <item name="buttonBarNegativeButtonStyle">@style/MyAlertDialogButtonStyle</item>
+        <item name="buttonBarNeutralButtonStyle">@style/MyAlertDialogButtonStyle</item>
+    </style>
+
+    <style name="MyAlertDialogButtonStyle" parent="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog">
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">16dp</item>
+    </style>
+
+    <style name="MyDialogFadeAnimation">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
 
 </resources>

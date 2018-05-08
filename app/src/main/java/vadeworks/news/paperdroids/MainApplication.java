@@ -1,6 +1,7 @@
 package vadeworks.news.paperdroids;
 
 import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -13,6 +14,8 @@ import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 import org.json.JSONObject;
 
@@ -32,6 +35,13 @@ public class MainApplication extends Application {
     private Articles todisplay;
     private String exclusiveId;
 
+
+    private RefWatcher refWatcher;
+    public static RefWatcher getRefWatcher(Context context) {
+        MainApplication application = (MainApplication) context.getApplicationContext();
+        return application.refWatcher;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -44,7 +54,7 @@ public class MainApplication extends Application {
                 .init();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
-
+        refWatcher = LeakCanary.install(this);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.getBoolean("firstTime", true)) {

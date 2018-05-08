@@ -23,10 +23,8 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
 import vadeworks.news.paperdroids.DNA.Dna_Activity;
 import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activity;
-import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.IndianExpress.IndianExpress_Activity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
@@ -48,8 +46,6 @@ public class Utils {
     private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
     private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
     private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
-    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
-    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private static final String CARD_VIEW_VISIBILITY_IE = "card_view_visibility_ie";
@@ -96,8 +92,7 @@ public class Utils {
                 displayVV(mFirebaseRemoteConfig, intent_to_vijayavaani);
                 displayVK(mFirebaseRemoteConfig, intent_to_vijayakarnataka);
                 displayUV(mFirebaseRemoteConfig, intent_to_udayavaani);
-                displayAN(mFirebaseRemoteConfig, intent_to_asianet);
-                displayES(mFirebaseRemoteConfig, intent_to_esanje);
+
                 displayHT(mFirebaseRemoteConfig, intent_to_hindustan);
                 displayDH(mFirebaseRemoteConfig, intent_to_deccan);
                 displayIE(mFirebaseRemoteConfig, intent_to_indianexpress);
@@ -147,28 +142,6 @@ public class Utils {
                 intent_to_udayavaani.setVisibility(View.VISIBLE);
             } else {
                 intent_to_udayavaani.setVisibility(View.GONE);
-            }
-        }
-    }
-
-    private void displayAN(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_suvarna) {
-
-        if (intent_to_suvarna != null) {
-            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)) {
-                intent_to_suvarna.setVisibility(View.VISIBLE);
-            } else {
-                intent_to_suvarna.setVisibility(View.GONE);
-            }
-        }
-    }
-
-    private void displayES(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_esanje) {
-
-        if (intent_to_esanje != null) {
-            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
-                intent_to_esanje.setVisibility(View.VISIBLE);
-            } else {
-                intent_to_esanje.setVisibility(View.GONE);
             }
         }
     }
@@ -342,36 +315,7 @@ public class Utils {
             }
         });
 
-        intent_to_suvarna = this.activity.findViewById(R.id.nav_suvarna);
-        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = context.getResources().getString(R.string.toolbar_title_home_an_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                if (Constants.an.equals(tag)) {
-                    mDrawerLayout.closeDrawers();
-                } else {
-                    Intent intent = new Intent(context, AsiaNet_MainActivity.class);
-                    context.startActivity(intent);
-                }
-            }
-        });
 
-
-        intent_to_esanje = this.activity.findViewById(R.id.nav_esanje);
-        intent_to_esanje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                card_clicked = context.getResources().getString(R.string.toolbar_title_home_es_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                if (Constants.es.equals(tag)) {
-                    mDrawerLayout.closeDrawers();
-                } else {
-                    Intent intent = new Intent(context, Esanje_MainActivity.class);
-                    context.startActivity(intent);
-                }
-            }
-        });
 
         intent_to_allTerms = this.activity.findViewById(R.id.nav_about);
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {

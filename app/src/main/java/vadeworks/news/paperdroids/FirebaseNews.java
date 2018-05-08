@@ -64,7 +64,7 @@ public class FirebaseNews {
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
                                 Log.d("AllContent", "all" + documentSnapshot.get("content"));
-//                                News news = documentSnapshot.toObject(News.class);
+//                              News news = documentSnapshot.toObject(News.class);
 
                                 News news1 = new News();
                                 news1.head = (documentSnapshot.get("head") != null) ? documentSnapshot.get("head").toString() : "";
@@ -94,5 +94,4 @@ public class FirebaseNews {
                     }
                 });
     }
-
 }

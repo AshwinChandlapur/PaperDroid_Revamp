@@ -14,8 +14,6 @@ import android.widget.FrameLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import vadeworks.news.paperdroids.All_Terms.tabs.ViewPagerAdapter_AT;
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
-import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
@@ -97,28 +95,6 @@ public class All_Terms_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_suvarna = findViewById(R.id.nav_suvarna);
-        intent_to_suvarna.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent intent = new Intent(All_Terms_MainActivity.this, AsiaNet_MainActivity.class);
-                startActivity(intent);
-//                Toast.makeText(getApplicationContext(),"You are on the same Page",Toast.LENGTH_LONG).show();
-//                mDrawerLayout.closeDrawers();
-//                Log.d("Clicked","Cliked in same category");
-            }
-        });
-
-
-        FrameLayout intent_to_esanje = findViewById(R.id.nav_esanje);
-        intent_to_esanje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(All_Terms_MainActivity.this, Esanje_MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
 
         FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);

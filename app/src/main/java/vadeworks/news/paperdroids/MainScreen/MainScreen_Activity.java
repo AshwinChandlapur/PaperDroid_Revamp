@@ -2,6 +2,7 @@ package vadeworks.news.paperdroids.MainScreen;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -36,17 +38,19 @@ import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity;
+import hotchemi.android.rate.AppRate;
+import hotchemi.android.rate.OnClickButtonListener;
+
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Cricbuzz;
 import vadeworks.news.paperdroids.DNA.Dna_Activity;
 import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activity;
-import vadeworks.news.paperdroids.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.IndianExpress.IndianExpress_Activity;
@@ -66,8 +70,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
     private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
     private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
-    private static final String CARD_VIEW_VISIBILITY_AN = "card_view_visibility_an";
-    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
+
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_IE = "card_view_visibility_ie";
@@ -100,10 +103,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     CardView vijayakarnataka;
     @BindView(R.id.udayavani)
     CardView udayavani;
-    @BindView(R.id.suvarna)
-    CardView suvarna;
-    @BindView(R.id.esanje)
-    CardView esanje;
     @BindView(R.id.deccanherald)
     CardView deccanherald;
     @BindView(R.id.hindustantimes)
@@ -242,27 +241,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         });
 
 
-        suvarna.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_an_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent i = new Intent(MainScreen_Activity.this, AsiaNet_MainActivity.class);
-                startActivity(i);
-            }
-        });
-
-
-        esanje.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_es_en);
-                mFirebaseAnalytics.logEvent(card_clicked, params);
-                Intent i = new Intent(MainScreen_Activity.this, Esanje_MainActivity.class);
-                startActivity(i);
-            }
-        });
-
         deccanherald.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -337,6 +315,28 @@ public class MainScreen_Activity extends AppCompatActivity {
                     refreshScores(true);
                 }
             }, 2500);
+
+
+            AppRate.with(this)
+                    .setInstallDays(0) // default 10, 0 means install day.
+                    .setLaunchTimes(4) // default 10
+                    .setRemindInterval(2) // default 1
+                    .setShowLaterButton(true) // default true
+                    .setShowNeverButton(false)
+                    .setCancelable(false)
+                    .setDebug(false) // default false
+                    .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
+                        @Override
+                        public void onClickButton(int which) {
+                            Log.d("OKOK"+MainScreen_Activity.class.getName(), Integer.toString(which));
+
+                        }
+                    })
+                    .monitor();
+
+            // Show a dialog if meets conditions
+            AppRate.showRateDialogIfMeetsConditions(this);
+
         }
 
 
@@ -455,8 +455,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                         displayVV();
                         displayVK();
                         displayUV();
-                        displayAN();
-                        displayES();
+
                         displayDH();
                         displayHT();
                         displayIE();
@@ -502,23 +501,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         }
     }
 
-    private void displayAN() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AN)) {
-            suvarna.setVisibility(View.VISIBLE);
-        } else {
-            suvarna.setVisibility(View.GONE);
-        }
-    }
-
-    private void displayES() {
-
-        if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
-            esanje.setVisibility(View.VISIBLE);
-        } else {
-            esanje.setVisibility(View.GONE);
-        }
-    }
 
     private void displayDH() {
 
@@ -621,6 +603,9 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 //        ipl_parent.setVisibility(View.GONE);
         Log.d("Test", "InitializeNewViews Done");
+
+
+
     }
 
     private void refreshScores(boolean auto_refresh_) {
@@ -772,6 +757,7 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         }
     }
+
 
 }
 
