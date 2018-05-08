@@ -336,53 +336,25 @@ public class MainScreen_Activity extends AppCompatActivity {
 
     public void getRates() {
 
-        final DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
-        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-            @Override
-            public void onEvent(@Nullable DocumentSnapshot snapshot,
-                                @Nullable FirebaseFirestoreException e) {
-                if (e != null) {
-                    Log.w("Snapshot", "Listen failed.", e);
-                    return;
-                }
-
-                if (snapshot != null && snapshot.exists()) {
-                    Log.d("Snapshot", "Current data: " + snapshot.getData());
-                            snapshot.getData();
-                        carat22 = snapshot.getData().get("gold_22").toString();
-                        carat24 = snapshot.getData().get("gold_24").toString();
-                        result = snapshot.getData().get("aqi").toString();
-                        aqi_status = snapshot.getData().get("aqi_status").toString();
-                        petrol = snapshot.getData().get("petrol").toString();
-                        diesel = snapshot.getData().get("diesel").toString();
-
-                        gold22_textview.setText(carat22);
-                        gold24_textview.setText(carat24);
-                        petrol_textview.setText(petrol);
-                        diesel_textview.setText(diesel);
-                        airNo_textview.setText(result);
-                        airQuality_textview.setText(aqi_status);
-                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + snapshot.getData());
-            }
-        }
-        });
-
-
-
-//        DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
-//        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+//        final DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
+//        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
 //            @Override
-//            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                if (task.isSuccessful()) {
-//                    DocumentSnapshot document = task.getResult();
-//                    if (document != null && document.exists()) {
-//                        carat22 = document.get("gold_22").toString();
-//                        carat24 = document.get("gold_24").toString();
-//                        result = document.get("aqi").toString();
-//                        aqi_status = document.get("aqi_status").toString();
-//                        petrol = document.get("petrol").toString();
-//                        diesel = document.get("diesel").toString();
+//            public void onEvent(@Nullable DocumentSnapshot snapshot,
+//                                @Nullable FirebaseFirestoreException e) {
+//                if (e != null) {
+//                    Log.w("Snapshot", "Listen failed.", e);
+//                    return;
+//                }
 //
+//                if (snapshot != null && snapshot.exists()) {
+//                    Log.d("Snapshot", "Current data: " + snapshot.getData());
+//                            snapshot.getData();
+//                        carat22 = snapshot.getData().get("gold_22").toString();
+//                        carat24 = snapshot.getData().get("gold_24").toString();
+//                        result = snapshot.getData().get("aqi").toString();
+//                        aqi_status = snapshot.getData().get("aqi_status").toString();
+//                        petrol = snapshot.getData().get("petrol").toString();
+//                        diesel = snapshot.getData().get("diesel").toString();
 //
 //                        gold22_textview.setText(carat22);
 //                        gold24_textview.setText(carat24);
@@ -390,15 +362,43 @@ public class MainScreen_Activity extends AppCompatActivity {
 //                        diesel_textview.setText(diesel);
 //                        airNo_textview.setText(result);
 //                        airQuality_textview.setText(aqi_status);
-//                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + document.getData());
-//                    } else {
-//                        Log.d("DocumentSnapshot", "No such document");
-//                    }
-//                } else {
-//                    Log.d("DocumentSnapshot", "get failed with ", task.getException());
-//                }
+//                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + snapshot.getData());
 //            }
+//        }
 //        });
+
+
+
+        DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
+        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        carat22 = document.get("gold_22").toString();
+                        carat24 = document.get("gold_24").toString();
+                        result = document.get("aqi").toString();
+                        aqi_status = document.get("aqi_status").toString();
+                        petrol = document.get("petrol").toString();
+                        diesel = document.get("diesel").toString();
+
+
+                        gold22_textview.setText(carat22);
+                        gold24_textview.setText(carat24);
+                        petrol_textview.setText(petrol);
+                        diesel_textview.setText(diesel);
+                        airNo_textview.setText(result);
+                        airQuality_textview.setText(aqi_status);
+                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + document.getData());
+                    } else {
+                        Log.d("DocumentSnapshot", "No such document");
+                    }
+                } else {
+                    Log.d("DocumentSnapshot", "get failed with ", task.getException());
+                }
+            }
+        });
 
     }
 
