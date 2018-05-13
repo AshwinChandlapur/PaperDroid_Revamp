@@ -2,9 +2,9 @@
 <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mainscreen_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/mainscreen_root"
     android:background="@color/background_white"
     android:clickable="true"
     tools:context="vadeworks.news.paperdroids.MainScreen.MainScreen_Activity">
@@ -90,21 +90,356 @@
             android:orientation="vertical">
 
 
+
             <android.support.v7.widget.CardView
-                android:id="@+id/card_view"
+                android:id="@+id/specialCards"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="5dp"
-                android:background="@color/background_white"
-                android:visibility="gone">
+                android:transitionName="cardSpecial"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/background_white"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="2dp">
 
-                <TextView
-                    android:id="@+id/welcomeTextView"
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/cricketImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/cricback" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:alpha="0.6"
+                        android:background="@color/text_black_100" />
+
+
+                    <com.udevel.widgetlab.TypingIndicatorView
+                        android:id="@+id/loader"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:padding="4dp"
+                        app:animateFrequency="300"
+                        app:animationOrder="lastOneFirst"
+                        app:backgroundColor="@android:color/transparent"
+                        app:backgroundType="rounded"
+                        app:dotAnimationDuration="600"
+                        app:dotAnimationType="Sliding"
+                        app:dotColor="@color/background_white"
+                        app:dotCount="6"
+                        app:dotHorizontalSpacing="4dp"
+                        app:dotMaxCompressRatio="70%"
+                        app:dotSecondColor="#6ba4a4a4"
+                        app:dotSize="10dp"
+                        app:showBackground="true" />
+
+                </FrameLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_margin="5dp"
-                    android:gravity="center" />
+                    android:gravity="center"
+                    android:orientation="vertical">
 
+                    <TextView
+                        android:id="@+id/mchDesc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="20sp" />
+
+
+                    <ImageView
+                        android:id="@+id/battingTeamImage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center" />
+
+                    <TextView
+                        android:id="@+id/battingTeamText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/scoreCard"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/mchStatus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textColor="@color/background_white"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/background_white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/hindustantimes"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ht_new"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_ht" />
+
+                    </LinearLayout>
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/dna"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/dna_new"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_dna" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/background_white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/indianExpress"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/ie_new"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_ie" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/deccanherald"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    android:clickable="true"
+                    android:focusable="false"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
+
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/dh_new"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_dh" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/overviewcard"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/background_white"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="4dp">
+
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/exclusive_background"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop" />
+
+
+                    <FrameLayout
+                        android:id="@+id/locklayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:alpha="0.7"
+                            android:background="@color/text_black_100" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/ic_lock_black_24dp"
+                                android:tint="@color/background_white" />
+
+                            <TextView
+                                android:id="@+id/locktext"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:textColor="@color/background_white"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+
+                </FrameLayout>
             </android.support.v7.widget.CardView>
 
 
@@ -286,253 +621,6 @@
             </LinearLayout>
 
 
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/overviewcard"
-                android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:layout_margin="5dp"
-                app:cardBackgroundColor="@color/background_white"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="4dp">
-
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/exclusive_background"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop" />
-
-
-                    <FrameLayout
-                        android:id="@+id/locklayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:alpha="0.7"
-                            android:background="@color/text_black_100" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_lock_black_24dp"
-                                android:tint="@color/background_white" />
-
-                            <TextView
-                                android:id="@+id/locktext"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="5dp"
-                                android:textColor="@color/background_white"
-                                android:textSize="12sp" />
-                        </LinearLayout>
-                    </FrameLayout>
-
-
-                </FrameLayout>
-            </android.support.v7.widget.CardView>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/background_white"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/deccanherald"
-                    android:layout_width="150dp"
-                    android:layout_height="140dp"
-                    android:layout_margin="16dp"
-                    android:clickable="true"
-                    android:focusable="false"
-                    app:cardBackgroundColor="@color/background_white"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="2dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="84dp"
-                            android:layout_height="84dp"
-                            android:layout_gravity="center"
-                            android:background="@color/background_white"
-                            android:src="@drawable/dh_new"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginTop="3dp"
-                            android:text="@string/toolbar_title_home_dh" />
-
-
-                    </LinearLayout>
-
-
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/hindustantimes"
-                    android:layout_width="150dp"
-                    android:layout_height="140dp"
-                    android:layout_margin="16dp"
-                    app:cardBackgroundColor="@color/background_white"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="2dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="84dp"
-                            android:layout_height="84dp"
-                            android:layout_gravity="center"
-                            android:background="@color/background_white"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/ht_new"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginTop="3dp"
-                            android:text="@string/toolbar_title_home_ht" />
-
-
-                    </LinearLayout>
-
-
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:background="@color/background_white"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/indianExpress"
-                    android:layout_width="150dp"
-                    android:layout_height="140dp"
-                    android:layout_margin="16dp"
-                    android:clickable="true"
-                    android:focusable="false"
-                    app:cardBackgroundColor="@color/background_white"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="2dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="84dp"
-                            android:layout_height="84dp"
-                            android:layout_gravity="center"
-                            android:background="@color/background_white"
-                            android:src="@drawable/ie_new"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginTop="3dp"
-                            android:text="@string/toolbar_title_home_ie" />
-
-
-                    </LinearLayout>
-
-
-                </android.support.v7.widget.CardView>
-
-
-                <android.support.v7.widget.CardView
-                    android:id="@+id/dna"
-                    android:layout_width="150dp"
-                    android:layout_height="140dp"
-                    android:layout_margin="16dp"
-                    app:cardBackgroundColor="@color/background_white"
-                    app:cardCornerRadius="7dp"
-                    app:cardElevation="2dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="10dp"
-                        android:orientation="vertical">
-
-
-                        <ImageView
-                            android:layout_width="84dp"
-                            android:layout_height="84dp"
-                            android:layout_gravity="center"
-                            android:background="@color/background_white"
-                            android:scaleType="fitCenter"
-                            android:src="@drawable/dna_new"
-                            tools:ignore="ContentDescription" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginTop="3dp"
-                            android:text="@string/toolbar_title_home_dna" />
-
-
-                    </LinearLayout>
-
-
-                </android.support.v7.widget.CardView>
-
-            </LinearLayout>
-
-
-
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="140dp"
@@ -676,112 +764,184 @@
             </android.support.v7.widget.CardView>
 
 
-            <android.support.v7.widget.CardView
-                android:id="@+id/specialCards"
+
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:transitionName="cardSpecial"
-                android:visibility="gone"
-                app:cardBackgroundColor="@color/background_white"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="2dp">
+                android:layout_gravity="center"
+                android:background="@color/background_white"
+                android:gravity="center"
+                android:orientation="horizontal">
 
+                <android.support.v7.widget.CardView
+                    android:id="@+id/ndtv"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/cricketImage"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/cricback" />
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
 
-                    <ImageView
+
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/logo_with_background"
+                            tools:ignore="ContentDescription" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_ndtv" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/aajtak"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:alpha="0.6"
-                        android:background="@color/text_black_100" />
-
-
-                    <com.udevel.widgetlab.TypingIndicatorView
-                        android:id="@+id/loader"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:padding="4dp"
-                        app:animateFrequency="300"
-                        app:animationOrder="lastOneFirst"
-                        app:backgroundColor="@android:color/transparent"
-                        app:backgroundType="rounded"
-                        app:dotAnimationDuration="600"
-                        app:dotAnimationType="Sliding"
-                        app:dotColor="@color/background_white"
-                        app:dotCount="6"
-                        app:dotHorizontalSpacing="4dp"
-                        app:dotMaxCompressRatio="70%"
-                        app:dotSecondColor="#6ba4a4a4"
-                        app:dotSize="10dp"
-                        app:showBackground="true" />
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
 
-                </FrameLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_margin="5dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/logo_with_background"
+                            tools:ignore="ContentDescription" />
 
-                    <TextView
-                        android:id="@+id/mchDesc"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_aajtak" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@color/background_white"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/hindi3"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/background_white"
-                        android:textSize="20sp" />
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
 
 
-                    <ImageView
-                        android:id="@+id/battingTeamImage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center" />
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/logo_with_background"
+                            tools:ignore="ContentDescription" />
 
-                    <TextView
-                        android:id="@+id/battingTeamText"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_jagaran" />
+
+
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/hindi4"
+                    android:layout_width="150dp"
+                    android:layout_height="140dp"
+                    android:layout_margin="16dp"
+                    app:cardBackgroundColor="@color/background_white"
+                    app:cardCornerRadius="7dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/background_white"
-                        android:textSize="20sp" />
+                        android:layout_margin="10dp"
+                        android:orientation="vertical">
 
-                    <TextView
-                        android:id="@+id/scoreCard"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/background_white"
-                        android:textSize="20sp" />
+                        <ImageView
+                            android:layout_width="84dp"
+                            android:layout_height="84dp"
+                            android:layout_gravity="center"
+                            android:background="@color/background_white"
+                            android:src="@drawable/logo_with_background"
+                            tools:ignore="ContentDescription" />
 
-                    <TextView
-                        android:id="@+id/mchStatus"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textColor="@color/background_white"
-                        android:textSize="16sp" />
-                </LinearLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginTop="3dp"
+                            android:text="@string/toolbar_title_home_bbc" />
 
 
-            </android.support.v7.widget.CardView>
+                    </LinearLayout>
+
+
+                </android.support.v7.widget.CardView>
+
+
+            </LinearLayout>
+
 
             <ImageView
                 android:id="@+id/bottomimage"

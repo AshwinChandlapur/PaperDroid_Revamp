@@ -80,8 +80,6 @@ public class Horizontal_Display_News extends AppCompatActivity {
 //        AppRate.showRateDialogIfMeetsConditions(this);
 
 
-
-
         Intent i = getIntent();
         if (i != null) {
             news = (ArrayList<News>) i.getSerializableExtra("newsObject");

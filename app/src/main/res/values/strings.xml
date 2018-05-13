@@ -16,6 +16,10 @@
     <string name="toolbar_title_home_ht">Hindustan Times</string>
     <string name="toolbar_title_home_dna">DNA</string>
     <string name="toolbar_title_home_ie">Indian Express</string>
+    <string name="toolbar_title_home_aajtak">आज तक</string>
+    <string name="toolbar_title_home_ndtv">एन.डी.टी.वी</string>
+    <string name="toolbar_title_home_jagaran">जागरण</string>
+    <string name="toolbar_title_home_bbc">बी.बी.सी</string>
 
     <string name="toolbar_title_home_vk_en">VijayaKarnataka</string>
     <string name="toolbar_title_home_an_en">Suvarna</string>

@@ -8,9 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.mapzen.speakerbox.Speakerbox;
+
+import java.util.ArrayList;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.FirebaseNews;
+import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
 
 
@@ -23,6 +29,7 @@ public class Tab1 extends Fragment {
     private final String tag = Constants.dh_headlines;//TODO:Should Change Accordingly
     private View view;
     private Context context;
+    private ArrayList<News> newsArrayList;
 
     public Tab1() {
         // Required empty public constructor
@@ -39,6 +46,11 @@ public class Tab1 extends Fragment {
         init(view);
         FirebaseNews firebaseNews = new FirebaseNews();
         firebaseNews.firebaseNewsFetcher(getActivity(), context, view, tag);
+//        Speakerbox speakerbox = new Speakerbox(getActivity().getApplication());
+//        speakerbox.play("Today's Headlines are:");
+//        speakerbox.play("Sharif questions Pakistan policy to allow ‘non-state actors’ to cross border and kill Mumbai people ");
+
+
         return view;
     }
 

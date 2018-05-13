@@ -26,6 +26,7 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.mapzen.speakerbox.Speakerbox;
 import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
@@ -48,14 +49,12 @@ public class FirebaseNews {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private ArrayList<News> newsList = new ArrayList<>();
-
     public void firebaseNewsFetcher(final FragmentActivity fragmentActivity, final Context context, View view, final String category) {
         firestoreNews = FirebaseFirestore.getInstance();
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
                 .build();
         firestoreNews.setFirestoreSettings(settings);
-
         typingView = view.findViewById(R.id.loader);
         mContext = context;
         mCategory = category;
@@ -87,6 +86,7 @@ public class FirebaseNews {
                                 news1.showNews();
                                 if (!(news1.isEmpty()))
                                     newsList.add(news1);
+
                             }
                             Log.d("Starting Fetch", "Finishing Fetch");
                         } else {
@@ -103,5 +103,6 @@ public class FirebaseNews {
                         typingView.setVisibility(View.GONE);
                     }
                 });
+
     }
 }
