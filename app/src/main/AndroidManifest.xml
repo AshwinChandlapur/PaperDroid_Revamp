@@ -20,7 +20,7 @@
             android:value="DISABLE" />
 
         <activity
-            android:name="vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity"
+            android:name="vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
@@ -39,11 +39,23 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="vadeworks.news.paperdroids.AsiaNet.AsiaNet_MainActivity"
+            android:name="vadeworks.news.paperdroids.Hindi.AajTak.AajTak_MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity"
+            android:name="vadeworks.news.paperdroids.Hindi.Ndtv.Ndtv_MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="vadeworks.news.paperdroids.Hindi.Jagaran.Jagaran_MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="vadeworks.news.paperdroids.Hindi.Bbc.BBC_MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
@@ -51,17 +63,14 @@
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity"
+            android:name="vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity
-            android:name="vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity"
+            android:name="vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="vadeworks.news.paperdroids.Esanje.Esanje_MainActivity"
-            android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+
         <activity
             android:name="vadeworks.news.paperdroids.VerticalNews.Vertical_News"
             android:configChanges="orientation"
@@ -82,10 +91,10 @@
             android:name="vadeworks.news.paperdroids.Exclusive.YouTube"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="sensor" />
-        <activity android:name="vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activity" />
-        <activity android:name="vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity" />
-        <activity android:name="vadeworks.news.paperdroids.DNA.Dna_Activity" />
-        <activity android:name="vadeworks.news.paperdroids.IndianExpress.IndianExpress_Activity" />
+        <activity android:name="vadeworks.news.paperdroids.English.DeccanHerald.DeccanHerald_Activity" />
+        <activity android:name="vadeworks.news.paperdroids.English.HindustanTimes.HindustanTimes_Activity" />
+        <activity android:name="vadeworks.news.paperdroids.English.DNA.Dna_Activity" />
+        <activity android:name="vadeworks.news.paperdroids.English.IndianExpress.IndianExpress_Activity" />
         <activity android:name="vadeworks.news.paperdroids.Special_Card"></activity>
     </application>
 

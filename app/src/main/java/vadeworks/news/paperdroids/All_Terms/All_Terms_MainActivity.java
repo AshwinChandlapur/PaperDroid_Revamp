@@ -14,11 +14,11 @@ import android.widget.FrameLayout;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import vadeworks.news.paperdroids.All_Terms.tabs.ViewPagerAdapter_AT;
+import vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
+import vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity;
+import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity;
+import vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
@@ -86,11 +86,11 @@ public class All_Terms_MainActivity extends AppCompatActivity {
             }
         });
 
-        FrameLayout intent_to_udayavaani = findViewById(R.id.nav_udayavaani);
+        FrameLayout intent_to_udayavaani = findViewById(R.id.nav_esanje);
         intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(All_Terms_MainActivity.this, UdayaVaani_MainActivity.class);
+                Intent intent = new Intent(All_Terms_MainActivity.this, Esanje_MainActivity.class);
                 startActivity(intent);
             }
         });

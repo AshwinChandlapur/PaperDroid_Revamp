@@ -23,15 +23,19 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import vadeworks.news.paperdroids.All_Terms.All_Terms_MainActivity;
-import vadeworks.news.paperdroids.DNA.Dna_Activity;
-import vadeworks.news.paperdroids.DeccanHerald.DeccanHerald_Activity;
-import vadeworks.news.paperdroids.HindustanTimes.HindustanTimes_Activity;
-import vadeworks.news.paperdroids.IndianExpress.IndianExpress_Activity;
+import vadeworks.news.paperdroids.English.DNA.Dna_Activity;
+import vadeworks.news.paperdroids.English.DeccanHerald.DeccanHerald_Activity;
+import vadeworks.news.paperdroids.English.HindustanTimes.HindustanTimes_Activity;
+import vadeworks.news.paperdroids.English.IndianExpress.IndianExpress_Activity;
+import vadeworks.news.paperdroids.Hindi.AajTak.AajTak_MainActivity;
+import vadeworks.news.paperdroids.Hindi.Bbc.BBC_MainActivity;
+import vadeworks.news.paperdroids.Hindi.Jagaran.Jagaran_MainActivity;
+import vadeworks.news.paperdroids.Hindi.Ndtv.Ndtv_MainActivity;
+import vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
-import vadeworks.news.paperdroids.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.UdayaVaani.UdayaVaani_MainActivity;
-import vadeworks.news.paperdroids.VijayaKarnataka.VijayaKarnataka_MainActivity;
-import vadeworks.news.paperdroids.VijayaVaani.VijayaVaani_MainActivity;
+import vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity;
+import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity;
+import vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
 
@@ -45,17 +49,25 @@ public class Utils {
     private static final String CARD_VIEW_VISIBILITY_VK = "card_view_visibility_vk";
     private static final String CARD_VIEW_VISIBILITY_PJ = "card_view_visibility_pj";
     private static final String CARD_VIEW_VISIBILITY_VV = "card_view_visibility_vv";
-    private static final String CARD_VIEW_VISIBILITY_UV = "card_view_visibility_uv";
+    private static final String CARD_VIEW_VISIBILITY_ES = "card_view_visibility_es";
+
     private static final String CARD_VIEW_VISIBILITY_DH = "card_view_visibility_dh";
     private static final String CARD_VIEW_VISIBILITY_HT = "card_view_visibility_ht";
     private static final String CARD_VIEW_VISIBILITY_IE = "card_view_visibility_ie";
     private static final String CARD_VIEW_VISIBILITY_DNA = "card_view_visibility_dna";
+
+    private static final String CARD_VIEW_VISIBILITY_NDTV = "card_view_visibility_ndtv";
+    private static final String CARD_VIEW_VISIBILITY_AT = "card_view_visibility_at";
+    private static final String CARD_VIEW_VISIBILITY_JG = "card_view_visibility_jg";
+    private static final String CARD_VIEW_VISIBILITY_BBC = "card_view_visibility_bbc";
+
+
     private final Bundle params = new Bundle();
     public Activity activity;
     FirebaseRemoteConfig mFirebaseRemoteConfig;
     FrameLayout intent_to_allTerms, intent_to_home, intent_to_deccan, intent_to_hindustan,
-            intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani, intent_to_udayavaani,
-            intent_to_suvarna, intent_to_esanje, intent_to_asianet,intent_to_indianexpress,intent_to_dna;
+            intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani,
+            intent_to_esanje,intent_to_indianexpress,intent_to_dna,intent_to_ndtv,intent_to_aajtak,intent_to_jagaran,intent_to_bbc;
 
     String card_clicked;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -71,6 +83,20 @@ public class Utils {
     public void fetchCard(Context context) {
 
 //        long cacheExpiration = 0;
+        intent_to_prajavani = this.activity.findViewById(R.id.nav_prajavani);
+        intent_to_esanje = this.activity.findViewById(R.id.nav_esanje);
+        intent_to_vijayakarnataka = this.activity.findViewById(R.id.nav_vijayakarnataka);
+        intent_to_vijayavaani = this.activity.findViewById(R.id.vijayavani);
+        
+        intent_to_deccan = this.activity.findViewById(R.id.nav_deccan);
+        intent_to_hindustan = this.activity.findViewById(R.id.nav_hindustantimes);
+        intent_to_indianexpress = this.activity.findViewById(R.id.nav_indianexpress);
+        intent_to_dna = this.activity.findViewById(R.id.nav_dna);
+
+        intent_to_ndtv = this.activity.findViewById(R.id.nav_ndtv); 
+        intent_to_aajtak = this.activity.findViewById(R.id.nav_aajtak);
+        intent_to_jagaran= this.activity.findViewById(R.id.nav_jagaran);
+        intent_to_bbc = this.activity.findViewById(R.id.nav_bbc);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
         FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder()
@@ -85,20 +111,73 @@ public class Utils {
             cacheExpiration = 0;
         }
 
+
+
         mFirebaseRemoteConfig.fetch(cacheExpiration).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 displayPJ(mFirebaseRemoteConfig, intent_to_prajavani);
                 displayVV(mFirebaseRemoteConfig, intent_to_vijayavaani);
                 displayVK(mFirebaseRemoteConfig, intent_to_vijayakarnataka);
-                displayUV(mFirebaseRemoteConfig, intent_to_udayavaani);
+                displayES(mFirebaseRemoteConfig, intent_to_esanje);
 
                 displayHT(mFirebaseRemoteConfig, intent_to_hindustan);
                 displayDH(mFirebaseRemoteConfig, intent_to_deccan);
                 displayIE(mFirebaseRemoteConfig, intent_to_indianexpress);
                 displayDNA(mFirebaseRemoteConfig, intent_to_dna);
+                
+                displayNDTV(mFirebaseRemoteConfig, intent_to_ndtv);
+                displayAT(mFirebaseRemoteConfig, intent_to_aajtak);
+                displayJG(mFirebaseRemoteConfig, intent_to_jagaran);
+                displayBBC(mFirebaseRemoteConfig, intent_to_bbc);
+                
             }
         });
+    }
+
+    private void displayNDTV(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_ndtv) {
+
+        if (intent_to_ndtv != null) {
+            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_NDTV)) {
+                intent_to_ndtv.setVisibility(View.VISIBLE);
+            } else {
+                intent_to_ndtv.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void displayAT(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_aajtak) {
+
+        if (intent_to_aajtak != null) {
+            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_AT)) {
+                intent_to_aajtak.setVisibility(View.VISIBLE);
+            } else {
+                intent_to_aajtak.setVisibility(View.GONE);
+            }
+        }
+    }
+
+    private void displayJG(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_jagaran) {
+
+        if (intent_to_jagaran != null) {
+            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_JG)) {
+                intent_to_jagaran.setVisibility(View.VISIBLE);
+            } else {
+                intent_to_jagaran.setVisibility(View.GONE);
+            }
+        }
+    }
+
+
+    private void displayBBC(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_bbc) {
+
+        if (intent_to_bbc != null) {
+            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_BBC)) {
+                intent_to_bbc.setVisibility(View.VISIBLE);
+            } else {
+                intent_to_bbc.setVisibility(View.GONE);
+            }
+        }
     }
 
 
@@ -135,13 +214,13 @@ public class Utils {
         }
     }
 
-    private void displayUV(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_udayavaani) {
+    private void displayES(FirebaseRemoteConfig mFirebaseRemoteConfig, FrameLayout intent_to_esanje) {
 
-        if (intent_to_udayavaani != null) {
-            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_UV)) {
-                intent_to_udayavaani.setVisibility(View.VISIBLE);
+        if (intent_to_esanje != null) {
+            if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_ES)) {
+                intent_to_esanje.setVisibility(View.VISIBLE);
             } else {
-                intent_to_udayavaani.setVisibility(View.GONE);
+                intent_to_esanje.setVisibility(View.GONE);
             }
         }
     }
@@ -300,16 +379,16 @@ public class Utils {
             }
         });
 
-        intent_to_udayavaani = this.activity.findViewById(R.id.nav_udayavaani);
-        intent_to_udayavaani.setOnClickListener(new View.OnClickListener() {
+        intent_to_esanje = this.activity.findViewById(R.id.nav_esanje);
+        intent_to_esanje.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card_clicked = context.getResources().getString(R.string.toolbar_title_home_uv_en);
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_es_en);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
-                if (Constants.uv.equals(tag)) {
+                if (Constants.es.equals(tag)) {
                     mDrawerLayout.closeDrawers();
                 } else {
-                    Intent intent = new Intent(context, UdayaVaani_MainActivity.class);
+                    Intent intent = new Intent(context, Esanje_MainActivity.class);
                     context.startActivity(intent);
                 }
             }
@@ -392,7 +471,69 @@ public class Utils {
                 }
             }
         });
+        
+        intent_to_ndtv = this.activity.findViewById(R.id.nav_ndtv);
+        intent_to_ndtv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_ndtv);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                if (Constants.ndtv.equals(tag)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    Intent intent = new Intent(context, Ndtv_MainActivity.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
 
+        intent_to_aajtak = this.activity.findViewById(R.id.nav_aajtak);
+        intent_to_aajtak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_aajtak);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                if (Constants.at.equals(tag)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    Intent intent = new Intent(context, AajTak_MainActivity.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+        intent_to_jagaran = this.activity.findViewById(R.id.nav_jagaran);
+        intent_to_jagaran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_jagaran);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                if (Constants.jg.equals(tag)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    Intent intent = new Intent(context, Jagaran_MainActivity.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
+
+
+        intent_to_bbc = this.activity.findViewById(R.id.nav_bbc);
+        intent_to_bbc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = context.getResources().getString(R.string.toolbar_title_home_bbc);
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                if (Constants.bbc.equals(tag)) {
+                    mDrawerLayout.closeDrawers();
+                } else {
+                    Intent intent = new Intent(context, BBC_MainActivity.class);
+                    context.startActivity(intent);
+                }
+            }
+        });
+        
+        
     }
 
 }

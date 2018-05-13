@@ -580,7 +580,7 @@
 
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/udayavani"
+                    android:id="@+id/esanje"
                     android:layout_width="150dp"
                     android:layout_height="140dp"
                     android:layout_margin="16dp"
@@ -601,7 +601,7 @@
                             android:layout_height="84dp"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            android:src="@drawable/uv_small"
+                            android:src="@drawable/es_small"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -609,7 +609,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|center"
                             android:layout_marginTop="3dp"
-                            android:text="@string/toolbar_title_home_uv" />
+                            android:text="@string/toolbar_title_home_es" />
 
 
                     </LinearLayout>
@@ -796,7 +796,7 @@
                             android:layout_height="84dp"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            android:src="@drawable/logo_with_background"
+                            android:src="@drawable/ndtv_small"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -835,7 +835,7 @@
                             android:layout_height="84dp"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            android:src="@drawable/logo_with_background"
+                            android:src="@drawable/aajtak_small"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -864,7 +864,7 @@
                 android:orientation="horizontal">
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/hindi3"
+                    android:id="@+id/jagaran"
                     android:layout_width="150dp"
                     android:layout_height="140dp"
                     android:layout_margin="16dp"
@@ -885,7 +885,7 @@
                             android:layout_height="84dp"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            android:src="@drawable/logo_with_background"
+                            android:src="@drawable/jagaran_small"
                             tools:ignore="ContentDescription" />
 
                         <TextView
@@ -903,7 +903,7 @@
 
 
                 <android.support.v7.widget.CardView
-                    android:id="@+id/hindi4"
+                    android:id="@+id/bbc"
                     android:layout_width="150dp"
                     android:layout_height="140dp"
                     android:layout_margin="16dp"
@@ -923,7 +923,7 @@
                             android:layout_height="84dp"
                             android:layout_gravity="center"
                             android:background="@color/background_white"
-                            android:src="@drawable/logo_with_background"
+                            android:src="@drawable/bbc_small"
                             tools:ignore="ContentDescription" />
 
                         <TextView

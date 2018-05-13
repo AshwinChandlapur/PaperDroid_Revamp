@@ -29,6 +29,12 @@ public class Constants {
     public static final String ie = "ie";
     public static final String dna = "dna";
     public static final String at = "at";
+    public static final String ndtv = "nd";
+    public static final String bbc = "bbc";
+    public static final String jg = "jg";
+
+
+
 
 
     //Common
@@ -126,6 +132,37 @@ public class Constants {
     public static final String pj_national = "PJ_NATIONAL";
     public static final String pj_cinema = "PJ_CINEMA";
     public static final String pj_business = "PJ_BUSINESS";
+
+
+    //AAJTAK
+    public static final String at_headlines = "AT_HEADLINES";
+    public static final String at_sports = "AT_SPORTS";
+    public static final String at_world = "AT_WORLD";
+    public static final String at_national = "AT_NATIONAL";
+    public static final String at_cinema = "AT_CINEMA";
+
+
+    //BBC
+    public static final String bbc_headlines = "BBC_HEADLINES";
+    public static final String bbc_sports = "BBC_SPORTS";
+    public static final String bbc_world = "BBC_WORLD";
+    public static final String bbc_national = "BBC_NATIONAL";
+    public static final String bbc_cinema = "BBC_CINEMA";
+
+    //NDTV
+    public static final String nd_headlines = "ND_HEADLINES";
+    public static final String nd_sports = "ND_SPORTS";
+    public static final String nd_world = "ND_WORLD";
+    public static final String nd_national = "ND_NATIONAL";
+    public static final String nd_business = "ND_BUSINESS";
+
+
+    //Jagaran
+    public static final String jg_headlines = "JG_HEADLINES";
+    public static final String jg_sports = "JG_SPORTS";
+    public static final String jg_world = "JG_WORLD";
+    public static final String jg_national = "JG_NATIONAL";
+    public static final String jg_business = "JG_BUSINESS";
 
 
     //Types

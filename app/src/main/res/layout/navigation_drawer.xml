@@ -140,79 +140,6 @@
                 <include layout="@layout/navigation_drawer_divider" />
 
                 <FrameLayout
-                    android:id="@+id/nav_prajavani"
-                    style="@style/NavDrawerRowLayout.Main">
-
-                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
-                        android:id="@+id/navigation_drawer_items_list_icon_explore"
-                        style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/pj_small"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        android:id="@+id/navigation_drawer_items_textView_explore"
-                        style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_pj"
-                        tools:fontFamily="sans-serif-medium" />
-
-                </FrameLayout>
-
-
-                <FrameLayout
-                    android:id="@+id/nav_vijayavani"
-                    style="@style/NavDrawerRowLayout.Main">
-
-                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
-
-                        style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/vv_small"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-
-                        style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_vv"
-                        tools:fontFamily="sans-serif-medium" />
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/nav_vijayakarnataka"
-                    style="@style/NavDrawerRowLayout.Main">
-
-                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
-                        style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/vk_small"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_vk"
-                        tools:fontFamily="sans-serif-medium" />
-
-                </FrameLayout>
-
-
-                <FrameLayout
-                    android:id="@+id/nav_udayavaani"
-                    style="@style/NavDrawerRowLayout.Main">
-
-                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
-                        style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/uv_small"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_uv"
-                        tools:fontFamily="sans-serif-medium" />
-
-                </FrameLayout>
-
-
-                <include layout="@layout/navigation_drawer_divider" />
-
-                <FrameLayout
                     android:id="@+id/nav_deccan"
                     style="@style/NavDrawerRowLayout.Main">
 
@@ -274,6 +201,150 @@
                     <TextView
                         style="@style/NavDrawerRowItemText"
                         android:text="@string/toolbar_title_home_dna"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+
+                <include layout="@layout/navigation_drawer_divider" />
+
+                <FrameLayout
+                    android:id="@+id/nav_prajavani"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        android:id="@+id/navigation_drawer_items_list_icon_explore"
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/pj_small"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        android:id="@+id/navigation_drawer_items_textView_explore"
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_pj"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/nav_vijayavani"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/vv_small"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_vv"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/nav_vijayakarnataka"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/vk_small"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_vk"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/nav_esanje"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/es_small"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_es"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+                <include layout="@layout/navigation_drawer_divider"/>
+
+
+
+                <FrameLayout
+                    android:id="@+id/nav_ndtv"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/ndtv_small"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_ndtv"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/nav_aajtak"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/aajtak_small"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_aajtak"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/nav_jagaran"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/jagaran_small"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_jagaran"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+
+                <FrameLayout
+                    android:id="@+id/nav_bbc"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/bbc"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_bbc"
                         tools:fontFamily="sans-serif-medium" />
 
                 </FrameLayout>

@@ -18,7 +18,7 @@
     </entry>
 
     <entry>
-        <key>card_view_visibility_uv</key>
+        <key>card_view_visibility_es</key>
         <value>true</value>
     </entry>
 
@@ -41,6 +41,24 @@
 
     <entry>
         <key>card_view_visibility_dna</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>card_view_visibility_ndtv</key>
+        <value>true</value>
+    </entry>
+
+    <entry>
+        <key>card_view_visibility_at</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>card_view_visibility_jg</key>
+        <value>true</value>
+    </entry>
+    <entry>
+        <key>card_view_visibility_bbc</key>
         <value>true</value>
     </entry>
 
