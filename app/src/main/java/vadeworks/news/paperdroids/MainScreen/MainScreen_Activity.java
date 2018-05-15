@@ -25,6 +25,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.gson.Gson;
@@ -160,6 +161,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
     @Override
+    @AddTrace(name = "onCreate_MainScreen", enabled = true)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen_activity);
@@ -370,8 +372,8 @@ public class MainScreen_Activity extends AppCompatActivity {
 
             AppRate.with(this)
                     .setInstallDays(0) // default 10, 0 means install day.
-                    .setLaunchTimes(10) // default 10
-                    .setRemindInterval(2) // default 1
+                    .setLaunchTimes(5) // default 10
+                    .setRemindInterval(5) // default 1
                     .setShowLaterButton(true) // default true
                     .setShowNeverButton(false)
                     .setCancelable(false)
@@ -380,11 +382,9 @@ public class MainScreen_Activity extends AppCompatActivity {
                         @Override
                         public void onClickButton(int which) {
                             Log.d(MainScreen_Activity.class.getName(), Integer.toString(which));
-
                         }
                     })
                     .monitor();
-
             // Show a dialog if meets conditions
             AppRate.showRateDialogIfMeetsConditions(this);
 

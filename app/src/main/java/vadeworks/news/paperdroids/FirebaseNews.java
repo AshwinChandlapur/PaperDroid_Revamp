@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -26,7 +28,6 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.mapzen.speakerbox.Speakerbox;
 import com.udevel.widgetlab.TypingIndicatorView;
 
 import java.util.ArrayList;
@@ -39,7 +40,7 @@ import vadeworks.paperdroid.R;
  */
 
 public class FirebaseNews {
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     FirebaseFirestore firestoreNews;
     private TypingIndicatorView typingView;
     private String mCategory;
@@ -51,9 +52,14 @@ public class FirebaseNews {
     private ArrayList<News> newsList = new ArrayList<>();
     public void firebaseNewsFetcher(final FragmentActivity fragmentActivity, final Context context, View view, final String category) {
         firestoreNews = FirebaseFirestore.getInstance();
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(fragmentActivity);
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, category);
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
                 .setPersistenceEnabled(true)
                 .build();
+
         firestoreNews.setFirestoreSettings(settings);
         typingView = view.findViewById(R.id.loader);
         mContext = context;

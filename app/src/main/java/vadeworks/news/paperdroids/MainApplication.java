@@ -14,9 +14,6 @@ import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
-
 import org.json.JSONObject;
 
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
@@ -36,11 +33,11 @@ public class MainApplication extends Application {
     private String exclusiveId;
 
 
-    private RefWatcher refWatcher;
-    public static RefWatcher getRefWatcher(Context context) {
-        MainApplication application = (MainApplication) context.getApplicationContext();
-        return application.refWatcher;
-    }
+//    private RefWatcher refWatcher;
+//    public static RefWatcher getRefWatcher(Context context) {
+//        MainApplication application = (MainApplication) context.getApplicationContext();
+//        return application.refWatcher;
+//    }
 
     @Override
     public void onCreate() {
@@ -54,7 +51,7 @@ public class MainApplication extends Application {
                 .init();
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
-        refWatcher = LeakCanary.install(this);
+//        refWatcher = LeakCanary.install(this);
 
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (prefs.getBoolean("firstTime", true)) {

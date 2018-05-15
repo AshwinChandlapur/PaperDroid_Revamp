@@ -14,7 +14,7 @@
             android:id="@+id/navigation_drawer_account_view"
             android:layout_width="match_parent"
             android:layout_height="@dimen/navigation_drawer_account_section_default_height"
-            android:foreground="?selectableItemBackground"
+            android:foreground="?android:selectableItemBackground"
             tools:layout_height="@dimen/navigation_drawer_account_section_default_height">
 
             <FrameLayout
@@ -77,7 +77,7 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:gravity="center"
-                            android:text="ನ್ಯೂಸ್  ದುನಿಯಾ"
+                            android:text="News Duniya"
                             android:textColor="@color/background_white"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -89,11 +89,11 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:gravity="center"
-                            android:text="ನಮ್ಮ ನಾಡು, ನಮ್ಮ ಧ್ವನಿ"
+                            android:text="News you can count on."
                             android:textColor="@color/background_white"
                             android:textSize="10sp" />
                     </LinearLayout>
-
+                    <!--android:text="ನಮ್ಮ ನಾಡು, ನಮ್ಮ ಧ್ವನಿ"-->
 
                 </LinearLayout>
 
@@ -139,22 +139,6 @@
 
                 <include layout="@layout/navigation_drawer_divider" />
 
-                <FrameLayout
-                    android:id="@+id/nav_deccan"
-                    style="@style/NavDrawerRowLayout.Main">
-
-                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
-                        style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/dh_new"
-                        tools:ignore="ContentDescription" />
-
-                    <TextView
-                        style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_dh"
-                        tools:fontFamily="sans-serif-medium" />
-
-                </FrameLayout>
-
 
                 <FrameLayout
                     android:id="@+id/nav_hindustantimes"
@@ -168,6 +152,22 @@
                     <TextView
                         style="@style/NavDrawerRowItemText"
                         android:text="@string/toolbar_title_home_ht"
+                        tools:fontFamily="sans-serif-medium" />
+
+                </FrameLayout>
+
+                <FrameLayout
+                    android:id="@+id/nav_dna"
+                    style="@style/NavDrawerRowLayout.Main">
+
+                    <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
+                        style="@style/NavDrawerRowItemIcon"
+                        android:src="@drawable/dna_logo"
+                        tools:ignore="ContentDescription" />
+
+                    <TextView
+                        style="@style/NavDrawerRowItemText"
+                        android:text="@string/toolbar_title_home_dna"
                         tools:fontFamily="sans-serif-medium" />
 
                 </FrameLayout>
@@ -188,23 +188,21 @@
 
                 </FrameLayout>
 
-
                 <FrameLayout
-                    android:id="@+id/nav_dna"
+                    android:id="@+id/nav_deccan"
                     style="@style/NavDrawerRowLayout.Main">
 
                     <vadeworks.news.paperdroids.app_skeleton.customViews.TintOnStateImageView
                         style="@style/NavDrawerRowItemIcon"
-                        android:src="@drawable/dna_logo"
+                        android:src="@drawable/dh_new"
                         tools:ignore="ContentDescription" />
 
                     <TextView
                         style="@style/NavDrawerRowItemText"
-                        android:text="@string/toolbar_title_home_dna"
+                        android:text="@string/toolbar_title_home_dh"
                         tools:fontFamily="sans-serif-medium" />
 
                 </FrameLayout>
-
 
 
                 <include layout="@layout/navigation_drawer_divider" />

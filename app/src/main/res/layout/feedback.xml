@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/head"
         android:gravity="center"
-        android:text="@string/tagline"
+        android:text="News you can count on."
         android:textSize="15sp" />
 
 

@@ -126,9 +126,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:fontFamily="casual"
                 android:gravity="start"
-                android:text="ವಿವರವಾಗಿ ಓದಿ"
+                android:text="Read More"
                 android:textColor="@color/link"
                 android:textSize="18sp"
                 android:textStyle="bold" />

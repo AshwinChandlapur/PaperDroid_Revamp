@@ -36,7 +36,7 @@
             android:layout_width="match_parent"
             android:layout_height="250dp"
             android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
+            app:contentScrim="?android:attr/colorPrimary"
             app:expandedTitleTextAppearance="@null"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -56,7 +56,7 @@
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toola"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
+                android:layout_height="?android:attr/actionBarSize"
                 app:layout_collapseMode="pin"></android.support.v7.widget.Toolbar>
 
             <TextView
@@ -127,9 +127,8 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="20dp"
-                android:fontFamily="casual"
+                android:text="Read More"
                 android:gravity="start"
-                android:text="ವಿವರವಾಗಿ ಓದಿ"
                 android:textColor="@color/link"
                 android:textSize="18sp"
                 android:textStyle="bold" />

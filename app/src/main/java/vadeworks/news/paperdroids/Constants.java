@@ -139,7 +139,7 @@ public class Constants {
     public static final String at_sports = "AT_SPORTS";
     public static final String at_world = "AT_WORLD";
     public static final String at_national = "AT_NATIONAL";
-    public static final String at_cinema = "AT_CINEMA";
+    public static final String at_cinema = "AT_ENTERTAINMENT";
 
 
     //BBC
@@ -147,7 +147,7 @@ public class Constants {
     public static final String bbc_sports = "BBC_SPORTS";
     public static final String bbc_world = "BBC_WORLD";
     public static final String bbc_national = "BBC_NATIONAL";
-    public static final String bbc_cinema = "BBC_CINEMA";
+    public static final String bbc_cinema = "BBC_ENTERTAINMENT";
 
     //NDTV
     public static final String nd_headlines = "ND_HEADLINES";

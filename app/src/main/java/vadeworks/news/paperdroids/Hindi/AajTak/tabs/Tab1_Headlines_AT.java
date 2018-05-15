@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.firebase.perf.metrics.AddTrace;
+
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.FirebaseNews;
 import vadeworks.paperdroid.R;

@@ -10,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.mapzen.speakerbox.Speakerbox;
+
+import com.google.firebase.perf.metrics.AddTrace;
 
 import java.util.ArrayList;
 
@@ -36,6 +37,7 @@ public class Tab1 extends Fragment {
     }
 
     @Override
+    @AddTrace(name = tag, enabled = true)
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

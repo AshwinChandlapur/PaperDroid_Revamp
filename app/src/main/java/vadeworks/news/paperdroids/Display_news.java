@@ -193,7 +193,17 @@ public class Display_news extends AppCompatActivity {
 
     private void display_news(final News fullnews) {
 
-        headlines_textview.setText(fullnews.head);
+
+//        headlines_textview.setText(fullnews.head);
+//        if(fullnews.tag.equals("pj")||fullnews.tag.equals("vk")||fullnews.tag.equals("vv")||fullnews.tag.equals("es")){
+//            link_textview.setText("ವಿವರವಾಗಿ ಓದಿ");
+//        }else if(fullnews.tag.equals("ht")||fullnews.tag.equals("dna")||fullnews.tag.equals("ie")||fullnews.tag.equals("dh")){
+//            link_textview.setText("Read More");
+//        }else{
+//            link_textview.setText("और पढो");
+//        }
+
+
         if (!fullnews.content.isEmpty()) {
             content_textview.setText(fullnews.content);
         } else {

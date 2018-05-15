@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.danikula.videocache.HttpProxyCacheServer;
+import com.google.firebase.perf.metrics.AddTrace;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -66,6 +67,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
 
 
     @Override
+    @AddTrace(name = "Instantiate_Items_Exclusive", enabled = true)
     public Object instantiateItem(ViewGroup container, int position) {
         JZVideoPlayer.releaseAllVideos();
 

@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.perf.metrics.AddTrace;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 import com.udevel.widgetlab.TypingIndicatorView;
@@ -70,6 +71,7 @@ class CustomPagerAdapter extends PagerAdapter {
     }
 
     @Override
+    @AddTrace(name = "Instantiate_Horizontal_News", enabled = true)
     public Object instantiateItem(ViewGroup container, int position) {
         final View itemView = mLayoutInflater.inflate(R.layout.horizontal_pager_item, container, false);
         mPos = position;
@@ -158,6 +160,15 @@ class CustomPagerAdapter extends PagerAdapter {
                     .error(R.drawable.backrepeat)
                     .into(imageView);
         }
+
+//        headlines_textview.setText(fullnews.head);
+//        if(fullnews.tag.equals("pj")||fullnews.tag.equals("vk")||fullnews.tag.equals("vv")||fullnews.tag.equals("es")){
+//            link_textview.setText("ವಿವರವಾಗಿ ಓದಿ");
+//        }else if(fullnews.tag.equals("ht")||fullnews.tag.equals("dna")||fullnews.tag.equals("ie")||fullnews.tag.equals("dh")){
+//            link_textview.setText("Read More");
+//        }else{
+//            link_textview.setText("और पढो");
+//        }
 
 
         link_textview.setOnClickListener(new View.OnClickListener() {

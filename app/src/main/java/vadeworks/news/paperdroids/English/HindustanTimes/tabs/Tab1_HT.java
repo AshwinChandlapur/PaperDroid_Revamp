@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.google.firebase.perf.metrics.AddTrace;
 import com.squareup.picasso.Picasso;
 
 import vadeworks.news.paperdroids.Constants;
@@ -30,6 +31,7 @@ public class Tab1_HT extends Fragment {
     }
 
     @Override
+    @AddTrace(name = tag, enabled = true)
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment

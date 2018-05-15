@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
+import com.google.firebase.perf.metrics.AddTrace;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,49 +37,6 @@ public class Horizontal_Display_News extends AppCompatActivity {
         setContentView(R.layout.horizontal_display_news);
 
         askPermission();
-
-//
-//        AppRate.with(this)
-//                .setInstallDays(0) // default 10, 0 means install day.
-//                .setLaunchTimes(7) // default 10
-//                .setRemindInterval(2) // default 1
-//                .setShowLaterButton(true) // default true
-//                .setDebug(true) // default false
-//                .setTitle("Enable Auto-Start")
-//                .setTextRateNow("Enable Auto-Start")
-//                .setMessage("Please make sure that News Duniya is enabled on the list. It helps us to deliver latest news notifications.")
-//                .setOnClickButtonListener(new OnClickButtonListener() { // callback listener.
-//                    @Override
-//                    public void onClickButton(int which) {
-//                        Log.d("OKOK"+Horizontal_Display_News.class.getName(), Integer.toString(which));
-//                        if(which == (-1)){
-//                            try {
-//                                Intent intent = new Intent();
-//                                String manufacturer = android.os.Build.MANUFACTURER;
-//                                if ("xiaomi".equalsIgnoreCase(manufacturer)) {
-//                                    intent.setComponent(new ComponentName("com.miui.securitycenter", "com.miui.permcenter.autostart.AutoStartManagementActivity"));
-//                                } else if ("oppo".equalsIgnoreCase(manufacturer)) {
-//                                    intent.setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.startup.StartupAppListActivity"));
-//                                } else if ("vivo".equalsIgnoreCase(manufacturer)) {
-//                                    intent.setComponent(new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.BgStartUpManagerActivity"));
-//                                } else if("oneplus".equalsIgnoreCase(manufacturer)) {
-//                                    intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view.ChainLaunchAppListAct‌​ivity")); }
-//
-//                                List<ResolveInfo> list = getApplicationContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-//                                if  (list.size() > 0) {
-//                                    getApplicationContext().startActivity(intent);
-//                                }
-//                            } catch (Exception e) {
-//                                Crashlytics.logException(e);
-//                            }
-//                        }
-//                    }
-//                })
-//                .monitor();
-//
-//        // Show a dialog if meets conditions
-//        AppRate.showRateDialogIfMeetsConditions(this);
-
 
         Intent i = getIntent();
         if (i != null) {

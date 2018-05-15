@@ -1,6 +1,7 @@
 package vadeworks.news.paperdroids.Hindi.Ndtv;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -8,11 +9,14 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Hindi.Ndtv.tabs.ViewPagerAdapter_ND;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
+import vadeworks.news.paperdroids.SetNotifications;
 import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
@@ -130,6 +134,29 @@ public class Ndtv_MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id == R.id.action_rate){
+            final String appPackageName = getPackageName();
+            try {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+            } catch (android.content.ActivityNotFoundException anfe) {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+            }
+        }else if(id == R.id.set_notif){
+            Intent intent = new Intent(getApplicationContext(), SetNotifications.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }
