@@ -5,11 +5,10 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
-import android.os.Build;
+import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -18,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.crashlytics.android.Crashlytics;
-import com.onesignal.OneSignal;
 
 import java.util.List;
 
@@ -29,12 +27,13 @@ import vadeworks.paperdroid.R;
 
 public class SetNotifications extends AppCompatActivity {
 
+    LinearLayout auto_start;
+    Intent intent;
     private Toolbar toolbar;
     private DrawerLayout mDrawerLayout;
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
-    LinearLayout auto_start;
-    Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,11 +58,12 @@ public class SetNotifications extends AppCompatActivity {
                 intent.setComponent(new ComponentName("com.coloros.safecenter", "com.coloros.safecenter.permission.startup.StartupAppListActivity"));
             } else if ("vivo".equalsIgnoreCase(manufacturer)) {
                 intent.setComponent(new ComponentName("com.vivo.permissionmanager", "com.vivo.permissionmanager.activity.BgStartUpManagerActivity"));
-            } else if("oneplus".equalsIgnoreCase(manufacturer)) {
-                intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view.ChainLaunchAppListAct‌​ivity")); }
+            } else if ("oneplus".equalsIgnoreCase(manufacturer)) {
+                intent.setComponent(new ComponentName("com.oneplus.security", "com.oneplus.security.chainlaunch.view.ChainLaunchAppListAct‌​ivity"));
+            }
 
             List<ResolveInfo> list = getApplicationContext().getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-            if  (list.size() > 0) {
+            if (list.size() > 0) {
                 auto_start.setVisibility(View.VISIBLE);
 
                 CardView go_to_settings = findViewById(R.id.go_to_settings);
@@ -108,7 +108,8 @@ public class SetNotifications extends AppCompatActivity {
         setPriority.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(); intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
+                Intent intent = new Intent();
+                intent.setAction("android.settings.APP_NOTIFICATION_SETTINGS");
                 intent.putExtra("app_package", getPackageName());
                 intent.putExtra("app_uid", getApplicationInfo().uid);
                 startActivity(intent);
@@ -117,7 +118,6 @@ public class SetNotifications extends AppCompatActivity {
 
 
     }
-
 
 
     private void init_navigator() {

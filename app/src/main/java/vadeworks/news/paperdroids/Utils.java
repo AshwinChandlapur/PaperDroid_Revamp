@@ -32,10 +32,10 @@ import vadeworks.news.paperdroids.Hindi.Bbc.BBC_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Jagaran.Jagaran_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Ndtv.Ndtv_MainActivity;
 import vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity;
-import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
 
@@ -67,7 +67,7 @@ public class Utils {
     FirebaseRemoteConfig mFirebaseRemoteConfig;
     FrameLayout intent_to_allTerms, intent_to_home, intent_to_deccan, intent_to_hindustan,
             intent_to_vijayavaani, intent_to_vijayakarnataka, intent_to_prajavani,
-            intent_to_esanje,intent_to_indianexpress,intent_to_dna,intent_to_ndtv,intent_to_aajtak,intent_to_jagaran,intent_to_bbc;
+            intent_to_esanje, intent_to_indianexpress, intent_to_dna, intent_to_ndtv, intent_to_aajtak, intent_to_jagaran, intent_to_bbc;
 
     String card_clicked;
     private FirebaseAnalytics mFirebaseAnalytics;
@@ -87,15 +87,15 @@ public class Utils {
         intent_to_esanje = this.activity.findViewById(R.id.nav_esanje);
         intent_to_vijayakarnataka = this.activity.findViewById(R.id.nav_vijayakarnataka);
         intent_to_vijayavaani = this.activity.findViewById(R.id.vijayavani);
-        
+
         intent_to_deccan = this.activity.findViewById(R.id.nav_deccan);
         intent_to_hindustan = this.activity.findViewById(R.id.nav_hindustantimes);
         intent_to_indianexpress = this.activity.findViewById(R.id.nav_indianexpress);
         intent_to_dna = this.activity.findViewById(R.id.nav_dna);
 
-        intent_to_ndtv = this.activity.findViewById(R.id.nav_ndtv); 
+        intent_to_ndtv = this.activity.findViewById(R.id.nav_ndtv);
         intent_to_aajtak = this.activity.findViewById(R.id.nav_aajtak);
-        intent_to_jagaran= this.activity.findViewById(R.id.nav_jagaran);
+        intent_to_jagaran = this.activity.findViewById(R.id.nav_jagaran);
         intent_to_bbc = this.activity.findViewById(R.id.nav_bbc);
 
         mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
@@ -112,7 +112,6 @@ public class Utils {
         }
 
 
-
         mFirebaseRemoteConfig.fetch(cacheExpiration).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
@@ -125,12 +124,12 @@ public class Utils {
                 displayDH(mFirebaseRemoteConfig, intent_to_deccan);
                 displayIE(mFirebaseRemoteConfig, intent_to_indianexpress);
                 displayDNA(mFirebaseRemoteConfig, intent_to_dna);
-                
+
                 displayNDTV(mFirebaseRemoteConfig, intent_to_ndtv);
                 displayAT(mFirebaseRemoteConfig, intent_to_aajtak);
                 displayJG(mFirebaseRemoteConfig, intent_to_jagaran);
                 displayBBC(mFirebaseRemoteConfig, intent_to_bbc);
-                
+
             }
         });
     }
@@ -270,7 +269,6 @@ public class Utils {
     }
 
 
-
     public boolean isConnected(Context context) {
 
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -395,7 +393,6 @@ public class Utils {
         });
 
 
-
         intent_to_allTerms = this.activity.findViewById(R.id.nav_about);
         intent_to_allTerms.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -471,7 +468,7 @@ public class Utils {
                 }
             }
         });
-        
+
         intent_to_ndtv = this.activity.findViewById(R.id.nav_ndtv);
         intent_to_ndtv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -532,8 +529,8 @@ public class Utils {
                 }
             }
         });
-        
-        
+
+
     }
 
 }

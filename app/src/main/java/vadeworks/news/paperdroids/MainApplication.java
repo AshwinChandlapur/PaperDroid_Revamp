@@ -1,7 +1,6 @@
 package vadeworks.news.paperdroids;
 
 import android.app.Application;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -14,6 +13,7 @@ import com.onesignal.OSNotification;
 import com.onesignal.OSNotificationAction;
 import com.onesignal.OSNotificationOpenResult;
 import com.onesignal.OneSignal;
+
 import org.json.JSONObject;
 
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;

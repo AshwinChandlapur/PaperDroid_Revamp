@@ -145,14 +145,14 @@ public class Ndtv_MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if(id == R.id.action_rate){
+        if (id == R.id.action_rate) {
             final String appPackageName = getPackageName();
             try {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
             } catch (android.content.ActivityNotFoundException anfe) {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
             }
-        }else if(id == R.id.set_notif){
+        } else if (id == R.id.set_notif) {
             Intent intent = new Intent(getApplicationContext(), SetNotifications.class);
             startActivity(intent);
         }

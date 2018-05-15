@@ -1,28 +1,15 @@
 package vadeworks.news.paperdroids.HorizontalNews;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import com.crashlytics.android.Crashlytics;
-import com.google.firebase.perf.metrics.AddTrace;
-
 import java.util.ArrayList;
-import java.util.List;
 
-import hotchemi.android.rate.AppRate;
-import hotchemi.android.rate.OnClickButtonListener;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
 
@@ -31,6 +18,7 @@ public class Horizontal_Display_News extends AppCompatActivity {
     ViewPager mViewPager;
     private ArrayList<News> news = new ArrayList<>();
     private int position;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

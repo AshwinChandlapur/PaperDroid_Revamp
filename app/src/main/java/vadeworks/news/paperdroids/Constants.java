@@ -34,9 +34,6 @@ public class Constants {
     public static final String jg = "jg";
 
 
-
-
-
     //Common
     public static final int UNLOCK_DAYS = 3;
     public static final int TOP_10_LIMIT = 10;

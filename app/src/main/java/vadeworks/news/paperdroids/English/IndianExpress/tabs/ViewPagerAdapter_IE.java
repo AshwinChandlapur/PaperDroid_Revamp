@@ -27,30 +27,26 @@ public class ViewPagerAdapter_IE extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        if(position == 0) // if the position is 0 we are returning the First tab
+        if (position == 0) // if the position is 0 we are returning the First tab
         {
-            Tab1_Headlines_IE tab1= new Tab1_Headlines_IE();
+            Tab1_Headlines_IE tab1 = new Tab1_Headlines_IE();
             return tab1;
-        }
-        else  if(position == 1)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        } else if (position == 1)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             Tab2_India_IE tab2 = new Tab2_India_IE();
             return tab2;
-        }
-        else  if(position == 2)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        } else if (position == 2)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             Tab3_Sports_IE tab3 = new Tab3_Sports_IE();
             return tab3;
-        }
-        else if(position ==3)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        } else if (position == 3)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             Tab4_Entertainment_IE tab4 = new Tab4_Entertainment_IE();
             return tab4;
-        }else {
+        } else {
             Tab5_World_IE tab5 = new Tab5_World_IE();
             return tab5;
         }
-
 
 
     }

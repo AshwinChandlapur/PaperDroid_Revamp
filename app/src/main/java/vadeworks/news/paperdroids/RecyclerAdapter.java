@@ -55,7 +55,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         pos = position;
 
         holder.news_textview.setText(newsList.get(position).head);
-        Picasso.with(context).load(newsList.get(position).thumburl).resize(106,66).centerCrop().into(holder.news_imageview);
+        Picasso.with(context).load(newsList.get(position).thumburl).resize(106, 66).centerCrop().into(holder.news_imageview);
         newsList.get(position).showNews();
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

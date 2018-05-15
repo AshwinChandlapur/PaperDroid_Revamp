@@ -277,8 +277,7 @@
 
                 </FrameLayout>
 
-                <include layout="@layout/navigation_drawer_divider"/>
-
+                <include layout="@layout/navigation_drawer_divider" />
 
 
                 <FrameLayout

@@ -15,10 +15,10 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 import vadeworks.news.paperdroids.All_Terms.tabs.ViewPagerAdapter_AT;
 import vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity;
-import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity;
+import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.app_skeleton.customViews.ScrimInsetsFrameLayout;
 import vadeworks.news.paperdroids.app_skeleton.sliding.SlidingTabLayout;
 import vadeworks.news.paperdroids.app_skeleton.utils.UtilsDevice;
@@ -94,7 +94,6 @@ public class All_Terms_MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
 
         FrameLayout intent_to_allTerms = findViewById(R.id.nav_about);

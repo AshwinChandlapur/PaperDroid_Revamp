@@ -28,35 +28,31 @@ public class ViewPagerAdapter_DNA extends FragmentStatePagerAdapter {
     @Override
     public Fragment getItem(int position) {
 
-        if(position == 0) // if the position is 0 we are returning the First tab
+        if (position == 0) // if the position is 0 we are returning the First tab
         {
-            Tab1_Headlines_DNA tab1= new Tab1_Headlines_DNA();
+            Tab1_Headlines_DNA tab1 = new Tab1_Headlines_DNA();
             return tab1;
-        }
-        else  if(position == 1)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        } else if (position == 1)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             Tab2_India_DNA tab2 = new Tab2_India_DNA();
             return tab2;
-        }
-        else  if(position == 2)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        } else if (position == 2)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             Tab3_Sports_DNA tab3 = new Tab3_Sports_DNA();
             return tab3;
-        }
-        else if(position ==3)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
+        } else if (position == 3)            // As we are having 2 tabs if the position is now 0 it must be 1 so we are returning second tab
         {
             Tab4_Business_DNA tab4 = new Tab4_Business_DNA();
             return tab4;
-        }else if(position == 4) {
+        } else if (position == 4) {
 
             Tab5_World_DNA tab5 = new Tab5_World_DNA();
             return tab5;
-        }else{
+        } else {
 
             Tab6_Entertainment_DNA tab6 = new Tab6_Entertainment_DNA();
             return tab6;
         }
-
 
 
     }

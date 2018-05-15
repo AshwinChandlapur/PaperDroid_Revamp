@@ -16,7 +16,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -44,24 +43,23 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import hotchemi.android.rate.AppRate;
 import hotchemi.android.rate.OnClickButtonListener;
-
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Cricbuzz;
 import vadeworks.news.paperdroids.English.DNA.Dna_Activity;
 import vadeworks.news.paperdroids.English.DeccanHerald.DeccanHerald_Activity;
-import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.English.HindustanTimes.HindustanTimes_Activity;
 import vadeworks.news.paperdroids.English.IndianExpress.IndianExpress_Activity;
+import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
 import vadeworks.news.paperdroids.Hindi.AajTak.AajTak_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Bbc.BBC_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Jagaran.Jagaran_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Ndtv.Ndtv_MainActivity;
 import vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity;
-import vadeworks.news.paperdroids.Special_Card;
-import vadeworks.news.paperdroids.Utils;
 import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity;
+import vadeworks.news.paperdroids.Special_Card;
+import vadeworks.news.paperdroids.Utils;
 import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
 
@@ -82,8 +80,9 @@ public class MainScreen_Activity extends AppCompatActivity {
     private static final String CARD_VIEW_VISIBILITY_JG = "card_view_visibility_jg";
     private static final String CARD_VIEW_VISIBILITY_NDTV = "card_view_visibility_ndtv";
     private static final String CARD_VIEW_VISIBILITY_BBC = "card_view_visibility_bbc";
-
-
+    //  two static variable,
+    public static int scrollX = 0;
+    public static int scrollY = -1;
     private static int match_id;
     private final Bundle params = new Bundle();
     @BindView(R.id.specialCards)
@@ -154,12 +153,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     private View parentLayout;
     private int click = 0;
 
-    //  two static variable,
-    public static int scrollX = 0;
-    public static int scrollY = -1;
-
-
-
     @Override
     @AddTrace(name = "onCreate_MainScreen", enabled = true)
     protected void onCreate(Bundle savedInstanceState) {
@@ -171,7 +164,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         parentLayout.setFocusableInTouchMode(true);
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
-
 
 
         firestoreNews = FirebaseFirestore.getInstance();
@@ -220,8 +212,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         }
 
 
-
-     //OnClick Listeners of All Papers
+        //OnClick Listeners of All Papers
         prajavani.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -354,7 +345,6 @@ public class MainScreen_Activity extends AppCompatActivity {
         });
 
 
-
         //Check for Internet Connectivity and Intitialize views for Cricket Score, Rates and App Rating
 
         Utils utils = new Utils(this);
@@ -426,7 +416,6 @@ public class MainScreen_Activity extends AppCompatActivity {
 //        });
 
 
-
         DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
@@ -434,14 +423,14 @@ public class MainScreen_Activity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot document = task.getResult();
                     if (document != null && document.exists()) {
-                        try{
+                        try {
                             carat22 = document.get("gold_22").toString();
                             carat24 = document.get("gold_24").toString();
                             result = document.get("aqi").toString();
                             aqi_status = document.get("aqi_status").toString();
                             petrol = document.get("petrol").toString();
                             diesel = document.get("diesel").toString();
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
                         }
                         gold22_textview.setText(carat22);
@@ -582,8 +571,6 @@ public class MainScreen_Activity extends AppCompatActivity {
     }
 
 
-
-
     private void displayNDTV() {
         if (mFirebaseRemoteConfig.getBoolean(CARD_VIEW_VISIBILITY_NDTV)) {
             ndtv.setVisibility(View.VISIBLE);
@@ -619,8 +606,7 @@ public class MainScreen_Activity extends AppCompatActivity {
 
 
     @Override
-    protected void onPause()
-    {
+    protected void onPause() {
         super.onPause();
         scrollX = scrollView.getScrollX();
         scrollY = scrollView.getScrollY();
@@ -631,11 +617,9 @@ public class MainScreen_Activity extends AppCompatActivity {
     protected void onResume() {
 
         super.onResume();
-        scrollView.post(new Runnable()
-        {
+        scrollView.post(new Runnable() {
             @Override
-            public void run()
-            {
+            public void run() {
                 scrollView.scrollTo(scrollX, scrollY);
             }
         });
@@ -850,9 +834,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         }
     }
-
-
-
 
 
 }

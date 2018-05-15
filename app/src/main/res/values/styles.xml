@@ -91,7 +91,6 @@
     </style>
 
 
-
     <!-- Dialog -->
     <style name="MyAlertDialogStyle" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">@color/background_white</item>
