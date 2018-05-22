@@ -89,7 +89,7 @@
                             android:layout_gravity="center"
                             android:layout_margin="3dp"
                             android:gravity="center"
-                            android:text="News you can count on."
+                            android:text="360° News"
                             android:textColor="@color/background_white"
                             android:textSize="10sp" />
                     </LinearLayout>

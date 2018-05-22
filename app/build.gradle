@@ -27,7 +27,7 @@ android {
         applicationId "vadeworks.news.duniya"
         minSdkVersion 21
         targetSdkVersion 23
-        versionCode 11
+        versionCode 12
         versionName "2.4"
         resConfigs "en"
         manifestPlaceholders = [onesignal_app_id               : "326ce683-dd17-4046-aa1c-1ea05e7161f3",

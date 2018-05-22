@@ -40,7 +40,7 @@
             android:layout_gravity="center"
             android:layout_margin="7dp"
             android:gravity="center"
-            android:text="News you can count on."
+            android:text="360° News"
             android:textAlignment="center"
             android:textColor="@color/loaderColor"
             android:textSize="15sp" />

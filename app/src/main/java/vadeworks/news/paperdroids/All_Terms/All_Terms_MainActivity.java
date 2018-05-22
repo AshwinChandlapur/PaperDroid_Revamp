@@ -190,5 +190,4 @@ public class All_Terms_MainActivity extends AppCompatActivity {
         return true;
     }
 
-
 }
