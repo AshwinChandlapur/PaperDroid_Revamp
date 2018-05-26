@@ -115,7 +115,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         content.setText(singleArticle.content);
 
         if (singleArticle.imgurl == null) {
-            image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_big_one));
+            image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_main_screen));
         } else {
             Picasso.with(mContext).load(singleArticle.imgurl).fit().into(image);
         }
@@ -135,7 +135,7 @@ class Exclusive_Verticle_Pager_Adapter extends PagerAdapter {
         headline.setText(singleArticle.head);
         content.setText(singleArticle.content);
         if (singleArticle.imgurl == null) {
-            image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_big_one));
+            image.setImageDrawable(mContext.getResources().getDrawable(R.drawable.logo_main_screen));
         } else {
             Picasso.with(mContext).load(singleArticle.imgurl).fit().error(R.drawable.backrepeat).into(image);
         }

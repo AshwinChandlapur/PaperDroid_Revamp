@@ -17,16 +17,16 @@ android {
     compileSdkVersion 27
     buildToolsVersion '27.0.3'
 
-    lintOptions {
-        checkAllWarnings true
-        warningsAsErrors true
-    }
+//    lintOptions {
+//        checkAllWarnings true
+//        warningsAsErrors true
+//    }
 
 
     defaultConfig {
         applicationId "vadeworks.news.duniya"
         minSdkVersion 21
-        targetSdkVersion 23
+        targetSdkVersion 27
         versionCode 12
         versionName "2.4"
         resConfigs "en"

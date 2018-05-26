@@ -22,7 +22,7 @@ import vadeworks.paperdroid.R;
 
 public class AajTak_MainActivity extends AppCompatActivity {
 
-    private final CharSequence[] Titles = {"खबर", "देश", "दुनिया", "खेल", "मनोरंजन"};
+    private final CharSequence[] Titles = {"  खबर  ", "  देश  ", "  दुनिया  ", "  खेल  ", "  मनोरंजन  "};
     private final int Numboftabs = 5;
     private Toolbar toolbar;
     private ViewPager pager;
@@ -67,7 +67,7 @@ public class AajTak_MainActivity extends AppCompatActivity {
 
         // Assiging the Sliding Tab Layout View
         tabs = findViewById(R.id.tabs);
-        tabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+        tabs.setDistributeEvenly(false); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
 
         // Setting Custom Color for the Scroll bar indicator of the Tab View
         tabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {

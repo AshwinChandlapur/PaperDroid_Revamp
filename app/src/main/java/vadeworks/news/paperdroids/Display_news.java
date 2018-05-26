@@ -213,6 +213,8 @@ public class Display_news extends AppCompatActivity {
         if (!fullnews.imgurl.isEmpty()) {
             Picasso.with(getApplicationContext())
                     .load(fullnews.imgurl)
+                    .fit()
+                    .centerCrop()
                     .error(R.drawable.backrepeat)
                     .into(imageView);
         } else {

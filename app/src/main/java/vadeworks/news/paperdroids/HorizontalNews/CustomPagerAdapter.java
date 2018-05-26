@@ -157,6 +157,8 @@ class CustomPagerAdapter extends PagerAdapter {
         if (!fullnews.imgurl.isEmpty()) {
             Picasso.with(mContext)
                     .load(fullnews.imgurl)
+                    .fit()
+                    .centerCrop()
                     .error(R.drawable.backrepeat)
                     .into(imageView);
         }

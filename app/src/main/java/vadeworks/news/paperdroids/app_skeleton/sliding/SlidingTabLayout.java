@@ -163,6 +163,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             if (mDistributeEvenly) {
                 LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) tabView.getLayoutParams();
                 lp.width = 0;
+                lp.setMargins(20,0,0,0);
                 lp.weight = 1;
             }
 
@@ -179,7 +180,7 @@ public class SlidingTabLayout extends HorizontalScrollView {
             }
 
             tabTitleView.setTextColor(getResources().getColorStateList(R.color.selector));
-            tabTitleView.setTextSize(14);
+            tabTitleView.setTextSize(16);
         }
     }
 

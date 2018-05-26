@@ -57,6 +57,9 @@ public class FirebaseNews {
 
         firebaseRecyclerview = view.findViewById(R.id.firebaseRecyclerview);
         firebaseRecyclerview.setHasFixedSize(true);
+        firebaseRecyclerview.setItemViewCacheSize(20);
+        firebaseRecyclerview.setDrawingCacheEnabled(true);
+        firebaseRecyclerview.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_HIGH);
 
         //In the Future : Refer addOnSnapShotListener of Firebase for Updating Content whist still on page.
         Log.d("Starting Fetch", "Starting Fetch");
