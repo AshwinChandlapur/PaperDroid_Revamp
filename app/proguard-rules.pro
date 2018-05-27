@@ -17,3 +17,5 @@
 #}
 -dontwarn com.squareup.okhttp.**
 -dontwarn okio.**
+-keep public class com.google.android.gms.* { public *; }
+-dontwarn com.google.android.gms.**
