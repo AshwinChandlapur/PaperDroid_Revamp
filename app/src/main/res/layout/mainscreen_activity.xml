@@ -198,6 +198,177 @@
             </android.support.v7.widget.CardView>
 
 
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/quickie"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:layout_margin="5dp"
+                app:cardBackgroundColor="@color/background_white"
+                app:cardCornerRadius="7dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Quick News"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:textSize="18sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/quick_english"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:innerRadius="0dp"
+                            android:shape="ring"
+                            app:cardElevation="3dp"
+                            android:layout_margin="5dp"
+                            app:cardBackgroundColor="#FFC455"
+                            app:cardCornerRadius="40dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="A"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/background_white"
+                                android:textSize="50sp"/>
+
+                        </android.support.v7.widget.CardView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Headlines"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:id="@+id/quick_kannada"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="center">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:innerRadius="0dp"
+                            android:layout_margin="5dp"
+                            android:shape="ring"
+                            app:cardElevation="3dp"
+                            app:cardBackgroundColor="#FFE6BD"
+                            app:cardCornerRadius="40dp">
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="ಅ"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/background_white"
+                                android:textSize="50sp"/>
+
+                        </android.support.v7.widget.CardView>
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="ಮುಖ್ಯಾಂಶಗಳು"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:id="@+id/quick_hindi"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <android.support.v7.widget.CardView
+                            android:layout_width="80dp"
+                            android:layout_height="80dp"
+                            android:layout_centerHorizontal="true"
+                            android:innerRadius="0dp"
+                            android:layout_margin="5dp"
+                            android:shape="ring"
+                            app:cardElevation="3dp"
+                            app:cardBackgroundColor="#FFC455"
+                            app:cardCornerRadius="40dp"
+                            >
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="अ"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:textColor="@color/background_white"
+                                android:textSize="50sp"/>
+                        </android.support.v7.widget.CardView>
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="शीर्षक"
+                            android:layout_gravity="center"
+                            android:gravity="center"/>
+
+
+                    </LinearLayout>
+
+
+
+
+                </LinearLayout>
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -621,142 +792,177 @@
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
+                android:layout_height="wrap_content"
                 android:layout_margin="5dp"
                 app:cardBackgroundColor="@color/background_white"
                 app:cardCornerRadius="7dp"
                 app:cardElevation="2dp">
 
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|top"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center"
-                    android:text="Today's Overview"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center|bottom"
-                    android:layout_marginBottom="15dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|top"
+                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="3dp"
+                        android:gravity="center"
+                        android:text="Today's Overview"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
 
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center|bottom"
+                        android:layout_marginBottom="15dp"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="horizontal">
 
-                        <ImageView
-                            android:layout_width="46dp"
-                            android:layout_height="46dp"
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
-                            android:contentDescription="TODO"
-                            android:src="@drawable/smallgasstationone" />
-
-
-                        <TextView
-                            android:id="@+id/petrol"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/defaultDash" />
+                            android:orientation="vertical">
 
-                        <TextView
-                            android:id="@+id/diesel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            <ImageView
+                                android:layout_width="46dp"
+                                android:layout_height="46dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/smallgasstationone" />
+
+
+                            <TextView
+                                android:id="@+id/petrol"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="@string/defaultDash" />
+
+                            <TextView
+                                android:id="@+id/diesel"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="@string/defaultDash" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
                             android:layout_gravity="center"
+                            android:layout_weight="1"
                             android:gravity="center"
-                            android:text="@string/defaultDash" />
+                            android:orientation="vertical">
 
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/smallgold" />
+
+                            <TextView
+                                android:id="@+id/gold22"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="@string/defaultDash" />
+
+                            <TextView
+                                android:id="@+id/gold24"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="@string/defaultDash" />
+
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="vertical">
+
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_gravity="center"
+                                android:contentDescription="TODO"
+                                android:src="@drawable/smallfactory" />
+
+
+                            <TextView
+                                android:id="@+id/airNo"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="@string/defaultDash" />
+
+                            <TextView
+                                android:id="@+id/airQuality"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:gravity="center"
+                                android:text="@string/defaultDash" />
+
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="TODO"
-                            android:src="@drawable/smallgold" />
-
-                        <TextView
-                            android:id="@+id/gold22"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="@string/defaultDash" />
-
-                        <TextView
-                            android:id="@+id/gold24"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="@string/defaultDash" />
-
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:layout_gravity="center"
-                            android:contentDescription="TODO"
-                            android:src="@drawable/smallfactory" />
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/onThisDay"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="8dp"
+                        app:cardBackgroundColor="@color/background_white"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="2dp">
 
 
                         <TextView
-                            android:id="@+id/airNo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:id="@+id/today_text"
                             android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="@string/defaultDash" />
+                            android:gravity="center" />
 
-                        <TextView
-                            android:id="@+id/airQuality"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:text="@string/defaultDash" />
+                    </android.support.v7.widget.CardView>
 
-
-                    </LinearLayout>
 
 
                 </LinearLayout>
+
+
+
 
 
             </android.support.v7.widget.CardView>

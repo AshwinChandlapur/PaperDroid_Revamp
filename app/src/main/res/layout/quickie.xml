@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/quickie_parent"
+    android:background="#2e2e2e"
+    tools:context="vadeworks.news.paperdroids.OnThisDay.OnThisDay">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:id="@+id/quickie_container"
+        android:layout_centerVertical="true">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/image"
+        android:adjustViewBounds="true"/>
+
+
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="#000000"
+            android:alpha="0.5"
+            android:layout_gravity="bottom">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/headlines"
+                android:textColor="#ffffff"
+                android:fontFamily="serif"
+                android:textSize="30sp"
+                android:layout_margin="20dp"
+                android:layout_gravity="bottom"
+                android:gravity="center"/>
+
+        </android.support.v7.widget.CardView>
+
+    </FrameLayout>
+
+
+    <jp.shts.android.storiesprogressview.StoriesProgressView
+        android:id="@+id/stories"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="8dp" />
+
+
+
+
+
+    <com.udevel.widgetlab.TypingIndicatorView
+        android:id="@+id/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:padding="4dp"
+        app:animateFrequency="300"
+        app:animationOrder="lastOneFirst"
+        app:backgroundColor="#2e2e2e"
+        app:backgroundType="rounded"
+        app:dotAnimationDuration="600"
+        app:dotAnimationType="Sliding"
+        app:dotColor="#ffffff"
+        app:dotCount="7"
+        app:dotHorizontalSpacing="4dp"
+        app:dotMaxCompressRatio="70%"
+        app:dotSecondColor="#6ba4a4a4"
+        app:dotSize="8dp"
+        app:showBackground="true" />
+
+</RelativeLayout>

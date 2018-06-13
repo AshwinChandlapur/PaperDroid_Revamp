@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/onthisday_parent"
+    android:background="#FFA726"
+    tools:context="vadeworks.news.paperdroids.OnThisDay.OnThisDay">
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
+
+
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:background="#000000"-->
+            <!--android:alpha="0.5"/>-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:id="@+id/onthisday_container"
+            android:layout_centerVertical="true">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date"
+                android:textColor="#ffffff"
+                android:textSize="20sp"
+                android:layout_margin="10dp"
+                android:gravity="center"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/event"
+                android:textColor="#ffffff"
+                android:textSize="30sp"
+                android:layout_margin="10dp"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+
+
+
+
+    <jp.shts.android.storiesprogressview.StoriesProgressView
+        android:id="@+id/stories"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="8dp" />
+
+
+    <com.udevel.widgetlab.TypingIndicatorView
+        android:id="@+id/loader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="4dp"
+        app:animateFrequency="300"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        app:animationOrder="lastOneFirst"
+        app:backgroundColor="#FFA726"
+        app:backgroundType="rounded"
+        app:dotAnimationDuration="600"
+        app:dotAnimationType="Sliding"
+        app:dotColor="@color/background_white"
+        app:dotCount="7"
+        app:dotHorizontalSpacing="4dp"
+        app:dotMaxCompressRatio="70%"
+        app:dotSecondColor="@color/background_white"
+        app:dotSize="8dp"
+        app:showBackground="true" />
+
+</RelativeLayout>

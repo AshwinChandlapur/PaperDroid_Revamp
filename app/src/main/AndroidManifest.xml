@@ -95,7 +95,10 @@
         <activity android:name="vadeworks.news.paperdroids.English.DNA.Dna_Activity" />
         <activity android:name="vadeworks.news.paperdroids.English.IndianExpress.IndianExpress_Activity" />
         <activity android:name="vadeworks.news.paperdroids.Special_Card" />
-        <activity android:name="vadeworks.news.paperdroids.SetNotifications"></activity>
+        <activity android:name="vadeworks.news.paperdroids.SetNotifications" />
+        <activity android:name="vadeworks.news.paperdroids.OnThisDay.OnThisDay" />
+        <activity android:name="vadeworks.news.paperdroids.Quickie.Quickie" />
+        <activity android:name="vadeworks.news.paperdroids.Quickie.Feedback"></activity>
     </application>
 
 </manifest>

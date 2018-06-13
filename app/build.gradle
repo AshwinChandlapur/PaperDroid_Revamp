@@ -77,6 +77,7 @@ dependencies {
     implementation 'com.crashlytics.sdk.android:crashlytics:2.9.2'
     implementation 'com.jakewharton:butterknife:8.8.1'
     implementation 'com.github.hotchemi:android-rate:1.0.1'
+    implementation 'com.github.shts:StoriesProgressView:2.0.0'
 //    implementation 'com.mapzen.android:speakerbox:1.4.1'
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
     implementation 'com.android.support.constraint:constraint-layout:1.1.0'

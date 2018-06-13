@@ -61,7 +61,7 @@
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:background="@drawable/buttonstyle"
-            android:text="Give us a 5"
+            android:text="Rate the App"
             android:textColor="@color/text_black_100" />
 
 

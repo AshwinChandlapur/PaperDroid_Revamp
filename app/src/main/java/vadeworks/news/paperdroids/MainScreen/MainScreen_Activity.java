@@ -16,6 +16,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -36,6 +37,8 @@ import com.udevel.widgetlab.TypingIndicatorView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
@@ -58,6 +61,8 @@ import vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity;
+import vadeworks.news.paperdroids.OnThisDay.OnThisDay;
+import vadeworks.news.paperdroids.Quickie.Quickie;
 import vadeworks.news.paperdroids.Special_Card;
 import vadeworks.news.paperdroids.Utils;
 import vadeworks.paperdroid.BuildConfig;
@@ -85,6 +90,18 @@ public class MainScreen_Activity extends AppCompatActivity {
     public static int scrollY = -1;
     private static int match_id;
     private final Bundle params = new Bundle();
+
+
+    @BindView(R.id.quick_english)
+    LinearLayout quick_english;
+    @BindView(R.id.quick_kannada)
+    LinearLayout quick_kannada;
+    @BindView(R.id.quick_hindi)
+    LinearLayout quick_hindi;
+
+
+    @BindView(R.id.onThisDay)
+    CardView onThisday;
     @BindView(R.id.specialCards)
     CardView ipl_parent;
     @BindView(R.id.mchDesc)
@@ -141,6 +158,8 @@ public class MainScreen_Activity extends AppCompatActivity {
     TextView airNo_textview;
     @BindView(R.id.airQuality)
     TextView airQuality_textview;
+    @BindView(R.id.today_text)
+    TextView today_text;
     @BindView(R.id.scrollView)
     NestedScrollView scrollView;
     private FirebaseFirestore firestoreNews;
@@ -317,7 +336,7 @@ public class MainScreen_Activity extends AppCompatActivity {
         jagaran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_aajtak);
+                card_clicked = getResources().getString(R.string.toolbar_title_home_jagaran);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, Jagaran_MainActivity.class);
                 startActivity(i);
@@ -326,9 +345,54 @@ public class MainScreen_Activity extends AppCompatActivity {
         bbc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                card_clicked = getResources().getString(R.string.toolbar_title_home_aajtak);
+                card_clicked = getResources().getString(R.string.toolbar_title_home_bbc);
                 mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, BBC_MainActivity.class);
+                startActivity(i);
+            }
+        });
+
+        quick_english.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = "Quick_English";
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent i = new Intent(MainScreen_Activity.this, Quickie.class);
+                i.putExtra("id", "HT_HEADLINES");
+                startActivity(i);
+            }
+        });
+
+        quick_kannada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = "Quick_Kannada";
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent i = new Intent(MainScreen_Activity.this, Quickie.class);
+                i.putExtra("id", "PJ_HEADLINES");
+                startActivity(i);
+            }
+        });
+
+        quick_hindi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                card_clicked = "Quick_Hindi";
+                mFirebaseAnalytics.logEvent(card_clicked, params);
+                Intent i = new Intent(MainScreen_Activity.this, Quickie.class);
+                i.putExtra("id", "AT_HEADLINES");
+                startActivity(i);
+            }
+        });
+
+        DateFormat dateFormat = new SimpleDateFormat("dd MMMM");
+        Date date = new Date();
+
+        today_text.setText("On This Day - "+dateFormat.format(date));
+        onThisday.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(MainScreen_Activity.this, OnThisDay.class);
                 startActivity(i);
             }
         });
@@ -354,7 +418,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             new Handler().postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Log.d("Test", "Inside 2500 Runnable");
                     refreshScores(true);
                 }
             }, 2500);
@@ -834,7 +897,6 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         }
     }
-
 
 }
 
