@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.tabs.ViewPagerAdapter_VK;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
@@ -54,6 +56,8 @@ public class VijayaKarnataka_MainActivity extends AppCompatActivity {
         if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
+
+
 
 
     }

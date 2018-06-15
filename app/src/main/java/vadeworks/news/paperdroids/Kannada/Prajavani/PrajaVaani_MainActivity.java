@@ -13,6 +13,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import vadeworks.news.paperdroids.Constants;
 import vadeworks.news.paperdroids.Kannada.Prajavani.tabs.ViewPagerAdapter_PJ;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
@@ -36,6 +38,7 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle mActionBarDrawerToggle;
     private ScrimInsetsFrameLayout mScrimInsetsFrameLayout;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +54,6 @@ public class PrajaVaani_MainActivity extends AppCompatActivity {
         if (!(utils.isConnected(getApplicationContext()))) {
             utils.buildDialog(this).show();
         }
-
 
     }
 

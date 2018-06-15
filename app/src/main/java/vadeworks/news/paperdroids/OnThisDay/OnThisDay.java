@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -37,6 +38,7 @@ import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
 import vadeworks.news.paperdroids.Quickie.Feedback;
 import vadeworks.news.paperdroids.RecyclerAdapter;
+import vadeworks.news.paperdroids.Utils;
 import vadeworks.paperdroid.R;
 
 public class OnThisDay extends AppCompatActivity implements StoriesProgressView.StoriesListener {
@@ -44,7 +46,6 @@ public class OnThisDay extends AppCompatActivity implements StoriesProgressView.
 
     int counter_date=0;
     int counter_event=0;
-    int counter_color=0;
 
     LinearLayout onthisday_container;
     RelativeLayout onthisday_parent;
@@ -54,16 +55,15 @@ public class OnThisDay extends AppCompatActivity implements StoriesProgressView.
     private StoriesProgressView storiesProgressView;
     private ArrayList<News> newsList = new ArrayList<>();
     TypingIndicatorView typingIndicatorView;
+    private FirebaseAnalytics mFirebaseAnalytics;
 
-//    int Low=0;
-//    int High = colors.length;
-//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_on_this_day);
 
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         final int[] colors = {getApplicationContext().getResources().getColor(R.color.material0),
                 getApplicationContext().getResources().getColor(R.color.material1),
                 getApplicationContext().getResources().getColor(R.color.material2),
@@ -87,107 +87,131 @@ public class OnThisDay extends AppCompatActivity implements StoriesProgressView.
         event = findViewById(R.id.event);
         typingIndicatorView = findViewById(R.id.loader);
         storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
-        firestoreNews = FirebaseFirestore.getInstance();
-        FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
-                .setPersistenceEnabled(true)
-                .build();
-        firestoreNews.setFirestoreSettings(settings);
-        firestoreNews.collection("DAY")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            for (DocumentSnapshot documentSnapshot : task.getResult()) {
-                                Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
-                                Log.d("AllContent", "all" + documentSnapshot.get("content"));
+
+        Utils utils = new Utils(this);
+        if (!(utils.isConnected(getApplicationContext()))) {
+            utils.buildDialog(this).show();
+        }
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                firestoreNews = FirebaseFirestore.getInstance();
+                FirebaseFirestoreSettings settings = new FirebaseFirestoreSettings.Builder()
+                        .setPersistenceEnabled(true)
+                        .build();
+                firestoreNews.setFirestoreSettings(settings);
+                firestoreNews.collection("DAY")
+                        .get()
+                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @Override
+                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                if (task.isSuccessful()) {
+                                    for (DocumentSnapshot documentSnapshot : task.getResult()) {
+                                        Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
+                                        Log.d("AllContent", "all" + documentSnapshot.get("content"));
 //
-                                String fire_date,fire_event;
-                                News news1 = new News();
-                                news1.head= (documentSnapshot.get("date") != null) ? documentSnapshot.get("date").toString() : "";
-                                news1.link = (documentSnapshot.get("event") != null) ? documentSnapshot.get("event").toString() : "";
-                                if (!(news1.head.isEmpty()) && !(news1.link.isEmpty()))
-                                {
-                                    newsList.add(news1);
+                                        String fire_date,fire_event;
+                                        News news1 = new News();
+                                        news1.head= (documentSnapshot.get("date") != null) ? documentSnapshot.get("date").toString() : "";
+                                        news1.link = (documentSnapshot.get("event") != null) ? documentSnapshot.get("event").toString() : "";
+                                        if (!(news1.head.isEmpty()) && !(news1.link.isEmpty()))
+                                        {
+                                            newsList.add(news1);
+                                        }
+                                        Log.d("OnThisDay Size",String.valueOf(newsList.size()));
+
+                                    }
+                                    Log.d("Starting Fetch", "Finishing Fetch");
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Oops, Something went wrong. Could'nt Fetch News :( ", Toast.LENGTH_SHORT).show();
+                                    Log.w("Docu", "Error getting documents.", task.getException());
                                 }
-                                Log.d("OnThisDay Size",String.valueOf(newsList.size()));
+                            }
+                        });
+                try{
+                    Thread.sleep(1000);
+                }catch (Exception e){}
+
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        storiesProgressView.setStoriesCount(10);
+                        storiesProgressView.setStoryDuration(4000L); // <- set a story duration
+                        storiesProgressView.setStoriesListener(new StoriesProgressView.StoriesListener() {
+                            @Override
+                            public void onNext() {
+
+                                Random r = new Random();
+                                int Low = 0;
+                                int High = colors.length;
+                                int Result = r.nextInt(High-Low) + Low;
+                                onthisday_parent.setBackgroundColor(colors[Result]);
+                                try{
+                                    date.setText(newsList.get(++counter_date).head);
+                                    event.setText(newsList.get(++counter_event).link);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
 
                             }
-                            Log.d("Starting Fetch", "Finishing Fetch");
-                        } else {
-                            Toast.makeText(getApplicationContext(), "Oops, Something went wrong. Could'nt Fetch News :( ", Toast.LENGTH_SHORT).show();
-                            Log.w("Docu", "Error getting documents.", task.getException());
+
+                            @Override
+                            public void onPrev() {
+
+                                Random r = new Random();
+                                int Low = 0;
+                                int High = colors.length;
+                                int Result = r.nextInt(High-Low) + Low;
+
+                                onthisday_parent.setBackgroundColor(colors[Result]);
+                                try{
+                                    date.setText(newsList.get(--counter_date).head);
+                                    event.setText(newsList.get(--counter_event).link);
+                                }catch (Exception e){
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onComplete() {
+                                Intent i = new Intent(OnThisDay.this, Feedback.class);
+                                startActivity(i);
+                            }
+                        }); // <- set listener
+                        typingIndicatorView.setVisibility(View.GONE);
+                        storiesProgressView.startStories(); // <- start progress
+
+                        onthisday_parent.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                storiesProgressView.skip();
+//                      storiesProgressView.reverse();
+                            }
+                        });
+
+                        onthisday_parent.setOnLongClickListener(new View.OnLongClickListener() {
+                            @Override
+                            public boolean onLongClick(View view) {
+                                storiesProgressView.pause();
+                                return false;
+                            }
+                        });
+                        if(newsList.size()!=0){
+                            try{
+                                date.setText(newsList.get(counter_date).head);
+                                event.setText(newsList.get(counter_event).link);
+                            }catch (Exception e){
+                                e.printStackTrace();
+                            }
                         }
+
                     }
                 });
-
-
-
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    storiesProgressView.setStoriesCount(10);
-                    storiesProgressView.setStoryDuration(4000L); // <- set a story duration
-                    storiesProgressView.setStoriesListener(new StoriesProgressView.StoriesListener() {
-                        @Override
-                        public void onNext() {
-
-                            Random r = new Random();
-                            int Low = 0;
-                            int High = colors.length;
-                            int Result = r.nextInt(High-Low) + Low;
-
-
-                            onthisday_parent.setBackgroundColor(colors[Result]);
-                            date.setText(newsList.get(++counter_date).head);
-                            event.setText(newsList.get(++counter_event).link);
-                        }
-
-                        @Override
-                        public void onPrev() {
-
-                            Random r = new Random();
-                            int Low = 0;
-                            int High = colors.length;
-                            int Result = r.nextInt(High-Low) + Low;
-
-                            onthisday_parent.setBackgroundColor(colors[Result]);
-                            date.setText(newsList.get(--counter_date).head);
-                            event.setText(newsList.get(--counter_event).link);
-                        }
-
-                        @Override
-                        public void onComplete() {
-                            Intent i = new Intent(OnThisDay.this, Feedback.class);
-                            startActivity(i);
-                        }
-                    }); // <- set listener
-                    typingIndicatorView.setVisibility(View.GONE);
-                    storiesProgressView.startStories(); // <- start progress
-
-                    onthisday_parent.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                        storiesProgressView.skip();
-//                      storiesProgressView.reverse();
-                        }
-                    });
-
-                    onthisday_parent.setOnLongClickListener(new View.OnLongClickListener() {
-                        @Override
-                        public boolean onLongClick(View view) {
-                            storiesProgressView.pause();
-                            return false;
-                        }
-                    });
-
-
-                    date.setText(newsList.get(counter_date).head);
-                    event.setText(newsList.get(counter_event).link);
-                }
-            }, 2000);
-
+            }
+        }).start();
 
     }
 

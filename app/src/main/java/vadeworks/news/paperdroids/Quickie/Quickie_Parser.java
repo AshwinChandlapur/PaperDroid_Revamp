@@ -34,7 +34,7 @@ public class Quickie_Parser {
             case "HT_HEADLINES":
                 inspecturl= news_60_english;
                 break;
-            case "AT_HEADLINES":
+            case "ND_HEADLINES":
                 inspecturl= news_60_hindi;
                 break;
             case "PJ_HEADLINES":

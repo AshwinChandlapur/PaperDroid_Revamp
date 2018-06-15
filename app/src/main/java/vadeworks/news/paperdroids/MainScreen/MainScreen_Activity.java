@@ -380,7 +380,7 @@ public class MainScreen_Activity extends AppCompatActivity {
                 card_clicked = "Quick_Hindi";
                 mFirebaseAnalytics.logEvent(card_clicked, params);
                 Intent i = new Intent(MainScreen_Activity.this, Quickie.class);
-                i.putExtra("id", "AT_HEADLINES");
+                i.putExtra("id", "ND_HEADLINES");
                 startActivity(i);
             }
         });

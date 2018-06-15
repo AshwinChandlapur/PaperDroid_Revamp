@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
@@ -28,6 +29,7 @@ import java.util.ArrayList;
 import jp.shts.android.storiesprogressview.StoriesProgressView;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.News;
+import vadeworks.news.paperdroids.Utils;
 import vadeworks.paperdroid.R;
 
 public class Quickie extends AppCompatActivity implements StoriesProgressView.StoriesListener {
@@ -45,12 +47,13 @@ public class Quickie extends AppCompatActivity implements StoriesProgressView.St
     TypingIndicatorView typingIndicatorView;
     private ArrayList<News> news_60 = new ArrayList<>();
     String value;
+    private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quickie);
 
-
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             value = extras.getString("id");
@@ -64,6 +67,11 @@ public class Quickie extends AppCompatActivity implements StoriesProgressView.St
         image = findViewById(R.id.image);
         storiesProgressView = (StoriesProgressView) findViewById(R.id.stories);
         typingIndicatorView = findViewById(R.id.loader);
+
+        Utils utils = new Utils(this);
+        if (!(utils.isConnected(getApplicationContext()))) {
+            utils.buildDialog(this).show();
+        }
 
 
         new Thread(new Runnable() {
@@ -96,8 +104,6 @@ public class Quickie extends AppCompatActivity implements StoriesProgressView.St
                                         {
                                             news_60.add(news1);
                                         }
-
-
                                     }
                                     Log.d("Starting Fetch", "Finishing Fetch");
                                 } else {
@@ -108,7 +114,6 @@ public class Quickie extends AppCompatActivity implements StoriesProgressView.St
                         });
 
 
-
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -117,15 +122,22 @@ public class Quickie extends AppCompatActivity implements StoriesProgressView.St
                     storiesProgressView.setStoriesListener(new StoriesProgressView.StoriesListener() {
                         @Override
                         public void onNext() {
-                            headlines.setText(news_60.get(++counter_date).head);
-                            Picasso.with(getApplicationContext()).load(news_60.get(++counter_event).link).fit().centerCrop().into(image);
-                        }
+                            try{
+                                headlines.setText(news_60.get(++counter_date).head);
+                                Picasso.with(getApplicationContext()).load(news_60.get(++counter_event).link).fit().centerCrop().into(image);
+                            }catch (Exception e){
+                             e.printStackTrace(); }
+                            }
 
                         @Override
                         public void onPrev() {
-                            headlines.setText(news_60.get(--counter_date).head);
-                            Picasso.with(getApplicationContext()).load(news_60.get(--counter_event).link).fit().centerCrop().into(image);
+                            try{
+                                headlines.setText(news_60.get(--counter_date).head);
+                                Picasso.with(getApplicationContext()).load(news_60.get(--counter_event).link).fit().centerCrop().into(image);
 
+                            }catch (Exception e){
+                               e.printStackTrace();
+                            }
                         }
 
                         @Override
@@ -153,21 +165,17 @@ public class Quickie extends AppCompatActivity implements StoriesProgressView.St
                         }
                     });
 
-                    headlines.setText(news_60.get(counter_date).head);
-                    Picasso.with(getApplicationContext()).load(news_60.get(counter_event).link).fit().centerCrop().into(image);
+                    try{
+                        headlines.setText(news_60.get(counter_date).head);
+                        Picasso.with(getApplicationContext()).load(news_60.get(counter_event).link).fit().centerCrop().into(image);
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
+
                 }
             });
             }
         }).start();
-
-
-//            final Handler handler = new Handler();
-//            handler.postDelayed(new Runnable() {
-//                @Override
-//                public void run() {
-//
-//                }
-//            }, 200);
 
     }
 
