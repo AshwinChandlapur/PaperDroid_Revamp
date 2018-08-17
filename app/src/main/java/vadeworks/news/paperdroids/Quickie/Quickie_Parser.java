@@ -15,9 +15,6 @@ import vadeworks.news.paperdroids.News;
 public class Quickie_Parser {
 
 
-
-
-
     private String news_60_kannada="https://www.60secondsnow.com/kn/";
     private String news_60_english="https://www.60secondsnow.com/india/";
     private String news_60_hindi ="https://www.60secondsnow.com/hi/";

@@ -9,7 +9,10 @@ import android.net.Uri;
 import android.os.Environment;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +32,8 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
+import vadeworks.news.paperdroids.Levels.Tab1;
+import vadeworks.news.paperdroids.Levels.Tab2;
 import vadeworks.news.paperdroids.News;
 import vadeworks.paperdroid.R;
 
@@ -53,6 +58,7 @@ class CustomPagerAdapter extends PagerAdapter {
     private FloatingActionButton share;
 
 
+
     public CustomPagerAdapter(Context context, ArrayList<News> news, int position) {
         mContext = context;
         mNews = news;
@@ -73,7 +79,7 @@ class CustomPagerAdapter extends PagerAdapter {
     @Override
     @AddTrace(name = "Instantiate_Horizontal_News", enabled = true)
     public Object instantiateItem(ViewGroup container, int position) {
-        final View itemView = mLayoutInflater.inflate(R.layout.horizontal_pager_item, container, false);
+        View itemView = mLayoutInflater.inflate(R.layout.horizontal_pager_item, container, false);
         mPos = position;
 
         fullnews = new News(mNews.get(mPos).head, mNews.get(mPos).link, mNews.get(mPos).imgurl, mNews.get(mPos).content);
@@ -142,6 +148,8 @@ class CustomPagerAdapter extends PagerAdapter {
 
     private void display_news(News fullnews, final View itemView, final int mPos) {
 
+
+
         headlines_textview = itemView.findViewById(R.id.headline);
         content_textview = itemView.findViewById(R.id.content);
         link_textview = itemView.findViewById(R.id.link);
@@ -163,14 +171,6 @@ class CustomPagerAdapter extends PagerAdapter {
                     .into(imageView);
         }
 
-//        headlines_textview.setText(fullnews.head);
-//        if(fullnews.tag.equals("pj")||fullnews.tag.equals("vk")||fullnews.tag.equals("vv")||fullnews.tag.equals("es")){
-//            link_textview.setText("ವಿವರವಾಗಿ ಓದಿ");
-//        }else if(fullnews.tag.equals("ht")||fullnews.tag.equals("dna")||fullnews.tag.equals("ie")||fullnews.tag.equals("dh")){
-//            link_textview.setText("Read More");
-//        }else{
-//            link_textview.setText("और पढो");
-//        }
 
 
         link_textview.setOnClickListener(new View.OnClickListener() {
@@ -194,6 +194,5 @@ class CustomPagerAdapter extends PagerAdapter {
             }
         });
     }
-
 
 }

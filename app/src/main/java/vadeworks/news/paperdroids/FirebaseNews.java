@@ -69,6 +69,7 @@ public class FirebaseNews {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+
                             for (DocumentSnapshot documentSnapshot : task.getResult()) {
                                 Log.d("Docu", documentSnapshot.getId() + " => " + documentSnapshot.getData());
                                 Log.d("AllContent", "all" + documentSnapshot.get("content"));

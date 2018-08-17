@@ -36,14 +36,6 @@
                 tools:ignore="ContentDescription" />
 
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="top|center"
-                android:layout_margin="12dp"
-                android:orientation="vertical">
-
-
                     <ImageView
                         android:layout_width="match_parent"
                         android:layout_height="120dp"
@@ -52,16 +44,16 @@
                         tools:ignore="ContentDescription" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="cursive"
+                    android:gravity="center"
                     android:text="@string/app_name"
                     android:textColor="@color/white"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
-            </LinearLayout>
 
 
             <android.support.v7.widget.Toolbar
@@ -208,35 +200,24 @@
                 app:cardCornerRadius="7dp"
                 app:cardElevation="4dp">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:gravity="center">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="Quick News"
-                        android:textStyle="bold"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:textSize="18sp" />
-
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center"
-                    android:gravity="center">
+                    android:layout_height="wrap_content"
+                    android:text="Quick News"
+                    android:layout_gravity="top"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginTop="7dp"
                         android:id="@+id/quick_english"
-                        android:layout_gravity="center"
+                        android:layout_gravity="start|center"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -275,10 +256,10 @@
 
 
                     <LinearLayout
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:id="@+id/quick_kannada"
+                        android:layout_marginTop="7dp"
                         android:orientation="vertical"
                         android:layout_gravity="center"
                         android:gravity="center">
@@ -317,11 +298,12 @@
 
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center"
                         android:id="@+id/quick_hindi"
+                        android:layout_marginTop="7dp"
+                        android:layout_marginRight="7dp"
+                        android:layout_gravity="end|center"
                         android:gravity="center"
                         android:orientation="vertical">
 
@@ -358,12 +340,6 @@
                     </LinearLayout>
 
 
-
-
-                </LinearLayout>
-                </LinearLayout>
-
-
             </android.support.v7.widget.CardView>
 
 
@@ -382,6 +358,7 @@
                     android:layout_width="150dp"
                     android:layout_height="140dp"
                     android:layout_margin="16dp"
+                    android:focusable="true"
                     app:cardBackgroundColor="@color/background_white"
                     app:cardCornerRadius="7dp"
                     app:cardElevation="2dp">
@@ -406,8 +383,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
                             android:layout_marginTop="3dp"
+                            android:layout_gravity="bottom|center"
                             android:text="@string/toolbar_title_home_ht" />
 
                     </LinearLayout>
@@ -449,7 +426,6 @@
 
 
                     </LinearLayout>
-
 
                 </android.support.v7.widget.CardView>
 
@@ -499,9 +475,7 @@
                             android:layout_marginTop="3dp"
                             android:text="@string/toolbar_title_home_ie" />
 
-
                     </LinearLayout>
-
 
                 </android.support.v7.widget.CardView>
 
@@ -583,28 +557,17 @@
                             android:alpha="0.7"
                             android:background="@color/text_black_100" />
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_gravity="center"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_lock_black_24dp"
-                                android:tint="@color/background_white" />
-
                             <TextView
                                 android:id="@+id/locktext"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="5dp"
+                                android:layout_gravity="center_horizontal|center_vertical"
+                                android:gravity="center"
+                                android:drawableTint="@color/background_white"
+                                android:drawableTop="@drawable/ic_lock_black_24dp"
                                 android:textColor="@color/background_white"
                                 android:textSize="12sp" />
-                        </LinearLayout>
                     </FrameLayout>
 
 
@@ -817,6 +780,31 @@
                         android:textStyle="bold" />
 
 
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/today_horoscope"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginBottom="8dp"
+                        app:cardBackgroundColor="@color/background_white"
+                        app:cardCornerRadius="7dp"
+                        app:cardElevation="2dp">
+
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp"
+                            android:id="@+id/today_horoscope_text"
+                            android:text="Horoscopes"
+                            android:layout_gravity="center"
+                            android:gravity="center" />
+
+                    </android.support.v7.widget.CardView>
+
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -834,18 +822,13 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="46dp"
-                                android:layout_height="46dp"
-                                android:layout_gravity="center"
-                                android:contentDescription="TODO"
-                                android:src="@drawable/smallgasstationone" />
 
 
                             <TextView
                                 android:id="@+id/petrol"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:drawableTop="@drawable/smallgasstationone"
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:text="@string/defaultDash" />
@@ -870,17 +853,12 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center"
-                                android:contentDescription="TODO"
-                                android:src="@drawable/smallgold" />
 
                             <TextView
                                 android:id="@+id/gold22"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:drawableTop="@drawable/smallgold"
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:text="@string/defaultDash" />
@@ -905,18 +883,13 @@
                             android:gravity="center"
                             android:orientation="vertical">
 
-                            <ImageView
-                                android:layout_width="48dp"
-                                android:layout_height="48dp"
-                                android:layout_gravity="center"
-                                android:contentDescription="TODO"
-                                android:src="@drawable/smallfactory" />
 
 
                             <TextView
                                 android:id="@+id/airNo"
-                                android:layout_width="match_parent"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:drawableTop="@drawable/smallfactory"
                                 android:layout_gravity="center"
                                 android:gravity="center"
                                 android:text="@string/defaultDash" />

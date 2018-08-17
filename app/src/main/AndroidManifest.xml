@@ -10,7 +10,6 @@
 
     <application
         android:name="vadeworks.news.paperdroids.MainApplication"
-        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme"
@@ -28,16 +27,19 @@
             android:name="vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name="vadeworks.news.paperdroids.Display_news"
             android:configChanges="orientation"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait" >
+        </activity>
         <activity
             android:name="vadeworks.news.paperdroids.Hindi.AajTak.AajTak_MainActivity"
             android:configChanges="orientation"
@@ -98,7 +100,8 @@
         <activity android:name="vadeworks.news.paperdroids.SetNotifications" />
         <activity android:name="vadeworks.news.paperdroids.OnThisDay.OnThisDay" />
         <activity android:name="vadeworks.news.paperdroids.Quickie.Quickie" />
-        <activity android:name="vadeworks.news.paperdroids.Quickie.Feedback"></activity>
+        <activity android:name="vadeworks.news.paperdroids.Quickie.Feedback" />
+        <activity android:name="vadeworks.news.paperdroids.HoroScopes.HoroScopes"></activity>
     </application>
 
 </manifest>

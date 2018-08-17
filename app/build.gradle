@@ -27,8 +27,8 @@ android {
         applicationId "vadeworks.news.duniya"
         minSdkVersion 21
         targetSdkVersion 27
-        versionCode 14
-        versionName "2.5"
+        versionCode 15
+        versionName "2.51"
         resConfigs "en"
         manifestPlaceholders = [onesignal_app_id               : "326ce683-dd17-4046-aa1c-1ea05e7161f3",
                                 // Project number pulled from dashboard, local value is ignored.
@@ -79,8 +79,8 @@ dependencies {
     implementation 'com.github.hotchemi:android-rate:1.0.1'
     implementation 'com.github.shts:StoriesProgressView:2.0.0'
 //    implementation 'com.mapzen.android:speakerbox:1.4.1'
+    implementation 'com.flaviofaria:kenburnsview:1.0.7'
 //    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
 apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="vadeworks.news.paperdroids.HoroScopes.HoroScopes">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.flaviofaria.kenburnsview.KenBurnsView
+            android:id="@+id/kens"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/aries">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/aries"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Aries"
+                        android:textColor="@color/background_white"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/taurus">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/taurus"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Taurus"
+                        android:textColor="@color/background_white"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/gemini">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/gemini"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Gemini"
+                        android:textSize="15sp"
+                        android:textColor="@color/background_white"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/cancer">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/cancer"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cancer"
+                        android:textColor="@color/background_white"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/leo">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/leo"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Leo"
+                        android:textColor="@color/background_white"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/virgo">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/virgo"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Virgo"
+                        android:textSize="15sp"
+                        android:textColor="@color/background_white"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/libra">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/libra"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Libra"
+                        android:textColor="@color/background_white"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/scorpio">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/scorpion"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Scorpio"
+                        android:textSize="15sp"
+                        android:textColor="@color/background_white"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                android:layout_gravity="center"
+                android:gravity="center">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/sagittarius">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/sagittarius"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sagittarius"
+                        android:textSize="15sp"
+                        android:textColor="@color/background_white"
+                        android:layout_gravity="center"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/capricorn">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/capricorn"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Capricorn"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/background_white"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/aquarius">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/aquarius"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Aquarius"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/background_white"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <android.support.v7.widget.CardView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_centerHorizontal="true"
+                        android:innerRadius="0dp"
+                        android:shape="ring"
+                        app:cardElevation="3dp"
+                        android:layout_margin="10dp"
+                        app:cardBackgroundColor="#FFC455"
+                        app:cardCornerRadius="30dp"
+                        android:id="@+id/pisces">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:src="@drawable/pisces"
+                            android:tint="@color/material0"
+                            android:layout_gravity="center"/>
+
+                    </android.support.v7.widget.CardView>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Pisces"
+                        android:textSize="15sp"
+                        android:layout_gravity="center"
+                        android:textColor="@color/background_white"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+            <com.udevel.widgetlab.TypingIndicatorView
+                android:id="@+id/horoscope_loader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                app:animateFrequency="300"
+                app:animationOrder="lastOneFirst"
+                app:backgroundColor="@android:color/transparent"
+                app:backgroundType="rounded"
+                app:dotAnimationDuration="600"
+                app:dotAnimationType="Sliding"
+                app:dotColor="@color/background_white"
+                app:dotCount="7"
+                app:dotHorizontalSpacing="4dp"
+                app:dotMaxCompressRatio="70%"
+                app:dotSecondColor="#6ba4a4a4"
+                app:dotSize="8dp"
+                app:showBackground="true" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sign"
+                android:visibility="gone"
+                android:textSize="18sp"
+                android:textColor="@color/background_white"
+                android:layout_gravity="center"
+                android:text="Click On Your Zodiac Sign."
+                android:gravity="center"
+                android:layout_margin="10dp"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="16sp"
+                android:id="@+id/horoscope"
+                android:lineSpacingExtra="2dp"
+                android:textColor="@color/background_white"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+        </ScrollView>
+
+
+    </FrameLayout>
+
+
+
+
+
+</LinearLayout>

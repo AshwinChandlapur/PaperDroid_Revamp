@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -17,6 +18,7 @@ import com.onesignal.OneSignal;
 import org.json.JSONObject;
 
 import vadeworks.news.paperdroids.Exclusive.ExclusiveActivity;
+import vadeworks.news.paperdroids.Levels.Tab1;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.news.paperdroids.VerticalNews.Vertical_News;
 
@@ -49,6 +51,7 @@ public class MainApplication extends Application {
                 .setNotificationReceivedHandler(new onNotificationReceived())
                 .setNotificationOpenedHandler(new onNotificationOpened())
                 .init();
+
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(getApplicationContext());
 //        refWatcher = LeakCanary.install(this);

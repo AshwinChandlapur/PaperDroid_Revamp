@@ -1,5 +1,6 @@
 package vadeworks.news.paperdroids;
 
+import android.os.Parcelable;
 import android.util.Log;
 
 import java.io.Serializable;

@@ -15,6 +15,8 @@ import android.os.Environment;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -41,29 +43,29 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Date;
 
+import vadeworks.news.paperdroids.Levels.PagerAdapter;
+import vadeworks.news.paperdroids.Levels.Tab1;
+import vadeworks.news.paperdroids.Levels.Tab2;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.paperdroid.R;
 
-public class Display_news extends AppCompatActivity {
+public class Display_news extends AppCompatActivity implements Tab1.OnFragmentInteractionListener, Tab2.OnFragmentInteractionListener {
 
-    private final String notif = "";
+
     private final Bundle params = new Bundle();
     private TextView headlines_textview;
-    private TextView content_textview;
-    private TextView link_textview;
     private ImageView imageView;
     private String head;
     private String link;
     private String imgurl;
     private String docid;
-    private News fullnews;
-    private android.support.v7.widget.Toolbar toola;
     private TypingIndicatorView typingView;
     private FirebaseAnalytics mFirebaseAnalytics;
-    private String news_display_previous_activity;
-    private FloatingActionButton share;
+
+    private TypingIndicatorView typingIndicatorView;
 
     private FirebaseFirestore firestorenews;
+    private TabLayout tabLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,12 +74,13 @@ public class Display_news extends AppCompatActivity {
         views_init();
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        if (!isConnected(this)) {
-            buildDialog_noInternet(this).show();
-
+        Utils utils = new Utils(this);
+        if (!utils.isConnected(getApplicationContext())) {
+            utils.buildDialog(this).show();
         } else {
             Log.d("Internet Working", "Internet Working");
         }
+
 
         firestorenews = FirebaseFirestore.getInstance();
 
@@ -85,53 +88,56 @@ public class Display_news extends AppCompatActivity {
         head = getIntent().getStringExtra("singleHead");
         link = getIntent().getStringExtra("singleLink");
         imgurl = getIntent().getStringExtra("singleImg");
+
+
+
         firestorenews.collection("NOTIFICATIONS").document(docid).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                News todisplay = new News();
                 if (task.isSuccessful()) {
-                    News todisplay = new News(head, link, imgurl);
+                    todisplay = new News(head, link, imgurl);
                     todisplay.content = task.getResult().get("content").toString();
                     display_news(todisplay);
                 }
+                tabLayout = findViewById(R.id.displayNews_tabLayout);
+                tabLayout.addTab(tabLayout.newTab().setText("Summary"));
+                tabLayout.addTab(tabLayout.newTab().setText("Comphrehensive"));
+                tabLayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.white));
+                tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+                final ViewPager viewPager = findViewById(R.id.displayNews_pager);
+                PagerAdapter pagerAdapter = new PagerAdapter(getSupportFragmentManager(),tabLayout.getTabCount(),todisplay.content);
+                viewPager.setAdapter(pagerAdapter);
+                viewPager.setOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+                typingIndicatorView.setVisibility(View.GONE);
+                tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        viewPager.setCurrentItem(tab.getPosition());
+                    }
+
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
+
+                    }
+
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
+
+                    }
+                });
             }
         });
-        news_display_previous_activity = "DisplayNews_Previous_Is_" + docid;
-        mFirebaseAnalytics.logEvent(news_display_previous_activity, params);
-
 
     }
 
     private void views_init() {
 
-        final String shareAnalytics = "ShareNews";
         headlines_textview = findViewById(R.id.headline);
-        content_textview = findViewById(R.id.content);
-        link_textview = findViewById(R.id.link);
         imageView = findViewById(R.id.imageView);
-        typingView = findViewById(R.id.loader);
-        share = findViewById(R.id.share);
-
-
-        toola = findViewById(R.id.toola);
-        toola.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp));
-        toola.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
-        share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (Build.VERSION.SDK_INT > 22) {
-                    requestPermissions(new String[]{"android.permission.WRITE_EXTERNAL_STORAGE"}, 1);
-                }
-                mFirebaseAnalytics.logEvent(shareAnalytics, params);
-                getScreenShot();
-            }
-        });
-
+        typingIndicatorView = findViewById(R.id.loader_displayNews);
     }
 
 
@@ -195,20 +201,6 @@ public class Display_news extends AppCompatActivity {
 
 
         headlines_textview.setText(fullnews.head);
-//  if(fullnews.tag.equals("pj")||fullnews.tag.equals("vk")||fullnews.tag.equals("vv")||fullnews.tag.equals("es")){
-//            link_textview.setText("ವಿವರವಾಗಿ ಓದಿ");
-//        }else if(fullnews.tag.equals("ht")||fullnews.tag.equals("dna")||fullnews.tag.equals("ie")||fullnews.tag.equals("dh")){
-//            link_textview.setText("Read More");
-//        }else{
-//            link_textview.setText("और पढो");
-//        }
-
-        if (!fullnews.content.isEmpty()) {
-            content_textview.setText(fullnews.content);
-        } else {
-
-            Toast.makeText(getApplicationContext(), "Could'nt Fetch the Content.", Toast.LENGTH_LONG).show();
-        }
 
         if (!fullnews.imgurl.isEmpty()) {
             Picasso.with(getApplicationContext())
@@ -222,24 +214,8 @@ public class Display_news extends AppCompatActivity {
         }
 
 
-        link_textview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                headlines_textview.setVisibility(View.GONE);
-                toola.setTitle(getApplicationContext().getResources().getString(R.string.app_name));
-
-                LinearLayout linearLayout = findViewById(R.id.forAds);
-                linearLayout.setVisibility(View.VISIBLE);
-                WebView webView = findViewById(R.id.webView);
-                webView.setWebViewClient(new WebViewClient());
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.loadUrl(fullnews.link);
-
-            }
-        });
-        typingView.setVisibility(View.GONE);
-
     }
+
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -251,6 +227,8 @@ public class Display_news extends AppCompatActivity {
 
         //replaces the default 'Back' button action
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (getFragmentManager().getBackStackEntryCount() > 0)
+                getFragmentManager().popBackStackImmediate();
             Intent intent = new Intent(Display_news.this, MainScreen_Activity.class);
             finish();
             startActivity(intent);
@@ -258,46 +236,10 @@ public class Display_news extends AppCompatActivity {
         return true;
     }
 
-    private boolean isConnected(Context context) {
 
-        ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo netinfo = cm.getActiveNetworkInfo();
 
-        if (netinfo != null && netinfo.isConnectedOrConnecting()) {
-            android.net.NetworkInfo wifi = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            android.net.NetworkInfo mobile = cm.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
-            return (mobile != null && mobile.isConnectedOrConnecting()) || (wifi != null && wifi.isConnectedOrConnecting());
-        } else
-            return false;
     }
-
-
-    private AlertDialog.Builder buildDialog_noInternet(Context c) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(c);
-        LayoutInflater factory = LayoutInflater.from(c);
-        final View view = factory.inflate(R.layout.no_internet, null);
-        Button wifi = view.findViewById(R.id.switchWifi);
-        wifi.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-            }
-        });
-
-        Button data = view.findViewById(R.id.switchData);
-        data.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setComponent(new ComponentName("com.android.settings", "com.android.settings.Settings$DataUsageSummaryActivity"));
-                startActivity(intent);
-            }
-        });
-
-        builder.setView(view);
-        return builder;
-    }
-
 }

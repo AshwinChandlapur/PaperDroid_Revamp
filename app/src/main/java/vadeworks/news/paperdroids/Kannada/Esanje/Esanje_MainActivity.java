@@ -44,8 +44,6 @@ public class Esanje_MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.common_activity_layout);
 
-
-
         init_slider();
         init_navigator();
 

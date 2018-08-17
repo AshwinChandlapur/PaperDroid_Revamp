@@ -1,35 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center"
     android:layout_height="match_parent"
     android:background="@color/background_white"
     tools:context="vadeworks.news.paperdroids.Splash_Screen.Splash_Main_Activity">
 
 
-    <LinearLayout
-        android:id="@+id/l1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_vertical"
-        android:background="@color/background_white"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
 
-
-        <ImageView
-            android:layout_width="128dp"
-            android:layout_height="128dp"
-            android:layout_gravity="center"
-            android:src="@drawable/logo_with_background"
-            tools:ignore="ContentDescription" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="cursive"
+            android:id="@+id/logo"
             android:gravity="center"
+            android:drawableTop="@drawable/logo_with_background"
             android:text="@string/app_name"
             android:textColor="@color/loaderColor"
             android:textSize="40sp" />
@@ -40,12 +30,12 @@
             android:layout_gravity="center"
             android:layout_margin="7dp"
             android:gravity="center"
+            android:id="@+id/tagline"
             android:text="360° News"
             android:textAlignment="center"
             android:textColor="@color/loaderColor"
             android:textSize="15sp" />
-    </LinearLayout>
 
 
-</FrameLayout>
+</LinearLayout>
 

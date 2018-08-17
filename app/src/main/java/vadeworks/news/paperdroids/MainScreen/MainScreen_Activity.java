@@ -25,11 +25,14 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.perf.FirebasePerformance;
 import com.google.firebase.perf.metrics.AddTrace;
+import com.google.firebase.perf.metrics.Trace;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
 import com.onesignal.OneSignal;
 import com.squareup.picasso.Picasso;
 import com.udevel.widgetlab.TypingIndicatorView;
@@ -57,6 +60,7 @@ import vadeworks.news.paperdroids.Hindi.AajTak.AajTak_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Bbc.BBC_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Jagaran.Jagaran_MainActivity;
 import vadeworks.news.paperdroids.Hindi.Ndtv.Ndtv_MainActivity;
+import vadeworks.news.paperdroids.HoroScopes.HoroScopes;
 import vadeworks.news.paperdroids.Kannada.Esanje.Esanje_MainActivity;
 import vadeworks.news.paperdroids.Kannada.Prajavani.PrajaVaani_MainActivity;
 import vadeworks.news.paperdroids.Kannada.VijayaKarnataka.VijayaKarnataka_MainActivity;
@@ -100,6 +104,8 @@ public class MainScreen_Activity extends AppCompatActivity {
     LinearLayout quick_hindi;
 
 
+    @BindView(R.id.today_horoscope)
+    CardView today_horoscope;
     @BindView(R.id.onThisDay)
     CardView onThisday;
     @BindView(R.id.specialCards)
@@ -175,6 +181,7 @@ public class MainScreen_Activity extends AppCompatActivity {
     @Override
     @AddTrace(name = "onCreate_MainScreen", enabled = true)
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainscreen_activity);
         ButterKnife.bind(this);
@@ -184,7 +191,11 @@ public class MainScreen_Activity extends AppCompatActivity {
         parentLayout.requestFocus();
         parentLayout.setFocusableInTouchMode(false);
 
-
+//        Speakerbox speakerbox = new Speakerbox(getApplication());
+//        speakerbox.remix("number", "nom");
+//        speakerbox.play("Hi, Today's Headlines are: \n" +
+//                "\n" +"Headlines Number 1"+
+//                "  ನನ್ನ ದೇಶವನ್ನು ಪ್ರೀತಿಸುತ್ತೇನೆ\n\n"+"Headlines Number 2\n\n"+"Why US postponed the 2+2 talks with India");
         firestoreNews = FirebaseFirestore.getInstance();
 
         Picasso.with(this).load(R.drawable.kannadas).placeholder(R.drawable.kannadas).error(R.drawable.kannadas).into(exclusive_background_image);
@@ -397,6 +408,14 @@ public class MainScreen_Activity extends AppCompatActivity {
             }
         });
 
+        today_horoscope.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainScreen_Activity.this, HoroScopes.class);
+                startActivity(i);
+            }
+        });
+
 
         bottomImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -442,42 +461,12 @@ public class MainScreen_Activity extends AppCompatActivity {
             AppRate.showRateDialogIfMeetsConditions(this);
 
         }
+
+
     }
 
 
     public void getRates() {
-
-//        final DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
-//        docRef.addSnapshotListener(new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot snapshot,
-//                                @Nullable FirebaseFirestoreException e) {
-//                if (e != null) {
-//                    Log.w("Snapshot", "Listen failed.", e);
-//                    return;
-//                }
-//
-//                if (snapshot != null && snapshot.exists()) {
-//                    Log.d("Snapshot", "Current data: " + snapshot.getData());
-//                            snapshot.getData();
-//                        carat22 = snapshot.getData().get("gold_22").toString();
-//                        carat24 = snapshot.getData().get("gold_24").toString();
-//                        result = snapshot.getData().get("aqi").toString();
-//                        aqi_status = snapshot.getData().get("aqi_status").toString();
-//                        petrol = snapshot.getData().get("petrol").toString();
-//                        diesel = snapshot.getData().get("diesel").toString();
-//
-//                        gold22_textview.setText(carat22);
-//                        gold24_textview.setText(carat24);
-//                        petrol_textview.setText(petrol);
-//                        diesel_textview.setText(diesel);
-//                        airNo_textview.setText(result);
-//                        airQuality_textview.setText(aqi_status);
-//                        Log.d("DocumentSnapshot data", "DocumentSnapshot data: " + snapshot.getData());
-//            }
-//        }
-//        });
-
 
         DocumentReference docRef = firestoreNews.collection("RATES").document("all_rates");
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -511,6 +500,8 @@ public class MainScreen_Activity extends AppCompatActivity {
                 }
             }
         });
+
+
 
     }
 

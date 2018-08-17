@@ -1,10 +1,12 @@
 package vadeworks.news.paperdroids;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
@@ -38,6 +40,8 @@ import vadeworks.news.paperdroids.Kannada.VijayaVaani.VijayaVaani_MainActivity;
 import vadeworks.news.paperdroids.MainScreen.MainScreen_Activity;
 import vadeworks.paperdroid.BuildConfig;
 import vadeworks.paperdroid.R;
+
+import static android.content.Context.ACTIVITY_SERVICE;
 
 /**
  * Created by ashwinchandlapur on 15/04/18.
@@ -78,6 +82,23 @@ public class Utils {
         this.activity = _activity;
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this.activity);
     }
+
+
+//    public void clearAppData(Context context) {
+//        try {
+//            // clearing app data
+//            if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
+//                ((ActivityManager)context.getSystemService(ACTIVITY_SERVICE)).clearApplicationUserData(); // note: it has a return value!
+//            } else {
+//                String packageName = context.getApplicationContext().getPackageName();
+//                Runtime runtime = Runtime.getRuntime();
+//                runtime.exec("pm clear "+packageName);
+//            }
+//
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//    }
 
 
     public void fetchCard(Context context) {
